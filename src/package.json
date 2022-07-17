@@ -1,0 +1,8 @@
+{
+  "name": "htaccess-maker",
+  "productName": "Htaccess Maker",
+  "version": "1.0.0",
+  "description": "Htaccess Maker for create and manage .htaccess file",
+  "main": "electron.prod.js",
+  "license": "MIT"
+}
