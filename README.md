@@ -41,3 +41,41 @@ the process to make this app
 ## using electron with angular
 
 [tutorial](https://pkief.medium.com/angular-desktop-apps-a9ce9e3574e8)
+
+## install query builder and  local database
+
+### knex 
+
+npm i knex
+
+### sqlite3
+
+npm i sqlite3  
+add this line i nscript section of package .json
+`"rebuild": "electron-rebuild -f -w sqlite3",`
+### electron-rebuild
+
+npm i electron-rebuild
+
+## rebuild sqlite3
+need to install all dependency for `sqlite3`, like `Visual studio`, `python 2.7` etc
+if not run:
+``` bash 
+npm install -g windows-build-tools
+```  
+it will install all dependency for in windows.
+
+then build sqlite3 with electron-rebuild.
+``` bash 
+npm run rebuild
+```  
+This will rebuild electron with sqlite
+
+
+## database creation
+If the ./data/database.db file does not exist, run: 
+```bash 
+npm run create-database
+```  
+*/!\ to do only once /!\\*  
+This will create the database and populate it with basic commands
