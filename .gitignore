@@ -46,7 +46,7 @@ Thumbs.db
 /packages
 
 # db 
-# /src/data
+/src/data
 
 # some files
 /files
