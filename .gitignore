@@ -47,3 +47,6 @@ Thumbs.db
 
 # db 
 /data
+
+# some files
+/files
