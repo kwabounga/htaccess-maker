@@ -25,13 +25,13 @@ const getRedirectTypesByID = (id) => {
   }).select();
 }
 
-const getRedirectTypesAll = () => {
+const getScopesAll = () => {
   return knex.select()
-  .table(DATABASE_TABLE_REDIRECT_TYPES);
+  .table(DATABASE_TABLE_SCOPES);
 }
 
-const getRedirectTypesByID = (id) => {
-  return knex(DATABASE_TABLE_REDIRECT_TYPES).where({
+const getScopesByID = (id) => {
+  return knex(DATABASE_TABLE_SCOPES).where({
     id: id,
   }).select();
 }
