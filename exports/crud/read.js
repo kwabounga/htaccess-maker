@@ -14,6 +14,7 @@ const {
  *  DB READ      *
  **              */
 
+// Rules 
 const getRedirectTypesAll = () => {
   return knex.select()
   .table(DATABASE_TABLE_REDIRECT_TYPES);
@@ -25,6 +26,7 @@ const getRedirectTypesByID = (id) => {
   }).select();
 }
 
+// Scopes
 const getScopesAll = () => {
   return knex.select()
   .table(DATABASE_TABLE_SCOPES);
@@ -33,5 +35,12 @@ const getScopesAll = () => {
 const getScopesByID = (id) => {
   return knex(DATABASE_TABLE_SCOPES).where({
     id: id,
+  }).select();
+}
+
+
+const getScopeConfigByScopeID = (scope_id) => {
+  return knex(DATABASE_TABLE_SCOPES).where({
+    scope_id: scope_id,
   }).select();
 }
