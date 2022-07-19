@@ -1,0 +1,17 @@
+<div class="card text-dark bg-light mb-3">
+  <div class="card-header">Configuration:</div>
+  <div class="card-body  p-2 ">
+      <label for="configData{{id}}" class="form-label">Règle: </label>
+      <textarea class="form-control" id="configData{{id}}"
+          rows="5"[(ngModel)]="this.scopeConfig.config"></textarea>
+      <br />
+      <label for="condition{{id}}" class="form-label">Condition pour {{scope.label}} </label>
+      <div class="input-group mb-3" id="condition{{id}}">
+          <span class="input-group-text">{{'\<If "%{HTTP_HOST} == \''}}</span>
+          <input type=" text" class="form-control" aria-label="the condition"
+                  [(ngModel)]="this.scopeConfig.condition">
+          <span class="input-group-text">{{'\'">'}}</span>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="clickSave()">Save {{scope.label}} Scope Configuration</button>
+  </div>
+</div>

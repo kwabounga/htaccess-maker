@@ -1,22 +1,27 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddScopeComponent } from './add-scope/add-scope.component';
 import { ExportFileComponent } from './export-file/export-file.component';
 import { OverviewComponent } from './overview/overview.component';
+import { ScopeConfigComponent } from './components/scope-config/scope-config.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddScopeComponent,
     ExportFileComponent,
-    OverviewComponent
+    OverviewComponent,
+    ScopeConfigComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

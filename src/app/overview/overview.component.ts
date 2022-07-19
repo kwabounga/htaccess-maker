@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataMockService } from '../services/data-mock.service';
-
+import { ScopeConfigComponent } from '../components/scope-config/scope-config.component';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -29,21 +29,25 @@ export class OverviewComponent implements OnInit {
     });
     // this.specialRules = await this.dataSrv.getFooterConfig();
     console.log(this.rules);
-    
+
   }
   async getScopeConfigById(id:number) {
     return this.dataSrv.getScopesConfigById(id)
     .then((obj)=>{
-      console.log('getScopeConfigById',obj);      
+      console.log('getScopeConfigById',obj);
       return obj;
     })
   }
-  
+
   async getRulesByScopeId(scope_id:number) {
     return this.dataSrv.getRulesByScopeId(scope_id)
     .then((obj)=>{
-      console.log('getRulesByScopeId',obj);      
+      console.log('getRulesByScopeId',obj);
       return obj;
     })
+  }
+
+  saveConfig(event:any){
+    console.log(event)
   }
 }
