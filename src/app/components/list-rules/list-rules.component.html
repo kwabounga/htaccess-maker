@@ -1,0 +1,24 @@
+
+      <form id="rule_{{id}}_{{idr}}">
+          <div class="input-group  input-group-sm mb-3">
+              <span class="input-group-text">
+                <input class="form-check-input mt-2" type="checkbox" [(ngModel)]="toBeDeleted" name="to-be-deleted" >
+              </span>
+              <span class="input-group-text">
+                  <select name="redirect_types" class="form-select form-select-sm" [(ngModel)]="rule.redirect_type_id">
+                      <option *ngFor="let redType of redirectTypes" value="{{redType.id}}">{{redType.label}}</option>
+                    </select>
+              </span>
+              <input type="text" class="form-control  form-control-sm" aria-label="origin"
+              [(ngModel)]="rule.origin" name="origin">
+              <input type=" text" class="form-control form-control-sm" aria-label="origin"
+              [(ngModel)]="rule.target" name="target">
+              <span class="input-group-text">
+                <div class="form-check form-switch">
+                  <input class="form-check-input mt-2" type="checkbox" [(ngModel)]="rule.active" name="active" >
+              </div>
+              </span>
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2"(click)="changeSave()">✔</button>
+          </div>
+      </form>
+

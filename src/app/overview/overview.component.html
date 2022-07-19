@@ -1,84 +1,88 @@
 <div class="accordion" id="globalOverview">
-    <div class="accordion-item">
-        <h2 class="accordion-header" id="headerGlobalOverview">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseHeaderGlobalOverview" aria-expanded="true" aria-controls="collapseOne">
-                Header config
-            </button>
-        </h2>
-        <div id="collapseHeaderGlobalOverview" class="accordion-collapse collapse "
-            aria-labelledby="headerGlobalOverview" data-bs-parent="#globalOverview">
-            <div class="accordion-body">
-                <label for="headerConfigData" class="form-label">Modifier le contenu et cliquer sur enregistrer pour
-                    prendre en compte les modifications</label>
-                <textarea class="form-control" id="headerConfigData" rows="20">{{ this?.headerData }}</textarea>
-                <button type="button" class="btn btn-primary">Save Header Config</button>
-            </div>
-        </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headerGlobalOverview">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseHeaderGlobalOverview"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Header config
+      </button>
+    </h2>
+    <div
+      id="collapseHeaderGlobalOverview"
+      class="accordion-collapse collapse"
+      aria-labelledby="headerGlobalOverview"
+      data-bs-parent="#globalOverview"
+    >
+      <div class="accordion-body">
+        <label for="headerConfigData" class="form-label"
+          >Modifier le contenu et cliquer sur enregistrer pour prendre en compte
+          les modifications</label
+        >
+        <textarea class="form-control" id="headerConfigData" rows="20">{{
+          this?.headerData
+        }}</textarea>
+        <button type="button" class="btn btn-primary">
+          Save Header Config
+        </button>
+      </div>
     </div>
-    <!-- loop scopes here -->
-    <div class="accordion-item" *ngFor="let scope of this?.scopes, let id = index">
-        <h2 class="accordion-header" id="config{{id}}">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                [attr.data-bs-target]="'#collapseConfig' + id" aria-expanded="true" aria-controls="collapseOne">
-                {{scope.label}}
-            </button>
-        </h2>
-        <div id="collapseConfig{{id}}" class="accordion-collapse collapse {{(id==0)?'show':''}}" aria-labelledby="config"
-            data-bs-parent="#globalOverview">
-            <div class="accordion-body">
-                <!-- <div class="card text-dark bg-light mb-3">
-                  <div class="card-header">Configuration:</div>
-                  <div class="card-body  p-2 ">
-                      <label for="configData{{id}}" class="form-label">Règle: </label>
-                      <textarea class="form-control" id="configData{{id}}"
-                          rows="5">{{ this.scopeConfig?.[scope.id].config }}</textarea>
-                      <br />
-                      <label for="condition{{id}}" class="form-label">Condition pour {{scope.label}} </label>
-                      <div class="input-group mb-3" id="condition{{id}}">
-                          <span class="input-group-text">{{'\<If "%{HTTP_HOST} == \''}}</span>
-                          <input type=" text" class="form-control" aria-label="the condition"
-                                  value="{{ this.scopeConfig?.[scope.id].condition }}">
-                          <span class="input-group-text">{{'\'">'}}</span>
-                      </div>
-                      <button type="button" class="btn btn-primary">Save {{scope.label}} Scope Configuration</button>
-                  </div>
-                </div> -->
-                <app-scope-config
-                    [id]="id"
-                    [scopeConfig]="this.scopeConfig?.[scope.id]"
-                    [scope]="scope"
-                    (onClickSave)="saveConfig($event)"
-                  ></app-scope-config>
-                <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let rule of this.rules?.[scope.id], let idr = index" >
-                        <form id="rule_{{id}}_{{idr}}">
-                            <div class="input-group  input-group-sm mb-3">
-                                <span class="input-group-text">
-                                    <select name="redirect_types" class="form-select form-select-sm" [(ngModel)]="rule.redirect_type_id">
-                                        <option *ngFor="let redType of redirectTypes" value="{{redType.id}}">{{redType.label}}</option>
-                                      </select>
-                                </span>
-                                <input type=" text" class="form-control  form-control-sm" aria-label="origin"
-                                [(ngModel)]="rule.origin" name="origin">
-                                <input type=" text" class="form-control form-control-sm" aria-label="origin"
-                                [(ngModel)]="rule.target" name="target">
-                                <span class="input-group-text">
-                                  <div class="form-check form-switch">
-                                    <input class="form-check-input mt-2" type="checkbox" [(ngModel)]="rule.active" name="active">
-                                </div>
-                                </span>
-                            </div>
-                        </form>
+  </div>
+  <!-- loop scopes here -->
+  <div
+    class="accordion-item"
+    *ngFor="let scope of this?.scopes; let id = index"
+  >
+    <h2 class="accordion-header" id="config{{ id }}">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#collapseConfig' + id"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        {{ scope.label }}
+      </button>
+    </h2>
+    <div
+      id="collapseConfig{{ id }}"
+      class="accordion-collapse collapse {{ id == 0 ? 'show' : '' }}"
+      aria-labelledby="config"
+      data-bs-parent="#globalOverview"
+    >
+      <div class="accordion-body">
+        <app-scope-config
+          [id]="id"
+          [scopeConfig]="this.scopeConfig?.[scope.id]"
+          [scope]="scope"
+          (onClickSave)="saveConfig($event)"
+        ></app-scope-config>
 
-                    </li>
-                </ul>
-
-            </div>
-        </div>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let rule of this.rules?.[scope.id], let idr = index"
+          >
+            <app-list-rules
+              [id]="id"
+              [idr]="idr"
+              [rule]="rule"
+              [scope]="scope"
+              [redirectTypes]="redirectTypes"
+              (onChangeSave)="checkRules($event)"
+            ></app-list-rules>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 
-    <!-- <ul class="list-group">
+  <!-- <ul class="list-group">
         <li *ngFor="let scope of this?.scopes, let id = index" class="list-group-item">
             <h3>{{scope.label}}</h3>
             <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
@@ -86,22 +90,38 @@
         </li>
     </ul> -->
 
-    <!-- !loop scopes here -->
-    <div class="accordion-item">
-        <h2 class="accordion-footer" id="footerGlobalOverview">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseFooterGlobalOverview" aria-expanded="true" aria-controls="collapseOne">
-                Footer config
-            </button>
-        </h2>
-        <div id="collapseFooterGlobalOverview" class="accordion-collapse collapse "
-            aria-labelledby="footerGlobalOverview" data-bs-parent="#globalOverview">
-            <div class="accordion-body">
-                <label for="footerConfigData" class="form-label">Modifier le contenu et cliquer sur enregistrer pour
-                    prendre en compte les modifications</label>
-                <textarea class="form-control" id="footerConfigData" rows="20">{{ this?.footerData }}</textarea>
-                <button type="button" class="btn btn-primary">Save Footer Config</button>
-            </div>
-        </div>
+  <!-- !loop scopes here -->
+  <div class="accordion-item">
+    <h2 class="accordion-footer" id="footerGlobalOverview">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseFooterGlobalOverview"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Footer config
+      </button>
+    </h2>
+    <div
+      id="collapseFooterGlobalOverview"
+      class="accordion-collapse collapse"
+      aria-labelledby="footerGlobalOverview"
+      data-bs-parent="#globalOverview"
+    >
+      <div class="accordion-body">
+        <label for="footerConfigData" class="form-label"
+          >Modifier le contenu et cliquer sur enregistrer pour prendre en compte
+          les modifications</label
+        >
+        <textarea class="form-control" id="footerConfigData" rows="20">{{
+          this?.footerData
+        }}</textarea>
+        <button type="button" class="btn btn-primary">
+          Save Footer Config
+        </button>
+      </div>
     </div>
+  </div>
 </div>

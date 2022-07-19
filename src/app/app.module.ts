@@ -9,6 +9,7 @@ import { AddScopeComponent } from './add-scope/add-scope.component';
 import { ExportFileComponent } from './export-file/export-file.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ScopeConfigComponent } from './components/scope-config/scope-config.component';
+import { ListRulesComponent } from './components/list-rules/list-rules.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ScopeConfigComponent } from './components/scope-config/scope-config.com
     AddScopeComponent,
     ExportFileComponent,
     OverviewComponent,
-    ScopeConfigComponent
+    ScopeConfigComponent,
+    ListRulesComponent
   ],
   imports: [
     BrowserModule,
