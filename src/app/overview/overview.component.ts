@@ -50,7 +50,7 @@ export class OverviewComponent implements OnInit {
   saveConfig(event:any){
     console.log(event)
   }
-  checkRules(event:any){
+  saveRule(event:any){
     console.log(event)
   }
 }

@@ -1,12 +1,12 @@
 
       <form id="rule_{{id}}_{{idr}}">
-          <div class="input-group  input-group-sm mb-3">
+          <div class="input-group  input-group-sm m-0  flex-nowrap p-0">
               <span class="input-group-text">
-                <input class="form-check-input mt-2" type="checkbox" [(ngModel)]="toBeDeleted" name="to-be-deleted" >
+                <input class="form-check-input mt-0" type="checkbox" [(ngModel)]="toBeDeleted" name="to-be-deleted" >
               </span>
               <span class="input-group-text">
                   <select name="redirect_types" class="form-select form-select-sm" [(ngModel)]="rule.redirect_type_id">
-                      <option *ngFor="let redType of redirectTypes" value="{{redType.id}}">{{redType.label}}</option>
+                      <option *ngFor="let redType of redirectTypes" [ngValue]="redType.id">{{redType.label}}</option>
                     </select>
               </span>
               <input type="text" class="form-control  form-control-sm" aria-label="origin"

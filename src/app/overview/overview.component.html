@@ -26,7 +26,7 @@
         <textarea class="form-control" id="headerConfigData" rows="20">{{
           this?.headerData
         }}</textarea>
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary mt-2">
           Save Header Config
         </button>
       </div>
@@ -63,9 +63,9 @@
           (onClickSave)="saveConfig($event)"
         ></app-scope-config>
 
-        <ul class="list-group">
+        <ul class="list-group border overflow-auto blocked-size-max">
           <li
-            class="list-group-item"
+            class="list-group-item p-0"
             *ngFor="let rule of this.rules?.[scope.id], let idr = index"
           >
             <app-list-rules
@@ -74,7 +74,7 @@
               [rule]="rule"
               [scope]="scope"
               [redirectTypes]="redirectTypes"
-              (onChangeSave)="checkRules($event)"
+              (onChangeSave)="saveRule($event)"
             ></app-list-rules>
           </li>
         </ul>
@@ -118,7 +118,7 @@
         <textarea class="form-control" id="footerConfigData" rows="20">{{
           this?.footerData
         }}</textarea>
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary mt-2">
           Save Footer Config
         </button>
       </div>
