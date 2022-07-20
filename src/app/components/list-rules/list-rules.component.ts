@@ -27,11 +27,12 @@ export class ListRulesComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public changeSave(): void {
+  public changeSave(to_be_deleted:boolean): void {
     this.onChangeSave.emit({
       id: this.idr,
       rule: this.rule,
       scope: this.scope,
+      to_be_deleted:to_be_deleted
     });
   }
 }
