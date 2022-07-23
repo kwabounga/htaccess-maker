@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Scope, ScopeConfig } from '../interfaces/interfaces';
+import { Scope, ScopeConfig, Rule,RedirectType } from '../interfaces/interfaces';
 const texts = {
   comments:{
     chara:'#',
@@ -23,7 +23,7 @@ export class OutputHtaccessService {
   async getScopeConfigPreview(scope:Scope, scopeConfig:ScopeConfig, rules?:string[]):Promise<string> {
       let header = await this.generateHeaderComment(scope.label);
       return new Promise((resolve,reject)=>{
-        let output:string = '';
+        let output:string = '\n\n';
         output += header
         output += '\n'
         output += texts.scope_config.comment
@@ -47,6 +47,28 @@ export class OutputHtaccessService {
         output += center.padEnd(texts.comments.full_line.length, texts.comments.chara) + '\n';
         output += texts.comments.full_line + '\n';
         resolve(output);
+      })
+  }
+  async generateRuleLines(rules:Rule[], redirecTypes:RedirectType[]):Promise<string[]> {
+      return new Promise((resolve,reject)=>{
+        let rulesString:string[] = [];
+        for (const rule of rules) {
+          let redValue = redTypByID(rule.redirect_type_id).value;
+          rulesString.push(`${rule.active ? '' : '# '}${redValue} ${rule.origin} ${rule.target}`);
+        }
+        resolve(rulesString);
+        function redTypByID(id:number):RedirectType{
+          const byId = (element:any) => element.id === id;
+          const i = redirecTypes.findIndex(byId);
+          if(i >= 0){
+            return redirecTypes[i];
+          } else {
+            return {
+                label: 'default',
+                value: 'Redirect',
+            };
+          }
+        }
       })
   }
 }

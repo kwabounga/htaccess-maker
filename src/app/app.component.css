@@ -1,4 +1,10 @@
 .app-content {
     padding: 1em;
 }
-
+a.nav-link{
+  color: #696969
+}
+.bg-secondary > a.nav-link.text-light.active,
+.bg-danger > a.nav-link.text-light.active{
+  color: #696969!important;
+}

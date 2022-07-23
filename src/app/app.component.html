@@ -4,15 +4,18 @@
     <li class="nav-item">
       <a class="nav-link" [routerLinkActive]="['active']" routerLink="/overview">Overview</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-new-scope">Add Scope</a>
-    </li>
-    <li class="nav-item">
+    <li class="nav-item bg-light">
       <a class="nav-link" [routerLinkActive]="['active']" routerLink="/csv-rules-import">Csv Import</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" [routerLinkActive]="['active']" routerLink="/export-file">Export file</a>
+    <li class="nav-item bg-secondary">
+      <a class="nav-link text-light" [routerLinkActive]="['active']" routerLink="/export-file">Export file</a>
     </li>    
+    <li class="nav-item bg-warning">
+      <a class="nav-link" [routerLinkActive]="['active']" routerLink="/add-new-scope">Add Scope</a>
+    </li>
+    <li class="nav-item bg-danger">
+      <a class="nav-link text-light" [routerLinkActive]="['active']" routerLink="/delete-scope">Delete Scope</a>
+    </li>
   </ul>
   
 </header>

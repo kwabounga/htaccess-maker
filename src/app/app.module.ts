@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import { RuleLineComponent } from './components/rule-line/rule-line.component';
 import { CsvRulesImportComponent } from './pages/csv-rules-import/csv-rules-import.component';
 import { RulesListComponent } from './components/rules-list/rules-list.component';
 import { CodePreviewComponent } from './components/code-preview/code-preview.component';
+import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,14 @@ import { CodePreviewComponent } from './components/code-preview/code-preview.com
     RuleLineComponent,
     CsvRulesImportComponent,
     RulesListComponent,
-    CodePreviewComponent
+    CodePreviewComponent,
+    DeleteScopeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

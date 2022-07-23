@@ -12,6 +12,11 @@ export interface Scope {
     id?: number;
     label: string;
 }
+export interface RedirectType {
+    id?: number;
+    label: string;
+    value: string;
+}
 
 export interface Rule {
   id?: number;

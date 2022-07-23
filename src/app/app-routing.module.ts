@@ -4,6 +4,7 @@ import { AddScopeComponent } from './pages/add-scope/add-scope.component';
 import { ExportFileComponent } from './pages/export-file/export-file.component';
 import { CsvRulesImportComponent } from './pages/csv-rules-import/csv-rules-import.component';
 import { OverviewComponent } from './pages/overview/overview.component';
+import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path:'add-new-scope',
     component: AddScopeComponent
+  },
+  {
+    path:'delete-scope',
+    component: DeleteScopeComponent
   },
   {
     path:'export-file',

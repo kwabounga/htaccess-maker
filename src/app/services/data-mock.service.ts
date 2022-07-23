@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Scope, ScopeConfig, Rule,RedirectType }from '../interfaces/interfaces';
+import { OutputHtaccessService } from './output-htaccess.service';
 const mock = {
   header_config: `
 ############################################
@@ -136,7 +138,7 @@ const mock = {
     BrowserMatch ^Mozilla/4\.0[678] no-gzip
 
     # MSIE masquerades as Netscape, but it is fine
-    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    BrowserMatch \\bMSIE !no-gzip !gzip-only-text/html
 
     # Don't compress images
     SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png)$ no-gzip dont-vary
@@ -715,12 +717,26 @@ RewriteRule ^(.*)$ https://www.moulinroty-maboutique.com/$1 [R=301,L]
 @Injectable({
   providedIn: 'root',
   useFactory: () => {
-      return new DataMockService();
+      return new DataMockService(new OutputHtaccessService());
   }
 })
 export class DataMockService {
-  constructor() { }
-
+  constructor(private ouputSrv:OutputHtaccessService) { }
+  async generateHtaccessFile():Promise<string> {
+    return new Promise (async (resolve, reject)=>{
+      let htAccessContent= "";
+      htAccessContent += mock.header_config;
+      for (const scope of mock.scopes) {
+        const scopeConfig = await this.getScopesConfigById(scope.id);
+        const rules = await this.getRulesByScopeId(scope.id);
+        const redirectTypes = await this.getRedirectTypesAll()
+        const rulesString = await this.ouputSrv.generateRuleLines(rules,redirectTypes);
+        htAccessContent += await this.ouputSrv.getScopeConfigPreview(scope,scopeConfig,rulesString);
+      }
+      htAccessContent += mock.footer_config;
+      resolve(htAccessContent);
+    })
+  }
   async getHeaderConfig () {
     return new Promise ((resolve, reject)=>{
       resolve(mock.header_config)
@@ -738,7 +754,7 @@ export class DataMockService {
       resolve(mock.scopes_config)
     })
   }
-  async getScopesConfigById (id:number) {
+  async getScopesConfigById (id:number):Promise<ScopeConfig> {
     const src = mock.scopes_config;
     return new Promise ((resolve, reject)=>{
       const byId = (element:any) => element.id === id;
@@ -756,9 +772,22 @@ export class DataMockService {
       resolve(mock.scopes)
     })
   }
-  async getRedirectTypesAll () {
+  async getRedirectTypesAll ():Promise<RedirectType[]> {
     return new Promise ((resolve, reject)=>{
       resolve(mock.redirect_types)
+    })
+  }
+  async getRedirectTypesById (id:number) {
+    const src = mock.redirect_types;
+    return new Promise ((resolve, reject)=>{
+      const byId = (element:any) => element.id === id;
+      const i = src.findIndex(byId);
+      if(i >= 0){
+        resolve(src[i])
+      } else {
+        reject({message:`the redirect_types with id ${id} do not exist`})
+      }
+
     })
   }
   async getScopesById (id:number) {
@@ -774,7 +803,7 @@ export class DataMockService {
 
     })
   }
-  async getRulesByScopeId (scope_id:number) {
+  async getRulesByScopeId (scope_id:number):Promise<Rule[]> {
     const src = mock.rules;
     return new Promise ((resolve, reject)=>{
       const byScopeId = (element:any) => element.scope_id === scope_id;

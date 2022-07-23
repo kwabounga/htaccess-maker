@@ -1,5 +1,9 @@
 <h3>Preview</h3>
-<pre>
+<pre *ngIf="this.preview">
 <span *ngFor="let line of this?.outputMaker()" [class]="line.is_comment?'comment':'code'">
 <span >{{line.text}}</span></span>
 </pre>
+<pre *ngIf="!this.preview">
+
+</pre>
+
