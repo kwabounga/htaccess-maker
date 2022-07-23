@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { OutputHtaccessService } from 'src/app/services/output-htaccess.service';
 
 @Component({
   selector: 'app-scope-config',
@@ -14,7 +15,7 @@ export class ScopeConfigComponent implements OnInit {
   @Output() onClickSave = new EventEmitter<any>();
   @Output() onPreview = new EventEmitter<any>();
   
-  constructor() {}
+  constructor(protected outputSrv:OutputHtaccessService) {}
 
   ngOnInit(): void {}
 
@@ -26,7 +27,8 @@ export class ScopeConfigComponent implements OnInit {
       scope: this.scope,
     });
   }
-  public clickPreview(): void {
+  public updatePreview(): void {
+    if(!this.prev) return;
     this.onPreview.emit({
       emitter:'preview',
       id: this.id,

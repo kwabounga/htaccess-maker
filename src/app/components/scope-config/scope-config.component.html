@@ -3,16 +3,16 @@
   <div class="card-body  p-2 ">
       <label for="configData{{id}}" class="form-label">Règle: </label>
       <textarea class="form-control" id="configData{{id}}"
-          rows="5"[(ngModel)]="this.scopeConfig.config"></textarea>
+          rows="5"[(ngModel)]="this.scopeConfig.config" (input)="updatePreview()"></textarea>
       <br />
       <label for="condition{{id}}" class="form-label">Condition pour {{scope.label}} </label>
       <div class="input-group mb-3" id="condition{{id}}">
-          <span class="input-group-text">{{'\<If "%{HTTP_HOST} == \''}}</span>
+          <span class="input-group-text">{{this.outputSrv.texts.scope_config.condition_open_tag_start}}</span>
           <input type=" text" class="form-control" aria-label="the condition"
-                  [(ngModel)]="this.scopeConfig.condition">
-          <span class="input-group-text">{{'\'">'}}</span>
+                  [(ngModel)]="this.scopeConfig.condition" (input)="updatePreview()">
+          <span class="input-group-text">{{this.outputSrv.texts.scope_config.condition_open_tag_end}}</span>
       </div>
       <button type="button" class="btn btn-primary" (click)="clickSave()">Save {{scope.label}} Scope Configuration</button>
-      <button *ngIf="this?.prev" type="button" class="btn btn-success" (click)="clickPreview()">Preview</button>
+      <!-- <button *ngIf="this?.prev" type="button" class="btn btn-success" (click)="clickPreview()">Preview</button> -->
   </div>
 </div>

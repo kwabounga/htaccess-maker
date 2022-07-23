@@ -5,7 +5,7 @@
     <div class="card-body  p-2">
         <div class="mb-3">
             <label for="scopeConfigLabel" class="form-label">Scope Label</label>
-            <input type="email" class="form-control" id="scopeConfigLabel" placeholder="LENOUVEAUSITE.com" [(ngModel)]="this.scope.label">
+            <input type="email" class="form-control" id="scopeConfigLabel" placeholder="LENOUVEAUSITE.com" [(ngModel)]="this.scope.label"  (input)="updatePreview()">
           </div>
         <app-scope-config
           [id]="id"

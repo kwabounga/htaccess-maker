@@ -31,7 +31,7 @@ export class AddScopeComponent implements OnInit {
     console.log(this.output)
   }
   updatePreview(event?:any){
-    this.outputHtSrv.generateHeaderComment(this.scope.label).then((out)=>{
+    this.outputHtSrv.getScopeConfigPreview(this.scope,this.scopeConfig, ['# //...','# some rules','# //...']).then((out)=>{
       this.output = out;
     })
   }
