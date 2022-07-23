@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Scope, ScopeConfig } from '../interfaces/interfaces';
-import { OutputHtaccessService } from '../services/output-htaccess.service';
+import { Scope, ScopeConfig } from '../../interfaces/interfaces';
+import { OutputHtaccessService } from '../../services/output-htaccess.service';
 @Component({
   selector: 'app-add-scope',
   templateUrl: './add-scope.component.html',

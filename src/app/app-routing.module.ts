@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddScopeComponent } from './add-scope/add-scope.component';
-import { ExportFileComponent } from './export-file/export-file.component';
-import { CsvRulesImportComponent } from './csv-rules-import/csv-rules-import.component';
-import { OverviewComponent } from './overview/overview.component';
+import { AddScopeComponent } from './pages/add-scope/add-scope.component';
+import { ExportFileComponent } from './pages/export-file/export-file.component';
+import { CsvRulesImportComponent } from './pages/csv-rules-import/csv-rules-import.component';
+import { OverviewComponent } from './pages/overview/overview.component';
 
 const routes: Routes = [
   {

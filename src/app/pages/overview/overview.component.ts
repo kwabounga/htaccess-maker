@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataMockService } from '../services/data-mock.service';
+import { DataMockService } from 'src/app/services/data-mock.service';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
