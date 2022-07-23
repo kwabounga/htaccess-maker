@@ -19,7 +19,7 @@ export class AddScopeComponent implements OnInit {
   scope:Scope = {
     label:""
   };
-  output:any;
+  output?:string;
   constructor(private outputHtSrv:OutputHtaccessService) {  }
 
   ngOnInit(): void {

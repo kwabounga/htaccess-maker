@@ -70,7 +70,7 @@
           [rules]="this.rules?.[scope.id]"
           [scope]="scope"
           [redirectTypes]="redirectTypes"
-          (onChangeSave)="saveRule($event)"
+          (onEmitChange)="saveRule($event)"
         ></app-rules-list>
 
       </div>

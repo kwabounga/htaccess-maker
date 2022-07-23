@@ -1,11 +1,7 @@
-.blocked-size-max{
+pre {
   min-height: 15rem;
   max-height:35rem;
   overflow-y: scroll;
-}
-textarea:focus,
-textarea {
-  padding:1rem;
   padding:1rem;
   color: #d4d4d4;
   background-color: #1e1e1e;
@@ -16,4 +12,7 @@ textarea {
   line-height: 19px;
   letter-spacing: 0px;
   white-space: pre-wrap;
+}
+pre .comment {
+  color: #6a9955;
 }

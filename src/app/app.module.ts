@@ -12,6 +12,7 @@ import { ScopeConfigComponent } from './components/scope-config/scope-config.com
 import { RuleLineComponent } from './components/rule-line/rule-line.component';
 import { CsvRulesImportComponent } from './pages/csv-rules-import/csv-rules-import.component';
 import { RulesListComponent } from './components/rules-list/rules-list.component';
+import { CodePreviewComponent } from './components/code-preview/code-preview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RulesListComponent } from './components/rules-list/rules-list.component
     ScopeConfigComponent,
     RuleLineComponent,
     CsvRulesImportComponent,
-    RulesListComponent
+    RulesListComponent,
+    CodePreviewComponent
   ],
   imports: [
     BrowserModule,

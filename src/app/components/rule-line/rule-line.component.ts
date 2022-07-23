@@ -55,7 +55,8 @@ export class RuleLineComponent implements OnInit {
       rule: this.rule,
       start_stat_rule: this.startStateRule,
       scope: this.scope,
-      to_be_deleted:to_be_deleted
+      to_be_deleted:to_be_deleted,
+      to_be_saved:this.toBeSaved
     });
   }
   protected verifChange(){

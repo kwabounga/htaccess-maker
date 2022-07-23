@@ -12,14 +12,12 @@ export class RulesListComponent implements OnInit {
   @Input() redirectTypes:any;
 
   @Output()
-  onChangeSave = new EventEmitter<any>();
+  onEmitChange = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
   }
-  public changeSave(info:any): void {
-    this.onChangeSave.emit({
-      info
-    });
+  public changeSave(data:any): void {
+    this.onEmitChange.emit(data);
   }
 }

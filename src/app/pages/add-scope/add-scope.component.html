@@ -17,6 +17,10 @@
         ></app-scope-config>
     </div>
   </div>
-  <pre>
+<!--   <pre>
 {{this?.output}}
-  </pre>
+  </pre> -->
+  <app-code-preview
+  [preview]="this?.output"
+  >
+  </app-code-preview>
