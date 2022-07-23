@@ -26,22 +26,6 @@ dbAccess.check()
 .catch((error) => {
   console.error('ERROR');
   console.error(error);
-  /* console.log(`try to delete database: ${dbAccess.DATABASE_FILE} ..`)
-  try {
-    tools.wait(2000).then(()=>{
-      dbAccess.close();
-      let fs = require('fs');
-      fs.unlinkSync(dbAccess.DATABASE_FILE);
-      console.log(`.. database deleted with success`)
-      process.exit(1)
-    }).catch((e) => {
-      console.error(e.message)
-      process.exit(1)
-    })
-    
-  } catch (e) { 
-    console.error(`.. error when delete database: ${e.message}`);
-  } */
   console.log('anyway:');
   console.error('.. please check sqlite3 configuration');
   console.error('.. please check your version of python (2.7)');

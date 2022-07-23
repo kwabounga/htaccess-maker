@@ -21,9 +21,8 @@ export class OutputHtaccessService {
       return new Promise((resolve,reject)=>{
         let output:string  = texts.comments.full_line + '\n';
         let center = texts.comments.start_line + ' ' +  texts.comments.label_redirect  + ' ' + label + ' ';
-        //let leftSize = texts.comments.full_line.length - center.length;
-        output += center.padEnd(texts.comments.full_line.length, texts.comments.chara) + '\n'
-        output += texts.comments.full_line + '\n'
+        output += center.padEnd(texts.comments.full_line.length, texts.comments.chara) + '\n';
+        output += texts.comments.full_line + '\n';
         resolve(output);
       })
   }

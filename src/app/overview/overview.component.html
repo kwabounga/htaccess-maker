@@ -57,12 +57,14 @@
       data-bs-parent="#globalOverview"
     >
       <div class="accordion-body">
+
         <app-scope-config
           [id]="id"
           [scopeConfig]="this.scopeConfig?.[scope.id]"
           [scope]="scope"
           (onClickSave)="saveConfig($event)"
         ></app-scope-config>
+
         <app-rules-list
           [id]="id"
           [rules]="this.rules?.[scope.id]"
@@ -70,32 +72,10 @@
           [redirectTypes]="redirectTypes"
           (onChangeSave)="saveRule($event)"
         ></app-rules-list>
-        <!-- <ul class="list-group border overflow-auto blocked-size-max">
-          <li
-            class="list-group-item p-0 "
-            *ngFor="let rule of this.rules?.[scope.id], let idr = index"
-          >
-            <app-rule-line
-              [id]="id"
-              [idr]="idr"
-              [rule]="rule"
-              [scope]="scope"
-              [redirectTypes]="redirectTypes"
-              (onChangeSave)="saveRule($event)"
-            ></app-rule-line>
-          </li>
-        </ul> -->
+
       </div>
     </div>
   </div>
-
-  <!-- <ul class="list-group">
-        <li *ngFor="let scope of this?.scopes, let id = index" class="list-group-item">
-            <h3>{{scope.label}}</h3>
-            <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </li>
-    </ul> -->
 
   <!-- !loop scopes here -->
   <div class="accordion-item">

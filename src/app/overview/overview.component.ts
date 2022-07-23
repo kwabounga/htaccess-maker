@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataMockService } from '../services/data-mock.service';
-import { ScopeConfigComponent } from '../components/scope-config/scope-config.component';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',

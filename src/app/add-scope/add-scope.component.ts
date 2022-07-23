@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ScopeConfigComponent } from '../components/scope-config/scope-config.component';
 import { Scope, ScopeConfig } from '../interfaces/interfaces';
 import { OutputHtaccessService } from '../services/output-htaccess.service';
 @Component({
@@ -27,8 +26,8 @@ export class AddScopeComponent implements OnInit {
   }
 
   saveConfig(event:any){
-    console.log('csv-rules-import',event)   
-    
+    console.log('csv-rules-import',event)
+
     console.log(this.output)
   }
   updatePreview(event?:any){
