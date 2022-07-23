@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListRulesComponent } from './list-rules.component';
+import { RuleLineComponent } from './rule-line.component';
 
 describe('ListRulesComponent', () => {
-  let component: ListRulesComponent;
-  let fixture: ComponentFixture<ListRulesComponent>;
+  let component: RuleLineComponent;
+  let fixture: ComponentFixture<RuleLineComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListRulesComponent ]
+      declarations: [ RuleLineComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListRulesComponent);
+    fixture = TestBed.createComponent(RuleLineComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

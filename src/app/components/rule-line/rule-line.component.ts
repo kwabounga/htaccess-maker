@@ -3,11 +3,11 @@ const iconCheck ='✔';
 const iconDelete ='❌';
 const iconRefresh ='⬆';
 @Component({
-  selector: 'app-list-rules',
-  templateUrl: './list-rules.component.html',
-  styleUrls: ['./list-rules.component.css']
+  selector: 'app-rule-line',
+  templateUrl: './rule-line.component.html',
+  styleUrls: ['./rule-line.component.css']
 })
-export class ListRulesComponent implements OnInit {
+export class RuleLineComponent implements OnInit {
   icons = {iconCheck,iconDelete,iconRefresh}
   @Input()
   id:number = 0

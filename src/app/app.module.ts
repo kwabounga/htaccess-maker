@@ -9,7 +9,7 @@ import { AddScopeComponent } from './add-scope/add-scope.component';
 import { ExportFileComponent } from './export-file/export-file.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ScopeConfigComponent } from './components/scope-config/scope-config.component';
-import { ListRulesComponent } from './components/list-rules/list-rules.component';
+import { RuleLineComponent } from './components/rule-line/rule-line.component';
 import { CsvRulesImportComponent } from './csv-rules-import/csv-rules-import.component';
 
 @NgModule({
@@ -19,7 +19,7 @@ import { CsvRulesImportComponent } from './csv-rules-import/csv-rules-import.com
     ExportFileComponent,
     OverviewComponent,
     ScopeConfigComponent,
-    ListRulesComponent,
+    RuleLineComponent,
     CsvRulesImportComponent
   ],
   imports: [

@@ -69,14 +69,14 @@
             class="list-group-item p-0 "
             *ngFor="let rule of this.rules?.[scope.id], let idr = index"
           >
-            <app-list-rules
+            <app-rule-line
               [id]="id"
               [idr]="idr"
               [rule]="rule"
               [scope]="scope"
               [redirectTypes]="redirectTypes"
               (onChangeSave)="saveRule($event)"
-            ></app-list-rules>
+            ></app-rule-line>
           </li>
         </ul>
       </div>
