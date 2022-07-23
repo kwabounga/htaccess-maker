@@ -17,12 +17,9 @@ export class RulesListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  public changeSave(to_be_deleted:boolean): void {
+  public changeSave(info:any): void {
     this.onChangeSave.emit({
-      id: this.id,
-      rules: this.rules,
-      scope: this.scope,
-      to_be_deleted:to_be_deleted
+      info
     });
   }
 }

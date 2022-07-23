@@ -12,3 +12,12 @@ export interface Scope {
     id?: number;
     label: string;
 }
+
+export interface Rule {
+  id?: number;
+  scope_id: number;
+  redirect_type_id: number;
+  origin: string;
+  target: string;
+  active: boolean;
+}
