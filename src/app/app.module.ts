@@ -11,6 +11,7 @@ import { OverviewComponent } from './overview/overview.component';
 import { ScopeConfigComponent } from './components/scope-config/scope-config.component';
 import { RuleLineComponent } from './components/rule-line/rule-line.component';
 import { CsvRulesImportComponent } from './csv-rules-import/csv-rules-import.component';
+import { RulesListComponent } from './components/rules-list/rules-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CsvRulesImportComponent } from './csv-rules-import/csv-rules-import.com
     OverviewComponent,
     ScopeConfigComponent,
     RuleLineComponent,
-    CsvRulesImportComponent
+    CsvRulesImportComponent,
+    RulesListComponent
   ],
   imports: [
     BrowserModule,

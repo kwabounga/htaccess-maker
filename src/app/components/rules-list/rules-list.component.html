@@ -1,0 +1,15 @@
+<ul class="list-group border overflow-auto blocked-size-max">
+  <li
+    class="list-group-item p-0 "
+    *ngFor="let rule of this?.rules, let idr = index"
+  >
+    <app-rule-line
+      [id]="id"
+      [idr]="idr"
+      [rule]="rule"
+      [scope]="scope"
+      [redirectTypes]="redirectTypes"
+      (onChangeSave)="changeSave($event)"
+    ></app-rule-line>
+  </li>
+</ul>

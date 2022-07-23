@@ -8,9 +8,9 @@
                 <option *ngFor="let redType of redirectTypes" [ngValue]="redType.id">{{redType.label | uppercase}}</option>
               </select>
               <input type="text" class="form-control  form-control-sm w-25" aria-label="origin" title="origin"
-              [(ngModel)]="rule.origin" name="origin"  (change)="verifChange()">
+              [(ngModel)]="rule.origin" name="origin"  (input)="verifChange()">
               <input type=" text" class="form-control form-control-sm w-50" aria-label="target" title="target"
-              [(ngModel)]="rule.target" name="target"  (change)="verifChange()">
+              [(ngModel)]="rule.target" name="target"  (input)="verifChange()">
               <div class="form-check form-switch" title="Active ?">
                 <input class="form-check-input mt-2" type="checkbox" [(ngModel)]="rule.active" name="active" (change)="verifChange()">
             </div>
