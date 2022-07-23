@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddScopeComponent } from './add-scope/add-scope.component';
 import { ExportFileComponent } from './export-file/export-file.component';
+import { CsvRulesImportComponent } from './csv-rules-import/csv-rules-import.component';
 import { OverviewComponent } from './overview/overview.component';
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path:'export-file',
     component: ExportFileComponent
+  },
+  {
+    path:'csv-rules-import',
+    component: CsvRulesImportComponent
   },
   {
     path: '**',

@@ -1,1 +1,22 @@
-<p>add-scope works!</p>
+
+<h1>Creation d'un nouveau Scope/Site</h1>
+<div class="card text-dark bg-light mb-3">
+    <div class="card-header">Configuration</div>
+    <div class="card-body  p-2">
+        <div class="mb-3">
+            <label for="scopeConfigLabel" class="form-label">Scope Label</label>
+            <input type="email" class="form-control" id="scopeConfigLabel" placeholder="LENOUVEAUSITE.com" [(ngModel)]="this.scope.label">
+          </div>
+        <app-scope-config
+          [id]="id"
+          [scopeConfig]="this.scopeConfig"
+          [scope]="scope"
+          (onClickSave)="saveConfig($event)"
+          [prev]="true"
+          (onPreview)="updatePreview($event)"
+        ></app-scope-config>
+    </div>
+  </div>
+  <pre>
+{{this?.output}}
+  </pre>

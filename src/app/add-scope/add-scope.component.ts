@@ -1,15 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ScopeConfigComponent } from '../components/scope-config/scope-config.component';
+import { Scope, ScopeConfig } from '../interfaces/interfaces';
+import { OutputHtaccessService } from '../services/output-htaccess.service';
 @Component({
   selector: 'app-add-scope',
   templateUrl: './add-scope.component.html',
   styleUrls: ['./add-scope.component.css']
 })
 export class AddScopeComponent implements OnInit {
+  id=-1;
 
-  constructor() { }
+  scopeConfig:ScopeConfig  = {
+    label: "",
+    condition: "",
+    position:0,
+    config:""
+  };
+
+  scope:Scope = {
+    label:""
+  };
+  output:any;
+  constructor(private outputHtSrv:OutputHtaccessService) {  }
 
   ngOnInit(): void {
   }
 
+  saveConfig(event:any){
+    console.log('csv-rules-import',event)   
+    
+    console.log(this.output)
+  }
+  updatePreview(event?:any){
+    this.outputHtSrv.generateHeaderComment(this.scope.label).then((out)=>{
+      this.output = out;
+    })
+  }
 }

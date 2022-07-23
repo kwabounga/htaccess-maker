@@ -1,11 +1,14 @@
 import { Component, Input, Output, OnInit, EventEmitter  } from '@angular/core';
-
+const iconCheck ='✔';
+const iconDelete ='❌';
+const iconRefresh ='⬆';
 @Component({
   selector: 'app-list-rules',
   templateUrl: './list-rules.component.html',
   styleUrls: ['./list-rules.component.css']
 })
 export class ListRulesComponent implements OnInit {
+  icons = {iconCheck,iconDelete,iconRefresh}
   @Input()
   id:number = 0
   
@@ -21,6 +24,7 @@ export class ListRulesComponent implements OnInit {
   @Input()
   redirectTypes:any = {}
   toBeDeleted:boolean = false;
+  toBeSaved:boolean = false;
   @Output()
   onChangeSave = new EventEmitter<any>();
   constructor() { }
@@ -34,5 +38,8 @@ export class ListRulesComponent implements OnInit {
       scope: this.scope,
       to_be_deleted:to_be_deleted
     });
+  }
+  protected verifChange(){
+    this.toBeSaved = true
   }
 }

@@ -10,6 +10,7 @@ import { ExportFileComponent } from './export-file/export-file.component';
 import { OverviewComponent } from './overview/overview.component';
 import { ScopeConfigComponent } from './components/scope-config/scope-config.component';
 import { ListRulesComponent } from './components/list-rules/list-rules.component';
+import { CsvRulesImportComponent } from './csv-rules-import/csv-rules-import.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ListRulesComponent } from './components/list-rules/list-rules.component
     ExportFileComponent,
     OverviewComponent,
     ScopeConfigComponent,
-    ListRulesComponent
+    ListRulesComponent,
+    CsvRulesImportComponent
   ],
   imports: [
     BrowserModule,

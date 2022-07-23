@@ -488,7 +488,7 @@ const mock = {
   `,
   redirect_types: [
     {id:1, label:"permanent", value:"RedirectPermanent"},
-    {id:2, label:"temporaire", value:"Redirect 302"},
+    {id:2, label:"temporaire", value:"RedirectTemp"},
   ],
   rules: [
     {

@@ -76,7 +76,7 @@ const populateRedirectTypesTable = () => {
     },  // 1 
     { 
       label: "temporaire",
-      value: "Redirect 302",
+      value: "RedirectTemp",
     }, // 2
   ];
   return dbAccess.insertRedirectTypes(redirectTypeArray);
