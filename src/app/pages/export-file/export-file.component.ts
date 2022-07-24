@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataMockService } from 'src/app/services/data-mock.service';
+import { FilesStuffService } from 'src/app/services/files-stuff.service';
 
 @Component({
   selector: 'app-export-file',
@@ -8,22 +9,13 @@ import { DataMockService } from 'src/app/services/data-mock.service';
 })
 export class ExportFileComponent implements OnInit {
   htAccessData:string ='';
-  constructor(protected dataMockSrv:DataMockService) { }
+  constructor(protected dataMockSrv:DataMockService, protected fileStuffSrv:FilesStuffService) { }
 
   async ngOnInit(): Promise<void> {
     this.htAccessData = await this.dataMockSrv.generateHtaccessFile()
   }
   exportFile(){
-    let blob = new Blob([this.htAccessData], { type: 'application/x-extension-htaccess' });
-    let url= window.URL.createObjectURL(blob);
-    let a = document.createElement('a');
-    document.body.appendChild(a);
-    a.setAttribute('style', 'display: none');
-    a.href = url;
-    let d = new Date()
-    a.download = `${d.getTime()}-${d.getDate()}-${d.getMonth()}-${d.getFullYear()}.htaccess`;
-    a.click();
-    window.URL.revokeObjectURL(url);
-    a.remove();
+    let d = new Date();
+    this.fileStuffSrv.exportFile(`${d.getTime()}-${d.getDate()}-${d.getMonth()}-${d.getFullYear()}.htaccess`,this.htAccessData);
   }
 }
