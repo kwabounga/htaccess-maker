@@ -1,4 +1,4 @@
-<ul class="list-group border overflow-auto blocked-size-max">
+<!-- <ul class="list-group border overflow-auto blocked-size-max">
   <li
     class="list-group-item p-0"
     *ngFor="let rule of this?.rules, let idr = index"
@@ -12,4 +12,20 @@
       (onChangeSave)="changeSave($event)"
     ></app-rule-line>
   </li>
+</ul> -->
+<ul class="list-group border overflow-auto blocked-size-max">
+<smooth-dnd-container [dragClass]="'opacity-ghost'" [lockAxis]="'y'" [dragBeginDelay]="200" [dragHandleSelector]="'.column-drag-handle'" [dropClass]="'opacity-ghost-drop'" (drop)="onDrop($event)">
+  <smooth-dnd-draggable *ngFor="let rule of this?.rules, let idr = index">
+    <div class="draggable-item">
+      <app-rule-line
+      [id]="id"
+      [idr]="idr"
+      [rule]="rule"
+      [scope]="scope"
+      [redirectTypes]="redirectTypes"
+      (onChangeSave)="changeSave($event)"
+    ></app-rule-line>
+    </div>
+  </smooth-dnd-draggable>
+</smooth-dnd-container>
 </ul>

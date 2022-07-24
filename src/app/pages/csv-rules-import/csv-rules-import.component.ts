@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
-import { HttpClient } from '@angular/common/http';
+/* import { HttpClient } from '@angular/common/http'; */
 
 @Component({
   selector: 'app-csv-rules-import',
@@ -22,7 +22,7 @@ export class CsvRulesImportComponent implements OnInit {
   //   label:""
   // };
 
-  constructor(protected fileStuffSrv:FilesStuffService,private http: HttpClient) { }
+  constructor(protected fileStuffSrv:FilesStuffService/* ,private http: HttpClient */) { }
   csv:any
   
   ngOnInit(): void {

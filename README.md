@@ -79,3 +79,13 @@ npm run create-database
 ```  
 */!\ to do only once /!\\*  
 This will create the database and populate it with basic commands
+
+
+
+
+## cool drag and drop 
+
+
+`npm i ngx-smooth-dnd`  
+[ngx-smooth-dnd](https://github.com/kutlugsahin/ngx-smooth-dnd)  
+[demo](https://kutlugsahin.github.io/ngx-smooth-dnd/)  

@@ -1,5 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter  } from '@angular/core';
-
+import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
+import { applyDrag, generateItems } from './utils';
 @Component({
   selector: 'app-rules-list',
   templateUrl: './rules-list.component.html',
@@ -19,5 +20,9 @@ export class RulesListComponent implements OnInit {
   }
   public changeSave(data:any): void {
     this.onEmitChange.emit(data);
+  }
+  onDrop(dropResult:any) {
+    console.log(dropResult)
+    this.rules = applyDrag(this.rules, dropResult);
   }
 }

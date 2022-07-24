@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from  '@angular/common/http';
-
+/* import { HttpClientModule } from  '@angular/common/http'; */
+import { NgxSmoothDnDModule } from 'ngx-smooth-dnd';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddScopeComponent } from './pages/add-scope/add-scope.component';
@@ -15,6 +15,8 @@ import { CsvRulesImportComponent } from './pages/csv-rules-import/csv-rules-impo
 import { RulesListComponent } from './components/rules-list/rules-list.component';
 import { CodePreviewComponent } from './components/code-preview/code-preview.component';
 import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.component';
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.componen
     AppRoutingModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    /* HttpClientModule, */
+    NgxSmoothDnDModule
   ],
   providers: [],
   bootstrap: [AppComponent]
