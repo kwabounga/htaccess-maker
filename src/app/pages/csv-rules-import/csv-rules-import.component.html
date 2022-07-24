@@ -15,7 +15,37 @@
       #fileUpload
     />
   </div>
-  <button color="primary" class="btn btn-primary" (click)="uploadCsvRedirect()">
+  
+ <!--  <app-rules-list
+    
+    [id]="0"
+    [rules]="redToBeChecked"
+    [redirectTypes]="redirectTypes"
+    [scope]="{label:'All',id:-1,magento_scope_id:-1}"
+  ></app-rules-list> -->
+  <ul class="list-group border blocked-size-max mb-3" *ngIf="redToBeChecked.length>0">
+    <li class="list-group-item"
+      *ngFor="let rule of this?.redToBeChecked; let idr = index"
+    ><div class="draggable-item">
+        <app-rule-line
+          [movable]="false"
+          [id]="-1"
+          [idr]="idr"
+          [rule]="rule"
+          [redirectTypes]="redirectTypes"
+          (onChange)="changeSave($event)"
+        ></app-rule-line>
+      </div>
+    </li>
+  </ul>
+  <div *ngIf="checkInProgress" class="progress mb-3">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <button  *ngIf="redToBeChecked.length>0" color="primary" class="btn btn-primary mb-3" (click)="checkImport()">
+    Check  Redirections
+  </button>
+  <button  *ngIf="rulesChecked" color="primary" class="btn btn-primary mb-3" (click)="uploadCsvRedirect()">
     Upload Redirections
   </button>
+
 </div>

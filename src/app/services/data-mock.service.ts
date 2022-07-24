@@ -887,18 +887,32 @@ export class DataMockService {
 
     })
   }
-  async getScopesAll () {
+  async getScopeByMagentoId (magento_scope_id:number):Promise<Scope> {
+    const src = mock.scopes;
+    return new Promise ((resolve, reject)=>{
+      const byId = (element:any) => element.magento_scope_id === magento_scope_id;
+      const i = src.findIndex(byId);
+      if(i >= 0){
+        resolve(src[i])
+      } else {
+        reject({message:`the scopes with magento_scope_id ${magento_scope_id} do not exist`})
+      }
+
+    })
+  }
+  async getScopesAll ():Promise<Scope[]> {
     return new Promise ((resolve, reject)=>{
       resolve(mock.scopes)
     })
   }
+ 
   async getRedirectTypesAll ():Promise<RedirectType[]> {
     return new Promise ((resolve, reject)=>{
       resolve(mock.redirect_types)
     })
   }
-  async getRedirectTypesById (id:number) {
-    const src = mock.redirect_types;
+  async getRedirectTypesById (id:number):Promise<RedirectType> {
+    const src:RedirectType[] = mock.redirect_types;
     return new Promise ((resolve, reject)=>{
       const byId = (element:any) => element.id === id;
       const i = src.findIndex(byId);
