@@ -1,4 +1,5 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Scope, ScopeConfig } from 'src/app/interfaces/interfaces';
 import { OutputHtaccessService } from 'src/app/services/output-htaccess.service';
 
 @Component({
@@ -8,13 +9,13 @@ import { OutputHtaccessService } from 'src/app/services/output-htaccess.service'
 })
 export class ScopeConfigComponent implements OnInit {
   @Input() id = 0;
-  @Input() scopeConfig: any = {};
-  @Input() scope: any = {};
+  @Input() scopeConfig:any={};
+  @Input() scope: any={};
   @Input() prev?:boolean;
 
   @Output() onClickSave = new EventEmitter<any>();
   @Output() onPreview = new EventEmitter<any>();
-  
+
   constructor(protected outputSrv:OutputHtaccessService) {}
 
   ngOnInit(): void {}

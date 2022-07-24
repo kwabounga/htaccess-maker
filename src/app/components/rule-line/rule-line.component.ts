@@ -12,7 +12,7 @@ export class RuleLineComponent implements OnInit {
   icons = {iconCheck,iconDelete,iconRefresh}
   @Input()
   id:number = 0
-  
+
   @Input()
   idr:number = 0
 
@@ -34,7 +34,7 @@ export class RuleLineComponent implements OnInit {
   toBeDeleted:boolean = false;
   toBeSaved:boolean = false;
   @Output()
-  onChangeSave = new EventEmitter<any>();
+  onChange = new EventEmitter<any>();
 
   startStateRule?:Rule;
   constructor() { }
@@ -50,7 +50,7 @@ export class RuleLineComponent implements OnInit {
     }
   }
   public changeSave(to_be_deleted:boolean): void {
-    this.onChangeSave.emit({
+    this.onChange.emit({
       id: this.idr,
       rule: this.rule,
       start_stat_rule: this.startStateRule,

@@ -15,6 +15,7 @@ import { CsvRulesImportComponent } from './pages/csv-rules-import/csv-rules-impo
 import { RulesListComponent } from './components/rules-list/rules-list.component';
 import { CodePreviewComponent } from './components/code-preview/code-preview.component';
 import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.component';
+import { ScopeComponent } from './components/scope/scope.component';
 
 
 
@@ -29,7 +30,8 @@ import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.componen
     CsvRulesImportComponent,
     RulesListComponent,
     CodePreviewComponent,
-    DeleteScopeComponent
+    DeleteScopeComponent,
+    ScopeComponent
   ],
   imports: [
     BrowserModule,

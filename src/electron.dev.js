@@ -57,3 +57,6 @@ app.on('activate', () => {
         createWindow();
     }
 });
+
+// ipc and electron
+/// https://github.com/DenisKolodin/tsng2/tree/master/src

@@ -1,6 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter  } from '@angular/core';
 import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
-import { applyDrag, generateItems } from './utils';
+import { applyDrag } from '../../utils/utils';
 @Component({
   selector: 'app-rules-list',
   templateUrl: './rules-list.component.html',

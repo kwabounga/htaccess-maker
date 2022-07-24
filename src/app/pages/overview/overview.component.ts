@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
+import { applyDrag } from '../../utils/utils';
 import { DataMockService } from 'src/app/services/data-mock.service';
 @Component({
   selector: 'app-overview',
@@ -41,15 +43,22 @@ export class OverviewComponent implements OnInit {
   async getRulesByScopeId(scope_id:number) {
     return this.dataSrv.getRulesByScopeId(scope_id)
     .then((obj)=>{
-      console.log('getRulesByScopeId',obj);
+      console.log('getRulesByScopeId', obj);
       return obj;
     })
   }
 
   saveConfig(event:any){
-    console.log(event)
+    console.log('saveConfig',event)
   }
   saveRule(event:any){
-    console.log(event)
+    console.log('saveRule', event)
+  }
+  updateScope(event:any){
+    console.log('updateScope',event)
+  }
+  onDrop(dropResult:any) {
+    console.log(dropResult)
+    this.scopes = applyDrag(this.scopes, dropResult);
   }
 }

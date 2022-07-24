@@ -1,0 +1,6 @@
+.column-drag-handle{
+  cursor:grab;
+}
+.column-drag-handle:active{
+  cursor:grabbing!important;
+}

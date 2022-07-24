@@ -1,31 +1,72 @@
-<!-- <ul class="list-group border overflow-auto blocked-size-max">
-  <li
-    class="list-group-item p-0"
-    *ngFor="let rule of this?.rules, let idr = index"
-  >
-    <app-rule-line
-      [id]="id"
-      [idr]="idr"
-      [rule]="rule"
-      [scope]="scope"
-      [redirectTypes]="redirectTypes"
-      (onChangeSave)="changeSave($event)"
-    ></app-rule-line>
-  </li>
-</ul> -->
-<ul class="list-group border overflow-auto blocked-size-max">
-<smooth-dnd-container [dragClass]="'opacity-ghost'" [lockAxis]="'y'" [dragBeginDelay]="200" [dragHandleSelector]="'.column-drag-handle'" [dropClass]="'opacity-ghost-drop'" (drop)="onDrop($event)">
-  <smooth-dnd-draggable *ngFor="let rule of this?.rules, let idr = index">
-    <div class="draggable-item">
-      <app-rule-line
-      [id]="id"
-      [idr]="idr"
-      [rule]="rule"
-      [scope]="scope"
-      [redirectTypes]="redirectTypes"
-      (onChangeSave)="changeSave($event)"
-    ></app-rule-line>
+<div class="card text-dark bg-light mb-3 shadow-sm">
+  <div class="card-header">Rules:</div>
+  <div class="card-body p-2">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      [attr.data-bs-target]="'#rulesModal' + scope.id"
+    >
+      Manage {{ scope.label }} Rules
+    </button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  id="rulesModal{{ scope.id }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group border blocked-size-max">
+          <smooth-dnd-container
+            [dragClass]="'opacity-ghost'"
+            [lockAxis]="'y'"
+            [dragBeginDelay]="200"
+            [dragHandleSelector]="'.column-drag-handle'"
+            [dropClass]="'opacity-ghost-drop'"
+            (drop)="onDrop($event)"
+          >
+            <smooth-dnd-draggable
+              *ngFor="let rule of this?.rules; let idr = index"
+            >
+              <div class="draggable-item">
+                <app-rule-line
+                  [id]="id"
+                  [idr]="idr"
+                  [rule]="rule"
+                  [scope]="scope"
+                  [redirectTypes]="redirectTypes"
+                  (onChange)="changeSave($event)"
+                ></app-rule-line>
+              </div>
+            </smooth-dnd-draggable>
+          </smooth-dnd-container>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-  </smooth-dnd-draggable>
-</smooth-dnd-container>
-</ul>
+  </div>
+</div>
