@@ -17,7 +17,8 @@ export class AddScopeComponent implements OnInit {
   };
 
   scope:Scope = {
-    label:""
+    label:"",
+    magento_scope_id:0,
   };
   output?:string;
   constructor(private outputHtSrv:OutputHtaccessService) {  }

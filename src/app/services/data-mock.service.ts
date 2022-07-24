@@ -668,14 +668,17 @@ ErrorDocument 403 /pub/errors/404.php
     {
       id:1,
       label:"Jeujouet.com",
+      magento_scope_id:2,
     },
     {
       id:2,
       label:"Bonhommedebois.com",
+      magento_scope_id:5,
     },
     {
       id:3,
       label:"MoulinRoty-Maboutique.com",
+      magento_scope_id:6,
     },
   ],
   scopes_config:[

@@ -67,9 +67,21 @@ const populateRedirectTypesTable = () => {
 };
 const populateScopeTable = () => {
   const scopeArray = [
-    { label: "JeuJouet.com" },  // 1 
-    { label: "Bonhomedebois.com" }, // 2
-    { label: "Moulinroty-maboutique.com" }, // 3
+    {
+      /* id:1, */
+      label:"Jeujouet.com",
+      magento_scope_id:2,
+    },
+    {
+      /* id:2, */
+      label:"Bonhommedebois.com",
+      magento_scope_id:5,
+    },
+    {
+      /* id:3, */
+      label:"MoulinRoty-Maboutique.com",
+      magento_scope_id:6,
+    },
   ];
   return dbAccess.insertScopes(scopeArray);
 };

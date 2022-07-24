@@ -1,15 +1,15 @@
-<div class="card text-dark bg-light mb-3">
+<div class="card text-dark bg-light mb-3 shadow-sm">
   <div class="card-header">Configuration:</div>
   <div class="card-body  p-2 ">
       <label for="configData{{id}}" class="form-label">Règle: </label>
       <textarea class="form-control" id="configData{{id}}"
-          rows="5"[(ngModel)]="this.scopeConfig.config" (input)="updatePreview()"></textarea>
+          rows="5"[(ngModel)]="this.scopeConfig.config" required (input)="updatePreview()"></textarea>
       <br />
       <label for="condition{{id}}" class="form-label">Condition pour {{scope.label}} </label>
       <div class="input-group mb-3" id="condition{{id}}">
           <span class="input-group-text">{{this.outputSrv.texts.scope_config.condition_open_tag_start}}</span>
-          <input type=" text" class="form-control" aria-label="the condition"
-                  [(ngModel)]="this.scopeConfig.condition" (input)="updatePreview()">
+          <input type="url" class="form-control" aria-label="the condition"
+                  [(ngModel)]="this.scopeConfig.condition" required (input)="updatePreview()">
           <span class="input-group-text">{{this.outputSrv.texts.scope_config.condition_open_tag_end}}</span>
       </div>
       <button type="button" class="btn btn-primary" (click)="clickSave()">Save {{scope.label}} Scope Configuration</button>

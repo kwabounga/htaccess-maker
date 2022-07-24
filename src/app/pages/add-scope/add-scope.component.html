@@ -5,8 +5,12 @@
     <div class="card-body  p-2">
         <div class="mb-3">
             <label for="scopeConfigLabel" class="form-label">Scope Label</label>
-            <input type="email" class="form-control" id="scopeConfigLabel" placeholder="LENOUVEAUSITE.com" [(ngModel)]="this.scope.label"  (input)="updatePreview()">
-          </div>
+            <input type="text" class="form-control" id="scopeConfigLabel" placeholder="LENOUVEAUSITE.com" required [(ngModel)]="this.scope.label"  (input)="updatePreview()">
+        </div>
+        <div class="mb-3">
+          <label for="scopeConfigLabel" class="form-label">Magento SCOPE ID</label>
+          <input type="number" class="form-control" id="scopeConfigLabel" min="0" required [(ngModel)]="this.scope.magento_scope_id"  (input)="updatePreview()">
+      </div>
         <app-scope-config
           [id]="id"
           [scopeConfig]="this.scopeConfig"

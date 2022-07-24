@@ -10,6 +10,7 @@ export interface ScopeConfig {
 
 export interface Scope {
     id?: number;
+    magento_scope_id: number;
     label: string;
 }
 export interface RedirectType {

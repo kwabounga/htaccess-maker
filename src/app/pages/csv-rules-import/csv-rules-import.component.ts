@@ -29,7 +29,7 @@ export class CsvRulesImportComponent implements OnInit {
   }
 
   downloadCsvSample(){
-    const sample = `scope_id;redirect_type;origin;target;
+    const sample = `magento_scope_id;redirect_type;origin;target;
 2;permanent;/test.html;www.test.com;
 5;temporary;/test.html;www.test.com/test.html;
 `
@@ -38,13 +38,30 @@ export class CsvRulesImportComponent implements OnInit {
   uploadCsvRedirect(){
     console.log('csv-rules-import',this.csv)
   }
-  onFileSelected(event:any) {
-    const file:File = event.target.files[0];
+  async onFileSelected(event:any) {
+    const file:any = event.target.files[0];
     if (file) {
-      file.text().then((text)=>{
+      console.log(file)
+      console.log(file.type,file.name , file.path)
+      // console.log(`csv file selected: ${file.path}`)
+      this.csv = await file.text().then((text:string)=>{
         console.log(text)
-        this.csv = text;
-      })        
+        return text;
+      });
+    } else {
+      this.csv="";
+      console.log('no csv file selected')
+    }
+    if(this.csv.trim()!==""){
+      let redToBeSaved:string[] = [];
+      let redToBeChecked:string[] = [];
+      const notEmpty = (r:string)=> r.trim() !== "";
+      let tempArray = this.csv.split('\n');
+      tempArray.shift();
+      let redToBeProcessed = tempArray.filter(notEmpty);
+
+      console.log(redToBeProcessed)
+
     }
   }
 }
