@@ -1,10 +1,14 @@
 .app-content {
     padding: 1em;
 }
+.nav-item {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
 a.nav-link{
   color: #696969
 }
-.bg-secondary > a.nav-link.text-light.active,
+.bg-success > a.nav-link.text-light.active,
 .bg-danger > a.nav-link.text-light.active{
   color: #696969!important;
 }

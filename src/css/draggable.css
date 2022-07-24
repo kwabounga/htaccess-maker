@@ -1,0 +1,23 @@
+.card-ghost {
+  transition: transform 0.18s ease;
+  transform: rotateZ(1deg)
+}
+
+.card-ghost-drop{
+  transition: transform 0.18s ease-in-out;
+  transform: rotateZ(0deg)
+}
+.opacity-ghost {
+  transition: all .18s ease;
+  opacity: 0.8;
+  cursor: ns-resize;
+  transform: rotateZ(1deg);
+  background-color: cornflowerblue;
+  box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.3);
+}
+.opacity-ghost-drop {
+  opacity: 1;
+  /* transform: rotateZ(0deg); */
+  background-color: white;
+  box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.0);
+}

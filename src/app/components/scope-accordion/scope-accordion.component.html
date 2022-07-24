@@ -1,0 +1,70 @@
+<smooth-dnd-container
+    [dragClass]="'opacity-ghost'"
+    [lockAxis]="'y'"
+    [dragBeginDelay]="200"
+    [dragHandleSelector]="'.column-drag-handle'"
+    [dropClass]="'opacity-ghost-drop'"
+    (drop)="onDrop($event)"
+  >
+    <!-- loop scopes here -->
+    
+    <smooth-dnd-draggable *ngFor="let scope of this?.scopes; let id = index">
+      <div class="accordion-item draggable-item">
+        <h2
+          class="accordion-header {{
+            id % 2 == 0 ? 'alt' : ''
+          }}  {{isOpen?'':'column-drag-handle'}}"
+          id="config{{ id }}"
+        >
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#collapseConfig' + id"
+            aria-expanded="false"
+            aria-controls="collapseOne"
+            (click)="isOpen=!isOpen"
+          >
+            {{ scope.label }}
+          </button>
+        </h2>
+        <div
+          id="collapseConfig{{ id }}"
+          class="accordion-collapse collapse"
+          aria-labelledby="config"
+          data-bs-parent="#globalOverview"
+        >
+          <div class="accordion-body">
+            <button class="btn btn-warning mb-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#togglingConfig' + id" aria-expanded="false" [attr.aria-controls]="'#togglingConfig' + id">
+              Toogle Config
+            </button>
+          <div class="collapse" id="togglingConfig{{ id }}">
+            <div class="card card-body border-warning mb-3">
+              <app-scope
+              [scope]="scope"
+              (onChange)="updateScope($event)"
+            ></app-scope>
+
+            <app-scope-config
+              [id]="id"
+              [scopeConfig]="this.scopeConfig?.[scope.id]"
+              [scope]="scope"
+              (onClickSave)="saveConfig($event)"
+            ></app-scope-config>
+            </div>
+          </div>
+           
+
+            <app-rules-list
+              [id]="id"
+              [rules]="this.rules?.[scope.id]"
+              [scope]="scope"
+              [redirectTypes]="redirectTypes"
+              (onEmitChange)="saveRule($event)"
+            ></app-rules-list>
+          </div>
+        </div>
+      </div>
+    </smooth-dnd-draggable>
+    <!-- !loop scopes here -->
+  </smooth-dnd-container>

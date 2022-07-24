@@ -12,6 +12,7 @@ pre {
   line-height: 19px;
   letter-spacing: 0px;
   /*white-space: pre-wrap;*/
+  border-radius: 0.25em;
 }
 pre .comment {
   color: #6a9955;

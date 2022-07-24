@@ -1,5 +1,5 @@
 <h3>Preview</h3>
-<pre *ngIf="this.preview">
+<pre *ngIf="this.preview" [style]="'max-height:' + this?.height??'inherit'">
 <span *ngFor="let line of this?.outputMaker()" [class]="line.is_comment?'comment':'code'">
 <span >{{line.text}}</span></span>
 </pre>

@@ -9,21 +9,11 @@ import { FilesStuffService } from 'src/app/services/files-stuff.service';
 })
 export class CsvRulesImportComponent implements OnInit {
 
-  // id=0;
-
-  // scopeConfig:ScopeConfig  = {
-  //   label: "",
-  //   condition: "",
-  //   position:0,
-  //   config:""
-  // };
-
-  // scope:Scope = {
-  //   label:""
-  // };
+  rulesChecked=false
+  csv:any
 
   constructor(protected fileStuffSrv:FilesStuffService/* ,private http: HttpClient */) { }
-  csv:any
+  
   
   ngOnInit(): void {
   }
@@ -36,7 +26,10 @@ export class CsvRulesImportComponent implements OnInit {
     this.fileStuffSrv.exportFile('sample.csv',sample);
   }
   uploadCsvRedirect(){
-    console.log('csv-rules-import',this.csv)
+    console.log('uploadCsvRedirect',this.csv)
+  }
+  checkImport(){
+    console.log('checkImport',this.csv)
   }
   async onFileSelected(event:any) {
     const file:any = event.target.files[0];

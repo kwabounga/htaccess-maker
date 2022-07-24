@@ -1,12 +1,21 @@
-<h1>Import csv</h1>
-<div class="mb-3">
-  <button type="button" class="btn btn-primary" (click)="downloadCsvSample()">Download Sample</button>
+<div class="page full-height bg-import">
+  <h1>Import csv</h1>
+  <div class="mb-3">
+    <button type="button" class="btn btn-primary" (click)="downloadCsvSample()">
+      Download Sample
+    </button>
+  </div>
+  <div class="mb-3">
+    <label for="formFile" class="form-label">Import csv</label>
+    <input
+      type="file"
+      class="form-control"
+      id="formFile"
+      (change)="onFileSelected($event)"
+      #fileUpload
+    />
+  </div>
+  <button color="primary" class="btn btn-primary" (click)="uploadCsvRedirect()">
+    Upload Redirections
+  </button>
 </div>
-<div class="mb-3">
-  <label for="formFile" class="form-label">Import csv</label>
-  <input type="file" class="form-control" id="formFile" (change)="onFileSelected($event)" #fileUpload>
-</div>
-<button color="primary" class="btn btn-primary" (click)="uploadCsvRedirect()">Upload Redirections</button>
-
-
-

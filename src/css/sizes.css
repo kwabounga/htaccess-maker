@@ -1,0 +1,15 @@
+html, 
+body {
+  height:100%;
+}
+.app-content {
+  padding:0!important;
+  height: calc(100% - 42px);
+}
+.page{
+  padding:1em;
+  overflow:scroll;
+}
+.full-height{
+  height: 100%;
+}
