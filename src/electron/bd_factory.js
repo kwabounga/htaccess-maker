@@ -1,5 +1,5 @@
 const path = require("path");
-const DATABASE_FILE = path.join(__dirname, "../src/data/database.db");
+const DATABASE_FILE = path.join(__dirname, "../data/database.db");
 // database tables names
 const DATABASE_TABLE_RULES = "rules";
 const DATABASE_TABLE_SPECIALS_RULES = "specials_rules";
