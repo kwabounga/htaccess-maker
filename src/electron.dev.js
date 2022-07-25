@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow,ipcMain,ipcRenderer } = require('electron');
 const path = require('path');
 const url = require('url');
 
@@ -14,7 +14,11 @@ const createWindow = () => {
         win = new BrowserWindow({
             width: 800,
             height: 600,
-            icon: './src/favicon.ico'
+            icon: './src/favicon.ico',
+            alwaysOnTop: true,
+            webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false },
+            ipcRenderer: ipcRenderer,
+            isElectron: true,
         });
 
         // and load the app.
@@ -60,3 +64,5 @@ app.on('activate', () => {
 
 // ipc and electron
 /// https://github.com/DenisKolodin/tsng2/tree/master/src
+
+ipcMain.on("test", (_event,data)=>{console.log('test',data)});

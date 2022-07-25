@@ -31,7 +31,9 @@
     "electron-builder": "^23.1.0",
     "electron-rebuild": "^3.2.8",
     "knex": "^2.1.0",
+    "ngx-electron": "^2.2.0",
     "ngx-smooth-dnd": "^0.4.1",
+    "path-browserify": "^1.0.1",
     "rxjs": "~7.5.0",
     "sqlite3": "^5.0.9",
     "tslib": "^2.3.0",
@@ -52,6 +54,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "react-app-rewired": "^2.2.1",
     "typescript": "~4.7.2"
   }
 }

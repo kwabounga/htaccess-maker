@@ -42,22 +42,29 @@ the process to make this app
 
 [tutorial](https://pkief.medium.com/angular-desktop-apps-a9ce9e3574e8)
 
-## install query builder and  local database
-
+---
+## DB part
 ### knex 
 
-npm i knex
+`npm i knex`
+
 
 ### sqlite3
 
-npm i sqlite3  
-add this line i nscript section of package .json
-`"rebuild": "electron-rebuild -f -w sqlite3",`
+`npm i sqlite3 `  
+
 ### electron-rebuild
 
-npm i electron-rebuild
-
-## rebuild sqlite3
+`npm i electron-rebuild `  
+add this line in script section of package .json  
+```json
+"scripts"{
+  [...]
+  "rebuild": "electron-rebuild -f -w sqlite3",
+  [...]
+}
+```
+### rebuild sqlite3
 need to install all dependency for `sqlite3`, like `Visual studio`, `python 2.7` etc
 if not run:
 ``` bash 
@@ -70,19 +77,72 @@ then build sqlite3 with electron-rebuild.
 npm run rebuild
 ```  
 This will rebuild electron with sqlite
+ 
 
-
-## database creation
-If the ./data/database.db file does not exist, run: 
+### database creation
+If the `./data/database.db` file does not exist, run: 
 ```bash 
 npm run create-database
 ```  
-*/!\ to do only once /!\\*  
+**/!\ to do only once /!\\**  
 This will create the database and populate it with basic commands
 
+----
+## communication between front and back
+### using ipcEvent / ipcMain  from electron
+...  for the electron part  
+set on CreateWindows Method : 
+```js 
+win = new BrowserWindow({
+    [...]
+    webPreferences: { nodeIntegration: true, enableRemoteModule: true, contextIsolation: false }, // Must be set !! or electronSrv.ipcRenderer will always null
+    ipcRenderer: ipcRenderer, // send ipcRenderer to the front
+    isElectron: true,
+    [...]
+});
+```
+#### for get event from the Angular app:  
+```js
+ipcMain.on("test", (_event,data)=>{console.log('test',data)}); // listen for 'test' event from the frontend
+```
+### using ipcRenderer / ipcMain  from ngx-electron
+... for angular part !
+`npm i ngx-electron` 
 
+--- 
+**/!\\**   must comment the line :  **/!\\** 
+```ts
+(17) // readonly remote: Electron.Remote;
+```
+to resolve a f****g bug   
+in `node_modules\ngx-electron\lib\electron.service.d.ts`  
 
+---
 
+in the app.module.ts:  
+
+```js
+import { NgxElectronModule } from 'ngx-electron';
+```
+[ngx-electron](https://www.npmjs.com/package/ngx-electron)
+
+```js
+@NgModule({
+  [...]
+  imports: [
+    [...]
+    NgxSmoothDnDModule, // <- import here
+    [...]
+  ],
+  [...]
+})
+```
+in the component.ts
+```js
+if(this.electronSrv.isElectronApp){ // check if is in electron app
+  this.electronSrv.ipcRenderer.send('test',{test:'yooo'}); // send to backend
+}
+```
 ## cool drag and drop 
 
 

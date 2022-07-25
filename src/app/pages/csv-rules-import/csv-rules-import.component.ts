@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { DataMockService }  from 'src/app/services/data-mock.service';
 import { RedirectType, Scope, Rule } from 'src/app/interfaces/interfaces';
+
+import { ElectronService } from 'ngx-electron';
 /* import { HttpClient } from '@angular/common/http'; */
 
 @Component({
@@ -10,6 +12,7 @@ import { RedirectType, Scope, Rule } from 'src/app/interfaces/interfaces';
   styleUrls: ['./csv-rules-import.component.css']
 })
 export class CsvRulesImportComponent implements OnInit {
+  protected has_ipc: boolean =false;
 
   rulesChecked=false
   checkInProgress=false
@@ -17,13 +20,27 @@ export class CsvRulesImportComponent implements OnInit {
   redirectTypes:any = {}
   redToBeSaved:string[] = [];
   redToBeChecked:any[] = [];
-  constructor(protected fileStuffSrv:FilesStuffService, protected dataSrv:DataMockService ) { }
+  constructor(protected fileStuffSrv:FilesStuffService, protected dataSrv:DataMockService,private electronSrv: ElectronService ) {
+    this.has_ipc = this.electronSrv.isElectronApp
+   }
   
   
 async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll()
   }
-  
+  do_ping() {
+		if(this.electronSrv.isElectronApp){
+      this.electronSrv.ipcRenderer.send('test',{test:'yooo'});
+    }else{
+      console.log('cest la mer noire')
+    }
+	}
+
+	do_alert() {
+		
+	}
+
+
   downloadCsvSample(){
     const sample = `magento_scope_id;redirect_type;origin;target;
 2;permanent;/test.html;www.test.com;

@@ -15,7 +15,7 @@
       #fileUpload
     />
   </div>
-  
+  <div *ngIf="has_ipc" class="badge bg-success mb-3" (click)="do_ping()">IPC OK</div>
  <!--  <app-rules-list
     
     [id]="0"
