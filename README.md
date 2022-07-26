@@ -27,20 +27,21 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 
-
+----
 
 # installation process
 
 the process to make this app
 
 ## installing bootstrap 
-
+`npm i bootstrap`  
++ follow this:  
 [add bootstrap in angular app](https://techincent.com/how-to-add-bootstrap-5-in-the-angular-application/)
 
 
 ## using electron with angular
-
-[tutorial](https://pkief.medium.com/angular-desktop-apps-a9ce9e3574e8)
++ follow this:  
+[tutorial](https://pkief.medium.com/angular-desktop-apps-a9ce9e3574e8)   
 
 ---
 ## DB part
@@ -85,7 +86,9 @@ If the `./data/database.db` file does not exist, run:
 npm run create-database
 ```  
 **/!\ to do only once /!\\**  
-This will create the database and populate it with basic commands
+This will create the database and populate it with basic rules  
+see:  `src\electron\build_db.js`
+
 
 ----
 ## communication between front and back
@@ -143,6 +146,8 @@ if(this.electronSrv.isElectronApp){ // check if is in electron app
   this.electronSrv.ipcRenderer.send('test',{test:'yooo'}); // send to backend
 }
 ```
+
+---
 ## cool drag and drop 
 
 

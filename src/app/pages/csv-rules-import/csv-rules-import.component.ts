@@ -22,22 +22,26 @@ export class CsvRulesImportComponent implements OnInit {
   redToBeChecked:any[] = [];
   constructor(protected fileStuffSrv:FilesStuffService, protected dataSrv:DataMockService,private electronSrv: ElectronService ) {
     this.has_ipc = this.electronSrv.isElectronApp
+    if(this.electronSrv.isElectronApp){
+      this.electronSrv.ipcRenderer.on('rule:checked',(_event,data)=>{
+        console.log('checked',data);
+        
+      });
+    }
    }
   
   
 async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll()
   }
-  do_ping() {
+
+  
+  testSend() {
 		if(this.electronSrv.isElectronApp){
-      this.electronSrv.ipcRenderer.send('test',{test:'yooo'});
+      this.electronSrv.ipcRenderer.send('test',this.redToBeChecked);
     }else{
       console.log('cest la mer noire')
     }
-	}
-
-	do_alert() {
-		
 	}
 
 

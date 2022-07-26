@@ -49,9 +49,10 @@ app.on('ready', createWindow);
 app.on('window-all-closed', () => {
     // On macOS it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
-    if (process.platform !== 'darwin') {
-        app.quit();
-    }
+    // if (process.platform !== 'darwin') {
+    //     app.quit();
+    // }
+    app.quit();
 });
 
 app.on('activate', () => {
@@ -64,5 +65,22 @@ app.on('activate', () => {
 
 // ipc and electron
 /// https://github.com/DenisKolodin/tsng2/tree/master/src
+app.whenReady().then(()=>{
+    ipcMain.on("check:rules", (e,rules)=>{
+        console.log('check',rules);
+        e.sender.send("rule:checked", true);
+    });
+})
 
-ipcMain.on("test", (_event,data)=>{console.log('test',data)});
+/* promise stuff 
+
+
+ipcMain.on("check:rules", (e,rules)=>{
+    for (const rule of rules) {
+        checkRule(rule)
+        .then(function(){ e.sender.send("rule:checked", true); })
+        .catch(function(){ e.sender.send("rule:checked", false) })
+    }  
+
+})
+*/
