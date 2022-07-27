@@ -31,6 +31,16 @@ const {
 }  = require('./crud/create');
 
 
+const { 
+  getRedirectTypesAll,
+  getRedirectTypesByID,
+  getScopesAll,
+  getScopesByID,
+  getScopeConfigByScopeID,
+  checkIfRuleAlreadyExist,
+}  = require('./crud/read');
+
+
 // check db existance
 exports.check = function() {
   return knex.schema.hasTable(DATABASE_TABLE_RULES);
@@ -58,3 +68,10 @@ exports.insertScopesConfig = insertScopesConfig;
 exports.insertHeaders = insertHeaders;
 exports.insertFooters = insertFooters;
 exports.insertRedirectTypes = insertRedirectTypes;
+
+exports.getRedirectTypesAll = getRedirectTypesAll;
+exports.getRedirectTypesByID = getRedirectTypesByID;
+exports.getScopesAll = getScopesAll;
+exports.getScopesByID = getScopesByID;
+exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
+exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;

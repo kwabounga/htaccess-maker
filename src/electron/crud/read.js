@@ -44,3 +44,17 @@ const getScopeConfigByScopeID = (scope_id) => {
     scope_id: scope_id,
   }).select();
 }
+
+const checkIfRuleAlreadyExist = (rule) => {
+  return knex(DATABASE_TABLE_RULES)
+      .where({ scope_id: rule.scope_id })
+      .where({ origin: rule.origin })
+      .then(rows => rows.length);
+}
+
+exports.getRedirectTypesAll = getRedirectTypesAll;
+exports.getRedirectTypesByID = getRedirectTypesByID;
+exports.getScopesAll = getScopesAll;
+exports.getScopesByID = getScopesByID;
+exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
+exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;

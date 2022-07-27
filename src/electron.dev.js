@@ -2,6 +2,7 @@ const { app, BrowserWindow,ipcMain,ipcRenderer } = require('electron');
 const path = require('path');
 const url = require('url');
 
+const ipcCom = require("./electron/ipc_db_communication");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -66,10 +67,7 @@ app.on('activate', () => {
 // ipc and electron
 /// https://github.com/DenisKolodin/tsng2/tree/master/src
 app.whenReady().then(()=>{
-    ipcMain.on("check:rules", (e,rules)=>{
-        console.log('check',rules);
-        e.sender.send("rule:checked", true);
-    });
+  ipcCom.addEvents(ipcMain);
 })
 
 /* promise stuff 
