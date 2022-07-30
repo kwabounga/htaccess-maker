@@ -39,6 +39,7 @@
     [scopeConfig]="this?.scopeConfig"
     (onConfig)="saveConfig($event)"
     (onRule)="saveRule($event)"
+    (onRulesPositions)="updateRulesPositions($event)"
     (onScope)="updateScope($event)"
   ></app-scope-accordion>
   

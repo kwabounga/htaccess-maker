@@ -9,10 +9,10 @@ import { FilesStuffService } from 'src/app/services/files-stuff.service';
 })
 export class ExportFileComponent implements OnInit {
   htAccessData:string ='';
-  constructor(protected dataMockSrv:DataMockService, protected fileStuffSrv:FilesStuffService) { }
+  constructor(protected dataSrv:DataMockService, protected fileStuffSrv:FilesStuffService) { }
 
   async ngOnInit(): Promise<void> {
-    this.htAccessData = await this.dataMockSrv.generateHtaccessFile()
+    this.htAccessData = await this.dataSrv.generateHtaccessFile()
   }
   exportFile(){
     let d = new Date();

@@ -5,6 +5,12 @@ const fetcher = require("./fetcher");
  * @param {Electron.ipcMain} ipcMain 
  */
 const addEvents = (ipcMain) => {
+  ipcMain.on("update:rules:position", (e, rules_wrapper) => {
+    dbAccess.updateRulesPositions(rules_wrapper).then((resp)=>{
+      console.log(resp)
+      e.sender.send("rules:position:updated", { ok: true});
+    })
+  })
   ipcMain.on("check:rules", (e, rules) => {
     console.log("check", rules);
     let id = 0;

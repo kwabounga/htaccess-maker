@@ -15,6 +15,7 @@ export class ScopeAccordionComponent implements OnInit {
 
   @Output() onConfig = new EventEmitter();
   @Output() onRule = new EventEmitter();
+  @Output() onRulesPositions = new EventEmitter();
   @Output() onScope = new EventEmitter();
 
   isOpen = false;
@@ -27,6 +28,9 @@ export class ScopeAccordionComponent implements OnInit {
   }
   saveRule(event:any){
     this.onRule.emit(event)
+  }
+  saveRulesPositions(event:any){
+    this.onRulesPositions.emit(event)
   }
   updateScope(event:any){
     this.onScope.emit(event)

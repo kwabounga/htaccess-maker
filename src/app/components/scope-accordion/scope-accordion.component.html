@@ -60,7 +60,8 @@
               [rules]="this.rules?.[scope.id]"
               [scope]="scope"
               [redirectTypes]="redirectTypes"
-              (onEmitChange)="saveRule($event)"
+              (onEmitChangeSaveRule)="saveRule($event)"
+              (onEmitUpdateRulesPositions)="saveRulesPositions($event)"
             ></app-rules-list>
           </div>
         </div>

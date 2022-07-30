@@ -61,4 +61,8 @@ export class OverviewComponent implements OnInit {
     console.log(dropResult)
     this.scopes = applyDrag(this.scopes, dropResult);
   }
+  updateRulesPositions(event:any) {
+    console.log('updateRulesPositions',event);
+    
+  }
 }

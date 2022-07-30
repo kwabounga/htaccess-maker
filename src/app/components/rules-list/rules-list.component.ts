@@ -13,13 +13,18 @@ export class RulesListComponent implements OnInit {
   @Input() redirectTypes:any;
 
   @Output()
-  onEmitChange = new EventEmitter<any>();
+  onEmitChangeSaveRule = new EventEmitter<any>();
+  @Output()
+  onEmitUpdateRulesPositions = new EventEmitter<any>();
   constructor() { }
 
   ngOnInit(): void {
   }
-  public changeSave(data:any): void {
-    this.onEmitChange.emit(data);
+  public changeSaveRule(data:any): void {
+    this.onEmitChangeSaveRule.emit(data);
+  }
+  public updateRulesPositions(): void {
+    this.onEmitUpdateRulesPositions.emit(this.rules);
   }
   onDrop(dropResult:any) {
     console.log(dropResult)

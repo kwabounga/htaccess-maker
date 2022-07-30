@@ -40,6 +40,9 @@ const {
   checkIfRuleAlreadyExist,
 }  = require('./crud/read');
 
+const { 
+  updateRulesPositions,
+}  = require('./crud/update');
 
 // check db existance
 exports.check = function() {
@@ -75,3 +78,6 @@ exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
+
+
+exports.updateRulesPositions = updateRulesPositions;
