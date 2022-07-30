@@ -31,30 +31,17 @@ export class CsvRulesImportComponent implements OnInit {
     this.csv = '';
     this.redToBeChecked = [];
     this.progressCount = 0;
-    if (this.electronSrv.isElectronApp) {
-      this.electronSrv.ipcRenderer.on(
-        'rule:checked',
-        (_event, response: any) => {
-          this.progressCount++;
-          //this.percent = ((100 * this.progressCount) / this.redToBeChecked.length)
-          console.log('checked', response, this.progressCount);
-          if (this.progressCount == this.redToBeChecked.length) {
-            this.checkInProgress = false;
-            this.rulesChecked = true;
-          }
-          this.ref.detectChanges();
-        }
-      );
-    }
+    
   }
 
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
   }
 
-  checkImport() {
+  async checkImport() {
     if (this.electronSrv.isElectronApp) {
       console.log('checkImport', this.redToBeChecked);
+      await this.initCheckRuleListener(this.redToBeChecked);
       this.electronSrv.ipcRenderer.send('check:rules', this.redToBeChecked);
       this.checkInProgress = true;
     } else {
@@ -128,5 +115,31 @@ export class CsvRulesImportComponent implements OnInit {
   }
   percent() {
     return (100 * this.progressCount) / this.redToBeChecked.length;
+  }
+
+  async initCheckRuleListener(rules:any[]) {
+      for (let id in rules) {
+        let channel = `rule:checked:${id}`
+        console.log(id, channel);
+         if (this.electronSrv.isElectronApp) {
+          this.electronSrv.ipcRenderer.on(
+            channel,
+            this.checkHandler
+            
+          );
+        } 
+        
+      }
+  }
+  checkHandler = (_event:any, response: any) => {
+    this.progressCount++;
+    //this.percent = ((100 * this.progressCount) / this.redToBeChecked.length)
+    console.log('checked',_event, response);
+    if (this.progressCount == this.redToBeChecked.length) {
+      this.checkInProgress = false;
+      this.rulesChecked = true;
+    }
+    this.electronSrv.ipcRenderer.removeListener(response.channel, this.checkHandler)
+    this.ref.detectChanges();
   }
 }
