@@ -2,7 +2,7 @@
   "name": "htaccess-maker",
   "version": "0.0.0",
   "scripts": {
-    "postinstall": "electron-builder install-app-deps",
+    "postinstall": "electron-builder install-app-deps && patch-package",
     "ng": "ng",
     "start": "concurrently \"ng serve\" \"npm run electron\"",
     "electron": "electron ./src/electron.dev",
@@ -33,6 +33,7 @@
     "knex": "^2.1.0",
     "ngx-electron": "^2.2.0",
     "ngx-smooth-dnd": "^0.4.1",
+    "patch-package": "^6.4.7",
     "path-browserify": "^1.0.1",
     "rxjs": "~7.5.0",
     "sqlite3": "^5.0.9",
@@ -41,7 +42,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.0.6",
-    "@angular/cli": "~14.0.6",
+    "@angular/cli": "^14.1.0",
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
     "concurrently": "^7.2.2",
