@@ -113,12 +113,12 @@ ipcMain.on("test", (_event,data)=>{console.log('test',data)}); // listen for 'te
 `npm i ngx-electron` 
 
 --- 
+in `node_modules\ngx-electron\lib\electron.service.d.ts`  
 **/!\\**   must comment the line :  **/!\\** 
 ```ts
 (17) // readonly remote: Electron.Remote;
 ```
-to resolve a f****g bug   
-in `node_modules\ngx-electron\lib\electron.service.d.ts`  
+to resolve a f****g bug  
 
 ---
 
@@ -134,7 +134,7 @@ import { NgxElectronModule } from 'ngx-electron';
   [...]
   imports: [
     [...]
-    NgxSmoothDnDModule, // <- import here
+    NgxElectronModule, // <- import here
     [...]
   ],
   [...]
@@ -142,11 +142,48 @@ import { NgxElectronModule } from 'ngx-electron';
 ```
 in the component.ts
 ```js
+constructor(
+    ...
+    private electronSrv: ElectronService,
+    ...
+  ) {}
+```
+
+
+```js
 if(this.electronSrv.isElectronApp){ // check if is in electron app
   this.electronSrv.ipcRenderer.send('test',{test:'yooo'}); // send to backend
 }
 ```
+---
 
+
+### force dom update on event
+So angular update the dom automatically on user action (like click) but when you work with ipc_events  the dom is not updated. the `ChangeDetectorRef` Class is made for that:  
+in the ``component.ts``:  
+import the class  
+```js
+import { ChangeDetectorRef } from '@angular/core';
+```
+inject it in the constructor:  
+```js
+constructor(
+    ...
+    private ref: ChangeDetectorRef
+    ...
+  ) {}
+```
+then use it to force the dom reload
+
+```js
+this.electronSrv.ipcRenderer.on(
+        'rule:checked',
+        (_event, response: any) => {
+          // make any changes
+          this.ref.detectChanges(); // force reload
+        }
+      );
+```
 ---
 ## cool drag and drop 
 
@@ -154,3 +191,7 @@ if(this.electronSrv.isElectronApp){ // check if is in electron app
 `npm i ngx-smooth-dnd`  
 [ngx-smooth-dnd](https://github.com/kutlugsahin/ngx-smooth-dnd)  
 [demo](https://kutlugsahin.github.io/ngx-smooth-dnd/)  
+
+
+
+node 14.15.4
