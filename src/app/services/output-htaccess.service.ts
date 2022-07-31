@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Scope, ScopeConfig, Rule,RedirectType } from '../interfaces/interfaces';
+/**
+ * Some usefull consts to generate the htaccess file
+ */
 const texts = {
   comments:{
     chara:'#',
@@ -16,10 +19,25 @@ const texts = {
 @Injectable({
   providedIn: 'root'
 })
+/**
+ * Ht-access file exporter
+ * 
+ * Build the htaccess file in the right format
+ * add comments, carriage returns,
+ */
 export class OutputHtaccessService {
   texts = texts
   constructor() { }
 
+  /**
+   * Generate the Scope Config output
+   * 
+   * if rules[] is provided,   the output is good full scoped output
+   * @param {Scope} scope 
+   * @param {ScopeConfig} scopeConfig 
+   * @param {string[]|null} rules 
+   * @returns  {Promise<string>} the output
+   */
   async getScopeConfigPreview(scope:Scope, scopeConfig:ScopeConfig, rules?:string[]):Promise<string> {
       let header = await this.generateHeaderComment(scope.label);
       return new Promise((resolve,reject)=>{
@@ -39,6 +57,11 @@ export class OutputHtaccessService {
         resolve(output);
       })
   }
+  /**
+   * Generate the formated scope 'Header' comment
+   * @param {string} label 
+   * @returns {string} scope formated header comment
+   */
   async generateHeaderComment(label:string):Promise<string> {
       return new Promise((resolve,reject)=>{
         let output:string  = texts.comments.full_line + '\n';
@@ -49,6 +72,15 @@ export class OutputHtaccessService {
         resolve(output);
       })
   }
+  
+
+  /**
+   * Generate the rules part of a scope
+   * 
+   * @param {Rule[]} rules the array of rules to be formated
+   * @param {RedirectType[]} redirecTypes the array of redirecTypes for converte rredirect_type_id to the good Redirection Type
+   * @returns {Promise<string[]>} all rules lines
+   */
   async generateRuleLines(rules:Rule[], redirecTypes:RedirectType[]):Promise<string[]> {
       return new Promise((resolve,reject)=>{
         let rulesString:string[] = [];

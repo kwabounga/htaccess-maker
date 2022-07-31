@@ -13,11 +13,22 @@ const {
  *  DB ACCESS UPDATE *
  **                   */
 
+/**
+ * Update all rules positions
+ * Use RAW Sqlite Query; and masse update using temporary table 'updated'
+ * Used for one scope each time
+ * 
+ * @param {Rule[]} rules_wrapper 
+ * @returns {Promise<void>}
+ */
 const updateRulesPositions = (rules_wrapper)=>{
+  // build values on the fly from the Rules positions in the Rule[]
   let values = '';
   rules_wrapper.forEach((r,idx)=>{
     values += `(${r.id}, ${idx}),`
   });
+  // add the values without the last ',' ( value.slice(0,-1)) or sqlite crash
+  // set the news positions
   let raw = `WITH updated(id, position) AS (VALUES
     ${values.slice(0,-1)}
 )
@@ -33,4 +44,5 @@ WHERE (${DATABASE_TABLE_RULES}.id = updated.id);`
   });
 }
 
+/* Exports */
 exports.updateRulesPositions = updateRulesPositions;

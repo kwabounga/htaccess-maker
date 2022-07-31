@@ -1,3 +1,8 @@
+/**
+ * a simple wait/sleep function 
+ * @param {number} time 
+ * @returns {Promise<void>}
+ */
 async function wait(time = 1000) {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -5,4 +10,6 @@ async function wait(time = 1000) {
     }, time);
   });
 }
+
+/* Export */
 exports.wait = wait;

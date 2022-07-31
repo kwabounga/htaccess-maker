@@ -91,7 +91,7 @@ const createFooterConfigTable = () => {
   });
 };
 
-
+/* Exports */
 exports.createSchema = createSchema;
 exports.createRulesTable = createRulesTable;
 exports.createSpecialsRulesTable = createSpecialsRulesTable;

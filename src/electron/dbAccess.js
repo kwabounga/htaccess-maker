@@ -1,3 +1,4 @@
+// get info and common knex methods from db_factory
 const { 
   knex,
   DATABASE_FILE,
@@ -9,6 +10,7 @@ const {
   DATABASE_TABLE_REDIRECT_TYPES,
 }  = require('./bd_factory');
 
+// get all inserts methods from CRUD insert
 const { 
   insertRules,
   insertSpecialsRules,
@@ -19,6 +21,7 @@ const {
   insertRedirectTypes,
 }  = require('./crud/insert');
 
+// get all creates methods from CRUD create
 const { 
   createSchema,
   createRulesTable,
@@ -30,7 +33,7 @@ const {
   createRedirectTypesTable,
 }  = require('./crud/create');
 
-
+// get all selects methods from CRUD read
 const { 
   getHeaderConfig,
   getFooterConfig,
@@ -45,15 +48,20 @@ const {
   checkIfRuleAlreadyExist,
 }  = require('./crud/read');
 
+// get all updates methods from CRUD Update
 const { 
   updateRulesPositions,
 }  = require('./crud/update');
+
 
 // check db existance
 exports.check = function() {
   return knex.schema.hasTable(DATABASE_TABLE_RULES);
 };
 
+/**
+ * close db
+ */
 const close = () => {
   try {
     knex.destroy()
@@ -64,11 +72,15 @@ const close = () => {
 
 /** Exports */
 
+// expose all methods to the electron side
 
+// close 
 exports.close = close;
 exports.DATABASE_FILE = DATABASE_FILE;
+// creates 
 exports.createSchema = createSchema;
 
+//inserts 
 exports.insertRules = insertRules;
 exports.insertSpecialsRules = insertSpecialsRules;
 exports.insertScopes = insertScopes;
@@ -77,6 +89,8 @@ exports.insertHeaders = insertHeaders;
 exports.insertFooters = insertFooters;
 exports.insertRedirectTypes = insertRedirectTypes;
 
+
+// select / read
 exports.getFooterConfig = getFooterConfig;
 exports.getHeaderConfig = getHeaderConfig;
 exports.getScopesConfig = getScopesConfig;
@@ -87,7 +101,9 @@ exports.getScopesByID = getScopesByID;
 exports.getScopeByMagentoID = getScopeByMagentoID;
 exports.getRulesByScopeId = getRulesByScopeId;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
+
+// verification
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
 
-
+// updates
 exports.updateRulesPositions = updateRulesPositions;

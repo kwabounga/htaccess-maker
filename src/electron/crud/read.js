@@ -83,6 +83,8 @@ const checkIfRuleAlreadyExist = (rule) => {
       .then(rows => rows.length);
 }
 
+
+/* Exports */
 exports.getFooterConfig = getFooterConfig;
 exports.getHeaderConfig = getHeaderConfig;
 exports.getScopesConfig = getScopesConfig;

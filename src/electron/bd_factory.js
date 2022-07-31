@@ -1,5 +1,8 @@
 const path = require("path");
+
+// get the database real path
 const DATABASE_FILE = path.join(__dirname, "../data/database.db");
+
 // database tables names
 const DATABASE_TABLE_RULES = "rules";
 const DATABASE_TABLE_SPECIALS_RULES = "specials_rules";
@@ -8,6 +11,7 @@ const DATABASE_TABLE_SCOPES_CONFIG = "scopes_config";
 const DATABASE_TABLE_HEADER_CONFIG = "header_config";
 const DATABASE_TABLE_FOOTER_CONFIG = "footer_config";
 const DATABASE_TABLE_REDIRECT_TYPES = "redirect_types";
+
 // database access
 const knex = require("knex")({
     client: "sqlite3",
@@ -17,7 +21,7 @@ const knex = require("knex")({
     useNullAsDefault: true,
 });
 
-// exports
+/* Exports */
 exports.knex = knex
 exports.DATABASE_FILE = DATABASE_FILE;
 exports.DATABASE_TABLE_SCOPES = DATABASE_TABLE_SCOPES;

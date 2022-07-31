@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const url = require('url');
 
+const ipcCom = require("./electron/ipc_db_communication");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -12,6 +13,9 @@ const createWindow = () => {
         width: 800,
         height: 600,
         icon: path.join(__dirname, 'favicon.ico'),
+        webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false },
+        ipcRenderer: ipcRenderer,
+        isElectron: true,
     });
 
     // and load the index.html of the app.
@@ -51,3 +55,9 @@ app.on('activate', () => {
         createWindow();
     }
 });
+
+
+// ipc and electron
+app.whenReady().then(()=>{
+    ipcCom.addEvents(ipcMain);
+  })

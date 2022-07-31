@@ -1,4 +1,12 @@
 
+
+/**
+ * Used for smooth drag and drop 
+ * 
+ * @param {any[]} arr  the array to be processed
+ * @param {any} dragResult  the drag Result object
+ * @returns {any[]} the new sorted array 
+ */
 export const applyDrag = (arr:any[], dragResult:any) => {
 	const { removedIndex, addedIndex, payload } = dragResult;
 	if (removedIndex === null && addedIndex === null) return arr;
@@ -17,10 +25,3 @@ export const applyDrag = (arr:any[], dragResult:any) => {
 	return result;
 };
 
-export const generateItems = (count:number, creator:any) => {
-	const result = [];
-	for (let i = 0; i < count; i++) {
-		result.push(creator(i));
-	}
-	return result;
-};

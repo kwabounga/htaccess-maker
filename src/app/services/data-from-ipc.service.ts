@@ -8,6 +8,19 @@ import { ElectronService } from 'ngx-electron';
       return new DataFromIpcService(new OutputHtaccessService(),new ElectronService());
   }
 })
+/**
+ * Data From IPC Service
+ * 
+ * A service to Communicate  with IPC electron 
+ * under Promises form 
+ * 
+ * how it's work?
+ * 
+ * the methods always return Promises that
+ * send a custom event to the electron part
+ * and subscribe on the fly to the electon response
+ * when the event response is retrieved, the promise is resolved with the requested value
+ */
 export class DataFromIpcService {
 
   constructor(

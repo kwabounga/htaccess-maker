@@ -10,8 +10,10 @@ const {
   SpecialRule,
 } = require('./bo')
 
+// check for database existance
 dbAccess.check()
 .then((exists)=>{
+    // if don't exist, create , then populate it
   if (!exists) {
     return dbAccess.createSchema().then((_) => {
       return populateDatabase();
@@ -41,6 +43,11 @@ dbAccess.check()
 /*                **
  *  DB POPULATION  *
  **                */
+
+/**
+ * Populate Database
+ * @returns {Promise<void>}
+ */
 const populateDatabase = () => {
   return populateScopeTable()
     .then((_) => populateRedirectTypesTable())
@@ -52,6 +59,11 @@ const populateDatabase = () => {
       console.log("db populated");
     });
 };
+
+/**
+ * Populate RedirectTypes Table Table with Sample
+ * @returns {Promise<RedirectType>}
+ */
 const populateRedirectTypesTable = () => {
   const redirectTypeArray = [
     { 
@@ -65,6 +77,11 @@ const populateRedirectTypesTable = () => {
   ];
   return dbAccess.insertRedirectTypes(redirectTypeArray);
 };
+
+/**
+ * Populate Scope Table Table with Sample
+ * @returns {Promise<Scope>}
+ */
 const populateScopeTable = () => {
   const scopeArray = [
     {
@@ -86,6 +103,10 @@ const populateScopeTable = () => {
   return dbAccess.insertScopes(scopeArray);
 };
 
+/**
+ * Populate HeaderConfig Table with Sample
+ * @returns {Promise<HeaderConfig>}
+ */
 const populateHeaderTable = () => {
   const headersArray = [
     {
@@ -323,6 +344,11 @@ SSLOptions StdEnvVars
   ];
   return dbAccess.insertHeaders(headersArray);
 }
+
+/**
+ * Populate FooterConfig Table with Sample
+ * @returns {Promise<FooterConfig>}
+ */
 const populateFooterTable = () => {
   const footersArray = [
     {
@@ -591,7 +617,10 @@ ErrorDocument 403 /pub/errors/404.php
   ];
   return dbAccess.insertFooters(footersArray);
 }
-
+/**
+ * Populate ScopesConfig Tables with Samples
+ * @returns {Promise<ScopeConfig[]>}
+ */
 const populateScopesConfigTable = () => {
   const scopeArray = [
     { 
@@ -625,6 +654,11 @@ RewriteRule ^(.*)$ https://www.moulinroty-maboutique.com/$1 [R=301,L]
   return dbAccess.insertScopesConfig(scopeArray);
 };
 
+
+/**
+ * Populate Rules Table with Sample
+ * @returns {Promise<Rule[]>}
+ */
 const populateRulesTable = () => {
   const rulesArray = [
     new Rule(1, 1, "/sitemap.xml", "https://www.jeujouet.com/pub/media/sitemaps/sitemap.xml"),  // 1 

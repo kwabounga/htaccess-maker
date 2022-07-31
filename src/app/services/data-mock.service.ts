@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Scope, ScopeConfig, Rule,RedirectType }from '../interfaces/interfaces';
 import { OutputHtaccessService } from './output-htaccess.service';
+
 const mock = {
   header_config: `
 ############################################
@@ -840,6 +841,11 @@ RewriteRule ^(.*)$ https://www.moulinroty-maboutique.com/$1 [R=301,L]
       return new DataMockService(new OutputHtaccessService());
   }
 })
+/**
+ * Data Mock Service
+ * Used when building app 
+ * when no database provided
+ */
 export class DataMockService {
   constructor(private ouputSrv:OutputHtaccessService) { }
   async generateHtaccessFile():Promise<string> {

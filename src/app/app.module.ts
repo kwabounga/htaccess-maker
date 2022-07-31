@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgxElectronModule } from 'ngx-electron';
-/* import { HttpClientModule } from  '@angular/common/http'; */
+
 import { NgxSmoothDnDModule } from 'ngx-smooth-dnd';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,8 +40,7 @@ import { ScopeAccordionComponent } from './components/scope-accordion/scope-acco
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    CommonModule,
-    /* HttpClientModule, */
+    CommonModule,    
     NgxSmoothDnDModule,
     NgxElectronModule
   ],
