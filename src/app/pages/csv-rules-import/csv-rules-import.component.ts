@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { DataMockService } from 'src/app/services/data-mock.service';
+import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { RedirectType, Scope, Rule } from 'src/app/interfaces/interfaces';
 
 import { ElectronService } from 'ngx-electron';
@@ -23,7 +24,7 @@ export class CsvRulesImportComponent implements OnInit {
   redToBeChecked: any[] = [];
   constructor(
     protected fileStuffSrv: FilesStuffService,
-    protected dataSrv: DataMockService,
+    protected dataSrv: DataFromIpcService,
     private electronSrv: ElectronService,
     private ref: ChangeDetectorRef
   ) {
@@ -36,9 +37,11 @@ export class CsvRulesImportComponent implements OnInit {
 
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
+    console.log(this.redirectTypes)
   }
 
   async checkImport() {
+    console.log('checkImport??')
     if (this.electronSrv.isElectronApp) {
       console.log('checkImport', this.redToBeChecked);
       await this.initCheckRuleListener(this.redToBeChecked);
@@ -64,6 +67,7 @@ export class CsvRulesImportComponent implements OnInit {
     this.checkInProgress = !this.checkInProgress;
   }
   async onFileSelected(event: any) {
+    console.log('onFileSelected');
     const file: any = event.target.files[0];
     if (file) {
       console.log(file);
@@ -80,13 +84,15 @@ export class CsvRulesImportComponent implements OnInit {
       console.log('no csv file selected');
     }
     if (this.csv.trim() !== '') {
+      console.log('this.csv ok',this.csv)
       const notEmpty = (r: string) => r.trim() !== '';
       let tempArray = this.csv.split('\n');
       tempArray.shift();
       let redToBeProcessed = tempArray.filter(notEmpty);
 
-      console.log(redToBeProcessed);
+      console.log('redToBeProcessed',redToBeProcessed);
       for (const line of redToBeProcessed) {
+        console.log('line',line)
         const red: any = {
           perm: 1,
           permanent: 1,
@@ -94,10 +100,18 @@ export class CsvRulesImportComponent implements OnInit {
           temporary: 2,
         };
         let l = line.split(';');
-        let s: Scope = await this.dataSrv.getScopeByMagentoId(parseInt(l[0]));
+        let s: Scope = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope)=>{
+          console.log('scope',scope)
+          return scope;
+        });
+        console.log('after getScopeByMagentoId')
         let r: RedirectType = await this.dataSrv.getRedirectTypesById(
           parseInt(red[l[1]])
-        );
+        ).then((redType)=>{
+          console.log('redType',redType)
+          return redType;
+        });
+        console.log('after getRedirectTypesById')
         this.redToBeChecked.push({
           scope_id: s.id,
           redirect_type_id: r.id,
@@ -107,7 +121,7 @@ export class CsvRulesImportComponent implements OnInit {
         });
         this.redToBeChecked.sort((a, b) => a.scope_id - b.scope_id);
       }
-      console.log(this.redToBeChecked);
+      console.log('this.redToBeChecked',this.redToBeChecked);
     }
   }
   changeSave(event: any) {

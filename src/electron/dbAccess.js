@@ -32,11 +32,16 @@ const {
 
 
 const { 
+  getHeaderConfig,
+  getFooterConfig,
+  getScopesConfig,
   getRedirectTypesAll,
   getRedirectTypesByID,
   getScopesAll,
   getScopesByID,
+  getScopeByMagentoID,
   getScopeConfigByScopeID,
+  getRulesByScopeId,
   checkIfRuleAlreadyExist,
 }  = require('./crud/read');
 
@@ -72,10 +77,15 @@ exports.insertHeaders = insertHeaders;
 exports.insertFooters = insertFooters;
 exports.insertRedirectTypes = insertRedirectTypes;
 
+exports.getFooterConfig = getFooterConfig;
+exports.getHeaderConfig = getHeaderConfig;
+exports.getScopesConfig = getScopesConfig;
 exports.getRedirectTypesAll = getRedirectTypesAll;
 exports.getRedirectTypesByID = getRedirectTypesByID;
 exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
+exports.getScopeByMagentoID = getScopeByMagentoID;
+exports.getRulesByScopeId = getRulesByScopeId;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
 

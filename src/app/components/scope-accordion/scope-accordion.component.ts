@@ -9,7 +9,12 @@ import { applyDrag } from '../../utils/utils';
 })
 export class ScopeAccordionComponent implements OnInit {
   @Input() scopes:any;
-  @Input() scopeConfig:any = {};
+  @Input() scopeConfig:any = {
+    label: "",
+    condition: "",
+    position:0,
+    config:""
+  };
   @Input() redirectTypes:any;
   @Input() rules:any= {};
 

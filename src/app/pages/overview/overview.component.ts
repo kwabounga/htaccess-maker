@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
 import { applyDrag } from '../../utils/utils';
 import { DataMockService } from 'src/app/services/data-mock.service';
+import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -9,13 +10,18 @@ import { DataMockService } from 'src/app/services/data-mock.service';
 })
 export class OverviewComponent implements OnInit {
 
-  constructor(private dataSrv:DataMockService) { }
+  constructor(private dataSrv:DataFromIpcService) { }
 
   headerData:any;
   footerData:any;
   redirectTypes:any;
   rules:any= {};
-  scopeConfig:any = {};
+  scopeConfig:any = {
+    label: "",
+    condition: "",
+    position:0,
+    config:""
+  };
   scopes:any;
   specialRules:any;
 
@@ -27,8 +33,7 @@ export class OverviewComponent implements OnInit {
     this.scopes.forEach(async (scope:any) => {
       this.scopeConfig[scope.id] = await this.getScopeConfigById(scope.id);
       this.rules[scope.id] = await this.getRulesByScopeId(scope.id);
-    });
-    // this.specialRules = await this.dataSrv.getFooterConfig();
+    }); /**/
     console.log(this.rules);
 
   }

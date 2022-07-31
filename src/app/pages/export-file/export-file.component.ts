@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataMockService } from 'src/app/services/data-mock.service';
+import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { FilesStuffService } from 'src/app/services/files-stuff.service';
 })
 export class ExportFileComponent implements OnInit {
   htAccessData:string ='';
-  constructor(protected dataSrv:DataMockService, protected fileStuffSrv:FilesStuffService) { }
+  constructor(protected dataSrv:DataFromIpcService, protected fileStuffSrv:FilesStuffService) { }
 
   async ngOnInit(): Promise<void> {
     this.htAccessData = await this.dataSrv.generateHtaccessFile()

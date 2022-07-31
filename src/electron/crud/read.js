@@ -14,10 +14,24 @@ const {
  *  DB READ      *
  **              */
 
+// Header  
+const getHeaderConfig = () => {
+  return knex(DATABASE_TABLE_HEADER_CONFIG).where({
+    id: 1,
+  }).select();
+}
+// Footer  
+const getFooterConfig = () => {
+  return knex(DATABASE_TABLE_FOOTER_CONFIG).where({
+    id: 1,
+  }).select();
+}
+const getScopesConfig = () => {
+  return knex(DATABASE_TABLE_SCOPES_CONFIG).select();
+}
 // Rules 
 const getRedirectTypesAll = () => {
-  return knex.select()
-  .table(DATABASE_TABLE_REDIRECT_TYPES);
+  return knex(DATABASE_TABLE_REDIRECT_TYPES).select();
 }
 
 const getRedirectTypesByID = (id) => {
@@ -28,8 +42,7 @@ const getRedirectTypesByID = (id) => {
 
 // Scopes
 const getScopesAll = () => {
-  return knex.select()
-  .table(DATABASE_TABLE_SCOPES);
+  return knex(DATABASE_TABLE_SCOPES).select();
 }
 
 const getScopesByID = (id) => {
@@ -38,13 +51,30 @@ const getScopesByID = (id) => {
   }).select();
 }
 
-
-const getScopeConfigByScopeID = (scope_id) => {
+const getScopeByMagentoID = (magento_scope_id) => {
   return knex(DATABASE_TABLE_SCOPES).where({
-    scope_id: scope_id,
+    magento_scope_id: magento_scope_id,
   }).select();
 }
 
+
+const getScopeConfigByScopeID = (scope_id) => {
+  // console.log('getScopeConfigByScopeID scope_id',scope_id)
+  return knex(DATABASE_TABLE_SCOPES_CONFIG).where({
+    scope_id: scope_id,
+  }).select();
+}
+const getScopeConfigByMagentoID = (magento_scope_id) => {
+  // console.log('getScopeConfigByScopeID scope_id',scope_id)
+  return knex(DATABASE_TABLE_SCOPES_CONFIG).where({
+    magento_scope_id: magento_scope_id,
+  }).select();
+}
+const getRulesByScopeId = (scope_id) => {
+  return knex(DATABASE_TABLE_RULES).where({
+    scope_id: scope_id,
+  }).select();
+}
 const checkIfRuleAlreadyExist = (rule) => {
   return knex(DATABASE_TABLE_RULES)
       .where({ scope_id: rule.scope_id })
@@ -52,9 +82,15 @@ const checkIfRuleAlreadyExist = (rule) => {
       .then(rows => rows.length);
 }
 
+exports.getFooterConfig = getFooterConfig;
+exports.getHeaderConfig = getHeaderConfig;
+exports.getScopesConfig = getScopesConfig;
 exports.getRedirectTypesAll = getRedirectTypesAll;
 exports.getRedirectTypesByID = getRedirectTypesByID;
 exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
+exports.getScopeByMagentoID = getScopeByMagentoID;
+exports.getRulesByScopeId = getRulesByScopeId;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
+exports.getScopeConfigByMagentoID = getScopeConfigByMagentoID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
