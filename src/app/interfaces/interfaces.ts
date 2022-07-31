@@ -1,12 +1,15 @@
+/**
+ * Inferfaces Declarations
+ */
+
 export interface ScopeConfig {
     id?: number;
     scope_id?: number;
     label: string;
     config: string;
     condition: string;
-    position: number;
+    position?: number;
 }
-
 
 export interface Scope {
     id?: number;
@@ -23,7 +26,8 @@ export interface Rule {
   id?: number;
   scope_id: number;
   redirect_type_id: number;
+  position?: number;
   origin: string;
   target: string;
-  active: boolean;
+  active?: boolean;
 }

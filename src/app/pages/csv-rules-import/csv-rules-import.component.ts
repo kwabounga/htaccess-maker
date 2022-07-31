@@ -12,6 +12,9 @@ import { ElectronService } from 'ngx-electron';
   templateUrl: './csv-rules-import.component.html',
   styleUrls: ['./csv-rules-import.component.css'],
 })
+/**
+ * Csv Rules Import Page
+ */
 export class CsvRulesImportComponent implements OnInit {
   protected has_ipc: boolean = false;
   //percent:number = 0;
@@ -23,6 +26,15 @@ export class CsvRulesImportComponent implements OnInit {
   redToBeSaved: any[] = [];
   badRedirections: any[] = [];
   redToBeChecked: any[] = [];
+
+  /**
+   * constructor
+   * 
+   * @param fileStuffSrv 
+   * @param dataSrv 
+   * @param electronSrv 
+   * @param ref 
+   */
   constructor(
     protected fileStuffSrv: FilesStuffService,
     protected dataSrv: DataFromIpcService,
@@ -36,11 +48,18 @@ export class CsvRulesImportComponent implements OnInit {
     
   }
 
+  /**
+   * Life cycle intitalization function
+   * must be async function because is awaiting the data from dataSrv
+   */
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
     console.log(this.redirectTypes)
   }
 
+  /**
+   * checkImport Method
+   */
   async checkImport() {
     console.log('checkImport??')
     if (this.electronSrv.isElectronApp) {
@@ -49,10 +68,13 @@ export class CsvRulesImportComponent implements OnInit {
       this.electronSrv.ipcRenderer.send('check:rules', this.redToBeChecked);
       this.checkInProgress = true;
     } else {
-      console.log('cest la mer noire');
+      console.log('something goes wrong with the check');
     }
   }
 
+  /**
+   * give a csv file sample 
+   */
   downloadCsvSample() {
     const sample = `magento_scope_id;redirect_type;origin;target;
 2;permanent;/test.html;www.test.com;
@@ -60,14 +82,31 @@ export class CsvRulesImportComponent implements OnInit {
 `;
     this.fileStuffSrv.exportFile('sample.csv', sample);
   }
+
+  /**
+   * Upload safe new redirections
+   */
   uploadCsvRedirect() {
     console.log('uploadCsvRedirect', this.redToBeSaved);
     this.dataSrv.uploadRedirections(this.redToBeSaved)
   }
+
+  // TODO: verif if this method is used
   testSend() {
     console.log('checkImport', this.redToBeChecked);
     this.checkInProgress = !this.checkInProgress;
   }
+
+  /**
+   * On file selected handler
+   * 
+   * /!\ must be a csv with well formated /!\
+   * @see: downloadSample() to get te good format
+   * 
+   * get the file / process and convert into rule[] object
+   * ready to be checked
+   * @param {string} event the csv content
+   */
   async onFileSelected(event: any) {
     console.log('onFileSelected');
     const file: any = event.target.files[0];
@@ -126,13 +165,30 @@ export class CsvRulesImportComponent implements OnInit {
       console.log('this.redToBeChecked',this.redToBeChecked);
     }
   }
+
+  /**
+   * change a rule on the fly
+   * in the toBeprocessed Redirection array
+   * if we see an error before checking rules validity
+   * @param {rule} event the rule to be changed
+   */
+  // TODO: implement that
   changeSave(event: any) {
     console.log('check', event);
   }
+
+  /**
+   * Used for progress bar
+   * @returns {number} progression percent
+   */
   percent() {
     return (100 * this.progressCount) / this.redToBeChecked.length;
   }
 
+  /**
+   * On the fly event registrer for check rule
+   * @param rules 
+   */
   async initCheckRuleListener(rules:any[]) {
       for (let id in rules) {
         let channel = `rule:checked:${id}`
@@ -147,6 +203,15 @@ export class CsvRulesImportComponent implements OnInit {
         
       }
   }
+  /**
+   * check Rule handler 
+   * 
+   * apply progression for progress bar 
+   * verify if the response is good or bad
+   * remove the associated listener
+   * @param _event 
+   * @param {any} response 
+   */
   checkHandler = (_event:any, response: any) => {
     this.progressCount++;
     //this.percent = ((100 * this.progressCount) / this.redToBeChecked.length)
@@ -158,11 +223,15 @@ export class CsvRulesImportComponent implements OnInit {
       // rule KO
       this.badRedirections.push(response)
     }
+    // update progression
     if (this.progressCount == this.redToBeChecked.length) {
       this.checkInProgress = false;
       this.rulesChecked = true;
     }
+    // remove current listener
     this.electronSrv.ipcRenderer.removeListener(response.channel, this.checkHandler)
+
+    // force update the dom from event, see: readme for more informations
     this.ref.detectChanges();
   }
 }

@@ -8,6 +8,11 @@ import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
+
+/**
+ * Page Rules Overview / Management Component
+ */
+
 export class OverviewComponent implements OnInit {
 
   constructor(private dataSrv:DataFromIpcService) { }
@@ -25,6 +30,9 @@ export class OverviewComponent implements OnInit {
   scopes:any;
   specialRules:any;
 
+  /**
+   * Life cycle intitalization function
+   */
   async ngOnInit(): Promise<void> {
     this.headerData = await this.dataSrv.getHeaderConfig();
     this.footerData = await this.dataSrv.getFooterConfig();
@@ -37,7 +45,13 @@ export class OverviewComponent implements OnInit {
     console.log(this.rules);
 
   }
-  async getScopeConfigById(id:number) {
+
+  /**
+   * get  Scope config handler
+   * @param {number} id  the scope id
+   * @returns {Promise<any>} the scope
+   */
+  async getScopeConfigById(id:number): Promise<any> {
     return this.dataSrv.getScopesConfigById(id)
     .then((obj)=>{
       console.log('getScopeConfigById',obj);
@@ -45,14 +59,19 @@ export class OverviewComponent implements OnInit {
     })
   }
 
-  async getRulesByScopeId(scope_id:number) {
+  /**
+   * get  Rules handler
+   * @param {number} scope_id  the scope id
+   * @returns {Promise<any[]>} the scope
+   */
+  async getRulesByScopeId(scope_id:number): Promise<any[]> {
     return this.dataSrv.getRulesByScopeId(scope_id)
     .then((obj)=>{
       console.log('getRulesByScopeId', obj);
       return obj;
     })
   }
-
+   // TODO: implement that
   saveConfig(event:any){
     console.log('saveConfig',event)
   }
@@ -62,10 +81,21 @@ export class OverviewComponent implements OnInit {
   updateScope(event:any){
     console.log('updateScope',event)
   }
+
+  /**
+   * on drop handler 
+   * use by smooth drop
+   * @param dropResult  the rules for rearrange the array
+   */
   onDrop(dropResult:any) {
     console.log(dropResult)
     this.scopes = applyDrag(this.scopes, dropResult);
   }
+
+  /**
+   * update Rules positions handler
+   * @param {any[]} event an array of Rules from EventEmitter
+   */
   updateRulesPositions(event:any) {
     console.log('updateRulesPositions',event);
     this.dataSrv.updateRulesPosition(event).then((response)=>{
