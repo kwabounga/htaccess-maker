@@ -21,7 +21,7 @@
 
   <ul
     class="list-group border blocked-size-max mb-3"
-    *ngIf="redToBeChecked.length > 0"
+    *ngIf="redToBeChecked.length > 0 && !rulesChecked"
   >
     <li
       class="list-group-item"
@@ -58,6 +58,44 @@
   >
     Check Redirections
   </button>
+  <ul
+    class="list-group border blocked-size-max mb-3"
+    *ngIf="redToBeSaved.length > 0 && rulesChecked"
+  >
+  OK
+  <li
+      class="list-group-item"
+      *ngFor="let rule of this?.redToBeSaved; let idr = index"
+    >
+    <app-rule-line
+          [movable]="false"
+          [id]="-1"
+          [idr]="idr"
+          [rule]="rule"
+          [redirectTypes]="redirectTypes"
+          (onChange)="changeSave($event)"
+        ></app-rule-line>
+  </li>
+</ul>
+<ul
+    class="list-group border blocked-size-max mb-3"
+    *ngIf="badRedirections.length > 0 && rulesChecked"
+  >
+  PAS OK
+  <li
+      class="list-group-item"
+      *ngFor="let bad of this?.badRedirections; let idr = index"
+    >
+    <app-rule-line
+          [movable]="false"
+          [id]="-1"
+          [idr]="idr"
+          [rule]="bad.rule"
+          [redirectTypes]="redirectTypes"
+          (onChange)="changeSave($event)"
+        ></app-rule-line>
+  </li>
+</ul>
   <button
     *ngIf="rulesChecked"
     color="primary"

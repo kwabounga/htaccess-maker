@@ -20,7 +20,8 @@ export class CsvRulesImportComponent implements OnInit {
   checkInProgress = false;
   csv: any;
   redirectTypes: any = {};
-  redToBeSaved: string[] = [];
+  redToBeSaved: any[] = [];
+  badRedirections: any[] = [];
   redToBeChecked: any[] = [];
   constructor(
     protected fileStuffSrv: FilesStuffService,
@@ -60,7 +61,8 @@ export class CsvRulesImportComponent implements OnInit {
     this.fileStuffSrv.exportFile('sample.csv', sample);
   }
   uploadCsvRedirect() {
-    console.log('uploadCsvRedirect', this.csv);
+    console.log('uploadCsvRedirect', this.redToBeSaved);
+    this.dataSrv.uploadRedirections(this.redToBeSaved)
   }
   testSend() {
     console.log('checkImport', this.redToBeChecked);
@@ -149,6 +151,13 @@ export class CsvRulesImportComponent implements OnInit {
     this.progressCount++;
     //this.percent = ((100 * this.progressCount) / this.redToBeChecked.length)
     console.log('checked',_event, response);
+    if(response.ok){
+      // rule ok
+      this.redToBeSaved.push(response.rule)
+    }else{
+      // rule KO
+      this.badRedirections.push(response)
+    }
     if (this.progressCount == this.redToBeChecked.length) {
       this.checkInProgress = false;
       this.rulesChecked = true;

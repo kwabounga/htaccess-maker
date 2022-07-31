@@ -12,10 +12,10 @@ const {
 /*                   **
  *  DB ACCESS INSERTS *
  **                   */
-const insertRules = (scopes) => {
+const insertRules = (rules) => {
   return knex
       .transaction(function(trx) {
-          return trx(DATABASE_TABLE_RULES).insert(scopes);
+          return trx(DATABASE_TABLE_RULES).insert(rules);
       })
       .then(function(inserts) {
           console.log(inserts.length + " new rules saved.");

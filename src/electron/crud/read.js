@@ -29,7 +29,7 @@ const getFooterConfig = () => {
 const getScopesConfig = () => {
   return knex(DATABASE_TABLE_SCOPES_CONFIG).select();
 }
-// Rules 
+// RedirectTypes 
 const getRedirectTypesAll = () => {
   return knex(DATABASE_TABLE_REDIRECT_TYPES).select();
 }
@@ -70,10 +70,11 @@ const getScopeConfigByMagentoID = (magento_scope_id) => {
     magento_scope_id: magento_scope_id,
   }).select();
 }
+// Rules 
 const getRulesByScopeId = (scope_id) => {
   return knex(DATABASE_TABLE_RULES).where({
     scope_id: scope_id,
-  }).select();
+  }).select().orderBy('position');
 }
 const checkIfRuleAlreadyExist = (rule) => {
   return knex(DATABASE_TABLE_RULES)

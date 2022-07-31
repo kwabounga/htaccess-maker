@@ -68,6 +68,9 @@ export class OverviewComponent implements OnInit {
   }
   updateRulesPositions(event:any) {
     console.log('updateRulesPositions',event);
+    this.dataSrv.updateRulesPosition(event).then((response)=>{
+      console.log('position updated',response)
+    })
     
   }
 }

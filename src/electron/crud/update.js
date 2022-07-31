@@ -19,9 +19,9 @@ const updateRulesPositions = (rules_wrapper)=>{
     values += `(${r.id}, ${idx}),`
   });
   let raw = `WITH updated(id, position) AS (VALUES
-    ${DATABASE_TABLE_RULES}
+    ${values.slice(0,-1)}
 )
-UPDATE ${values}
+UPDATE ${DATABASE_TABLE_RULES}
     SET 
     position = updated.position
 FROM updated

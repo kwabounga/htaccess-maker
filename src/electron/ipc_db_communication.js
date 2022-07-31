@@ -115,7 +115,12 @@ const addEventsUpdate = (ipcMain) => {
  * @param {Electron.ipcMain} ipcMain 
  */
 const addGetEventsInsert = (ipcMain) => {
-
+  ipcMain.on("add:rules", (e, rules) => {
+    dbAccess.insertRules(rules).then((resp)=>{
+      console.log(resp)
+      e.sender.send("rules:added", true);
+    })
+  })
 }
 /**
  * 
@@ -179,6 +184,7 @@ const addEvents = (ipcMain) => {
   addEventsGet(ipcMain);
   addEventsUpdate(ipcMain);
   addGetEventsCheck(ipcMain); 
+  addGetEventsInsert(ipcMain); 
 
 };
 
