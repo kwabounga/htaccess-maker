@@ -109,6 +109,21 @@ const addEventsUpdate = (ipcMain) => {
       e.sender.send("rules:position:updated", { ok: true});
     })
   })
+  ipcMain.on("update:scopes:position", (e, scopes_wrapper) => {
+    console.log('update:scopes:position')
+    dbAccess.updateScopesPositions(scopes_wrapper).then((resp)=>{
+      console.log(resp)
+      e.sender.send("scopes:position:updated", { ok: true});
+    })
+  })
+
+  ipcMain.on("update:rule", (e, rule) => {
+    console.log('update:rule')
+    dbAccess.updateRule(rule).then((resp)=>{
+      console.log(resp)
+      e.sender.send("rule:updated", { ok: true});
+    })
+  })
 }
 /**
  * 

@@ -16,7 +16,7 @@ const createWindow = () => {
             width: 800,
             height: 600,
             icon: './src/favicon.ico',
-            alwaysOnTop: true,
+            alwaysOnTop: false,
             webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false },
             ipcRenderer: ipcRenderer,
             isElectron: true,

@@ -42,7 +42,7 @@ const getRedirectTypesByID = (id) => {
 
 // Scopes
 const getScopesAll = () => {
-  return knex(DATABASE_TABLE_SCOPES).select();
+  return knex(DATABASE_TABLE_SCOPES).select().orderBy('position');;
 }
 
 const getScopesByID = (id) => {

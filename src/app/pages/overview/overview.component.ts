@@ -76,6 +76,9 @@ export class OverviewComponent implements OnInit {
     console.log('saveConfig',event)
   }
   saveRule(event:any){
+    this.dataSrv.updateRule(event).then((response)=>{
+      
+    })
     console.log('saveRule', event)
   }
   updateScope(event:any){
@@ -87,9 +90,14 @@ export class OverviewComponent implements OnInit {
    * use by smooth drop
    * @param dropResult  the rules for rearrange the array
    */
-  onDrop(dropResult:any) {
-    console.log(dropResult)
-    this.scopes = applyDrag(this.scopes, dropResult);
+   updateScopesPositions(event:any) {
+    console.log(event)
+    // this.scopes = applyDrag(this.scopes, dropResult);
+    // console.log('update ScopesCOnfig');
+    this.dataSrv.updateScopesPosition(event).then((response)=>{
+      console.log('scope position updated',response)
+      // this.scopes
+    })
   }
 
   /**
@@ -99,7 +107,7 @@ export class OverviewComponent implements OnInit {
   updateRulesPositions(event:any) {
     console.log('updateRulesPositions',event);
     this.dataSrv.updateRulesPosition(event).then((response)=>{
-      console.log('position updated',response)
+      console.log('rules position updated',response)
     })
     
   }

@@ -52,6 +52,17 @@ the process to make this app
 
 ### sqlite3
 
+don't forget to install sqlite driver for windows ;
+put it in C:\\sqlite3\ folder 
+
+Add it to windows Path : 
+[touch-windows]; tap variables;
+in Environment Variable: 
+Path ... add; `C:\\sqlite3\`
+
+then: 
+
+
 `npm i sqlite3 `  
 
 ### electron-rebuild

@@ -53,6 +53,7 @@ const createScopesTable = () => {
       table.increments("id").primary();
       table.integer("magento_scope_id").notNullable().unique();
       table.string("label").notNullable();
+      table.tinyint('position').defaultTo(0);
   });
 };
 const createRedirectTypesTable = () => {
@@ -69,7 +70,6 @@ const createScopesConfigTable = () => {
       table.string("label").notNullable();
       table.text("config").notNullable();
       table.string("condition").notNullable();
-      table.tinyint('position').defaultTo(0);
   });
 };
 const createHeaderConfigTable = () => {

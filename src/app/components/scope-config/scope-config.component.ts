@@ -9,13 +9,8 @@ import { OutputHtaccessService } from 'src/app/services/output-htaccess.service'
 })
 export class ScopeConfigComponent implements OnInit {
   @Input() id = 0;
-  @Input() scopeConfig:any = {
-    label: "",
-    condition: "",
-    position:0,
-    config:""
-  };
-  @Input() scope: any={};
+  @Input() scopeConfig?:any;
+  @Input() scope?: any={};
   @Input() prev?:boolean;
 
   @Output() onClickSave = new EventEmitter<any>();

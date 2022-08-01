@@ -162,6 +162,18 @@ export class DataFromIpcService {
     })
   }
   
+  async updateRule (rule:Rule):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`update:rule`, rule);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`rule:updated`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`rule:updated`, resolver)
+    })
+  }
+  
   async uploadRedirections (rules?:Rule[]):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:rules`, rules);
@@ -174,7 +186,20 @@ export class DataFromIpcService {
     })
   }
   
-  
+  //updateScopesPosition
+  async updateScopesPosition (scopes?:Scope[]):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`update:scopes:position`, scopes);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`scopes:position:updated`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`scopes:position:updated`, resolver)
+    })
+  }
+
+
   async updateRulesPosition (rules?:Rule[]):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rules:position`, rules);

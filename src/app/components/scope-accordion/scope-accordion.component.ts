@@ -22,6 +22,7 @@ export class ScopeAccordionComponent implements OnInit {
   @Output() onRule = new EventEmitter();
   @Output() onRulesPositions = new EventEmitter();
   @Output() onScope = new EventEmitter();
+  @Output() onScopesPosition = new EventEmitter();
 
   isOpen = false;
   constructor() { }
@@ -43,5 +44,6 @@ export class ScopeAccordionComponent implements OnInit {
   onDrop(dropResult:any) {
     console.log(dropResult)
     this.scopes = applyDrag(this.scopes, dropResult);
+    this.onScopesPosition.emit(this.scopes)
   }
 }

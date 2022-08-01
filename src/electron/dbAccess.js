@@ -51,6 +51,8 @@ const {
 // get all updates methods from CRUD Update
 const { 
   updateRulesPositions,
+  updateScopesPositions,
+  updateRule,
 }  = require('./crud/update');
 
 
@@ -107,3 +109,5 @@ exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
 
 // updates
 exports.updateRulesPositions = updateRulesPositions;
+exports.updateScopesPositions = updateScopesPositions;
+exports.updateRule = updateRule;
