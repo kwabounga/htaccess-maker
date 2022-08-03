@@ -45,6 +45,10 @@ WHERE (${DATABASE_TABLE_RULES}.id = updated.id);`
 }
 const updateRule = (rule)=>{
   console.log('updateRule', rule);
+  return knex(DATABASE_TABLE_RULES)
+  .where('id', rule.id)
+  .update(rule)
+
 }
 const updateScopesPositions = (scopes_wrapper)=>{
   console.log('updateScopesPositions')

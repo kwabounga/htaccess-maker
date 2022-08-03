@@ -124,6 +124,7 @@ const addEventsUpdate = (ipcMain) => {
       e.sender.send("rule:updated", { ok: true});
     })
   })
+  
 }
 /**
  * 
@@ -142,7 +143,13 @@ const addGetEventsInsert = (ipcMain) => {
  * @param {Electron.ipcMain} ipcMain 
  */
 const addGetEventsDelete = (ipcMain) => {
-
+  ipcMain.on("delete:rule", (e, rule) => {
+    console.log('delete:rule')
+    dbAccess.deleteRule(rule).then((resp)=>{
+      console.log(resp)
+      e.sender.send("rule:deleted", { ok: true});
+    })
+  })
 }
 /**
  * 
@@ -200,6 +207,7 @@ const addEvents = (ipcMain) => {
   addEventsUpdate(ipcMain);
   addGetEventsCheck(ipcMain); 
   addGetEventsInsert(ipcMain); 
+  addGetEventsDelete(ipcMain); 
 
 };
 

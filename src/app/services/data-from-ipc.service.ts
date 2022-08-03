@@ -162,6 +162,18 @@ export class DataFromIpcService {
     })
   }
   
+  async deleteRule (rule:Rule):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`delete:rule`, rule);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`rule:deleted`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`rule:deleted`, resolver)
+    })
+  }
+  
   async updateRule (rule:Rule):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rule`, rule);

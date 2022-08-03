@@ -60,7 +60,7 @@ export class OverviewComponent implements OnInit {
   }
 
   /**
-   * get  Rules handler
+   * get Rules handler
    * @param {number} scope_id  the scope id
    * @returns {Promise<any[]>} the scope
    */
@@ -76,10 +76,19 @@ export class OverviewComponent implements OnInit {
     console.log('saveConfig',event)
   }
   saveRule(event:any){
-    this.dataSrv.updateRule(event).then((response)=>{
-      
-    })
-    console.log('saveRule', event)
+    console.log('saveRule event', event);
+    if(event.to_be_deleted){
+      this.dataSrv.deleteRule(event.rule).then((response)=>{
+        console.log('rule deleted',response);
+        window.location.reload();
+      })
+    }else if(event.to_be_saved){
+      this.dataSrv.updateRule(event.rule).then((response)=>{
+        console.log('rule updated',response);
+        window.location.reload();
+      })
+    }
+    
   }
   updateScope(event:any){
     console.log('updateScope',event)

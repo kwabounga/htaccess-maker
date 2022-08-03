@@ -55,6 +55,11 @@ const {
   updateRule,
 }  = require('./crud/update');
 
+// get all deletes methods from CRUD Delete
+const {
+  deleteRule,
+}  = require('./crud/delete');
+
 
 // check db existance
 exports.check = function() {
@@ -111,3 +116,6 @@ exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
 exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;
+
+// deletes
+exports.deleteRule = deleteRule;
