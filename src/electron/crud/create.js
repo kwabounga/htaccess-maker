@@ -30,7 +30,7 @@ const createRulesTable = () => {
       table.increments("id").primary();
       table.integer("scope_id").notNullable();
       table.integer("redirect_type_id").notNullable();
-      table.integer("position").defaultTo(0);
+      table.integer("position").defaultTo(999);
       table.string("origin").notNullable();
       table.string("target").notNullable();
       table.boolean("active").defaultTo(true).notNullable();

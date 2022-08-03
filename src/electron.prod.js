@@ -13,7 +13,7 @@ const createWindow = () => {
         width: 800,
         height: 600,
         icon: path.join(__dirname, 'favicon.ico'),
-        webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false },
+        webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
         ipcRenderer: ipcRenderer,
         isElectron: true,
     });

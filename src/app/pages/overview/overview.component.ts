@@ -71,10 +71,18 @@ export class OverviewComponent implements OnInit {
       return obj;
     })
   }
+
+
    // TODO: implement that
   saveConfig(event:any){
     console.log('saveConfig',event)
   }
+
+  /**
+   * save Or delete Rule
+   * 
+   * @param {any} event 
+   */
   saveRule(event:any){
     console.log('saveRule event', event);
     if(event.to_be_deleted){
@@ -90,6 +98,8 @@ export class OverviewComponent implements OnInit {
     }
     
   }
+
+  
   updateScope(event:any){
     console.log('updateScope',event)
   }

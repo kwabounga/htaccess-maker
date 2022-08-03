@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "smooth-dnd"
+           ],
             "outputPath": "dist/htaccess-maker",
             "index": "src/index.html",
             "main": "src/main.ts",

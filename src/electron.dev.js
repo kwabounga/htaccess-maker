@@ -17,7 +17,7 @@ const createWindow = () => {
             height: 600,
             icon: './src/favicon.ico',
             alwaysOnTop: false,
-            webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false },
+            webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
             ipcRenderer: ipcRenderer,
             isElectron: true,
         });

@@ -74,7 +74,10 @@ const getScopeConfigByMagentoID = (magento_scope_id) => {
 const getRulesByScopeId = (scope_id) => {
   return knex(DATABASE_TABLE_RULES).where({
     scope_id: scope_id,
-  }).select().orderBy('position');
+  }).select().orderBy([
+    { column: 'position' }, 
+    { column: 'origin', order: 'desc' }
+  ]);
 }
 const checkIfRuleAlreadyExist = (rule) => {
   return knex(DATABASE_TABLE_RULES)
