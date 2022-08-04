@@ -3,7 +3,7 @@ import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { RedirectType, Scope, Rule } from 'src/app/interfaces/interfaces';
-
+import { ruleSortByOrigin, ruleSortById } from 'src/app/utils/utils';
 import { ElectronService } from 'ngx-electron';
 /* import { HttpClient } from '@angular/common/http'; */
 
@@ -160,12 +160,13 @@ export class CsvRulesImportComponent implements OnInit {
           target: l[3],
           active: true,
         });
-        this.redToBeChecked.sort((a, b) => a.scope_id - b.scope_id);
+        this.redToBeChecked.sort(ruleSortById);
+        this.redToBeChecked.sort(ruleSortByOrigin);
       }
       console.log('this.redToBeChecked',this.redToBeChecked);
     }
   }
-
+  
   /**
    * change a rule on the fly
    * in the toBeprocessed Redirection array

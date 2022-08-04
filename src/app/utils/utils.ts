@@ -1,3 +1,4 @@
+import { Rule } from "../interfaces/interfaces";
 
 
 /**
@@ -25,3 +26,5 @@ export const applyDrag = (arr:any[], dragResult:any) => {
 	return result;
 };
 
+export const ruleSortByOrigin = (a:Rule, b:Rule) => a.origin.localeCompare(b.origin)
+export const ruleSortById = (a:Rule, b:Rule) => a.scope_id - b.scope_id
