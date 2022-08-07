@@ -73,11 +73,18 @@ export class OverviewComponent implements OnInit {
   }
 
 
-   // TODO: implement that
-  saveConfig(event:any){
+   // TODO: implement saveConfig
+   saveConfig(event:any){
     console.log('saveConfig',event)
   }
-
+  // TODO: implement saveHeaderConfig
+  saveHeaderConfig(){
+    console.log('saveHeaderConfig',this.headerData)
+  }
+  // TODO: implement saveFooterConfig
+  saveFooterConfig(){
+    console.log('saveHeaderConfig',this.footerData)
+  }
   /**
    * save Or delete Rule
    * 

@@ -28,7 +28,7 @@
         <textarea class="form-control" id="headerConfigData" rows="20">{{
           this?.headerData
         }}</textarea>
-        <button type="button" class="btn btn-primary mt-2">
+        <button type="button" class="btn btn-primary mt-2"  (click)="saveHeaderConfig()">
           Save Header Config
         </button>
       </div>
@@ -72,7 +72,7 @@
         <textarea class="form-control" id="footerConfigData" rows="20">{{
           this?.footerData
         }}</textarea>
-        <button type="button" class="btn btn-primary mt-2">
+        <button type="button" class="btn btn-primary mt-2" (click)="saveFooterConfig()">
           Save Footer Config
         </button>
       </div>

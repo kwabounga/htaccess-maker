@@ -91,11 +91,6 @@ export class CsvRulesImportComponent implements OnInit {
     this.dataSrv.uploadRedirections(this.redToBeSaved)
   }
 
-  // TODO: verif if this method is used
-  testSend() {
-    console.log('checkImport', this.redToBeChecked);
-    this.checkInProgress = !this.checkInProgress;
-  }
 
   /**
    * On file selected handler
@@ -173,7 +168,7 @@ export class CsvRulesImportComponent implements OnInit {
    * if we see an error before checking rules validity
    * @param {rule} event the rule to be changed
    */
-  // TODO: implement that
+  // TODO: implement changeSave
   changeSave(event: any) {
     console.log('check', event);
   }
