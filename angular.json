@@ -24,8 +24,11 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/data",
+              "src/electron",
               "src/package.json",
-              "src/electron.prod.js"
+              "src/electron.prod.js",
+              "src/preload.js"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

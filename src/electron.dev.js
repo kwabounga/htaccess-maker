@@ -7,15 +7,15 @@ const ipcCom = require("./electron/ipc_db_communication");
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 
-
-const allowedDomainsCSP = [
-    'script-src \'self\'',
-    'http://localhost:4200/',
-    'http://www.w3.org/2000/svg',
-    ]
+/* Rollback on CSP */
+// const allowedDomainsCSP = [
+//     'script-src \'self\'',
+//     'http://localhost:4200/',
+//     'http://www.w3.org/2000/svg',
+//     ]
 
 const createWindow = () => {
-    // manage CSP 
+    /**  manage CSP 
     session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
         callback({
           responseHeaders: {
@@ -23,7 +23,7 @@ const createWindow = () => {
             'Content-Security-Policy': [allowedDomainsCSP.join(' ')]
           }
         })
-      })
+      })*/
     // set timeout to render the window not until the Angular
     // compiler is ready to show the project
     setTimeout(() => {
