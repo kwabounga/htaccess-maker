@@ -35,6 +35,7 @@
         ></button>
       </div>
       <div class="modal-body">
+        <input class="form-control form-control-sm mb-3" type="text" placeholder="search" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
         <ul class="list-group border blocked-size-max">
           <smooth-dnd-container
             [dragClass]="'opacity-ghost'"
@@ -45,7 +46,7 @@
             (drop)="onDrop($event)"
           >
             <smooth-dnd-draggable
-              *ngFor="let rule of this?.rules; let idr = index"
+              *ngFor="let rule of this?.filteredRules; let idr = index"
             >
               <div class="draggable-item">
                 <app-rule-line
