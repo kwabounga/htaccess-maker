@@ -90,7 +90,7 @@ export class CsvRulesImportComponent implements OnInit {
     console.log('uploadCsvRedirect', this.redToBeSaved);
     this.dataSrv.uploadRedirections(this.redToBeSaved)
   }
-
+  // TODO: check for redirect loop !! 
 
   /**
    * On file selected handler

@@ -18,6 +18,7 @@ import { CodePreviewComponent } from './components/code-preview/code-preview.com
 import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.component';
 import { ScopeComponent } from './components/scope/scope.component';
 import { ScopeAccordionComponent } from './components/scope-accordion/scope-accordion.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 
 
@@ -34,7 +35,8 @@ import { ScopeAccordionComponent } from './components/scope-accordion/scope-acco
     CodePreviewComponent,
     DeleteScopeComponent,
     ScopeComponent,
-    ScopeAccordionComponent
+    ScopeAccordionComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

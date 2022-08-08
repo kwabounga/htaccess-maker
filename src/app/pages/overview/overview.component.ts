@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
 import { applyDrag } from '../../utils/utils';
 import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
+import { AlertComponent } from 'src/app/components/alert/alert.component';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -14,7 +15,7 @@ import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
  */
 
 export class OverviewComponent implements OnInit {
-
+  @ViewChild('alert') alertRef!: AlertComponent;
   constructor(private dataSrv:DataFromIpcService) { }
 
   headerData:any;
@@ -71,7 +72,7 @@ export class OverviewComponent implements OnInit {
       return obj;
     })
   }
-
+  // TODO : do an alert system on succes / on error
 
    // TODO: implement saveConfig
    saveConfig(event:any){
@@ -82,11 +83,12 @@ export class OverviewComponent implements OnInit {
     console.log('saveHeaderConfig',this.headerData)
     this.dataSrv.updateHeaderConfig(this.headerData).then((response)=>{
       console.log(response)
+      this.alertRef.openModal('success', 'les alertes  c\'est cool');
     })
   }
   // TODO: implement saveFooterConfig
   saveFooterConfig(){
-    console.log('saveFooterConfig',this.footerData)
+    console.log('saveFooterConfig', this.footerData)
     this.dataSrv.updateFooterConfig(this.footerData).then((response)=>{
       console.log(response)
     })
