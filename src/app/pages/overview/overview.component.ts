@@ -80,10 +80,16 @@ export class OverviewComponent implements OnInit {
   // TODO: implement saveHeaderConfig
   saveHeaderConfig(){
     console.log('saveHeaderConfig',this.headerData)
+    this.dataSrv.updateHeaderConfig(this.headerData).then((response)=>{
+      console.log(response)
+    })
   }
   // TODO: implement saveFooterConfig
   saveFooterConfig(){
-    console.log('saveHeaderConfig',this.footerData)
+    console.log('saveFooterConfig',this.footerData)
+    this.dataSrv.updateFooterConfig(this.footerData).then((response)=>{
+      console.log(response)
+    })
   }
   /**
    * save Or delete Rule

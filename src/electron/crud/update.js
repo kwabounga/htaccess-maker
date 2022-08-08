@@ -50,6 +50,24 @@ const updateRule = (rule)=>{
   .update(rule)
 
 }
+const updateHeaderConfig = (config)=>{
+  console.log('updateHeaderConfig', config);
+  return knex(DATABASE_TABLE_HEADER_CONFIG)
+  .where('id', 1)
+  .update({
+    config: config,
+  })
+
+}
+const updateFooterConfig = (config)=>{
+  console.log('updateFooterConfig', config);
+  return knex(DATABASE_TABLE_FOOTER_CONFIG)
+  .where('id', 1)
+  .update({
+    config: config,
+  })
+
+}
 const updateScopesPositions = (scopes_wrapper)=>{
   console.log('updateScopesPositions')
   // build values on the fly from the Scopes positions in the Scope[]
@@ -75,6 +93,8 @@ WHERE (${DATABASE_TABLE_SCOPES}.id = updated.id);`
 }
 
 /* Exports */
+exports.updateHeaderConfig = updateHeaderConfig;
+exports.updateFooterConfig = updateFooterConfig;
 exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;

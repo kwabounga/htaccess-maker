@@ -224,6 +224,28 @@ export class DataFromIpcService {
     })
   }
 
-  
+  async updateHeaderConfig (config:string):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`update:header:config`, config);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`header:config:updated`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`header:config:updated`, resolver)
+    })
+  }
+
+  async updateFooterConfig (config:string):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`update:footer:config`, config);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`footer:config:updated`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`footer:config:updated`, resolver)
+    })
+  }
 
 }

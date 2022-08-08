@@ -50,6 +50,8 @@ const {
 
 // get all updates methods from CRUD Update
 const { 
+  updateHeaderConfig,
+  updateFooterConfig,
   updateRulesPositions,
   updateScopesPositions,
   updateRule,
@@ -113,6 +115,8 @@ exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
 
 // updates
+exports.updateHeaderConfig = updateHeaderConfig;
+exports.updateFooterConfig = updateFooterConfig;
 exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;

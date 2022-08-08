@@ -25,9 +25,7 @@
           >Modifier le contenu et cliquer sur enregistrer pour prendre en compte
           les modifications</label
         >
-        <textarea class="form-control" id="headerConfigData" rows="20">{{
-          this?.headerData
-        }}</textarea>
+        <textarea class="form-control" id="headerConfigData" rows="20" [(ngModel)]="this.headerData"></textarea>
         <button type="button" class="btn btn-primary mt-2"  (click)="saveHeaderConfig()">
           Save Header Config
         </button>
@@ -69,9 +67,7 @@
           >Modifier le contenu et cliquer sur enregistrer pour prendre en compte
           les modifications</label
         >
-        <textarea class="form-control" id="footerConfigData" rows="20">{{
-          this?.footerData
-        }}</textarea>
+        <textarea class="form-control" id="footerConfigData" rows="20" [(ngModel)]="this.footerData"></textarea>
         <button type="button" class="btn btn-primary mt-2" (click)="saveFooterConfig()">
           Save Footer Config
         </button>

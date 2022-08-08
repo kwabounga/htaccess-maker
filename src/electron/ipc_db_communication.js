@@ -103,6 +103,20 @@ const addEventsGet = (ipcMain) => {
   })
 }
 const addEventsUpdate = (ipcMain) => {
+
+  ipcMain.on("update:header:config", (e, config) => {
+    dbAccess.updateHeaderConfig(config).then((resp)=>{
+      console.log(resp)
+      e.sender.send("header:config:updated", { ok: true});
+    })
+  })
+  ipcMain.on("update:footer:config", (e, config) => {
+    dbAccess.updateFooterConfig(config).then((resp)=>{
+      console.log(resp)
+      e.sender.send("footer:config:updated", { ok: true});
+    })
+  })
+
   ipcMain.on("update:rules:position", (e, rules_wrapper) => {
     dbAccess.updateRulesPositions(rules_wrapper).then((resp)=>{
       console.log(resp)
