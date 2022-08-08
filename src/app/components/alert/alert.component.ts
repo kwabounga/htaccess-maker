@@ -16,26 +16,33 @@ export class AlertComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openModal(type:string, text:string, timeMS:null|number=null){
+  openModal(type:string, text:string, timeMS:null|number=null, callback:any=null){
     this.text = text;
     this.iconType = type;
     
     if(timeMS){
       this.timer = setTimeout(()=>{
-        this.closeModal();
+        this.closeModal(callback);
       },timeMS)
     }
     this.show = 'show';
     this.isOpen = true;
   }
-
-  closeModal() {
+  closeModal(callback:any=null) {
     if(this.timer){
       clearTimeout(this.timer)
     }
-    // this.isOpen = false;
+    
+    
     this.show = '';
     this.text = '';
-
+    setTimeout(()=>{
+      this.isOpen = false;
+      if(callback){
+        callback();
+      }
+    },500)
   }
+
+  
 }
