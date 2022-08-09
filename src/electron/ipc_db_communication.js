@@ -175,40 +175,58 @@ const addGetEventsCheck = (ipcMain) => {
     let id = 0;
     for (const rule of rules) {
       let channel = `rule:checked:${id}`
-      console.log(id , channel);
+      console.log(id, channel);
+      let regex = dbAccess.REGEX_URL;
+      let tUrl = rule.target.match(regex)[1]
+      if(tUrl.trim() !=''){
+        if(rule.origin == tUrl){
+          e.sender.send(channel, { ok: false, rule: rule, reason: `ERROR with the rule (origin '${rule.origin}'): the target '${rule.target}' redirect to the origin (HARD LOOP)`, reason_code: 3, channel: channel });
+        }
+      }
+
       dbAccess
         .checkIfRuleAlreadyExist(rule)
-        .then(function (count) {
-          if(count <= 0){
-            // the origin is good then let test the target
-            fetcher.testResponse(rule.target)
-            .then((response_code)=>{
-              if(response_code >=200 && response_code < 300) {
-                e.sender.send(channel, { ok: true, rule: rule ,reason:`the rule with origin '${rule.origin}' and target '${rule.target}' is ok`,reason_code:response_code,channel:channel});
-              }
-              if(response_code >=300 && response_code < 400) {
-                e.sender.send(channel, { ok: true, rule: rule ,reason:`the rule with origin '${rule.origin}' and target '${rule.target}' is redirected`,reason_code:response_code,channel:channel});
-              }
-              else {
-                e.sender.send(channel, { ok: false, rule: rule ,reason:`the target '${rule.target}' of the rule with origin '${rule.origin}' does not exist`,reason_code:response_code,channel:channel});
-              }
-            }).catch((error)=>{
-              e.sender.send(channel, { ok: false, rule: rule ,reason:error.message,reason_code:500,channel:channel});
-            })
+        .then((count) => {
+          if (count <= 0) {
+            // the origin is good then test if the target is redirected itself (loop)
+            dbAccess.verifyRedirectionLoop(rule)
+              .then((count) => {
+                if (count <= 0) {
+                  // the origin and the target are goods then let test the target http response
+                  fetcher.testResponse(rule.target)
+                    .then((response_code) => {
+                      if (response_code >= 200 && response_code < 300) {
+                        e.sender.send(channel, { ok: true, rule: rule, reason: `the rule with origin '${rule.origin}' and target '${rule.target}' is ok`, reason_code: response_code, channel: channel });
+                      }
+                      if (response_code >= 300 && response_code < 400) {
+                        e.sender.send(channel, { ok: true, rule: rule, reason: `the rule with origin '${rule.origin}' and target '${rule.target}' is redirected`, reason_code: response_code, channel: channel });
+                      }
+                      else {
+                        e.sender.send(channel, { ok: false, rule: rule, reason: `the target '${rule.target}' of the rule with origin '${rule.origin}' does not exist`, reason_code: response_code, channel: channel });
+                      }
+                    }).catch((error) => {
+                      e.sender.send(channel, { ok: false, rule: rule, reason: error.message, reason_code: 500, channel: channel });
+                    })
+                } else {
+                  // is already redirected
+                  e.sender.send(channel, { ok: false, rule: rule, reason: `error with the rule (origin '${rule.origin}'): the target '${rule.target}' is already redirected (soft loop)`, reason_code: 2, channel: channel });
+                }
+              })
+
           } else {
             // the origin already exist
-            e.sender.send(channel, { ok: false, rule: rule ,reason:`the rule with origin '${rule.origin}' already exist`,reason_code:1,channel:channel});
+            e.sender.send(channel, { ok: false, rule: rule, reason: `the rule with origin '${rule.origin}' already exist`, reason_code: 1, channel: channel });
           }
-          
+
         })
         .catch(function (error) {
           console.log(error);
-          e.sender.send(channel, { ok: false, rule: rule ,reason:error.message,reason_code:500,channel:channel});
+          e.sender.send(channel, { ok: false, rule: rule, reason: error.message, reason_code: 500, channel: channel });
         });
-        id++;
+      id++;
     }
   });
-  
+
 
 }
 

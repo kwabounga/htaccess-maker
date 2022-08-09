@@ -70,6 +70,7 @@ export class CsvRulesImportComponent implements OnInit {
     } else {
       console.log('something goes wrong with the check');
     }
+    
   }
 
   /**

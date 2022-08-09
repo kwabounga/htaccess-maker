@@ -9,6 +9,7 @@ const {
   DATABASE_TABLE_REDIRECT_TYPES,
 } = require('../bd_factory');
 
+const REGEX_URL =  /https?:\/\/\w+\.[\w_-]+\.\w{2,3}(\S*)/;
 
 /*              **
  *  DB READ      *
@@ -87,10 +88,12 @@ const checkIfRuleAlreadyExist = (rule) => {
 }
 
 const verifyRedirectionLoop = (rule) => {
-  // regex = /https?:\/\/\w+\.[\w_-]+\.\w{2,3}(\S*)/;
+  let regex = REGEX_URL;
+  let targetWithoutBase = rule.target.match(regex)[1];
+  console.log('verifyRedirectionLoop', targetWithoutBase)
   return knex(DATABASE_TABLE_RULES)
       .where({ scope_id: rule.scope_id })
-      .where({ origin: rule.origin })
+      .where({ origin: targetWithoutBase })
       .then(rows => rows.length);
 }
 
@@ -108,3 +111,5 @@ exports.getRulesByScopeId = getRulesByScopeId;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 exports.getScopeConfigByMagentoID = getScopeConfigByMagentoID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
+exports.verifyRedirectionLoop = verifyRedirectionLoop;
+exports.REGEX_URL = REGEX_URL;

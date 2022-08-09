@@ -46,6 +46,8 @@ const {
   getScopeConfigByScopeID,
   getRulesByScopeId,
   checkIfRuleAlreadyExist,
+  verifyRedirectionLoop,
+  REGEX_URL,
 }  = require('./crud/read');
 
 // get all updates methods from CRUD Update
@@ -113,6 +115,8 @@ exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 
 // verification
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
+exports.verifyRedirectionLoop = verifyRedirectionLoop;
+exports.REGEX_URL = REGEX_URL;
 
 // updates
 exports.updateHeaderConfig = updateHeaderConfig;
