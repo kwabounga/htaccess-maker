@@ -86,6 +86,14 @@ const checkIfRuleAlreadyExist = (rule) => {
       .then(rows => rows.length);
 }
 
+const verifyRedirectionLoop = (rule) => {
+  // regex = /https?:\/\/\w+\.[\w_-]+\.\w{2,3}(\S*)/;
+  return knex(DATABASE_TABLE_RULES)
+      .where({ scope_id: rule.scope_id })
+      .where({ origin: rule.origin })
+      .then(rows => rows.length);
+}
+
 
 /* Exports */
 exports.getFooterConfig = getFooterConfig;
