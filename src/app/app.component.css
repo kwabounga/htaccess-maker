@@ -5,10 +5,17 @@
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
 }
+header ul li {
+  -webkit-app-region: no-drag;
+}
 a.nav-link{
   color: #696969
 }
 .bg-success > a.nav-link.text-light.active,
 .bg-danger > a.nav-link.text-light.active{
   color: #696969!important;
+}
+header {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 }

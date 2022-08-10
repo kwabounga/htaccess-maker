@@ -32,6 +32,8 @@ const createWindow = () => {
             width: 800,
             height: 600,
             icon: './src/favicon.ico',
+            titleBarStyle: "hidden",
+            titleBarOverlay: true,
             alwaysOnTop: false,
             webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
             ipcRenderer: ipcRenderer,
@@ -46,7 +48,9 @@ const createWindow = () => {
         }));
 
         win.webContents.openDevTools();
-
+        win.once("ready-to-show", () => {
+            win.show();
+          });
         // Emitted when the window is closed.
         win.on('closed', () => {
             // Dereference the window object, usually you would store windows

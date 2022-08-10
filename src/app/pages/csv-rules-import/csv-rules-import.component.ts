@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef,ViewChild,ElementRef  } from '@angular/core';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
@@ -23,10 +23,11 @@ export class CsvRulesImportComponent implements OnInit {
   checkInProgress = false;
   csv: any;
   redirectTypes: any = {};
-  redToBeSaved: any[] = [];
+  redToBeSaved: any[] = []!
   badRedirections: any[] = [];
   redToBeChecked: any[] = [];
-
+  @ViewChild("drag") drag!: any;
+  @ViewChild("fileUpload") fileUpload!: any;
   /**
    * constructor
    * 
@@ -55,8 +56,26 @@ export class CsvRulesImportComponent implements OnInit {
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
     console.log(this.redirectTypes)
+    
   }
 
+  // drag and drop file in the  windows
+  // https://www.geeksforgeeks.org/drag-and-drop-files-in-electronjs/
+  dragEnter(event:any){
+    console.log('File is in the Drop Space');
+  }
+  dragLeave(event:any){
+    console.log('File has left the Drop Space');
+  }
+  dragOver(event:any){
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  onDrop(event:any){
+    console.log('drop drop')
+  }
+  
+  
   /**
    * checkImport Method
    */
@@ -72,6 +91,10 @@ export class CsvRulesImportComponent implements OnInit {
     }
     
   }
+
+  // TODO: quand pas OK afficher la raison , et trier par raison 
+  // TODO: donner la posibilité d'exporter les lignes pas bonnes  dans un csv  pour renvoyer à la personne en charge 
+  // TODO: creation de nouvelle rule line  pour les rules pas bonnes  avec la raison d'affiché
 
   /**
    * give a csv file sample 
@@ -91,7 +114,7 @@ export class CsvRulesImportComponent implements OnInit {
     console.log('uploadCsvRedirect', this.redToBeSaved);
     this.dataSrv.uploadRedirections(this.redToBeSaved)
   }
-  // TODO: check for redirect loop !! 
+  // TODO: check for redirect loop in the current set would be imported !!
 
   /**
    * On file selected handler

@@ -1,7 +1,6 @@
 const dbAccess = require("./dbAccess");
 const fetcher = require("./fetcher");
 
-
 /**
  * 
  * @param {Electron.ipcMain} ipcMain 
@@ -150,8 +149,11 @@ const addGetEventsInsert = (ipcMain) => {
       console.log(resp)
       e.sender.send("rules:added", true);
     })
-  })
+  }) 
+  
 }
+
+
 /**
  * 
  * @param {Electron.ipcMain} ipcMain 

@@ -10,14 +10,15 @@
     <input
       type="file"
       class="form-control"
-      id="formFile"
+      id="fileUpload"
       (change)="onFileSelected($event)"
       #fileUpload
+      (dragover)="dragOver($event)" 
+      (dragenter)="dragEnter($event)" 
+      (dragleave)="dragLeave($event)"
+      (drop)="onDrop($event)"
     />
   </div>
-  <!-- <div *ngIf="this.has_ipc" class="badge bg-success mb-3" (click)="testSend()">
-    IPC OK
-  </div> -->
 
   <ul
     class="list-group border blocked-size-max mb-3"
