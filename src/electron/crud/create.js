@@ -1,4 +1,4 @@
-const { 
+const {
   knex,
   DATABASE_TABLE_RULES,
   DATABASE_TABLE_SPECIALS_RULES,
@@ -61,6 +61,7 @@ const createRedirectTypesTable = () => {
       table.increments("id").primary();
       table.string("label").notNullable();
       table.string("value").notNullable();
+      table.string("code").notNullable();
   });
 };
 const createScopesConfigTable = () => {

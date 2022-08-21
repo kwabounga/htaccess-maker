@@ -30,11 +30,11 @@ export class CsvRulesImportComponent implements OnInit {
   @ViewChild("fileUpload") fileUpload!: any;
   /**
    * constructor
-   * 
-   * @param fileStuffSrv 
-   * @param dataSrv 
-   * @param electronSrv 
-   * @param ref 
+   *
+   * @param fileStuffSrv
+   * @param dataSrv
+   * @param electronSrv
+   * @param ref
    */
   constructor(
     protected fileStuffSrv: FilesStuffService,
@@ -46,7 +46,7 @@ export class CsvRulesImportComponent implements OnInit {
     this.csv = '';
     this.redToBeChecked = [];
     this.progressCount = 0;
-    
+
   }
 
   /**
@@ -56,7 +56,7 @@ export class CsvRulesImportComponent implements OnInit {
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
     console.log(this.redirectTypes)
-    
+
   }
 
   // drag and drop file in the  windows
@@ -74,8 +74,8 @@ export class CsvRulesImportComponent implements OnInit {
   onDrop(event:any){
     console.log('drop drop')
   }
-  
-  
+
+
   /**
    * checkImport Method
    */
@@ -89,15 +89,15 @@ export class CsvRulesImportComponent implements OnInit {
     } else {
       console.log('something goes wrong with the check');
     }
-    
+
   }
 
-  // TODO: quand pas OK afficher la raison , et trier par raison 
-  // TODO: donner la posibilité d'exporter les lignes pas bonnes  dans un csv  pour renvoyer à la personne en charge 
+  // TODO: quand pas OK afficher la raison , et trier par raison
+  // TODO: donner la posibilité d'exporter les lignes pas bonnes  dans un csv  pour renvoyer à la personne en charge
   // TODO: creation de nouvelle rule line  pour les rules pas bonnes  avec la raison d'affiché
 
   /**
-   * give a csv file sample 
+   * give a csv file sample
    */
   downloadCsvSample() {
     const sample = `magento_scope_id;redirect_type;origin;target;
@@ -118,10 +118,10 @@ export class CsvRulesImportComponent implements OnInit {
 
   /**
    * On file selected handler
-   * 
+   *
    * /!\ must be a csv with well formated /!\
    * @see: downloadSample() to get te good format
-   * 
+   *
    * get the file / process and convert into rule[] object
    * ready to be checked
    * @param {string} event the csv content
@@ -156,8 +156,16 @@ export class CsvRulesImportComponent implements OnInit {
         const red: any = {
           perm: 1,
           permanent: 1,
+          '301': 1,
           temp: 2,
           temporary: 2,
+          "302": 2,
+          permExact: 3,
+          permanentExact: 3,
+          "301E": 3,
+          tempExact: 4,
+          temporaryExact: 4,
+          "302E": 4,
         };
         let l = line.split(';');
         let s: Scope = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope)=>{
@@ -185,7 +193,7 @@ export class CsvRulesImportComponent implements OnInit {
       console.log('this.redToBeChecked',this.redToBeChecked);
     }
   }
-  
+
   /**
    * change a rule on the fly
    * in the toBeprocessed Redirection array
@@ -207,7 +215,7 @@ export class CsvRulesImportComponent implements OnInit {
 
   /**
    * On the fly event registrer for check rule
-   * @param rules 
+   * @param rules
    */
   async initCheckRuleListener(rules:any[]) {
       for (let id in rules) {
@@ -217,20 +225,20 @@ export class CsvRulesImportComponent implements OnInit {
           this.electronSrv.ipcRenderer.on(
             channel,
             this.checkHandler
-            
+
           );
-        } 
-        
+        }
+
       }
   }
   /**
-   * check Rule handler 
-   * 
-   * apply progression for progress bar 
+   * check Rule handler
+   *
+   * apply progression for progress bar
    * verify if the response is good or bad
    * remove the associated listener
-   * @param _event 
-   * @param {any} response 
+   * @param _event
+   * @param {any} response
    */
   checkHandler = (_event:any, response: any) => {
     this.progressCount++;

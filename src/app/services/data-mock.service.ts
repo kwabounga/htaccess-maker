@@ -491,8 +491,10 @@ ErrorDocument 403 /pub/errors/404.php
 </IfModule>
   `,
   redirect_types: [
-    {id:1, label:"permanent", value:"RedirectPermanent"},
-    {id:2, label:"temporaire", value:"RedirectTemp"},
+    {id:1, label:"permanent", value:"RedirectPermanent",code:'301'},
+    {id:2, label:"temporaire", value:"RedirectTemp",code:'302'},
+    {id:3, label:"permanent ExactMatch", value:"redirectMatch 301", code:'301E'},
+    {id:4, label:"temporaire ExactMatch", value:"redirectMatch 302", code:'302E'},
   ],
   rules: [
     {
@@ -843,7 +845,7 @@ RewriteRule ^(.*)$ https://www.moulinroty-maboutique.com/$1 [R=301,L]
 })
 /**
  * Data Mock Service
- * Used when building app 
+ * Used when building app
  * when no database provided
  */
 export class DataMockService {
@@ -911,7 +913,7 @@ export class DataMockService {
       resolve(mock.scopes)
     })
   }
- 
+
   async getRedirectTypesAll ():Promise<RedirectType[]> {
     return new Promise ((resolve, reject)=>{
       resolve(mock.redirect_types)

@@ -35,7 +35,7 @@ dbAccess.check()
   console.error('.. see readme for rebuild sqlite3');
   console.error(`delete ${dbAccess.DATABASE_FILE}`);
   console.error('.. then');
-  console.error('re-run npm run create-database');  
+  console.error('re-run npm run create-database');
 
   process.exit(1)
 });
@@ -66,13 +66,25 @@ const populateDatabase = () => {
  */
 const populateRedirectTypesTable = () => {
   const redirectTypeArray = [
-    { 
+    {
       label: "permanent",
       value: "RedirectPermanent",
-    },  // 1 
-    { 
+      code: "301",
+    },  // 1
+    {
       label: "temporaire",
       value: "RedirectTemp",
+      code: "302",
+    },
+    {
+      label: "permanent ExactMatch",
+      value: "RedirectMatch 301",
+      code: "301E",
+    },  // 1
+    {
+      label: "temporaire ExactMatch",
+      value: "RedirectMatch 302",
+      code: "302E",
     }, // 2
   ];
   return dbAccess.insertRedirectTypes(redirectTypeArray);
@@ -163,7 +175,7 @@ const populateHeaderTable = () => {
 ## before autoload was initialized
 
     php_flag session.auto_start off
-    
+
 ############################################
 ## enable resulting html compression
 
@@ -181,7 +193,7 @@ const populateHeaderTable = () => {
 
     php_value memory_limit 3GB
     php_value max_execution_time 18000
-    
+
 ############################################
 ## disable automatic session start
 ## before autoload was initialized
@@ -623,32 +635,32 @@ ErrorDocument 403 /pub/errors/404.php
  */
 const populateScopesConfigTable = () => {
   const scopeArray = [
-    { 
-      scope_id: 1, 
-      label: "JEUJOUET.com", 
+    {
+      scope_id: 1,
+      label: "JEUJOUET.com",
       config: `
 RewriteCond %{HTTP_HOST} ^jeujouet.com$ [NC]
 RewriteRule ^(.*)$ https://www.jeujouet.com/$1 [R=301,L]
-      `, 
-      condition: "www.jeujouet.com", 
+      `,
+      condition: "www.jeujouet.com",
     }, // 1
-    { 
-      scope_id: 2, 
-      label: "BONHOMMEDEBOIS.com", 
+    {
+      scope_id: 2,
+      label: "BONHOMMEDEBOIS.com",
       config: `
 RewriteCond %{HTTP_HOST} ^bonhommedebois.com$ [NC]
 RewriteRule ^(.*)$ https://www.bonhommedebois.com/$1 [R=301,L]
-      `, 
-      condition: "www.bonhommedebois.com", 
+      `,
+      condition: "www.bonhommedebois.com",
     }, // 2
-    { 
-      scope_id: 3, 
-      label: "Moulinroty-maboutique.com", 
+    {
+      scope_id: 3,
+      label: "Moulinroty-maboutique.com",
       config: `
 RewriteCond %{HTTP_HOST} ^moulinroty-maboutique.com$ [NC]
 RewriteRule ^(.*)$ https://www.moulinroty-maboutique.com/$1 [R=301,L]
-      `, 
-      condition: "www.moulinroty-maboutique.com", 
+      `,
+      condition: "www.moulinroty-maboutique.com",
     }, // 3
   ];
   return dbAccess.insertScopesConfig(scopeArray);
@@ -661,9 +673,9 @@ RewriteRule ^(.*)$ https://www.moulinroty-maboutique.com/$1 [R=301,L]
  */
 const populateRulesTable = () => {
   const rulesArray = [
-    new Rule(1, 1, "/sitemap.xml", "https://www.jeujouet.com/pub/media/sitemaps/sitemap.xml"),  // 1 
-    new Rule(2, 1, "/sitemap.xml", "https://www.bonhommedebois.com/pub/media/sitemaps/sitemap_bdb.xml"),  // 2 
-    new Rule(3, 1, "/sitemap.xml", "https://www.moulinroty-maboutique.com/pub/media/sitemaps/sitemap_mr.xml"),  // 3 
+    new Rule(1, 1, "/sitemap.xml", "https://www.jeujouet.com/pub/media/sitemaps/sitemap.xml"),  // 1
+    new Rule(2, 1, "/sitemap.xml", "https://www.bonhommedebois.com/pub/media/sitemaps/sitemap_bdb.xml"),  // 2
+    new Rule(3, 1, "/sitemap.xml", "https://www.moulinroty-maboutique.com/pub/media/sitemaps/sitemap_mr.xml"),  // 3
   ];
   return dbAccess.insertRules(rulesArray);
 };

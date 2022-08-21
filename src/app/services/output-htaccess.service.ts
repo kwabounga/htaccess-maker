@@ -21,7 +21,7 @@ const texts = {
 })
 /**
  * Ht-access file exporter
- * 
+ *
  * Build the htaccess file in the right format
  * add comments, carriage returns,
  */
@@ -31,11 +31,11 @@ export class OutputHtaccessService {
 
   /**
    * Generate the Scope Config output
-   * 
+   *
    * if rules[] is provided,   the output is good full scoped output
-   * @param {Scope} scope 
-   * @param {ScopeConfig} scopeConfig 
-   * @param {string[]|null} rules 
+   * @param {Scope} scope
+   * @param {ScopeConfig} scopeConfig
+   * @param {string[]|null} rules
    * @returns  {Promise<string>} the output
    */
   async getScopeConfigPreview(scope:Scope, scopeConfig:ScopeConfig, rules?:string[]):Promise<string> {
@@ -59,7 +59,7 @@ export class OutputHtaccessService {
   }
   /**
    * Generate the formated scope 'Header' comment
-   * @param {string} label 
+   * @param {string} label
    * @returns {string} scope formated header comment
    */
   async generateHeaderComment(label:string):Promise<string> {
@@ -72,11 +72,11 @@ export class OutputHtaccessService {
         resolve(output);
       })
   }
-  
+
 
   /**
    * Generate the rules part of a scope
-   * 
+   *
    * @param {Rule[]} rules the array of rules to be formated
    * @param {RedirectType[]} redirecTypes the array of redirecTypes for converte rredirect_type_id to the good Redirection Type
    * @returns {Promise<string[]>} all rules lines
@@ -85,8 +85,11 @@ export class OutputHtaccessService {
       return new Promise((resolve,reject)=>{
         let rulesString:string[] = [];
         for (const rule of rules) {
-          let redValue = redTypByID(rule.redirect_type_id).value;
-          rulesString.push(`${rule.active ? '' : '# '}${redValue} ${rule.origin} ${rule.target}`);
+          const red = redTypByID(rule.redirect_type_id);
+          const redValue = red.value;
+          const startLine = rule.active ? '' : '# ';
+          const redLine = red.code.includes('E') ? `${startLine}${redValue} ^${rule.origin}$ ${rule.target}` : `${startLine}${redValue} ${rule.origin} ${rule.target}`
+          rulesString.push(redLine);
         }
         resolve(rulesString);
         function redTypByID(id:number):RedirectType{
@@ -98,6 +101,7 @@ export class OutputHtaccessService {
             return {
                 label: 'default',
                 value: 'Redirect',
+                code: '300',
             };
           }
         }

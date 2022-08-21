@@ -20,6 +20,7 @@ export interface RedirectType {
     id?: number;
     label: string;
     value: string;
+    code: string;
 }
 
 export interface Rule {
