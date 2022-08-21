@@ -19,7 +19,7 @@
       (drop)="onDrop($event)"
     />
   </div>
-
+<!--  to be checked  -->
   <ul
     class="list-group border blocked-size-max mb-3"
     *ngIf="redToBeChecked.length > 0 && !rulesChecked"
@@ -40,6 +40,7 @@
       </div>
     </li>
   </ul>
+<!--  progress BAR   -->
   <div *ngIf="checkInProgress" class="progress mb-3">
     <div
       class="progress-bar progress-bar-striped progress-bar-animated"
@@ -51,6 +52,7 @@
       [attr.aria-valuemax]="this.redToBeChecked.length"
     >{{this.percent()}}</div>
   </div>
+<!--  check BUTTON  -->
   <button
     *ngIf="redToBeChecked.length > 0 && this.has_ipc"
     color="primary"
@@ -59,8 +61,10 @@
   >
     Check Redirections
   </button>
+
+<!--  to be saved  -->
   <ul
-    class="list-group border blocked-size-max mb-3"
+    class="list-group border blocked-size-max mb-3 rules good text-center"
     *ngIf="redToBeSaved.length > 0 && rulesChecked"
   >
   OK
@@ -78,8 +82,18 @@
         ></app-rule-line>
   </li>
 </ul>
+<!--  save BUTTON -->
+<button
+*ngIf="redToBeSaved.length > 0 && rulesChecked"
+color="success"
+class="btn btn-success mb-3"
+(click)="uploadCsvRedirect()"
+>
+Upload Redirections
+</button>
+<!--  not good redirections  -->
 <ul
-    class="list-group border blocked-size-max mb-3"
+    class="list-group border blocked-size-max mb-3 rules bad text-center"
     *ngIf="badRedirections.length > 0 && rulesChecked"
   >
   PAS OK
@@ -97,12 +111,13 @@
         ></app-rule-line>
   </li>
 </ul>
-  <button
-    *ngIf="rulesChecked"
-    color="primary"
-    class="btn btn-primary mb-3"
-    (click)="uploadCsvRedirect()"
-  >
-    Upload Redirections
-  </button>
+<!--  save BUTTON -->
+<button
+*ngIf="badRedirections.length > 0 && rulesChecked"
+  color="danger"
+  class="btn btn-danger mb-3"
+  (click)="uploadCsvRedirect()"
+>
+Export Bad Redirections
+</button>
 </div>

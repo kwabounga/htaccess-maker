@@ -3,18 +3,22 @@
   background: linear-gradient(0deg, rgba(239,248,255,1) 0%, rgba(239,248,255,1) 90%, rgba(255,255,255,1) 100%);
 }
 .bg-import {
+  outline: #fff 2px solid;
   background-color: #f1f1f1 !important;
   background: linear-gradient(0deg, rgba(241,241,241,1) 0%, rgba(241,241,241,1) 90%, rgba(255,255,255,1) 100%);
 }
 .bg-export {
+  outline: green 2px solid;
   background-color: #ecffe9 !important;
   background: linear-gradient(0deg, rgba(236,255,233,1) 0%, rgba(236,255,233,1) 90%, rgba(255,255,255,1) 100%);
 }
 .bg-add-scope {
+  outline: #ffc107 2px solid;
   background-color: #fff2dc !important;
   background: linear-gradient(0deg, rgba(255,242,220,1) 0%, rgba(255,242,220,1) 90%, rgba(255,255,255,1) 100%);
 }
 .bg-del-scope {
+  outline: #dc3545 2px solid;
   background-color: #ffe2e2 !important;
   background: linear-gradient(0deg, rgba(255,226,226,1) 0%, rgba(255,226,226,1) 90%, rgba(255,255,255,1) 100%);
 }
