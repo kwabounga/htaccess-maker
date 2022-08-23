@@ -4,7 +4,7 @@
 
               <span class="input-group-text">
                 <span *ngIf="this.movable" class="column-drag-handle" style="float:left; padding:0 3px;">&#x2630;</span>
-                <span *ngIf="!this.movable" class="column-drag-handle" style="float:left; padding:0 3px;">{{rule.scope_id}}</span>
+                <span *ngIf="!this.movable" class="scope-id" style="float:left; padding:0 3px;">{{rule.scope_id}}</span>
                 <input class="form-check-input mt-0 form-check-sm" type="checkbox" [(ngModel)]="toBeDeleted" name="to-be-deleted" >
               </span>
               <select name="redirect_types" class="form-select form-select-sm " title="Type de Redirection" [(ngModel)]="rule.redirect_type_id"  (change)="verifChange()">

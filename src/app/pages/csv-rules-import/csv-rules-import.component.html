@@ -13,8 +13,8 @@
       id="fileUpload"
       (change)="onFileSelected($event)"
       #fileUpload
-      (dragover)="dragOver($event)" 
-      (dragenter)="dragEnter($event)" 
+      (dragover)="dragOver($event)"
+      (dragenter)="dragEnter($event)"
       (dragleave)="dragLeave($event)"
       (drop)="onDrop($event)"
     />
@@ -47,7 +47,7 @@
       role="progressbar"
       [style.width.%]="this.percent()"
       [attr.aria-valuenow]="this.progressCount"
-      
+
       aria-valuemin="0"
       [attr.aria-valuemax]="this.redToBeChecked.length"
     >{{this.percent()}}</div>
@@ -101,14 +101,15 @@ Upload Redirections
       class="list-group-item"
       *ngFor="let bad of this?.badRedirections; let idr = index"
     >
-    <app-rule-line
-          [movable]="false"
+    <app-rule-line-bad-redirection
+          [reason]="bad.reason"
+          [reasonCode]="bad.reason_code"
           [id]="-1"
           [idr]="idr"
           [rule]="bad.rule"
           [redirectTypes]="redirectTypes"
           (onChange)="changeSave($event)"
-        ></app-rule-line>
+        ></app-rule-line-bad-redirection>
   </li>
 </ul>
 <!--  save BUTTON -->
