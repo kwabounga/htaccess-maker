@@ -2,8 +2,8 @@ const dbAccess = require("./dbAccess");
 const fetcher = require("./fetcher");
 
 /**
- * 
- * @param {Electron.ipcMain} ipcMain 
+ *
+ * @param {Electron.ipcMain} ipcMain
  */
 const addEventsGet = (ipcMain) => {
 
@@ -137,11 +137,11 @@ const addEventsUpdate = (ipcMain) => {
       e.sender.send("rule:updated", { ok: true});
     })
   })
-  
+
 }
 /**
- * 
- * @param {Electron.ipcMain} ipcMain 
+ *
+ * @param {Electron.ipcMain} ipcMain
  */
 const addGetEventsInsert = (ipcMain) => {
   ipcMain.on("add:rules", (e, rules) => {
@@ -149,14 +149,14 @@ const addGetEventsInsert = (ipcMain) => {
       console.log(resp)
       e.sender.send("rules:added", true);
     })
-  }) 
-  
+  })
+
 }
 
 
 /**
- * 
- * @param {Electron.ipcMain} ipcMain 
+ *
+ * @param {Electron.ipcMain} ipcMain
  */
 const addGetEventsDelete = (ipcMain) => {
   ipcMain.on("delete:rule", (e, rule) => {
@@ -168,27 +168,34 @@ const addGetEventsDelete = (ipcMain) => {
   })
 }
 /**
- * 
- * @param {Electron.ipcMain} ipcMain 
+ *
+ * @param {Electron.ipcMain} ipcMain
  */
 const addGetEventsCheck = (ipcMain) => {
   ipcMain.on("check:rules", (e, rules) => {
     console.log("check", rules);
     let id = 0;
     for (const rule of rules) {
+      // building channel for event
       let channel = `rule:checked:${id}`
       console.log(id, channel);
+
+      // HARD LOOP TEST
       let regex = dbAccess.REGEX_URL;
       let tUrl = rule.target.match(regex)[1]
       if(tUrl.trim() !=''){
-        if(rule.origin == tUrl){
+        let rOri = (rule.origin.slice(-1) == '/')?rule.origin.slice(0,-1):rule.origin;
+        let rTar = (tUrl.slice(-1) == '/')?tUrl.slice(0,-1):tUrl;
+        
+        if(rOri == rTar){
           e.sender.send(channel, { ok: false, rule: rule, reason: `ERROR with the rule (origin '${rule.origin}'): the target '${rule.target}' redirect to the origin (HARD LOOP)`, reason_code: 3, channel: channel });
         }
       }
 
       dbAccess
         .checkIfRuleAlreadyExist(rule)
-        .then((count) => {
+        .then((rows) => {
+          let count = rows.length
           if (count <= 0) {
             // the origin is good then test if the target is redirected itself (loop)
             dbAccess.verifyRedirectionLoop(rule)
@@ -217,7 +224,7 @@ const addGetEventsCheck = (ipcMain) => {
 
           } else {
             // the origin already exist
-            e.sender.send(channel, { ok: false, rule: rule, reason: `the rule with origin '${rule.origin}' already exist`, reason_code: 1, channel: channel });
+            e.sender.send(channel, { ok: false, rule: rule, registered_rules: rows, reason: `the rule with origin '${rule.origin}' already exist`, reason_code: 1, channel: channel });
           }
 
         })
@@ -233,15 +240,15 @@ const addGetEventsCheck = (ipcMain) => {
 }
 
 /**
- * 
- * @param {Electron.ipcMain} ipcMain 
+ *
+ * @param {Electron.ipcMain} ipcMain
  */
 const addEvents = (ipcMain) => {
   addEventsGet(ipcMain);
   addEventsUpdate(ipcMain);
-  addGetEventsCheck(ipcMain); 
-  addGetEventsInsert(ipcMain); 
-  addGetEventsDelete(ipcMain); 
+  addGetEventsCheck(ipcMain);
+  addGetEventsInsert(ipcMain);
+  addGetEventsDelete(ipcMain);
 
 };
 

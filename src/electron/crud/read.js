@@ -83,8 +83,8 @@ const getRulesByScopeId = (scope_id) => {
 const checkIfRuleAlreadyExist = (rule) => {
   return knex(DATABASE_TABLE_RULES)
       .where({ scope_id: rule.scope_id })
-      .where({ origin: rule.origin })
-      .then(rows => rows.length);
+      .where({ origin: rule.origin });
+      //.then(rows => rows.length);
 }
 
 const verifyRedirectionLoop = (rule) => {
