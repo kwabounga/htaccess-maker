@@ -54,6 +54,7 @@ const createScopesTable = () => {
       table.integer("magento_scope_id").notNullable().unique();
       table.string("label").notNullable();
       table.tinyint('position').defaultTo(0);
+      table.text('logo_svg');
   });
 };
 const createRedirectTypesTable = () => {

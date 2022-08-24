@@ -26,6 +26,9 @@
             (click)="isOpen=!isOpen"
           >
             {{ scope.label }}
+            {{scope.logo_svg}}
+          <div *ngIf="scope.logo_svg" innerHTML="{{scope.logo_svg}}"></div>
+          
           </button>
         </h2>
         <div

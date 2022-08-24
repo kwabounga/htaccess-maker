@@ -23,7 +23,8 @@ export class CsvRulesImportComponent implements OnInit {
   checkInProgress = false;
   csv: any;
   redirectTypes: any = {};
-  redToBeSaved: any[] = []!
+  redToBeSaved: any[] = [];
+  redToBeUpdated: any[] = [];
   badRedirections: any[] = [];
   redToBeChecked: any[] = [];
   @ViewChild("drag") drag!: any;
@@ -113,6 +114,14 @@ export class CsvRulesImportComponent implements OnInit {
   uploadCsvRedirect() {
     console.log('uploadCsvRedirect', this.redToBeSaved);
     this.dataSrv.uploadRedirections(this.redToBeSaved)
+  }
+  UpdateExistingRedirections() {
+    console.log('UpdateExistingRedirections', this.redToBeUpdated);
+    
+  }
+  ExportBadRedirections() {
+    console.log('ExportBadRedirections', this.badRedirections);
+    
   }
   // TODO: check for redirect loop in the current set would be imported !!
 
@@ -249,7 +258,12 @@ export class CsvRulesImportComponent implements OnInit {
       this.redToBeSaved.push(response.rule)
     }else{
       // rule KO
-      this.badRedirections.push(response)
+      if(response.reason_code == 1){
+        this.redToBeUpdated.push(response)
+      }else{
+
+        this.badRedirections.push(response)
+      }
     }
     // update progression
     if (this.progressCount == this.redToBeChecked.length) {

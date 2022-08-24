@@ -93,6 +93,36 @@ Upload Redirections
 </button>
 <!--  not good redirections  -->
 <ul
+    class="list-group border blocked-size-max mb-3 rules update text-center"
+    *ngIf="redToBeUpdated.length > 0 && rulesChecked"
+  >
+  UPDATE
+  <li
+      class="list-group-item"
+      *ngFor="let bad of this?.redToBeUpdated; let idr = index"
+    >
+    <app-rule-line-bad-redirection
+          [reason]="bad.reason"
+          [reasonCode]="bad.reason_code"
+          [id]="-1"
+          [idr]="idr"
+          [rule]="bad.rule"
+          [redirectTypes]="redirectTypes"
+          (onChange)="changeSave($event)"
+        ></app-rule-line-bad-redirection>
+  </li>
+</ul>
+<!--  export BUTTON -->
+<button
+*ngIf="redToBeUpdated.length > 0 && rulesChecked"
+  color="warning"
+  class="btn btn-warning mb-3"
+  (click)="UpdateExistingRedirections()"
+>
+Update Redirections
+</button>
+<!--  not good redirections  -->
+<ul
     class="list-group border blocked-size-max mb-3 rules bad text-center"
     *ngIf="badRedirections.length > 0 && rulesChecked"
   >
@@ -117,7 +147,7 @@ Upload Redirections
 *ngIf="badRedirections.length > 0 && rulesChecked"
   color="danger"
   class="btn btn-danger mb-3"
-  (click)="uploadCsvRedirect()"
+  (click)="ExportBadRedirections()"
 >
 Export Bad Redirections
 </button>
