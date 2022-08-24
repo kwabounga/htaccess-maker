@@ -249,10 +249,10 @@ const populateScopeTable = () => {
       /* id:3, */
       label:"MoulinRoty-Maboutique.com",
       magento_scope_id:6,
-      logo_svg:`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="273.518" height="77.007" viewBox="0 0 273.518 77.007">
+      logo_svg:`<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="273.518" height="77.007" viewBox="0 0 273.518 55.003">
       <defs>
         <clipPath id="clip-path">
-          <rect id="Rectangle_182" data-name="Rectangle 182" width="273.518" height="54.405" fill="#676767"/>
+          <rect id="Rectangle_182" data-name="Rectangle 182" width="273.518" height="55.003" fill="#676767"/>
         </clipPath>
       </defs>
       <g id="Groupe_1937" data-name="Groupe 1937" transform="translate(1792 -8502.841)">
