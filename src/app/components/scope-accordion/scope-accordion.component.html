@@ -25,9 +25,8 @@
             aria-controls="collapseOne"
             (click)="isOpen=!isOpen"
           >
-            {{ scope.label }}
-            {{scope.logo_svg}}
-          <div *ngIf="scope.logo_svg" innerHTML="{{scope.logo_svg}}"></div>
+          <div class="scope_label" *ngIf="!scope.logo_svg">{{ scope.label }}</div>
+          <div class="logo_svg" *ngIf="scope.logo_svg" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(scope.logo_svg)"></div>
           
           </button>
         </h2>

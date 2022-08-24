@@ -22,7 +22,6 @@ import { AlertComponent } from './components/alert/alert.component';
 import { RuleLineBadRedirectionComponent } from './components/rule-line-bad-redirection/rule-line-bad-redirection.component';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +45,7 @@ import { RuleLineBadRedirectionComponent } from './components/rule-line-bad-redi
     FormsModule,
     CommonModule,
     NgxSmoothDnDModule,
-    NgxElectronModule
+    NgxElectronModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

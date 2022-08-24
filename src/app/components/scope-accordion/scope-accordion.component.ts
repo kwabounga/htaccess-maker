@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
 import { applyDrag } from '../../utils/utils';
 
@@ -25,7 +26,7 @@ export class ScopeAccordionComponent implements OnInit {
   @Output() onScopesPosition = new EventEmitter();
 
   isOpen = false;
-  constructor() { }
+  constructor(protected sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
   }
