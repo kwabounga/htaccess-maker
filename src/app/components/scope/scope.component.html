@@ -10,8 +10,9 @@
         placeholder="LENOUVEAUSITE.com"
         required
         [(ngModel)]="this?.scope.label"
-        (input)="updatePreview()"
+
       />
+      <!--(input)="updatePreview()"  -->
     </div>
     <div class="mb-3">
       <label for="scopeConfigLabel" class="form-label">Magento SCOPE ID</label>
@@ -22,8 +23,9 @@
         min="0"
         required
         [(ngModel)]="this?.scope.magento_scope_id"
-        (input)="updatePreview()"
+
       />
     </div>
+    <button type="button" class="btn btn-secondary" (click)="updatePreview()">Save {{this?.scope.label}} Scope Général Informations</button>
   </div>
 </div>

@@ -122,7 +122,14 @@ const addEventsUpdate = (ipcMain) => {
       e.sender.send("rules:position:updated", { ok: true});
     })
   })
-  ipcMain.on("update:scopes:position", (e, scopes_wrapper) => {
+  ipcMain.on("update:scope", (e, scope) => {
+    console.log('update:scope')
+    dbAccess.updateScope(scope).then((resp)=>{
+      console.log(resp)
+      e.sender.send("scope:updated", { ok: true});
+    })
+  })
+ipcMain.on("update:scopes:position", (e, scopes_wrapper) => {
     console.log('update:scopes:position')
     dbAccess.updateScopesPositions(scopes_wrapper).then((resp)=>{
       console.log(resp)
@@ -186,7 +193,7 @@ const addGetEventsCheck = (ipcMain) => {
       if(tUrl.trim() !=''){
         let rOri = (rule.origin.slice(-1) == '/')?rule.origin.slice(0,-1):rule.origin;
         let rTar = (tUrl.slice(-1) == '/')?tUrl.slice(0,-1):tUrl;
-        
+
         if(rOri == rTar){
           e.sender.send(channel, { ok: false, rule: rule, reason: `ERROR with the rule (origin '${rule.origin}'): the target '${rule.target}' redirect to the origin (HARD LOOP)`, reason_code: 3, channel: channel });
         }

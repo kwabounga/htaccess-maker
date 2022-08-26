@@ -1,4 +1,4 @@
-const { 
+const {
   knex,
   DATABASE_TABLE_RULES,
   DATABASE_TABLE_SPECIALS_RULES,
@@ -17,8 +17,8 @@ const {
  * Update all rules positions
  * Use RAW Sqlite Query; and masse update using temporary table 'updated'
  * Used for one scope each time
- * 
- * @param {Rule[]} rules_wrapper 
+ *
+ * @param {Rule[]} rules_wrapper
  * @returns {Promise<void>}
  */
 const updateRulesPositions = (rules_wrapper)=>{
@@ -33,13 +33,13 @@ const updateRulesPositions = (rules_wrapper)=>{
     ${values.slice(0,-1)}
 )
 UPDATE ${DATABASE_TABLE_RULES}
-    SET 
+    SET
     position = updated.position
 FROM updated
 WHERE (${DATABASE_TABLE_RULES}.id = updated.id);`
 
   return knex.raw(raw)
-  .then(function(resp) { 
+  .then(function(resp) {
     console.log(resp)
   });
 }
@@ -48,6 +48,18 @@ const updateRule = (rule)=>{
   return knex(DATABASE_TABLE_RULES)
   .where('id', rule.id)
   .update(rule)
+
+}
+// update scope here
+const updateScope = (scope)=>{
+  console.log('updateScope', scope);
+  return knex(DATABASE_TABLE_SCOPES)
+  .where('id', scope.id)
+  .update({
+    label: scope.label,
+    logo_svg: scope.logo_svg,
+    magento_scope_id: scope.magento_scope_id
+  })
 
 }
 const updateHeaderConfig = (config)=>{
@@ -81,13 +93,13 @@ const updateScopesPositions = (scopes_wrapper)=>{
     ${values.slice(0,-1)}
 )
 UPDATE ${DATABASE_TABLE_SCOPES}
-    SET 
+    SET
     position = updated.position
 FROM updated
 WHERE (${DATABASE_TABLE_SCOPES}.id = updated.id);`
 
   return knex.raw(raw)
-  .then(function(resp) { 
+  .then(function(resp) {
     console.log(resp)
   });
 }
@@ -98,3 +110,4 @@ exports.updateFooterConfig = updateFooterConfig;
 exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;
+exports.updateScope = updateScope;

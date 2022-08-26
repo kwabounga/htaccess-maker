@@ -1,5 +1,5 @@
 // get info and common knex methods from db_factory
-const { 
+const {
   knex,
   DATABASE_FILE,
   DATABASE_TABLE_RULES,
@@ -11,7 +11,7 @@ const {
 }  = require('./bd_factory');
 
 // get all inserts methods from CRUD insert
-const { 
+const {
   insertRules,
   insertSpecialsRules,
   insertScopes,
@@ -22,7 +22,7 @@ const {
 }  = require('./crud/insert');
 
 // get all creates methods from CRUD create
-const { 
+const {
   createSchema,
   createRulesTable,
   createSpecialsRulesTable,
@@ -34,7 +34,7 @@ const {
 }  = require('./crud/create');
 
 // get all selects methods from CRUD read
-const { 
+const {
   getHeaderConfig,
   getFooterConfig,
   getScopesConfig,
@@ -51,12 +51,13 @@ const {
 }  = require('./crud/read');
 
 // get all updates methods from CRUD Update
-const { 
+const {
   updateHeaderConfig,
   updateFooterConfig,
   updateRulesPositions,
   updateScopesPositions,
   updateRule,
+  updateScope,
 }  = require('./crud/update');
 
 // get all deletes methods from CRUD Delete
@@ -85,13 +86,13 @@ const close = () => {
 
 // expose all methods to the electron side
 
-// close 
+// close
 exports.close = close;
 exports.DATABASE_FILE = DATABASE_FILE;
-// creates 
+// creates
 exports.createSchema = createSchema;
 
-//inserts 
+//inserts
 exports.insertRules = insertRules;
 exports.insertSpecialsRules = insertSpecialsRules;
 exports.insertScopes = insertScopes;
@@ -124,6 +125,7 @@ exports.updateFooterConfig = updateFooterConfig;
 exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;
+exports.updateScope = updateScope;
 
 // deletes
 exports.deleteRule = deleteRule;

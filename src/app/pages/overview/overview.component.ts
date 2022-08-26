@@ -96,8 +96,8 @@ export class OverviewComponent implements OnInit {
   }
   /**
    * save Or delete Rule
-   * 
-   * @param {any} event 
+   *
+   * @param {any} event
    */
   saveRule(event:any){
     console.log('saveRule event', event);
@@ -107,7 +107,7 @@ export class OverviewComponent implements OnInit {
         this.alertRef.openModal('warning', 'the rule has been deleted, ... reload in 2 second', 2000, ()=>{
           window.location.reload();
         });
-        
+
       })
     }else if(event.to_be_saved){
       this.dataSrv.updateRule(event.rule).then((response)=>{
@@ -117,16 +117,19 @@ export class OverviewComponent implements OnInit {
         });
       })
     }
-    
+
   }
 
-  
+
   updateScope(event:any){
     console.log('updateScope',event)
+    this.dataSrv.updateScope(event).then((response)=>{
+      console.log('scope updated', response)
+    })
   }
 
   /**
-   * on drop handler 
+   * on drop handler
    * use by smooth drop
    * @param dropResult  the rules for rearrange the array
    */
@@ -149,6 +152,6 @@ export class OverviewComponent implements OnInit {
     this.dataSrv.updateRulesPosition(event).then((response)=>{
       console.log('rules position updated',response)
     })
-    
+
   }
 }

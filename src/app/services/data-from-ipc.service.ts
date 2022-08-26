@@ -10,12 +10,12 @@ import { ElectronService } from 'ngx-electron';
 })
 /**
  * Data From IPC Service
- * 
- * A service to Communicate  with IPC electron 
- * under Promises form 
- * 
+ *
+ * A service to Communicate  with IPC electron
+ * under Promises form
+ *
  * how it's work?
- * 
+ *
  * the methods always return Promises that
  * send a custom event to the electron part
  * and subscribe on the fly to the electon response
@@ -84,9 +84,9 @@ export class DataFromIpcService {
       }
       this.electronSrv.ipcRenderer.on(`retrieve:scope_config:by_id_${id}`, resolver)
     })
-    
+
   }
-  
+
 
   async getScopeByMagentoId (magento_scope_id?:number):Promise<Scope> {
     return new Promise (async (resolve, reject)=>{
@@ -161,7 +161,7 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`retrieve:rules:by_scope_id_${scope_id}`, resolver)
     })
   }
-  
+
   async deleteRule (rule:Rule):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`delete:rule`, rule);
@@ -173,7 +173,7 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`rule:deleted`, resolver)
     })
   }
-  
+
   async updateRule (rule:Rule):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rule`, rule);
@@ -185,7 +185,7 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`rule:updated`, resolver)
     })
   }
-  
+
   async uploadRedirections (rules?:Rule[]):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:rules`, rules);
@@ -197,7 +197,18 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`rules:added`, resolver)
     })
   }
-  
+  //updateScope
+  async updateScope (scope?:Scope):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`update:scope`, scope);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`scope:updated`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`scope:updated`, resolver)
+    })
+  }
   //updateScopesPosition
   async updateScopesPosition (scopes?:Scope[]):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{

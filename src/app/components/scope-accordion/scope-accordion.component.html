@@ -7,7 +7,7 @@
     (drop)="onDrop($event)"
   >
     <!-- loop scopes here -->
-    
+
     <smooth-dnd-draggable *ngFor="let scope of this?.scopes; let id = index">
       <div class="accordion-item draggable-item">
         <h2
@@ -27,7 +27,7 @@
           >
           <div class="scope_label" *ngIf="!scope.logo_svg">{{ scope.label }}</div>
           <div class="logo_svg" *ngIf="scope.logo_svg" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(scope.logo_svg)"></div>
-          
+
           </button>
         </h2>
         <div
@@ -55,7 +55,7 @@
             ></app-scope-config>
             </div>
           </div>
-           
+
 
             <app-rules-list
               [id]="id"
