@@ -37,13 +37,13 @@
     [scopes]="this?.scopes"
     [redirectTypes]="this?.redirectTypes"
     [scopeConfig]="this?.scopeConfig"
-    (onConfig)="saveConfig($event)"
+    (onConfig)="updateScopeConfig($event)"
     (onRule)="saveRule($event)"
     (onRulesPositions)="updateRulesPositions($event)"
     (onScopesPosition)="updateScopesPositions($event)"
     (onScope)="updateScope($event)"
   ></app-scope-accordion>
-  
+
   <div class="accordion-item">
     <h2 class="accordion-footer" id="footerGlobalOverview">
       <button

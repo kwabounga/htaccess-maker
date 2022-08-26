@@ -129,6 +129,13 @@ const addEventsUpdate = (ipcMain) => {
       e.sender.send("scope:updated", { ok: true});
     })
   })
+  ipcMain.on("update:scope:config", (e, scope) => {
+    console.log('update:scope:config')
+    dbAccess.updateScopeConfig(scope).then((resp)=>{
+      console.log(resp)
+      e.sender.send("scope:config:updated", { ok: true});
+    })
+  })
 ipcMain.on("update:scopes:position", (e, scopes_wrapper) => {
     console.log('update:scopes:position')
     dbAccess.updateScopesPositions(scopes_wrapper).then((resp)=>{

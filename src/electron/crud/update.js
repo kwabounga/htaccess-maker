@@ -62,6 +62,18 @@ const updateScope = (scope)=>{
   })
 
 }
+// update updateScopeConfig here
+const updateScopeConfig = (scopeConfig)=>{
+  console.log('updateScopeConfig', scopeConfig);
+  return knex(DATABASE_TABLE_SCOPES_CONFIG)
+  .where('id', scopeConfig.id)
+  .update({
+    condition: scopeConfig.condition,
+    label: scopeConfig.label,
+    config: scopeConfig.config,
+  })
+
+}
 const updateHeaderConfig = (config)=>{
   console.log('updateHeaderConfig', config);
   return knex(DATABASE_TABLE_HEADER_CONFIG)
@@ -111,3 +123,4 @@ exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;
 exports.updateScope = updateScope;
+exports.updateScopeConfig = updateScopeConfig;

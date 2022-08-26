@@ -74,10 +74,7 @@ export class OverviewComponent implements OnInit {
   }
   // TODO : do an alert system on succes / on error
 
-   // TODO: implement saveConfig
-   saveConfig(event:any){
-    console.log('saveConfig',event)
-  }
+
   // TODO: implement saveHeaderConfig
   saveHeaderConfig(){
     console.log('saveHeaderConfig',this.headerData)
@@ -127,7 +124,13 @@ export class OverviewComponent implements OnInit {
       console.log('scope updated', response)
     })
   }
-
+  // TODO: implement saveConfig
+  updateScopeConfig(event:any){
+    console.log('updateScopeConfig',event.scopeConfig)
+    this.dataSrv.updateScopeConfig(event.scopeConfig).then((response)=>{
+      console.log('scope updated', response)
+    })
+  }
   /**
    * on drop handler
    * use by smooth drop

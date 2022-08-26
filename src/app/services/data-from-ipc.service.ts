@@ -209,6 +209,18 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`scope:updated`, resolver)
     })
   }
+  //updateScopeConfig
+  async updateScopeConfig (scopeConfig?:ScopeConfig):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`update:scope:config`, scopeConfig);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`scope:"config:updated`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`scope:config:updated`, resolver)
+    })
+  }
   //updateScopesPosition
   async updateScopesPosition (scopes?:Scope[]):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
