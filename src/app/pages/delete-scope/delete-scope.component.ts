@@ -36,6 +36,6 @@ export class DeleteScopeComponent implements OnInit {
   deleteScopeConfig(){
     console.log('DELETE SCOPE HERE', this.scopeSelectedId);
     // then navigate to the overview:
-    // this.router.navigate(['/overview']);
+    this.router.navigate(['/overview']);
   }
 }
