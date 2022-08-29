@@ -8,7 +8,6 @@ export interface ScopeConfig {
     label: string;
     config: string;
     condition: string;
-    position?: number;
 }
 
 export interface Scope {

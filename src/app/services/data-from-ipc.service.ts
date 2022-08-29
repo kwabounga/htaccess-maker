@@ -209,6 +209,17 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`scope:added`, resolver)
     })
   }
+  async uploadScopeConfig (scopeConfig?:ScopeConfig):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`add:scope:config`, [scopeConfig]);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`scope:config:added`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`scope:config:added`, resolver)
+    })
+  }
   //updateScope
   async updateScope (scope?:Scope):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{

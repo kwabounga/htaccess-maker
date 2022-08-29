@@ -13,11 +13,13 @@
           <input type="number" class="form-control" id="scopeConfigLabel" min="0" required [(ngModel)]="this.scope.magento_scope_id"  (input)="updatePreview()">
       </div> -->
       <app-scope
+        *ngIf="!this.scopeSaved && !this.scopeConfigSaved"
         [scope]="this?.scope"
         (onChange)="updatePreview($event)"
         (onClickSave)="saveScope($event)"
       ></app-scope>
-        <app-scope-config
+        <app-scope-config 
+          *ngIf="this.scopeSaved && !this.scopeConfigSaved"
           [id]="id"
           [scopeConfig]="this?.scopeConfig"
           [scope]="this?.scope"

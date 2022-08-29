@@ -171,6 +171,12 @@ const addGetEventsInsert = (ipcMain) => {
       e.sender.send("scope:added", resp);
     })
   })
+  ipcMain.on("add:scope:config", (e, scopeConfig) => {
+    dbAccess.insertScopesConfig(scopeConfig).then((resp)=>{
+      console.log(resp)
+      e.sender.send("scope:config:added", resp);
+    })
+  })
 
 }
 
