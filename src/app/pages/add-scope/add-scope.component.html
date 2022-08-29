@@ -15,6 +15,7 @@
       <app-scope
         [scope]="this?.scope"
         (onChange)="updatePreview($event)"
+        (onClickSave)="saveScope($event)"
       ></app-scope>
         <app-scope-config
           [id]="id"

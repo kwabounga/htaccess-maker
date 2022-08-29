@@ -19,6 +19,7 @@ export class AddScopeComponent implements OnInit {
   scope:Scope = {
     label:"",
     magento_scope_id:0,
+    logo_svg:'',
   };
   output?:string;
   constructor(private outputHtSrv:OutputHtaccessService) {  }
@@ -26,9 +27,13 @@ export class AddScopeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // TODO: make this as a sequence: 1/ create Scope then mask the scope form ; 2/ then show the configuration form
+  saveScope(event:any){
+    console.log('save-scope',event)
+    console.log(this.output)
+  }
   saveConfig(event:any){
-    console.log('csv-rules-import',event)
-
+    console.log('save-scope-config',event)
     console.log(this.output)
   }
   updatePreview(event?:any){

@@ -15,6 +15,7 @@ export interface Scope {
     id?: number;
     magento_scope_id: number;
     label: string;
+    logo_svg?: string;
 }
 export interface RedirectType {
     id?: number;

@@ -1,11 +1,11 @@
 <div class="card text-dark bg-light mb-3 shadow-sm">
   <div class="card-header">Scope Configuration:</div>
   <div class="card-body  p-2 " *ngIf="this.scopeConfig" >
-      <label for="configData{{id}}" class="form-label">Règle: </label>
+      <label for="configData{{id}}" class="form-label">Règle: *</label>
       <textarea  class="form-control" id="configData{{id}}"
           rows="5" [(ngModel)]="this?.scopeConfig.config" required (input)="updatePreview()"></textarea>
       <br />
-      <label for="condition{{id}}" class="form-label">Condition pour {{this?.scope.label}} </label>
+      <label for="condition{{id}}" class="form-label">Condition pour {{this?.scope.label}} *</label>
       <div class="input-group mb-3" id="condition{{id}}">
           <span class="input-group-text">{{this.outputSrv.texts.scope_config.condition_open_tag_start}}</span>
           <input type="url" class="form-control" aria-label="the condition"

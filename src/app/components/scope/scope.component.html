@@ -10,6 +10,7 @@
         placeholder="LENOUVEAUSITE.com"
         required
         [(ngModel)]="this?.scope.label"
+        (input)="updatePreview()"
 
       />
       <!--(input)="updatePreview()"  -->
@@ -23,9 +24,16 @@
         min="0"
         required
         [(ngModel)]="this?.scope.magento_scope_id"
+        (input)="updatePreview()"
 
       />
     </div>
-    <button type="button" class="btn btn-secondary" (click)="updatePreview()">Save {{this?.scope.label}} Scope Général Informations</button>
+    <div class="mb-3">
+      <label for="scopeConfigLabel" class="form-label">Scope Logo</label>
+      <textarea  class="form-control" id="scopeConfigData" [placeholder]="placeHolder"
+          rows="3" [(ngModel)]="this?.scope.logo_svg"
+          ></textarea>
+    </div>
+    <button type="button" class="btn btn-secondary" (click)="saveConfig()">Save {{this?.scope.label}} Scope Général Informations</button>
   </div>
 </div>
