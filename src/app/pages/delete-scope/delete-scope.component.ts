@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-scope',
@@ -12,7 +13,8 @@ export class DeleteScopeComponent implements OnInit {
   scopeSelectedName:string = '';
   scopeSelectedId:number = -1;
   constructor(
-    private dataSrv:DataFromIpcService
+    private dataSrv:DataFromIpcService,
+    private router: Router
   ) { }
 
   scopes:any;
@@ -32,6 +34,8 @@ export class DeleteScopeComponent implements OnInit {
     }
   }
   deleteScopeConfig(){
-    console.log('DELETE SCOPE HERE')
+    console.log('DELETE SCOPE HERE', this.scopeSelectedId);
+    // then navigate to the overview:
+    // this.router.navigate(['/overview']);
   }
 }
