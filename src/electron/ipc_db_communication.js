@@ -165,6 +165,13 @@ const addGetEventsInsert = (ipcMain) => {
     })
   })
 
+  ipcMain.on("add:scope", (e, scope) => {
+    dbAccess.insertScopes(scope).then((resp)=>{
+      console.log(resp)
+      e.sender.send("scope:added", resp);
+    })
+  })
+
 }
 
 

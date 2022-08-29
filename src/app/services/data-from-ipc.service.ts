@@ -197,6 +197,18 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`rules:added`, resolver)
     })
   }
+
+  async uploadScope (scope?:Scope):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`add:scope`, [scope]);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`scope:added`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`scope:added`, resolver)
+    })
+  }
   //updateScope
   async updateScope (scope?:Scope):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
