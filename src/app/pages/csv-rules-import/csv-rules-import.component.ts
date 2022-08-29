@@ -5,6 +5,8 @@ import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { RedirectType, Scope, Rule } from 'src/app/interfaces/interfaces';
 import { ruleSortByOrigin, ruleSortById } from 'src/app/utils/utils';
 import { ElectronService } from 'ngx-electron';
+import { CsvMakerService } from 'src/app/services/csv-maker.service';
+
 /* import { HttpClient } from '@angular/common/http'; */
 
 @Component({
@@ -41,7 +43,8 @@ export class CsvRulesImportComponent implements OnInit {
     protected fileStuffSrv: FilesStuffService,
     protected dataSrv: DataFromIpcService,
     private electronSrv: ElectronService,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private csvSrv : CsvMakerService
   ) {
     this.has_ipc = this.electronSrv.isElectronApp;
     this.csv = '';
@@ -117,11 +120,12 @@ export class CsvRulesImportComponent implements OnInit {
   }
   UpdateExistingRedirections() {
     console.log('UpdateExistingRedirections', this.redToBeUpdated);
-    
+
   }
   ExportBadRedirections() {
     console.log('ExportBadRedirections', this.badRedirections);
-    
+    this.fileStuffSrv.exportFile('bad_redirections.csv', this.csvSrv.makeCsvFromBadRedirections(this.badRedirections));
+
   }
   // TODO: check for redirect loop in the current set would be imported !!
 
