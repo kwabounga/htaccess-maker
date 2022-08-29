@@ -1,3 +1,56 @@
 <div class="page full-height bg-del-scope">
-<p>delete-scope works!</p>
+<h1>Suppression d'un scope</h1>
+
+
+<select #selectScopes name="scopes" class="form-select form-select-sm " title="Choisir le scope a supprimer"  (change)="change($event)">
+    <option value="">choisir un scope à supprimer</option>
+    <option *ngFor="let scope of scopes; let id = index" [value]="scope.id">{{scope.label | uppercase}}</option>
+  </select>
+
+    <div *ngIf="this?.scopeSelected">
+        <button type="button" class="btn btn-warning mt-2" data-bs-toggle="modal"
+        [attr.data-bs-target]="'#deleteModal'">
+            Delete {{this?.scopeSelectedName}} All references ?
+        </button>
+    </div>
+    
+</div>
+
+
+
+<div
+    #deleteModal
+  class="modal fade"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete {{this?.scopeSelectedName}} Scope</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete the {{this?.scopeSelectedName}} ?? 
+        <p>this will delete all the rules linked to this scope, as well as the associated configuration</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-danger mt-2"  data-bs-dismiss="modal" (click)="deleteScopeConfig()">
+            Yes a want to delete {{this?.scopeSelectedName}} All informations
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
