@@ -19,7 +19,7 @@ export class DeleteScopeComponent implements OnInit {
 
   scopes:any;
   async ngOnInit(): Promise<void> {
-    this.scopes = await this.dataSrv.getScopesAll();  
+    this.scopes = await this.dataSrv.getScopesAll();
   }
   change(event:any){
     const id = event.target.value;
@@ -34,8 +34,14 @@ export class DeleteScopeComponent implements OnInit {
     }
   }
   deleteScopeConfig(){
-    console.log('DELETE SCOPE HERE', this.scopeSelectedId);
+    // console.log('DELETE SCOPE HERE', this.scopeSelectedId);
     // then navigate to the overview:
-    this.router.navigate(['/overview']);
+    this.dataSrv.deleteScope(this.scopeSelectedId).then((response)=>{
+      console.log(`ok the scope ${this.scopeSelectedId} and all references are deleted`)
+      this.router.navigate(['/overview']);
+    }).catch((e)=>{
+      console.log(`something goes wrong with the deletion of the scope ${this.scopeSelectedId}`)
+    })
+
   }
 }

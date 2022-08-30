@@ -173,6 +173,17 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`rule:deleted`, resolver)
     })
   }
+  async deleteScope (scope_id:number):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`delete:scope`, scope_id);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`scope:deleted`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`scope:deleted`, resolver)
+    })
+  }
 
   async updateRule (rule:Rule):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{

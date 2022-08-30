@@ -64,6 +64,7 @@ const {
 // get all deletes methods from CRUD Delete
 const {
   deleteRule,
+  deleteScope,
 }  = require('./crud/delete');
 
 
@@ -131,3 +132,4 @@ exports.updateScopeConfig = updateScopeConfig;
 
 // deletes
 exports.deleteRule = deleteRule;
+exports.deleteScope = deleteScope;
