@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter  } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBinding  } from '@angular/core';
 import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
 import { applyDrag } from '../../utils/utils';
 @Component({
@@ -16,6 +16,30 @@ export class RulesListComponent implements OnInit {
   onEmitChangeSaveRule = new EventEmitter<any>();
   @Output()
   onEmitUpdateRulesPositions = new EventEmitter<any>();
+
+
+  private ctrlKey: string = 'Control';
+  private ctrlKeyPressed: boolean = false;
+
+  // first make your component focusable to allow keypress event listening
+  @HostBinding('attr.tabIndex') tabIndex = -1;
+  @HostListener('keydown', ['$event']) keydown (event: KeyboardEvent) {
+    //console.log('keydown', event.key);
+    if(event.key === this.ctrlKey && !this.ctrlKeyPressed){
+      console.log('keydown', event);
+      this.ctrlKeyPressed = true;
+    }
+  }
+  @HostListener('keyup', ['$event']) keyup (event: KeyboardEvent) {
+    //console.log('keyup', event.key);
+    if(event.key === this.ctrlKey && this.ctrlKeyPressed){
+      console.log('keyup', event);
+      this.ctrlKeyPressed = false;
+    }
+  }
+  @HostListener('click') addAnnotation () {
+    console.log('click', this.ctrlKeyPressed);
+  }
   constructor() { }
 
   ngOnInit(): void {
