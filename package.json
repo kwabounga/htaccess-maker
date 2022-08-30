@@ -7,7 +7,7 @@
     "start": "concurrently \"ng serve\" \"npm run electron\"",
     "electron": "electron ./src/electron.dev",
     "rebuild": "electron-rebuild -f -w sqlite3",
-    "create-database": "sqlite3 ./src/data/database.db \".databases .quit\" && node ./src/electron/build_db.js",
+    "create:database": "sqlite3 ./src/data/database.db \".databases .quit\" && node ./src/electron/build_db.js",
     "build": "ng build",
     "build:and:install": "npm run build && cross-var npm i --prefix ./dist/$npm_package_name/ ",
     "watch": "ng build --watch --configuration development",
@@ -15,6 +15,7 @@
     "package:linux": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=linux --arch=all --overwrite ",
     "package:osx": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite ",
     "package:all": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --all --arch=all --overwrite ",
+    "create:scope:config": "node ./src/commands/cmd-create-scope-config.js",
     "test": "ng test"
   },
   "private": true,
