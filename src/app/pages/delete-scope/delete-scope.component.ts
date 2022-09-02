@@ -1,12 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { Router } from '@angular/router';
+import { findOptionsIdByValue } from '../../utils/utils';
+
 
 @Component({
   selector: 'app-delete-scope',
   templateUrl: './delete-scope.component.html',
   styleUrls: ['./delete-scope.component.css']
 })
+
+
 export class DeleteScopeComponent implements OnInit {
   @ViewChild('deleteModal') modalRef!:any;
   scopeSelected:boolean = false;
@@ -26,10 +30,7 @@ export class DeleteScopeComponent implements OnInit {
     console.log(id);
     if(id){
       this.scopeSelectedId = id;
-      const src = Array.from(event.target.options);
-      console.log(src)
-      const byId = (element:any) => element.value === id;
-      const i = src.findIndex(byId);
+      const i = findOptionsIdByValue(event.target.options,id);
       
       this.scopeSelectedName = event.target.options[i].text;
       console.log(this.scopeSelectedName);

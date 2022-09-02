@@ -25,6 +25,31 @@ export const applyDrag = (arr:any[], dragResult:any) => {
 
 	return result;
 };
+/**
+ * Sort Rules Array by Origin
+ * @param {Rule} a 
+ * @param {Rule} b 
+ * @returns {number}
+ */
+export const ruleSortByOrigin = (a:Rule, b:Rule) => a.origin.localeCompare(b.origin);
+/**
+ * Sort Rules Array by id
+ * @param {Rule} a 
+ * @param {Rule} b 
+ * @returns {number}
+ */
+export const ruleSortById = (a:Rule, b:Rule) => a.scope_id - b.scope_id;
 
-export const ruleSortByOrigin = (a:Rule, b:Rule) => a.origin.localeCompare(b.origin)
-export const ruleSortById = (a:Rule, b:Rule) => a.scope_id - b.scope_id
+
+/**
+ * To find Option id from the Option value
+ * @param {NodeList} options the options HTMLElementsList
+ * @param {any} value the value
+ * @returns {number} the option id 
+ */
+ export const findOptionsIdByValue = (options:NodeList, value:number) => {
+	const src = Array.from(options);
+    const byId = (element:any) => element.value === value;
+    const i = src.findIndex(byId);
+	return i;
+};
