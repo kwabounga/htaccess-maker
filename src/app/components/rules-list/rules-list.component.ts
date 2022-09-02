@@ -1,5 +1,6 @@
 import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBinding  } from '@angular/core';
 import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
+import { first } from 'rxjs';
 import { applyDrag } from '../../utils/utils';
 @Component({
   selector: 'app-rules-list',
@@ -17,8 +18,12 @@ export class RulesListComponent implements OnInit {
   @Output()
   onEmitUpdateRulesPositions = new EventEmitter<any>();
 
-
-  private ctrlKey: string = 'Control';
+  protected rulesSelectedSet:any= {
+    first:null,
+    last:null,
+    set:[]
+  }
+  private ctrlKey: string = 'Shift';
   private ctrlKeyPressed: boolean = false;
 
   // first make your component focusable to allow keypress event listening
@@ -26,23 +31,50 @@ export class RulesListComponent implements OnInit {
   @HostListener('keydown', ['$event']) keydown (event: KeyboardEvent) {
     //console.log('keydown', event.key);
     if(event.key === this.ctrlKey && !this.ctrlKeyPressed){
-      console.log('keydown', event);
+      //console.log('keydown', event);
       this.ctrlKeyPressed = true;
     }
   }
   @HostListener('keyup', ['$event']) keyup (event: KeyboardEvent) {
     //console.log('keyup', event.key);
     if(event.key === this.ctrlKey && this.ctrlKeyPressed){
-      console.log('keyup', event);
+      //console.log('keyup', event);
       this.ctrlKeyPressed = false;
     }
   }
-  @HostListener('click') addAnnotation () {
+ /*  @HostListener('click') addAnnotation () {
     console.log('click', this.ctrlKeyPressed);
-  }
+  } */
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+  public onCheck(data:any): void {
+    //console.log('onCheck', this.ctrlKeyPressed, data);
+    let key = this.rulesSelectedSet.first!=null?'last':'first';
+    if(key != 'first' && this.ctrlKeyPressed){
+      this.rulesSelectedSet.last = data.checked?data.id:null
+    } else{
+      this.rulesSelectedSet.first = data.checked?data.id:null
+      this.rulesSelectedSet.last = null
+    }
+
+    if(this.rulesSelectedSet.first!=null && this.rulesSelectedSet.last!=null){
+      console.log('rulesSelectedSet', this.rulesSelectedSet);
+      this.computeSet(this.rulesSelectedSet.first,this.rulesSelectedSet.last,this.rulesSelectedSet.set)
+    }else{
+      this.rulesSelectedSet.set = []
+    }
+
+  }
+  computeSet(f:number,l:number,set:any){
+    const a = Math.min(f,l);
+    const b = Math.max(f,l);
+    console.log('computeSet',a,b)
+    for (let i = a; i <= b; i++) {
+      set.push(i)
+    }
   }
   public changeSaveRule(data:any): void {
     this.onEmitChangeSaveRule.emit(data);

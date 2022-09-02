@@ -30,10 +30,14 @@ export class RuleLineComponent implements OnInit {
 
   @Input()
   redirectTypes: any = {};
+  @Input()
+  isPartOftheSet: boolean = false;
   toBeDeleted: boolean = false;
   toBeSaved: boolean = false;
   @Output()
   onChange = new EventEmitter<any>();
+  @Output()
+  onCheck = new EventEmitter<any>();
 
   startStateRule?: Rule;
   constructor() {}
@@ -47,6 +51,13 @@ export class RuleLineComponent implements OnInit {
       target: this.rule.target,
       active: this.rule.active,
     };
+  }
+  public changeCheck(event:any): void {
+    this.onCheck.emit({
+      id:this.idr,
+      rule_id:this.rule.id,
+      checked:event.target.checked
+    })
   }
   public changeSave(to_be_deleted: boolean): void {
     this.onChange.emit({
