@@ -50,6 +50,33 @@ const updateRule = (rule)=>{
   .update(rule)
 
 }
+const updateRules = (rules)=>{
+  console.log('updateRules',rules)
+  // build values on the fly from the Scopes positions in the Scope[]
+  let values = '';
+  rules.forEach((r,idx)=>{
+    values += `("${r.origin.trim()}", ${r.scope_id}, ${r.redirect_type_id}, "${r.target}", ${r.active?1:0}),`
+  });
+  // add the values without the last ',' ( value.slice(0,-1)) or sqlite crash
+  // set the news positions
+  let raw = `WITH updated(origin, scope_id, redirect_type_id, target, active) AS (VALUES
+    ${values.slice(0,-1)}
+)
+UPDATE ${DATABASE_TABLE_RULES}
+    SET
+    scope_id = updated.scope_id,
+    redirect_type_id = updated.redirect_type_id,
+    target = updated.target,
+    active = updated.active
+FROM updated
+WHERE (${DATABASE_TABLE_RULES}.origin = updated.origin);`
+
+  return knex.raw(raw)
+  .then(function(resp) {
+    console.log(resp)
+  });
+
+}
 // update scope here
 const updateScope = (scope)=>{
   console.log('updateScope', scope);
@@ -122,5 +149,6 @@ exports.updateFooterConfig = updateFooterConfig;
 exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;
+exports.updateRules = updateRules;
 exports.updateScope = updateScope;
 exports.updateScopeConfig = updateScopeConfig;

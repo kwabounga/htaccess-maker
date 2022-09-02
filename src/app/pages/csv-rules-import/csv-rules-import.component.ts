@@ -120,6 +120,11 @@ export class CsvRulesImportComponent implements OnInit {
   }
   UpdateExistingRedirections() {
     console.log('UpdateExistingRedirections', this.redToBeUpdated);
+    this.dataSrv.updateRulesByImport(this.redToBeUpdated.map((obj)=>{
+      return obj.rule;
+    })).then((response)=>{
+      console.log(response);
+    })
 
   }
   ExportBadRedirections() {

@@ -57,6 +57,7 @@ const {
   updateRulesPositions,
   updateScopesPositions,
   updateRule,
+  updateRules,
   updateScope,
   updateScopeConfig,
 }  = require('./crud/update');
@@ -127,6 +128,7 @@ exports.updateFooterConfig = updateFooterConfig;
 exports.updateRulesPositions = updateRulesPositions;
 exports.updateScopesPositions = updateScopesPositions;
 exports.updateRule = updateRule;
+exports.updateRules = updateRules;
 exports.updateScope = updateScope;
 exports.updateScopeConfig = updateScopeConfig;
 

@@ -196,7 +196,18 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`rule:updated`, resolver)
     })
   }
-
+  async updateRulesByImport (rules:Rule[]):Promise<boolean> {
+    console.log('updateRulesByImport', rules)
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`update:rules`, rules);
+      const resolver = (_event:any, response: any) => {
+        console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`rules:updated`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`rules:updated`, resolver)
+    })
+  }
   async uploadRedirections (rules?:Rule[]):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:rules`, rules);

@@ -152,6 +152,14 @@ ipcMain.on("update:scopes:position", (e, scopes_wrapper) => {
     })
   })
 
+  ipcMain.on("update:rules", (e, rules) => {
+    console.log('update:rules',rules)
+    dbAccess.updateRules(rules).then((resp)=>{
+      console.log(resp)
+      e.sender.send("rules:updated", { ok: true});
+    })
+  })
+
 }
 /**
  *
