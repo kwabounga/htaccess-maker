@@ -25,6 +25,7 @@ export const applyDrag = (arr:any[], dragResult:any) => {
 
 	return result;
 };
+
 /**
  * Sort Rules Array by Origin
  * @param {Rule} a 
@@ -32,6 +33,7 @@ export const applyDrag = (arr:any[], dragResult:any) => {
  * @returns {number}
  */
 export const ruleSortByOrigin = (a:Rule, b:Rule) => a.origin.localeCompare(b.origin);
+
 /**
  * Sort Rules Array by id
  * @param {Rule} a 
@@ -39,7 +41,6 @@ export const ruleSortByOrigin = (a:Rule, b:Rule) => a.origin.localeCompare(b.ori
  * @returns {number}
  */
 export const ruleSortById = (a:Rule, b:Rule) => a.scope_id - b.scope_id;
-
 
 /**
  * To find Option id from the Option value

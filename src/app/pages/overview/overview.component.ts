@@ -4,6 +4,7 @@ import { applyDrag } from '../../utils/utils';
 import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { AlertComponent } from 'src/app/components/alert/alert.component';
+
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',

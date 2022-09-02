@@ -25,6 +25,7 @@
             aria-controls="collapseOne"
             (click)="isOpen=!isOpen"
           >
+          <img src="assets/svg/section.svg" height="30px" width="30px">
           <div class="scope_label" *ngIf="!scope.logo_svg">{{ scope.label }}</div>
           <div class="logo_svg" *ngIf="scope.logo_svg" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(scope.logo_svg)"></div>
 
