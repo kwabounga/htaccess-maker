@@ -26,7 +26,12 @@ export class DeleteScopeComponent implements OnInit {
     console.log(id);
     if(id){
       this.scopeSelectedId = id;
-      this.scopeSelectedName = event.target.options[id].text;
+      const src = Array.from(event.target.options);
+      console.log(src)
+      const byId = (element:any) => element.value === id;
+      const i = src.findIndex(byId);
+      
+      this.scopeSelectedName = event.target.options[i].text;
       console.log(this.scopeSelectedName);
       this.scopeSelected = true;
     } else {
