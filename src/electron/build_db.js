@@ -484,7 +484,7 @@ SSLOptions StdEnvVars
 ## workaround for Apache 2.4.6 CentOS build when working via ProxyPassMatch with HHVM (or any other)
 ## Please, set it on virtual host configuration level
 
-"##    SetEnvIf Authorization ""(.*)"" HTTP_AUTHORIZATION=$1"
+##    SetEnvIf Authorization ""(.*)"" HTTP_AUTHORIZATION=$1
 ############################################
 
 <IfModule mod_rewrite.c>
@@ -543,7 +543,7 @@ SSLOptions StdEnvVars
 ## redirect for mobile user agents
 
     #RewriteCond %{REQUEST_URI} !^/mobiledirectoryhere/.*$
-"    #RewriteCond %{HTTP_USER_AGENT} ""android|blackberry|ipad|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile"" [NC]"
+    #RewriteCond %{HTTP_USER_AGENT} ""android|blackberry|ipad|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile"" [NC]
     #RewriteRule ^(.*)$ /mobiledirectoryhere/ [L,R=302]
 
 ############################################
@@ -581,27 +581,27 @@ const populateFooterTable = () => {
 
     AddDefaultCharset Off
     #AddDefaultCharset UTF-8
-"    AddType 'text/html; charset=UTF-8' html"
+    AddType 'text/html; charset=UTF-8' html
 
 <ifModule mod_expires.c>
 
     ExpiresActive On
-"    ExpiresByType image/jpg ""access plus 1 year"""
-"    ExpiresByType image/jpeg ""access plus 1 year"""
-"    ExpiresByType image/gif ""access plus 1 year"""
-"    ExpiresByType image/png ""access plus 1 year"""
-"    ExpiresByType text/css ""access plus 1 month"""
-"    ExpiresByType application/pdf ""access plus 1 month"""
-"    ExpiresByType text/x-javascript ""access plus 1 month"""
-"    ExpiresByType application/x-shockwave-flash ""access plus 1 month"""
-"    ExpiresByType image/x-icon ""access plus 1 year"""
-"    ExpiresDefault ""access plus 2 days"""
+    ExpiresByType image/jpg ""access plus 1 year""
+    ExpiresByType image/jpeg ""access plus 1 year"
+    ExpiresByType image/gif ""access plus 1 year""
+    ExpiresByType image/png ""access plus 1 year""
+    ExpiresByType text/css ""access plus 1 month""
+    ExpiresByType application/pdf ""access plus 1 month""
+    ExpiresByType text/x-javascript ""access plus 1 month""
+    ExpiresByType application/x-shockwave-flash ""access plus 1 month""
+    ExpiresByType image/x-icon ""access plus 1 year""
+    ExpiresDefault ""access plus 2 days""
 
     ############################################
     ## Add default Expires header
     ## http://developer.yahoo.com/performance/rules.html#expires
-"    <FilesMatch ""\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$"">"
-"        ExpiresDefault ""access plus 1 year"""
+    <FilesMatch ""\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$"">
+        ExpiresDefault ""access plus 1 year""
     </FilesMatch>
 
 </ifModule>
@@ -814,13 +814,13 @@ ErrorDocument 403 /pub/errors/404.php
 # http://blogs.msdn.com/b/ie/archive/2014/04/02/stay-up-to-date-with-enterprise-mode-for-internet-explorer-11.aspx
 
 <IfModule mod_headers.c>
-"    Header set X-UA-Compatible ""IE=edge"""
+    Header set X-UA-Compatible ""IE=edge""
 
     # \`mod_headers\` cannot match based on the content-type, however,
     # the \`X-UA-Compatible\` response header should be send only for
     # HTML documents and not for the other resources.
 
-"    <FilesMatch ""\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$"">"
+    <FilesMatch ""\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$"">
         Header unset X-UA-Compatible
     </FilesMatch>
 

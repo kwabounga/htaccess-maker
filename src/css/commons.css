@@ -1,3 +1,9 @@
 html, body {
   overflow: hidden;
 }
+.mr-2{
+  margin-right: 1rem;
+}
+.ml-2{
+  margin-left: 1rem;
+}

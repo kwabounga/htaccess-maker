@@ -1,12 +1,13 @@
 <div class="page full-height bg-import">
   <h1>Import csv</h1>
-  <div class="mb-3">
-    <button type="button" class="btn btn-primary" (click)="downloadCsvSample()">
-      Download Sample
-    </button>
+  <div class="mb-3 mt-3">
+    <div class="input-group">
+      <button class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample">Télécharger  le csv</button>
+      <input type="text" class="form-control" placeholder="scope_id; redirect_type; origin; target;" aria-label="" aria-describedby="downlad_sample" disabled>
+    </div>
   </div>
   <div class="mb-3">
-    <label for="formFile" class="form-label">Import csv</label>
+    <label for="fileUpload" class="form-label">Ou Importer directement le csv:</label>
     <input
       type="file"
       class="form-control"
@@ -45,16 +46,16 @@
     <div
       class="progress-bar progress-bar-striped progress-bar-animated"
       role="progressbar"
-      [style.width.%]="this.percent()"
+      [style.width.%]="this.percent"
       [attr.aria-valuenow]="this.progressCount"
 
       aria-valuemin="0"
       [attr.aria-valuemax]="this.redToBeChecked.length"
-    >{{this.percent()}}</div>
+    >{{this.percent}}</div>
   </div>
 <!--  check BUTTON  -->
   <button
-    *ngIf="redToBeChecked.length > 0 && this.has_ipc"
+    *ngIf="redToBeChecked.length > 0 && this.has_ipc && !rulesChecked"
     color="primary"
     class="btn btn-primary mb-3"
     (click)="checkImport()"
@@ -67,7 +68,7 @@
     class="list-group border blocked-size-max mb-3 rules good text-center"
     *ngIf="redToBeSaved.length > 0 && rulesChecked"
   >
-  OK
+  UPLOAD
   <li
       class="list-group-item"
       *ngFor="let rule of this?.redToBeSaved; let idr = index"
@@ -126,7 +127,7 @@ Update Redirections
     class="list-group border blocked-size-max mb-3 rules bad text-center"
     *ngIf="badRedirections.length > 0 && rulesChecked"
   >
-  PAS OK
+  ERROR
   <li
       class="list-group-item"
       *ngFor="let bad of this?.badRedirections; let idr = index"

@@ -227,7 +227,7 @@ export class CsvRulesImportComponent implements OnInit {
    * Used for progress bar
    * @returns {number} progression percent
    */
-  percent() {
+  get percent() {
     return (100 * this.progressCount) / this.redToBeChecked.length;
   }
 
