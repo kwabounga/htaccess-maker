@@ -20,6 +20,7 @@ import { ScopeComponent } from './components/scope/scope.component';
 import { ScopeAccordionComponent } from './components/scope-accordion/scope-accordion.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { RuleLineBadRedirectionComponent } from './components/rule-line-bad-redirection/rule-line-bad-redirection.component';
+import { SidebarButtonComponent } from './components/commons/sidebar-button/sidebar-button.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { RuleLineBadRedirectionComponent } from './components/rule-line-bad-redi
     ScopeComponent,
     ScopeAccordionComponent,
     AlertComponent,
-    RuleLineBadRedirectionComponent
+    RuleLineBadRedirectionComponent,
+    SidebarButtonComponent
   ],
   imports: [
     BrowserModule,

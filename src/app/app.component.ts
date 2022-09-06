@@ -7,5 +7,62 @@ import { Component } from '@angular/core';
   host: {'class': 'app-root'}
 })
 export class AppComponent {
-  title = 'htaccess-maker';
+  routingInfos:any = [
+    {
+      label:'Manage',
+      route:'/overview',
+      style:'bg-info',
+      active_class:'active',
+      sidebar_button: {
+        style:'info',
+        size:'30px',
+        path:'assets/svg/manage.svg',
+      }
+    },
+    {
+      label:'CSV Import',
+      route:'/csv-rules-import',
+      style:'bg-light',
+      active_class:'active',
+      sidebar_button: {
+        style:'secondary',
+        size:'30px',
+        path:'assets/svg/import.svg',
+      }
+    },
+    {
+      label:'Export File',
+      route:'/export-file',
+      style:'bg-success',
+      active_class:'active',
+      sidebar_button: {
+        style:'success',
+        size:'30px',
+        path:'assets/svg/export.svg',
+      }
+    },
+    {
+      label:'Add Scope',
+      route:'/add-new-scope',
+      style:'bg-warning',
+      active_class:'active',
+      sidebar_button: {
+        style:'warning',
+        size:'30px',
+        path:'assets/svg/add.svg',
+      }
+    },
+    {
+      label:'Delete Scope',
+      route:'/delete-scope',
+      style:'bg-danger',
+      active_class:'active',
+      sidebar_button: {
+        style:'danger',
+        size:'30px',
+        path:'assets/svg/delete.svg',
+      }
+    },
+  ]
+  title:string = 'htaccess-maker';
 }
