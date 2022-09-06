@@ -1,5 +1,5 @@
 <!-- NavBar Header -->
-<header>
+<header class="d-block d-lg-none">
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link" [routerLinkActive]="['active']" routerLink="/overview">Manage</a>
@@ -23,6 +23,25 @@
 
 <!-- Content pages -->
 <section class="app-content container-fluid">
+  <div class="shortcuts d-none d-lg-block">
+    <ul class="nav">
+      <li class="">
+        <a class="btn btn-outline-secondary m-1" [routerLinkActive]="['active']" routerLink="/overview"><img class="svg-secondary" src="assets/svg/manage.svg" height="30px" width="30px"></a>
+      </li>
+      <li class="">
+        <a class="btn btn-outline-secondary m-1" [routerLinkActive]="['active']" routerLink="/csv-rules-import"><img class="svg-secondary" src="assets/svg/import.svg" height="30px" width="30px"></a>
+      </li>
+      <li class="">
+        <a class="btn btn-outline-secondary m-1" [routerLinkActive]="['active']" routerLink="/export-file"><img class="svg-secondary" src="assets/svg/export.svg" height="30px" width="30px"></a>
+      </li>    
+      <li class="">
+        <a class="btn btn-outline-secondary m-1" [routerLinkActive]="['active']" routerLink="/add-new-scope"><img class="svg-secondary" src="assets/svg/add.svg" height="30px" width="30px"></a>
+      </li>
+      <li class="">
+        <a class="btn btn-outline-secondary m-1" [routerLinkActive]="['active']" routerLink="/delete-scope"><img class="svg-secondary" src="assets/svg/delete.svg" height="30px" width="30px"></a>
+      </li>
+    </ul>
+  </div>
   <router-outlet></router-outlet>
 </section>
 <!-- !Content pages -->

@@ -13,6 +13,7 @@ import { CsvMakerService } from 'src/app/services/csv-maker.service';
   selector: 'app-csv-rules-import',
   templateUrl: './csv-rules-import.component.html',
   styleUrls: ['./csv-rules-import.component.css'],
+  host: {'class': 'app-content'}
 })
 /**
  * Csv Rules Import Page

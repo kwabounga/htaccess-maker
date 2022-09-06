@@ -6,7 +6,8 @@ import { FilesStuffService } from 'src/app/services/files-stuff.service';
 @Component({
   selector: 'app-export-file',
   templateUrl: './export-file.component.html',
-  styleUrls: ['./export-file.component.css']
+  styleUrls: ['./export-file.component.css'],
+  host: {'class': 'app-content'}
 })
 export class ExportFileComponent implements OnInit {
   htAccessData:string ='';

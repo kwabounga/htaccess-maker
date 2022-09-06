@@ -3,8 +3,9 @@ body {
   height:100%;
 }
 .app-content {
+  width: -webkit-fill-available;
   padding:0!important;
-  height: calc(100% - 42px);
+  height: 100%;
 }
 .page{
   padding:1em;

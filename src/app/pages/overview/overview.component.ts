@@ -8,7 +8,8 @@ import { AlertComponent } from 'src/app/components/alert/alert.component';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+  styleUrls: ['./overview.component.css'],
+  host: {'class': 'app-content'}
 })
 
 /**

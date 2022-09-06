@@ -1,5 +1,9 @@
 .app-content {
-    padding: 1em;
+  display: flex;
+  width: -webkit-fill-available;
+}
+.app-content > app-overview {
+  width: -webkit-fill-available;
 }
 .nav-item {
   border-top-left-radius: 0.25rem;
@@ -18,4 +22,15 @@ a.nav-link{
 header {
   -webkit-user-select: none;
   -webkit-app-region: drag;
+}
+.shortcuts > .nav {
+  display: flex;
+  flex-direction:column
+}
+.btn .svg-secondary{
+  filter: invert(46%) sepia(16%) saturate(241%) hue-rotate(166deg) brightness(94%) contrast(91%);
+}
+.btn:hover .svg-secondary,
+.btn.active .svg-secondary{
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
 }

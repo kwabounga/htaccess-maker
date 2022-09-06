@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-scope',
   templateUrl: './add-scope.component.html',
-  styleUrls: ['./add-scope.component.css']
+  styleUrls: ['./add-scope.component.css'],
+  host: {'class': 'app-content'}
 })
 export class AddScopeComponent implements OnInit {
   scopeSaved:boolean = false;
