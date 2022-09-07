@@ -1,0 +1,16 @@
+.app-root > .app-content {
+    height: calc(100% - 58px);
+}
+@media (min-width: 992px){
+    .app-root > .app-content {
+        height: calc(100% - 22px);
+    }
+}
+footer {
+    -webkit-user-select: none;
+    height: 22px;
+    font-family: Consolas, "Courier New", monospace;
+    padding: 1px 20px;
+    display:flex;
+    font-size: small;
+}

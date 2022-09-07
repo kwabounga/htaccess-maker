@@ -1,5 +1,7 @@
+@import "./css/app";
 @import "./css/commons";
 @import "./css/sizes";
 @import "./css/scrollbar";
 @import "./css/draggable";
 @import "./css/colors";
+@import "./css/tabs";

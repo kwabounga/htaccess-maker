@@ -1,24 +1,136 @@
+/* commons */
+
+body {
+  background-color: #3c3c3c;
+}
+
+.app-root {
+  background-color: blue;
+}
+
+footer {
+  color: white;
+  background-color: rgb(0, 122, 204);
+}
+
+/* Background colors class */
+.bg-vscode{
+  background-color: rgb(45, 45, 45)!important;
+}
+.bg-vscode.active{
+  background-color: rgb(30, 30, 30)!important;
+}
+.text-vscode {
+  color: #d4d4d4!important;
+}
 .bg-overview {
   background-color: #eff8ff !important;
-  background: linear-gradient(0deg, rgba(239,248,255,1) 0%, rgba(239,248,255,1) 90%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(239, 248, 255, 1) 0%, rgba(239, 248, 255, 1) 90%, rgba(255, 255, 255, 1) 100%);
 }
+
 .bg-import {
   outline: #fff 2px solid;
   background-color: #f1f1f1 !important;
-  background: linear-gradient(0deg, rgba(241,241,241,1) 0%, rgba(241,241,241,1) 90%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(241, 241, 241, 1) 0%, rgba(241, 241, 241, 1) 90%, rgba(255, 255, 255, 1) 100%);
 }
+
 .bg-export {
   outline: green 2px solid;
   background-color: #ecffe9 !important;
-  background: linear-gradient(0deg, rgba(236,255,233,1) 0%, rgba(236,255,233,1) 90%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(236, 255, 233, 1) 0%, rgba(236, 255, 233, 1) 90%, rgba(255, 255, 255, 1) 100%);
 }
+
 .bg-add-scope {
   outline: #ffc107 2px solid;
   background-color: #fff2dc !important;
-  background: linear-gradient(0deg, rgba(255,242,220,1) 0%, rgba(255,242,220,1) 90%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(255, 242, 220, 1) 0%, rgba(255, 242, 220, 1) 90%, rgba(255, 255, 255, 1) 100%);
 }
+
 .bg-del-scope {
   outline: #dc3545 2px solid;
   background-color: #ffe2e2 !important;
-  background: linear-gradient(0deg, rgba(255,226,226,1) 0%, rgba(255,226,226,1) 90%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(0deg, rgba(255, 226, 226, 1) 0%, rgba(255, 226, 226, 1) 90%, rgba(255, 255, 255, 1) 100%);
+}
+
+a.nav-link {
+  color: #696969
+}
+.nav-tabs .nav-link.active {
+
+}
+.nav-item > .nav-link {
+  color:rgba(255, 255, 255, 0.5);
+}
+.nav-item > .nav-link.active {
+  border-color: #353636 #353636 #2b2b2b;
+  color:rgb(226, 192, 141);
+}
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+  border-color: #353636 #353636 #2b2b2b;
+  isolation: isolate;
+}
+.bg-success>a.nav-link.text-light.active,
+.bg-danger>a.nav-link.text-light.active {
+  color: #696969 !important;
+}
+
+
+textarea.form-control:focus,
+textarea.form-control {
+  color: #d4d4d4;
+  background-color: #1e1e1e;
+}
+
+
+/* 
+    see here for generate colors filters:
+    https://codepen.io/sosuke/pen/Pjoqqp
+*/
+/* secondary */
+.svg-vs-code{
+  filter: invert(90%) sepia(0%) saturate(1226%) hue-rotate(193deg) brightness(100%) contrast(81%);
+}
+.btn .svg-secondary{
+    filter: invert(46%) sepia(16%) saturate(241%) hue-rotate(166deg) brightness(94%) contrast(91%); /* grey */
+  }
+.btn:hover .svg-secondary,
+.btn.active .svg-secondary{
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%); /* white */
+}
+
+/* danger */
+.btn .svg-danger{
+    filter: invert(23%) sepia(46%) saturate(3952%) hue-rotate(337deg) brightness(102%) contrast(85%);  /* red */
+  }
+.btn:hover .svg-danger,
+.btn.active .svg-danger{
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);   /* white */
+}
+/* warning */
+.btn .svg-warning{
+    filter: invert(79%) sepia(52%) saturate(2193%) hue-rotate(352deg) brightness(103%) contrast(104%);  /* dark yellow*/
+  }
+.btn:hover .svg-warning,
+.btn.active .svg-warning{
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);   /* white */
+}
+/* success */
+.btn .svg-success{
+    filter: invert(38%) sepia(84%) saturate(448%) hue-rotate(100deg) brightness(91%) contrast(84%);  /* green */
+  }
+.btn:hover .svg-success,
+.btn.active .svg-success{
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);   /* white */
+}
+/* info */
+.btn .svg-info{
+    filter: invert(71%) sepia(10%) saturate(5621%) hue-rotate(147deg) brightness(94%) contrast(101%);  /* green */
+  }
+.btn:hover .svg-info,
+.btn.active .svg-info{
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);   /* white */
+}
+
+.accordion-item {
+  background-color: inherit!important;
 }

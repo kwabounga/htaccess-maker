@@ -1,15 +1,14 @@
-background-image: var(--bs-gradient);
 .blocked-size-max{
   min-height: 15rem;
   max-height:35rem;
   overflow-y: scroll;
 }
-textarea:focus,
-textarea {
+textarea.form-control:focus,
+textarea.form-control {
   
   padding:2rem;
-  color: #d4d4d4;
-  background-color: #1e1e1e;
+  /* color: #d4d4d4;
+  background-color: #1e1e1e; */
   font-family: Consolas, "Courier New", monospace;
   font-weight: normal;
   font-size: 14px;

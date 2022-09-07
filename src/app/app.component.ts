@@ -11,7 +11,7 @@ export class AppComponent {
     {
       label:'Manage',
       route:'/overview',
-      style:'bg-info',
+      style:'bg-vscode',
       active_class:'active',
       sidebar_button: {
         style:'info',
@@ -22,7 +22,7 @@ export class AppComponent {
     {
       label:'CSV Import',
       route:'/csv-rules-import',
-      style:'bg-light',
+      style:'bg-vscode',
       active_class:'active',
       sidebar_button: {
         style:'secondary',
@@ -33,7 +33,7 @@ export class AppComponent {
     {
       label:'Export File',
       route:'/export-file',
-      style:'bg-success',
+      style:'bg-vscode',
       active_class:'active',
       sidebar_button: {
         style:'success',
@@ -44,7 +44,7 @@ export class AppComponent {
     {
       label:'Add Scope',
       route:'/add-new-scope',
-      style:'bg-warning',
+      style:'bg-vscode',
       active_class:'active',
       sidebar_button: {
         style:'warning',
@@ -55,7 +55,7 @@ export class AppComponent {
     {
       label:'Delete Scope',
       route:'/delete-scope',
-      style:'bg-danger',
+      style:'bg-vscode',
       active_class:'active',
       sidebar_button: {
         style:'danger',

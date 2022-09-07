@@ -9,15 +9,15 @@
     <!-- loop scopes here -->
 
     <smooth-dnd-draggable *ngFor="let scope of this?.scopes; let id = index">
-      <div class="accordion-item draggable-item">
+      <div class="accordion-item draggable-item bg-vscode text-vscode">
         <h2
           class="accordion-header {{
             id % 2 == 0 ? 'alt' : ''
-          }}  {{isOpen?'':'column-drag-handle'}}"
+          }}  {{isOpen?'':'column-drag-handle'}} "
           id="config{{ id }}"
         >
           <button
-            class="accordion-button collapsed"
+            class="accordion-button collapsed bg-vscode text-vscode"
             type="button"
             data-bs-toggle="collapse"
             [attr.data-bs-target]="'#collapseConfig' + id"
@@ -25,7 +25,7 @@
             aria-controls="collapseOne"
             (click)="isOpen=!isOpen"
           >
-          <img class="mr-2" src="assets/svg/section.svg" height="30px" width="30px">
+          <img class="mr-2 svg-vs-code" src="assets/svg/section.svg" height="30px" width="30px">
           <div class="scope_label" *ngIf="!scope.logo_svg">{{ scope.label }}</div>
           <div class="logo_svg" *ngIf="scope.logo_svg" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(scope.logo_svg)"></div>
 
@@ -37,12 +37,12 @@
           aria-labelledby="config"
           data-bs-parent="#globalOverview"
         >
-          <div class="accordion-body">
+          <div class="accordion-body text-vscode bg-vscode">
             <button class="btn btn-warning mb-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#togglingConfig' + id" aria-expanded="false" [attr.aria-controls]="'#togglingConfig' + id">
               Toogle Config
             </button>
           <div class="collapse" id="togglingConfig{{ id }}">
-            <div class="card card-body border-warning mb-3">
+            <div class="card card-body border-warning mb-3 text-vscode bg-vscode">
               <app-scope
               [scope]="scope"
               (onClickSave)="updateScope($event)"

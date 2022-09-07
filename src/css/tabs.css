@@ -1,0 +1,27 @@
+.nav-tabs {
+    flex-wrap: nowrap;
+    /* display: inline-flex; */
+    /* flex-basis: fit-content; */
+    flex: 1;
+}
+.nav-item {
+    display: flex;
+    height: 35px;
+    overflow: hidden;
+    /* border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem; */
+    -webkit-app-region: no-drag;
+    -webkit-user-select: none;
+}
+
+.nav-link {
+    min-width: fit-content;
+    flex-shrink: 0;
+    white-space: nowrap;
+    box-sizing: border-box;
+    font-family: "Ubuntu Mono","Liberation Mono","DejaVu Sans Mono","Courier New",monospace;
+    font-size: 15px;
+}
+.nav-tabs .nav-link {
+    border-radius:0;
+}

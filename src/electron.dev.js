@@ -32,6 +32,7 @@ const createWindow = () => {
             width: 800,
             height: 600,
             icon: './src/favicon.ico',
+            frame:false,
             titleBarStyle: "hidden",
             titleBarOverlay: true,
             alwaysOnTop: false,

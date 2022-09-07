@@ -1,8 +1,8 @@
 <!-- NavBar Header -->
 <header class="d-block d-lg-none">
   <ul class="nav nav-tabs">
-    <li *ngFor="let rInfo of routingInfos" class="nav-item  {{rInfo.style}}">
-      <a class="nav-link text-dark" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label}}</a>
+    <li *ngFor="let rInfo of routingInfos" class="nav-item">
+      <a class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label}}</a>
     </li>
   </ul>
   
@@ -31,6 +31,7 @@
 <!-- !Content pages -->
 
 <!-- Footer -->
-<footer>  
+<footer class="footer">
+  <span>Test</span>
 </footer>
 <!-- !Footer -->

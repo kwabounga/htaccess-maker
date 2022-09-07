@@ -27,6 +27,10 @@ const createWindow = () => {
     win = new BrowserWindow({
         width: 800,
         height: 600,
+        frame:false,
+        titleBarStyle: "hidden",
+        titleBarOverlay: true,
+        alwaysOnTop: false,
         icon: path.join(__dirname, 'favicon.ico'),
         webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
         ipcRenderer: ipcRenderer,
