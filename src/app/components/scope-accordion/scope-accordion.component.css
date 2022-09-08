@@ -2,4 +2,12 @@
   height: 30px!important;
   display: flex;
   align-items: center;
+  padding:1.3rem 0;
+}
+
+.accordion-header{
+  overflow: hidden;
+}
+.accordion-button:focus {
+  z-index: 10;
 }

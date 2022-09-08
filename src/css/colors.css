@@ -17,6 +17,7 @@ footer {
 .bg-vscode{
   background-color: rgb(45, 45, 45)!important;
 }
+.bg-vscode-dark,
 .bg-vscode.active{
   background-color: rgb(30, 30, 30)!important;
 }
@@ -73,7 +74,10 @@ a.nav-link {
 .bg-danger>a.nav-link.text-light.active {
   color: #696969 !important;
 }
-
+.code-preview{
+  border: solid 1px #d4d4d455;
+  border-radius:.2rem;
+}
 
 textarea.form-control:focus,
 textarea.form-control {
@@ -82,7 +86,7 @@ textarea.form-control {
 }
 
 
-/* 
+/*
     see here for generate colors filters:
     https://codepen.io/sosuke/pen/Pjoqqp
 */
@@ -135,13 +139,37 @@ textarea.form-control {
   background-color: inherit!important;
 }
 
-.accordion-button:focus {
-  z-index: auto;
-  border-color: #a3a3a3;
-  outline: 0;
-  box-shadow: 0 0 0 .25rem rgba(194, 194, 194, 0.25);
-}
+
 .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23a3a3a3'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   transform: rotate(-180deg);
 }
+
+.form-select-vscode {
+  color: #a3a3a388;
+  background-color: rgb(59, 59, 59);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right .75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.accordion-button:focus,
+.form-select-vscode:focus {
+  border-color: #a3a3a3;
+  outline: 0;
+  box-shadow: 0 0 0 .25rem rgba(194, 194, 194, 0.25);
+}
+.form-select-vscode:focus>option:checked {
+  background-color: rgb(88, 88, 88);
+}
+/* https://stackoverflow.com/questions/61232273/how-to-change-the-background-color-of-a-select-option-on-hover
+option:hover,
+option:checked,
+option:active,
+option:focus {
+  background-color: rgb(88, 88, 88);
+}
+*/

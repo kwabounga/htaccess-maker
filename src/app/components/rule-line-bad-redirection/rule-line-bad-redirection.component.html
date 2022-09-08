@@ -4,7 +4,7 @@
       <span class="input-group-text">
         <span class="reason" style="float:left; padding:0 3px;" [title]="this.reason">{{this.reasonCode}}</span>
       </span>
-      <select name="redirect_types" class="form-select form-select-sm " title="Type de Redirection" [(ngModel)]="rule.redirect_type_id" disabled>
+      <select name="redirect_types" class="form-select form-select-vscode form-select form-select--sm " title="Type de Redirection" [(ngModel)]="rule.redirect_type_id" disabled>
         <option *ngFor="let redType of redirectTypes" [ngValue]="redType.id">{{redType.label | uppercase}}</option>
       </select>
       <input type="text" class="form-control  form-control-sm w-25" aria-label="origin" title="origin"

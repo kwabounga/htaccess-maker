@@ -21,3 +21,11 @@
   background-color: white;
   box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.0);
 }
+
+.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper {
+  overflow: visible!important;
+}
+
+.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper:hover {
+  filter: drop-shadow(2px 4px 5px #00000055);
+}

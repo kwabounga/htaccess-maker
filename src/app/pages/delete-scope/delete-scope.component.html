@@ -1,8 +1,8 @@
-<div class="page full-height bg-del-scope">
+<div class="page full-height  bg-vscode-dark text-vscode">
 <h1>Suppression d'un scope</h1>
 
 
-<select #selectScopes name="scopes" class="form-select form-select-sm " title="Choisir le scope a supprimer"  (change)="change($event)">
+<select #selectScopes name="scopes" class="form-select form-select-vscode form-select form-select--sm " title="Choisir le scope a supprimer"  (change)="change($event)">
     <option value="">choisir un scope à supprimer</option>
     <option *ngFor="let scope of scopes; let id = index" [value]="scope.id">{{scope.label | uppercase}}</option>
   </select>
@@ -13,7 +13,7 @@
             Delete {{this?.scopeSelectedName}} All references ?
         </button>
     </div>
-    
+
 </div>
 
 
@@ -40,7 +40,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete the {{this?.scopeSelectedName}} ?? 
+        Are you sure you want to delete the {{this?.scopeSelectedName}} ??
         <p>this will delete all the rules linked to this scope, as well as the associated configuration</p>
       </div>
       <div class="modal-footer">
