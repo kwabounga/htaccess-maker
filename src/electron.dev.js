@@ -15,7 +15,7 @@ let win;
 //     ]
 
 const createWindow = () => {
-    /**  manage CSP 
+    /**  manage CSP
     session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
         callback({
           responseHeaders: {
@@ -34,7 +34,7 @@ const createWindow = () => {
             icon: './src/favicon.ico',
             frame:false,
             titleBarStyle: "hidden",
-            titleBarOverlay: true,
+            /* titleBarOverlay: true, */
             alwaysOnTop: false,
             webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
             ipcRenderer: ipcRenderer,
