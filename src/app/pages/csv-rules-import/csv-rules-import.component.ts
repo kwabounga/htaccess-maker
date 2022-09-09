@@ -105,9 +105,7 @@ export class CsvRulesImportComponent implements OnInit {
 
   }
 
-  // TODO: quand pas OK afficher la raison , et trier par raison
-  // TODO: donner la posibilité d'exporter les lignes pas bonnes  dans un csv  pour renvoyer à la personne en charge
-  // TODO: creation de nouvelle rule line  pour les rules pas bonnes  avec la raison d'affiché
+  // TODO: creation d'un input pour ajouter des règles à la main
 
   /**
    * give a csv file sample
@@ -141,7 +139,8 @@ export class CsvRulesImportComponent implements OnInit {
     this.fileStuffSrv.exportFile('bad_redirections.csv', this.csvSrv.makeCsvFromBadRedirections(this.badRedirections));
 
   }
-  // TODO: check for redirect loop in the current set would be imported !!
+
+  // TODO: verifier les doublons d'origines dans le tableau d'import des règles
 
   /**
    * On file selected handler
