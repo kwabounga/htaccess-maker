@@ -5,7 +5,7 @@
       <a class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label}}</a>
     </li>
   </ul>
-  
+
 </header>
 <!-- !NavBar Header -->
 
@@ -13,7 +13,7 @@
 <section class="app-content container-fluid">
   <!-- sidebar navigation -->
   <div class="shortcuts d-none d-lg-block">
-    <ul class="nav">      
+    <ul class="nav">
       <li *ngFor="let rInfo of routingInfos">
         <app-sidebar-button
           [title]="rInfo.label"
@@ -23,7 +23,7 @@
           [style]="rInfo.sidebar_button.style"
           [svg_path]="rInfo.sidebar_button.path"
         ></app-sidebar-button>
-        </li>      
+        </li>
     </ul>
   </div>
   <router-outlet></router-outlet>
@@ -31,7 +31,5 @@
 <!-- !Content pages -->
 
 <!-- Footer -->
-<footer class="footer">
-  <span>Test</span>
-</footer>
+<app-footer></app-footer>
 <!-- !Footer -->

@@ -1,4 +1,4 @@
-html, 
+html,
 body {
   height:100%;
 }
@@ -9,7 +9,8 @@ body {
 }
 .page{
   padding:1em;
-  overflow:scroll;
+  overflow-y:scroll;
+  overflow-x:hidden;
 }
 .full-height{
   height: 100%;
