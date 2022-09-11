@@ -3,6 +3,7 @@ const path = require('path');
 const url = require('url');
 
 const ipcCom = require("./electron/ipc_db_communication");
+const ipcApp = require("./electron/ipc_app_actions");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -34,11 +35,14 @@ const createWindow = () => {
             icon: './src/favicon.ico',
             frame:false,
             titleBarStyle: "hidden",
+            transparent: true,
             /* titleBarOverlay: true, */
             alwaysOnTop: false,
             webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
             ipcRenderer: ipcRenderer,
             isElectron: true,
+            icon: path.join(__dirname, "./assets/icons/icon_68.png"),
+            /* https://thenounproject.com/icon/redirect-36771/ */
         });
 
         // and load the app.
@@ -89,5 +93,6 @@ app.on('activate', () => {
 /// https://github.com/DenisKolodin/tsng2/tree/master/src
 app.whenReady().then(()=>{
   ipcCom.addEvents(ipcMain);
+  ipcApp.addAppEvents(ipcMain);
 })
 

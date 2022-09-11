@@ -3,6 +3,7 @@ const path = require('path');
 const url = require('url');
 
 const ipcCom = require("./electron/ipc_db_communication");
+const ipcApp = require("./electron/ipc_app_actions");
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
@@ -79,4 +80,5 @@ app.on('activate', () => {
 // ipc and electron
 app.whenReady().then(()=>{
     ipcCom.addEvents(ipcMain);
+    ipcApp.addAppEvents(ipcMain);
   })
