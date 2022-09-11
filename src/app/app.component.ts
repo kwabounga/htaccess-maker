@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AppActionsFromIpcService } from './services/app-actions-from-ipc.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,6 @@ import { AppActionsFromIpcService } from './services/app-actions-from-ipc.servic
   host: {'class': 'app-root'}
 })
 export class AppComponent {
-  constructor(private appSrv:AppActionsFromIpcService){}
   routingInfos:any = [
     {
       label:'Manage',
@@ -67,8 +65,4 @@ export class AppComponent {
     },
   ]
   title:string = 'htaccess-maker';
-  close(){
-    console.log('close');
-    this.appSrv.closeApplication();
-  }
 }

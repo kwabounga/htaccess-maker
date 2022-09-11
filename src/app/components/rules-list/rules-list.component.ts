@@ -42,9 +42,7 @@ export class RulesListComponent implements OnInit {
       this.ctrlKeyPressed = false;
     }
   }
- /*  @HostListener('click') addAnnotation () {
-    console.log('click', this.ctrlKeyPressed);
-  } */
+ 
   constructor() { }
 
   ngOnInit(): void {

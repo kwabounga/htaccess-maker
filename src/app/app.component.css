@@ -18,14 +18,3 @@ header, .shortcuts {
   display: flex;
   flex-direction:column
 }
-.btn-close{
-  -webkit-app-region: no-drag;
-  position:absolute;
-  top:0;
-  right:0;
-  z-index:9999;
-}
-.btn-close:hover{
-  filter: invert(.5);
-  cursor:pointer
-}

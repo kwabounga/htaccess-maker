@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { AppActionsFromIpcService } from 'src/app/services/app-actions-from-ipc.service';
 
 @Component({
   selector: 'app-mini-button',
@@ -9,8 +10,11 @@ import { Component, OnInit, Input } from '@angular/core';
   }
 })
 export class MiniButtonComponent implements OnInit {
-  constructor() { }
-
+  constructor(private appSrv:AppActionsFromIpcService) { }
+   @HostListener('click') close () {
+    console.log('close');
+    this.appSrv.closeApplication();
+  }
   ngOnInit(): void {
   }
 
