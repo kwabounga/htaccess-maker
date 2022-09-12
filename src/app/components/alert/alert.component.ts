@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class AlertComponent implements OnInit {
   isOpen:boolean = false;
   iconType:string = 'info';
-  text:string = 'ceci est une modal'
+  text:string = 'ceci est une alerte'
   timer:any = null;
   show:string ='show';
   constructor() { }
@@ -16,24 +16,24 @@ export class AlertComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openModal(type:string, text:string, timeMS:null|number=null, callback:any=null){
+  openAlert(type:string, text:string, timeMS:null|number=null, callback:any=null){
     this.text = text;
     this.iconType = type;
-    
+
     if(timeMS){
       this.timer = setTimeout(()=>{
-        this.closeModal(callback);
+        this.closeAlert(callback);
       },timeMS)
     }
     this.show = 'show';
     this.isOpen = true;
   }
-  closeModal(callback:any=null) {
+  closeAlert(callback:any=null) {
     if(this.timer){
       clearTimeout(this.timer)
     }
-    
-    
+
+
     this.show = '';
     this.text = '';
     setTimeout(()=>{
@@ -44,5 +44,5 @@ export class AlertComponent implements OnInit {
     },500)
   }
 
-  
+
 }

@@ -1,6 +1,4 @@
 import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBinding  } from '@angular/core';
-import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
-import { first } from 'rxjs';
 import { applyDrag } from '../../utils/utils';
 @Component({
   selector: 'app-rules-list',
@@ -42,7 +40,7 @@ export class RulesListComponent implements OnInit {
       this.ctrlKeyPressed = false;
     }
   }
- 
+
   constructor() { }
 
   ngOnInit(): void {

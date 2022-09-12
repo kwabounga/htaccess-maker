@@ -20,7 +20,7 @@
       (drop)="onDrop($event)"
     />
   </div>
-  
+
 <!--  to be checked  -->
   <ul
     class="list-group border blocked-size-max mb-3"
@@ -33,7 +33,7 @@
       <div class="draggable-item">
         <app-rule-line
           [movable]="false"
-          [id]="-1"
+          [id]="99999 - idr"
           [idr]="idr"
           [rule]="rule"
           [redirectTypes]="redirectTypes"
@@ -76,7 +76,7 @@
     >
     <app-rule-line
           [movable]="false"
-          [id]="-1"
+          [id]="99999 - idr"
           [idr]="idr"
           [rule]="rule"
           [redirectTypes]="redirectTypes"

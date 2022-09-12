@@ -35,7 +35,7 @@ const createWindow = () => {
             icon: './src/favicon.ico',
             frame:false,
             titleBarStyle: "hidden",
-            transparent: true,
+            /* transparent: true, */
             /* titleBarOverlay: true, */
             alwaysOnTop: false,
             webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },

@@ -19,5 +19,5 @@
 
 <div *ngIf="isOpen" class="alert alert-{{iconType}}  alert-dismissible fade {{show}}" role="alert">
   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" attr.aria-label="{{iconType}}:"><use attr.xlink:href="#{{iconType}}-icon"/></svg>{{text}}
-  <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+  <button type="button" class="btn-close" (click)="closeAlert()" aria-label="Close"></button>
 </div>

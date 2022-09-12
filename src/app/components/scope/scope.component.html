@@ -16,11 +16,11 @@
       <!--(input)="updatePreview()"  -->
     </div>
     <div class="mb-3">
-      <label for="scopeConfigLabel" class="form-label">Magento SCOPE ID</label>
+      <label for="scopeConfigMagentoId" class="form-label">Magento SCOPE ID</label>
       <input
         type="number"
         class="form-control"
-        id="scopeConfigLabel"
+        id="scopeConfigMagentoId"
         min="0"
         required
         [(ngModel)]="this?.scope.magento_scope_id"
@@ -29,7 +29,7 @@
       />
     </div>
     <div class="mb-3">
-      <label for="scopeConfigLabel" class="form-label">Scope Logo</label>
+      <label for="scopeConfigData" class="form-label">Scope Logo</label>
       <textarea  class="form-control" id="scopeConfigData" [placeholder]="placeHolder"
           rows="3" [(ngModel)]="this?.scope.logo_svg"
           ></textarea>

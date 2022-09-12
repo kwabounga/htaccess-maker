@@ -6,7 +6,7 @@ import { AppActionsFromIpcService } from 'src/app/services/app-actions-from-ipc.
   templateUrl: './mini-button.component.html',
   styleUrls: ['./mini-button.component.css'],
   host:{
-    class:"btn-close"
+    class:"btn-close-custom"
   }
 })
 export class MiniButtonComponent implements OnInit {

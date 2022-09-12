@@ -82,7 +82,7 @@ export class OverviewComponent implements OnInit {
     console.log('saveHeaderConfig',this.headerData)
     this.dataSrv.updateHeaderConfig(this.headerData).then((response)=>{
       console.log(response)
-      this.alertRef.openModal('success', 'header config saved!', 2000);
+      this.alertRef.openAlert('success', 'header config saved!', 2000);
     })
   }
   // TODO: implement saveFooterConfig
@@ -90,7 +90,7 @@ export class OverviewComponent implements OnInit {
     console.log('saveFooterConfig', this.footerData)
     this.dataSrv.updateFooterConfig(this.footerData).then((response)=>{
       console.log(response)
-      this.alertRef.openModal('success', 'footer config saved!', 2000);
+      this.alertRef.openAlert('success', 'footer config saved!', 2000);
     })
   }
   /**
@@ -103,7 +103,7 @@ export class OverviewComponent implements OnInit {
     if(event.to_be_deleted){
       this.dataSrv.deleteRule(event.rule).then((response)=>{
         console.log('rule deleted',response);
-        this.alertRef.openModal('warning', 'the rule has been deleted, ... reload in 2 second', 2000, ()=>{
+        this.alertRef.openAlert('warning', 'the rule has been deleted, ... reload in 2 second', 2000, ()=>{
           window.location.reload();
         });
 
@@ -111,7 +111,7 @@ export class OverviewComponent implements OnInit {
     }else if(event.to_be_saved){
       this.dataSrv.updateRule(event.rule).then((response)=>{
         console.log('rule updated',response);
-        this.alertRef.openModal('success', 'the rule has been updated, ... reload in 2 second', 2000, ()=>{
+        this.alertRef.openAlert('success', 'the rule has been updated, ... reload in 2 second', 2000, ()=>{
           window.location.reload();
         });
       })

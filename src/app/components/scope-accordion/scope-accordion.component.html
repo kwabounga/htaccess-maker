@@ -36,7 +36,7 @@
           id="collapseConfig{{ id }}"
           class="accordion-collapse collapse"
           aria-labelledby="config"
-          data-bs-parent="#globalOverview"
+          [attr.data-bs-parent]="'#config' + id"
         >
           <div class="accordion-body text-vscode bg-vscode">
             <button class="btn btn-warning mb-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#togglingConfig' + id" aria-expanded="false" [attr.aria-controls]="'#togglingConfig' + id">

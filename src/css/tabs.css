@@ -4,6 +4,9 @@
     /* flex-basis: fit-content; */
     flex: 1;
 }
+.nav-item:hover {
+  overflow: visible;
+}
 .nav-item {
     display: flex;
     height: 35px;
