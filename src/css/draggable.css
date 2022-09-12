@@ -27,5 +27,6 @@
 }
 
 .smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper:hover {
-  filter: drop-shadow(2px 4px 5px #00000055);
+  /* filter: drop-shadow(2px 4px 5px #00000055); /!\ epileptic bug /!\ */
+  outline: solid 1px black;
 }
