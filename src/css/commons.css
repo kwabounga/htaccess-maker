@@ -20,6 +20,56 @@ h1::after,
 h1::before {
   content: ' :: '
 }
+.btn {
+  /* display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem; */
+  border-radius: 0;
+  /* transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out; */
+}
+.app-bar {
+  position:relative;
+  display:flex;
+  flex-direction: row-reverse;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+  background: transparent url("../assets/icons/icon_68.png") no-repeat border-box;
+  background-size: contain;
+  background-position-x: .5rem;
+}
 
+.nav-tabs > .btn-close-custom {
+  margin-left: auto;
+}
+.btn-close-custom {
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  color: #000;
+  border: 0;
+  opacity: .5;
+  padding: .5rem 1rem;
+  -webkit-app-region: no-drag;
+ /*  position:absolute;
+  top:3px;
+  right:3px;
+  z-index:80;*/
+  border-radius: 0;
+  background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23a9a9a9'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+}
+.btn-close-custom:hover{
+  cursor:pointer;
+  background: red url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
 
-
+}

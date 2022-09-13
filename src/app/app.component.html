@@ -1,9 +1,13 @@
+<div class="app-bar d-flex d-lg-none">
+  <app-mini-button></app-mini-button>
+</div>
 <!-- NavBar Header -->
-<header class="d-block d-lg-none">
+<header class="d-none d-lg-block">
   <ul class="nav nav-tabs">
     <li *ngFor="let rInfo of routingInfos" class="nav-item">
       <a class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label}}</a>
     </li>
+    <app-mini-button></app-mini-button>
   </ul>
 
 </header>
@@ -12,7 +16,7 @@
 <!-- Content pages -->
 <section class="app-content container-fluid">
   <!-- sidebar navigation -->
-  <div class="shortcuts d-none d-lg-block">
+  <div class="shortcuts d-block d-lg-none">
     <ul class="nav">
       <li *ngFor="let rInfo of routingInfos">
         <app-sidebar-button
@@ -29,7 +33,7 @@
   <router-outlet></router-outlet>
 </section>
 <!-- !Content pages -->
-<app-mini-button></app-mini-button>
+
 <!-- Footer -->
 <app-footer></app-footer>
 <!-- !Footer -->
