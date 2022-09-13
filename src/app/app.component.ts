@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {Tooltip} from 'bootstrap';
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,12 +6,7 @@ import {Tooltip} from 'bootstrap';
   host: {'class': 'app-root'}
 })
 export class AppComponent {
-  OnInit(){
-    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new Tooltip(tooltipTriggerEl)
-})
-  }
+  
   routingInfos:any = [
     {
       label:'Manage',
