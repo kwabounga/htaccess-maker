@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit  } from '@angular/core';
 import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
 import { applyDrag } from '../../utils/utils';
 import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { AlertComponent } from 'src/app/components/alert/alert.component';
-
+import { Collapse } from 'bootstrap';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -16,7 +16,7 @@ import { AlertComponent } from 'src/app/components/alert/alert.component';
  * Page Rules Overview / Management Component
  */
 
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit/*, AfterViewInit */{
   @ViewChild('alert') alertRef!: AlertComponent;
   constructor(private dataSrv:DataFromIpcService) { }
 
@@ -32,7 +32,12 @@ export class OverviewComponent implements OnInit {
   };
   scopes:any;
   specialRules:any;
-
+//   ngAfterViewInit(){
+//     var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
+//     var collapseList = collapseElementList.map(function (collapseEl) {
+//     return new Collapse(collapseEl)
+// })
+//   }
   /**
    * Life cycle intitalization function
    */

@@ -1,75 +1,46 @@
-<smooth-dnd-container
-    [dragClass]="'opacity-ghost'"
-    [lockAxis]="'y'"
-    [dragBeginDelay]="200"
-    [dragHandleSelector]="'.column-drag-handle'"
-    [dropClass]="'opacity-ghost-drop'"
-    (drop)="onDrop($event)"
-  >
-    <!-- loop scopes here -->
+<smooth-dnd-container [dragClass]="'opacity-ghost'" [lockAxis]="'y'" [dragBeginDelay]="200"
+  [dragHandleSelector]="'.column-drag-handle'" [dropClass]="'opacity-ghost-drop'" (drop)="onDrop($event)">
+  <!-- loop scopes here -->
 
-    <smooth-dnd-draggable *ngFor="let scope of this?.scopes; let id = index">
-      <div class="accordion-item draggable-item bg-vscode text-vscode">
-        <h2
-          class="accordion-header {{
+  <smooth-dnd-draggable *ngFor="let scope of this?.scopes; let id = index">
+    <div class="accordion-item draggable-item bg-vscode text-vscode">
+      <h2 class="accordion-header {{
             id % 2 == 0 ? 'alt' : ''
-          }}  {{isOpen?'':'column-drag-handle'}} "
-          id="config{{ id }}"
-        >
-          <button
-            class="accordion-button collapsed bg-vscode text-vscode"
-            type="button"
-            data-bs-toggle="collapse"
-            [attr.data-bs-target]="'#collapseConfig' + id"
-            aria-expanded="false"
-            aria-controls="collapseOne"
-            (click)="isOpen=!isOpen"
-            title="drag it for rearrange"
-          >
+          }}  {{isOpen?'':'column-drag-handle'}} " id="config{{ id }}">
+        <button class="accordion-button collapsed bg-vscode text-vscode" type="button" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapseConfig' + id" [attr.aria-controls]="'collapseConfig' + id"
+          aria-expanded="false" (click)="isOpen=!isOpen" title="drag it for rearrange">
           <img class="mr-2 svg-vs-code" src="assets/svg/section.svg" height="30px" width="30px">
           <div class="scope_label" *ngIf="!scope.logo_svg">{{ scope.label }}</div>
-          <div class="logo_svg" *ngIf="scope.logo_svg" [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(scope.logo_svg)"></div>
+          <div class="logo_svg" *ngIf="scope.logo_svg"
+            [innerHTML]="this.sanitizer.bypassSecurityTrustHtml(scope.logo_svg)"></div>
 
+        </button>
+      </h2>
+      <div id="collapseConfig{{ id }}" class="accordion-collapse collapse" [attr.aria-labelledby]="'config'+id"
+        data-bs-parent="#globalOverview">
+        <div class="accordion-body text-vscode bg-vscode">
+          <button class="btn btn-warning mb-3" type="button" data-bs-toggle="collapse"
+            [attr.data-bs-target]="'#togglingConfig' + id" aria-expanded="false"
+            [attr.aria-controls]="'togglingConfig' + id">
+            Toogle Config
           </button>
-        </h2>
-        <div
-          id="collapseConfig{{ id }}"
-          class="accordion-collapse collapse"
-          aria-labelledby="config"
-          [attr.data-bs-parent]="'#config' + id"
-        >
-          <div class="accordion-body text-vscode bg-vscode">
-            <button class="btn btn-warning mb-3" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#togglingConfig' + id" aria-expanded="false" [attr.aria-controls]="'#togglingConfig' + id">
-              Toogle Config
-            </button>
           <div class="collapse" id="togglingConfig{{ id }}">
             <div class="card card-body border-warning mb-3 text-vscode bg-vscode">
-              <app-scope
-              [scope]="scope"
-              (onClickSave)="updateScope($event)"
-            ></app-scope>
+              <app-scope [scope]="scope" (onClickSave)="updateScope($event)"></app-scope>
 
-            <app-scope-config
-              [id]="id"
-              [scopeConfig]="this.scopeConfig?.[scope.id]"
-              [scope]="scope"
-              (onClickSave)="saveConfig($event)"
-            ></app-scope-config>
+              <app-scope-config [id]="id" [scopeConfig]="this.scopeConfig?.[scope.id]" [scope]="scope"
+                (onClickSave)="saveConfig($event)"></app-scope-config>
             </div>
           </div>
 
 
-            <app-rules-list
-              [id]="id"
-              [rules]="this.rules?.[scope.id]"
-              [scope]="scope"
-              [redirectTypes]="redirectTypes"
-              (onEmitChangeSaveRule)="saveRule($event)"
-              (onEmitUpdateRulesPositions)="saveRulesPositions($event)"
-            ></app-rules-list>
-          </div>
+          <app-rules-list [id]="id" [rules]="this.rules?.[scope.id]" [scope]="scope" [redirectTypes]="redirectTypes"
+            (onEmitChangeSaveRule)="saveRule($event)" (onEmitUpdateRulesPositions)="saveRulesPositions($event)">
+          </app-rules-list>
         </div>
       </div>
-    </smooth-dnd-draggable>
-    <!-- !loop scopes here -->
-  </smooth-dnd-container>
+    </div>
+  </smooth-dnd-draggable>
+  <!-- !loop scopes here -->
+</smooth-dnd-container>

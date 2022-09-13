@@ -14,7 +14,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "smooth-dnd"
+              "smooth-dnd", "popper"
            ],
             "outputPath": "dist/htaccess-maker",
             "index": "src/index.html",
@@ -35,7 +35,6 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/@popperjs/core/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
