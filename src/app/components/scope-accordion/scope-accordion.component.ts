@@ -8,6 +8,7 @@ import { Button } from 'bootstrap';
   templateUrl: './scope-accordion.component.html',
   styleUrls: ['./scope-accordion.component.css']
 })
+// https://stackoverflow.com/questions/70159067/angular-bootstrap-accordion-animation-is-not-working-on-close-in-production/70927699#70927699
 export class ScopeAccordionComponent {
   @Input() scopes:any;
   @Input() scopeConfig:any = {
