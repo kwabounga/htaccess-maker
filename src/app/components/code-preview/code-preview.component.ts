@@ -3,7 +3,8 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-code-preview',
   templateUrl: './code-preview.component.html',
-  styleUrls: ['./code-preview.component.css']
+  styleUrls: ['./code-preview.component.css'],
+  host: {'class': 'full-h'}
 })
 export class CodePreviewComponent implements OnInit {
   @Input() preview?:string='';

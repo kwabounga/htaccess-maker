@@ -24,6 +24,9 @@ body {
   .code-preview{
     width: calc(100% - 2em); 
   }
+  .col-lg-6 .code-preview{
+    width: 100%; 
+  }
 }
 .code-preview{
   max-height: calc(100% - 9em); 
@@ -32,4 +35,15 @@ body {
   .code-preview{
     max-height: calc(100% - 9em); 
   }
+}
+@media (min-width: 992px){
+  .full-h {
+    height: -webkit-fill-available;
+  }
+  .full-h-3{
+    height: calc(100% - 3em);
+  }
+  .col-lg-6 .code-preview {
+    max-height: calc(100% - 3.8rem);
+}
 }
