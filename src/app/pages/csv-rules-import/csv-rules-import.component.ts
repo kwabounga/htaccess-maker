@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ChangeDetectorRef,ViewChild,ElementRef  } fro
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
-import { RedirectType, Scope, Rule } from 'src/app/interfaces/interfaces';
+import { RedirectType, Scope, Rule, ScopeConfig } from 'src/app/interfaces/interfaces';
 import { ruleSortByOrigin, ruleSortById } from 'src/app/utils/utils';
 import { ElectronService } from 'ngx-electron';
 import { CsvMakerService } from 'src/app/services/csv-maker.service';
@@ -66,6 +66,7 @@ export class CsvRulesImportComponent implements OnInit {
    */
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
+    
     console.log(this.redirectTypes)
 
   }
@@ -110,11 +111,19 @@ export class CsvRulesImportComponent implements OnInit {
   /**
    * give a csv file sample
    */
-  downloadCsvSample() {
-    const sample = `magento_scope_id;redirect_type;origin;target;
-2;permanent;/test.html;www.test.com;
-5;temporary;/test.html;www.test.com/test.html;
-`;
+   async generateSampleFile() {
+    let sample = `magento_scope_id;redirect_type;origin;target;\n`;
+    let scopes:Scope[] = await this.dataSrv.getScopesAll();
+    for(const scope of scopes){
+      console.log('scope',scope)
+      let scopeConfig:ScopeConfig = await this.dataSrv.getScopesConfigById(scope.id);
+      sample += `${scope.magento_scope_id};perm;/sample;${scopeConfig.condition};\n`;
+    }
+    return sample;
+  }
+
+  async downloadCsvSample() {
+    let sample = await this.generateSampleFile();
     this.fileStuffSrv.exportFile('sample.csv', sample);
   }
 
@@ -194,7 +203,7 @@ export class CsvRulesImportComponent implements OnInit {
           "302E": 4,
         };
         let l = line.split(';');
-        let s: Scope = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope)=>{
+        let s: Scope = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope) => {
           console.log('scope',scope)
           return scope;
         });

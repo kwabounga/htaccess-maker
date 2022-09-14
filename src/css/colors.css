@@ -225,3 +225,9 @@ textarea.form-control {
 .form-select-vscode{
   border-radius: 0;
 }
+.tooltip {
+  border: solid 1px  #d4d4d4;
+}
+.tooltip-inner{
+
+}
