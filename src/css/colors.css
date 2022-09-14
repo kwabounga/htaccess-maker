@@ -24,6 +24,9 @@ footer {
 .text-vscode {
   color: #d4d4d4!important;
 }
+.text-vscode-alt {
+  color: #dfdbdb!important;
+}
 .bg-overview {
   background-color: #eff8ff !important;
   background: linear-gradient(0deg, rgba(239, 248, 255, 1) 0%, rgba(239, 248, 255, 1) 90%, rgba(255, 255, 255, 1) 100%);
@@ -74,6 +77,7 @@ a.nav-link {
 .bg-danger>a.nav-link.text-light.active {
   color: #696969 !important;
 }
+
 .code-preview{
   border: solid 1px #d4d4d455;
   border-radius:.2rem;
@@ -155,12 +159,14 @@ textarea.form-control {
   color: #d4d4d4;
   background-color: rgb(59, 59, 59);
 }
+.accordion-button:focus,
+.form-select-vscode:focus,
 .form-control:focus {
   color: #d4d4d455;
   background-color: rgb(45, 45, 45);
   border-color: #a3a3a3;
   outline: 0;
-  box-shadow: 0 0 0 .25rem rgba(194, 194, 194, 0.25);
+  box-shadow: none;
 }
 .form-select-vscode {
   color: #a3a3a388;
@@ -170,23 +176,52 @@ textarea.form-control {
   background-position: right .75rem center;
   background-size: 16px 12px;
   border: 1px solid #ced4da;
-  border-radius: .25rem;
+  border-color: rgb(30, 30, 30);
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-.accordion-button:focus,
+
+/* .accordion-button:focus,
 .form-select-vscode:focus {
   border-color: #a3a3a3;
   outline: 0;
   box-shadow: 0 0 0 .25rem rgba(194, 194, 194, 0.25);
-}
+} */
 .form-select-vscode:focus>option:checked {
   background-color: rgb(88, 88, 88);
 }
-/* https://stackoverflow.com/questions/61232273/how-to-change-the-background-color-of-a-select-option-on-hover
-option:hover,
-option:checked,
-option:active,
-option:focus {
+.form-check-input-vscode:checked {
   background-color: rgb(88, 88, 88);
+  border-color: rgb(88, 88, 88);
 }
-*/
+.form-check-input:focus {
+  border-color: rgb(109, 109, 109);
+  outline: 0;
+  box-shadow: none
+}
+.btn-outline-vscode,
+.input-group-text {
+  border-color: rgb(30, 30, 30);
+  
+}
+.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  border: solid 1px  #1e1e1e;
+  
+}
+
+.input-group-sm>.btn, .input-group-sm>.form-control, .input-group-sm>.form-select, .input-group-sm>.input-group-text {
+  border-radius: 0;
+}
+.form-check {
+  margin-bottom: 0;
+}
+.form-control-vscode {
+  border-radius: 0;
+}
+.card {
+  border-radius: 0;
+}
+.card-vscode,
+.form-control-vscode,
+.form-select-vscode{
+  border-radius: 0;
+}

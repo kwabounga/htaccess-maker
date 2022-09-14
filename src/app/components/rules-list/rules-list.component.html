@@ -1,4 +1,4 @@
-<div class="card text-vscode bg-vscode mb-3 shadow-sm  border border-primary">
+<div class="card card-vscode text-vscode bg-vscode mb-3 shadow-sm  border border-primary">
   <div class="card-header">Rules:</div>
   <div class="card-body p-2">
     <!-- Button trigger modal -->
@@ -24,7 +24,7 @@
   aria-hidden="true"
 >
   <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
-    <div class="modal-content">
+    <div class="modal-content bg-vscode text-vscode">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_label_{{ scope.id }}">Rules for {{ scope.label }}</h5>
         <button
@@ -35,8 +35,8 @@
         ></button>
       </div>
       <div class="modal-body">
-        <input class="form-control form-control-sm mb-3" type="text" placeholder="search" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
-        <ul class="list-group border blocked-size-max">
+        <input class="form-control form-control-sm form-control-vscode mb-3" type="text" placeholder="search" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
+        <ul class="list-group">
           <smooth-dnd-container
             [dragClass]="'opacity-ghost'"
             [lockAxis]="'y'"

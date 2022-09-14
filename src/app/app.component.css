@@ -18,4 +18,8 @@ header, .shortcuts {
   display: flex;
   flex-direction:column
 }
-
+.app-title{
+  order: 1;
+  margin-right: calc(50% - 6.5em);
+  padding-top: .2rem;
+}

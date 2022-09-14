@@ -3,7 +3,7 @@
   <!-- loop scopes here -->
 
   <smooth-dnd-draggable *ngFor="let scope of this?.scopes; let id = index">
-    <div class="accordion-item draggable-item bg-vscode text-vscode">
+    <div class="accordion-item draggable-item bg-vscode text-vscode accordion-middle">
       <h2 class="accordion-header {{
             id % 2 == 0 ? 'alt' : ''
           }}  {{isOpen?'':'column-drag-handle'}} " id="config{{ id }}">
@@ -26,7 +26,7 @@
             Toogle Config
           </button>
           <div class="collapse" id="togglingConfig{{ id }}">
-            <div class="card card-body border-warning mb-3 text-vscode bg-vscode">
+            <div class="card card-vscode card-body border-warning mb-3 text-vscode bg-vscode">
               <app-scope [scope]="scope" (onClickSave)="updateScope($event)"></app-scope>
 
               <app-scope-config [id]="id" [scopeConfig]="this.scopeConfig?.[scope.id]" [scope]="scope"

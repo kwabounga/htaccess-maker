@@ -7,9 +7,9 @@
       <select name="redirect_types" class="form-select form-select-vscode form-select form-select--sm " title="Type de Redirection" [(ngModel)]="rule.redirect_type_id" disabled>
         <option *ngFor="let redType of redirectTypes" [ngValue]="redType.id">{{redType.label | uppercase}}</option>
       </select>
-      <input type="text" class="form-control  form-control-sm w-25" aria-label="origin" title="origin"
+      <input type="text" class="form-control form-control-vscode  form-control-sm w-25" aria-label="origin" title="origin"
       [(ngModel)]="rule.origin" name="origin" disabled>
-      <input type=" text" class="form-control form-control-sm w-50" aria-label="target" title="target"
+      <input type=" text" class="form-control form-control-vscode form-control-sm w-50" aria-label="target" title="target"
       [(ngModel)]="rule.target" name="target" disabled>
       <!-- <button class="btn btn-outline-secondary btn-sm"  type="button" id="button_wrapper_save_{{id}}_{{idr}}"(click)="changeSave(toBeDeleted)">{{(toBeDeleted?icons.iconDelete:(toBeSaved?icons.iconRefresh:icons.iconCheck))}}</button> -->
   </div>

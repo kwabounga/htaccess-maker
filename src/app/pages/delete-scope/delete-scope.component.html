@@ -29,7 +29,7 @@
   aria-hidden="true"
 >
   <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
-    <div class="modal-content">
+    <div class="modal-content bg-vscode text-vscode">
       <div class="modal-header">
         <h5 class="modal-title" id="deleteModalLabel">Delete {{this?.scopeSelectedName}} Scope</h5>
         <button
@@ -40,14 +40,14 @@
         ></button>
       </div>
       <div class="modal-body">
-        Are you sure you want to delete the {{this?.scopeSelectedName}} ??
+        Are you sure you want to delete the <span class="text-danger">{{this?.scopeSelectedName}}</span> ??
         <p>this will delete all the rules linked to this scope, as well as the associated configuration</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button type="button" class="btn btn-danger mt-2"  data-bs-dismiss="modal" (click)="deleteScopeConfig()">
+        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" (click)="deleteScopeConfig()">
             Yes a want to delete {{this?.scopeSelectedName}} All informations
         </button>
       </div>

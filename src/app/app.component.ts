@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   host: {'class': 'app-root'}
 })
 export class AppComponent {
-  
+  appTitle:string ="htaccess maker";
   routingInfos:any = [
     {
       label:'Manage',

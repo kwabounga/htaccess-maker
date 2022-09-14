@@ -3,14 +3,14 @@
   <div class="mb-3 mt-3">
     <div class="input-group">
       <button class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample">Télécharger  le csv</button>
-      <input type="text" class="form-control" placeholder="scope_id; redirect_type; origin; target;" aria-label="" aria-describedby="downlad_sample" disabled>
+      <input type="text" class="form-control form-control-vscode" placeholder="scope_id; redirect_type; origin; target;" aria-label="" aria-describedby="downlad_sample" disabled>
     </div>
   </div>
   <div class="mb-3">
     <label for="fileUpload" class="form-label">Ou Importer directement le csv:</label>
     <input
       type="file"
-      class="form-control"
+      class="form-control form-control-vscode"
       id="fileUpload"
       (change)="onFileSelected($event)"
       #fileUpload
