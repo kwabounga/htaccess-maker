@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, Output,EventEmitter,AfterViewInit,ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, Output,EventEmitter,ElementRef, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
 import { applyDrag } from '../../utils/utils';
 import { Button } from 'bootstrap';
 
@@ -9,7 +8,7 @@ import { Button } from 'bootstrap';
   templateUrl: './scope-accordion.component.html',
   styleUrls: ['./scope-accordion.component.css']
 })
-export class ScopeAccordionComponent implements OnInit,AfterViewInit {
+export class ScopeAccordionComponent {
   @Input() scopes:any;
   @Input() scopeConfig:any = {
     label: "",
@@ -30,24 +29,9 @@ export class ScopeAccordionComponent implements OnInit,AfterViewInit {
   @ViewChild('btnAcc') btn!:ElementRef;
   constructor(protected sanitizer: DomSanitizer, private elem: ElementRef) { }
 
-  ngOnInit(): void {
-  }
-  ngAfterViewInit(){
-    /* let btnTriggers = this.elem.nativeElement.querySelectorAll('.accordion-button')
-    console.log(btnTriggers)
 
-    this.btnAccordion = btnTriggers.call().map((btnTrigger:any)=>{
-      console.log(btnTrigger)
-      return new Button(btnTrigger);
-    }) */
-
-  }
   clickBtn(event:any){
     this.isOpen=!this.isOpen
-    console.log(event.path[0])
-    /* this.btnAccordion = new Button(event.path[0])
-    console.log(this.btnAccordion)
-    this.btnAccordion.toggle() */
   }
   saveConfig(event:any){
     this.onConfig.emit(event)
