@@ -23,17 +23,28 @@ h1::before {
 .btn {
   border-radius: 0;
 }
+
 .app-bar {
   position:relative;
   display:flex;
   flex-direction: row-reverse;
   -webkit-user-select: none;
   -webkit-app-region: drag;
+
+}
+.app-bar .logo {
+      --logo-size: 1.5rem;
+      --pad-size: .3rem;
+      /* position: absolute; */
+      order: 2;
+      height: calc(var(--logo-size) - var(--pad-size));
+      width: calc(var(--logo-size) - var(--pad-size));
+      margin: var(--pad-size);
+      margin-right: auto;
+      margin-left: 1.3rem;
   background: transparent url("../assets/icons/icon_68.png") no-repeat border-box;
   background-size: contain;
-  background-position-x: .5rem;
 }
-
 .nav-tabs > .btn-close-custom {
   margin-left: auto;
 }

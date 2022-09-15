@@ -201,11 +201,10 @@ textarea.form-control {
 .btn-outline-vscode,
 .input-group-text {
   border-color: rgb(30, 30, 30);
-
 }
+
 .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
   border: solid 1px  #1e1e1e;
-
 }
 
 .input-group-sm>.btn, .input-group-sm>.form-control, .input-group-sm>.form-select, .input-group-sm>.input-group-text {
