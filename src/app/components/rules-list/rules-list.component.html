@@ -67,7 +67,12 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
-        <button *ngIf="this.ruleFilter == ''" type="button" class="btn btn-primary" (click)="updateRulesPositions()">Save Positions Change</button>
+        <button *ngIf="this.ruleFilter == '' && !updateRulesPositionProgress" type="button" class="btn btn-primary" (click)="updateRulesPositions()">Save Positions Change</button>
+        <button *ngIf="this.ruleFilter == '' && updateRulesPositionProgress" type="button" class="btn btn-primary" (click)="updateRulesPositions()">
+          <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Saving Positions ...
+        </button>
+
       </div>
     </div>
   </div>

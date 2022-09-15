@@ -33,12 +33,14 @@ h1::before {
 
 }
 .app-bar .logo {
-      --logo-size: 1.5rem;
-      --pad-size: .3rem;
+      --logo-size: 1.6rem;
+      --pad-size: .4rem;
       /* position: absolute; */
       order: 2;
       height: calc(var(--logo-size) - var(--pad-size));
       width: calc(var(--logo-size) - var(--pad-size));
+      min-height: calc(var(--logo-size) - var(--pad-size));
+      min-width: calc(var(--logo-size) - var(--pad-size));
       margin: var(--pad-size);
       margin-right: auto;
       margin-left: 1.3rem;
@@ -54,7 +56,7 @@ h1::before {
   height: 1em;
   color: #000;
   border: 0;
-  opacity: .5;
+  opacity: .8;
   padding: .5rem 1rem;
   -webkit-app-region: no-drag;
  /*  position:absolute;
@@ -77,4 +79,13 @@ h1::before {
 .accordion-middle:last-of-type .accordion-collapse,
 .accordion-middle {
   border-radius: 0!important;
+}
+
+.modal-header {
+  border-top-left-radius: 0!important;
+  border-top-right-radius: 0!important;
+}
+.modal-footer {
+  border-bottom-right-radius: 0!important;
+  border-bottom-left-radius: 0!important;
 }

@@ -21,4 +21,7 @@ export class SidebarButtonComponent implements AfterViewInit {
     let tooltipTrigger = this.elem.nativeElement.querySelector('[data-bs-toggle="tooltip"]')
     this.tooltipElement = new Tooltip(tooltipTrigger);
   }
+  hideTooltip(){
+    this.tooltipElement.hide()
+  }
 }

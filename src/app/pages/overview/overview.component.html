@@ -37,6 +37,7 @@
     [scopes]="this?.scopes"
     [redirectTypes]="this?.redirectTypes"
     [scopeConfig]="this?.scopeConfig"
+    [updateRulesPositionProgress]="this.updateRulesPositionProgress"
     (onConfig)="updateScopeConfig($event)"
     (onRule)="saveRule($event)"
     (onRulesPositions)="updateRulesPositions($event)"

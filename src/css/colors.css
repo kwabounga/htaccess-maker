@@ -246,3 +246,9 @@ textarea.form-control {
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
   border-right-color: #000000;
 }
+.modal-header {
+  border-bottom: 1px solid #807c7c;
+}
+.modal-footer {
+  border-top: 1px solid #807c7c;
+}

@@ -1,5 +1,12 @@
 .alert.alert-dismissible {
   position: absolute;
-  width: calc(100% - 2.5rem);
+  width: 100%;
   z-index: 9999;
+  top:0;
+  left:0;
+  border-radius: 0;
+  padding: .3rem;
+}
+.alert.alert-dismissible button.btn-close{
+  padding: .55rem .75rem;
 }

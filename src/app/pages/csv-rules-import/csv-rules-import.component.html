@@ -2,7 +2,8 @@
   <h1>Import csv</h1>
   <div class="mb-3 mt-3">
     <div class="input-group">
-      <button class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample">Télécharger  le csv</button>
+      <button *ngIf="!this.CsvGenerationProgress"class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample">Télécharger  le csv</button>
+      <button *ngIf="this.CsvGenerationProgress" class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Génération du csv</button>
       <input type="text" class="form-control form-control-vscode" placeholder="scope_id; redirect_type; origin; target;" aria-label="" aria-describedby="downlad_sample" disabled>
     </div>
   </div>

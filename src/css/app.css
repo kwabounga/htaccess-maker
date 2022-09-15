@@ -9,9 +9,10 @@
 }
 footer {
     -webkit-user-select: none;
-    height: 22px;
+    height: 24px;
     font-family: Consolas, "Courier New", monospace;
     padding: 1px 20px;
     display:flex;
     font-size: small;
+    z-index:999;
 }

@@ -11,6 +11,7 @@ export class RulesListComponent implements OnInit {
   ruleFilter:string = '';
   @Input() scope:any;
   @Input() redirectTypes:any;
+  @Input() updateRulesPositionProgress?:boolean;
   @Output()
   onEmitChangeSaveRule = new EventEmitter<any>();
   @Output()

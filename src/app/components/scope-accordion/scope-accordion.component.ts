@@ -27,6 +27,7 @@ export class ScopeAccordionComponent {
   @Output() onScopesPosition = new EventEmitter();
   btnAccordion?: Button;
   isOpen = false;
+  @Input()updateRulesPositionProgress?: boolean;
   @ViewChild('btnAcc') btn!:ElementRef;
   constructor(protected sanitizer: DomSanitizer, private elem: ElementRef) { }
 

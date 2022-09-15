@@ -29,6 +29,7 @@ export class CsvRulesImportComponent implements OnInit {
   progressCount: number;
   rulesChecked = false;
   checkInProgress = false;
+  CsvGenerationProgress = false;
   csv: any;
   redirectTypes: any = {};
   redToBeSaved: any[] = [];
@@ -66,7 +67,7 @@ export class CsvRulesImportComponent implements OnInit {
    */
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
-    
+
     console.log(this.redirectTypes)
 
   }
@@ -123,8 +124,12 @@ export class CsvRulesImportComponent implements OnInit {
   }
 
   async downloadCsvSample() {
+    this.CsvGenerationProgress = true;
     let sample = await this.generateSampleFile();
     this.fileStuffSrv.exportFile('sample.csv', sample);
+    setTimeout(()=>{
+      this.CsvGenerationProgress = false;
+    },1000)
   }
 
   /**

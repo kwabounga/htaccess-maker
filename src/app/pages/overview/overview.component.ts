@@ -1,10 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit  } from '@angular/core';
-import { ContainerComponent, DraggableComponent } from 'ngx-smooth-dnd';
-import { applyDrag } from '../../utils/utils';
-import { DataMockService } from 'src/app/services/data-mock.service';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { AlertComponent } from 'src/app/components/alert/alert.component';
-import { Collapse } from 'bootstrap';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -32,6 +28,8 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
   };
   scopes:any;
   specialRules:any;
+
+  updateRulesPositionProgress:boolean = false;
 //   ngAfterViewInit(){
 //     var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
 //     var collapseList = collapseElementList.map(function (collapseEl) {
@@ -136,6 +134,7 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
     console.log('updateScopeConfig',event.scopeConfig)
     this.dataSrv.updateScopeConfig(event.scopeConfig).then((response)=>{
       console.log('scope updated', response)
+      this.alertRef.openAlert('success', 'scope config updated!', 2000);
     })
   }
   /**
@@ -144,12 +143,12 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
    * @param dropResult  the rules for rearrange the array
    */
    updateScopesPositions(event:any) {
+
     console.log(event)
-    // this.scopes = applyDrag(this.scopes, dropResult);
-    // console.log('update ScopesCOnfig');
+
     this.dataSrv.updateScopesPosition(event).then((response)=>{
       console.log('scope position updated',response)
-      // this.scopes
+      this.alertRef.openAlert('success', 'scope position updated!');
     })
   }
 
@@ -158,9 +157,18 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
    * @param {any[]} event an array of Rules from EventEmitter
    */
   updateRulesPositions(event:any) {
+
+    this.updateRulesPositionProgress = true;
     console.log('updateRulesPositions',event);
+
     this.dataSrv.updateRulesPosition(event).then((response)=>{
+
       console.log('rules position updated',response)
+      setTimeout(()=>{
+        this.updateRulesPositionProgress = false;
+        this.alertRef.openAlert('success', 'rule position saved!', 2000);
+      },1000)
+
     })
 
   }

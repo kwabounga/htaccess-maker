@@ -36,7 +36,7 @@
 
 
           <app-rules-list [id]="id" [rules]="this.rules?.[scope.id]" [scope]="scope" [redirectTypes]="redirectTypes"
-            (onEmitChangeSaveRule)="saveRule($event)" (onEmitUpdateRulesPositions)="saveRulesPositions($event)">
+            (onEmitChangeSaveRule)="saveRule($event)" (onEmitUpdateRulesPositions)="saveRulesPositions($event)" [updateRulesPositionProgress]="updateRulesPositionProgress">
           </app-rules-list>
         </div>
       </div>
