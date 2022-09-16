@@ -1,5 +1,7 @@
 /* commons */
-
+:focus-visible {
+  outline: none!important;
+}
 body {
   background-color: #3c3c3c;
 }

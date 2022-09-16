@@ -23,6 +23,7 @@ import { RuleLineBadRedirectionComponent } from './components/rule-line-bad-redi
 import { SidebarButtonComponent } from './components/commons/sidebar-button/sidebar-button.component';
 import { FooterComponent } from './components/commons/footer/footer.component';
 import { MiniButtonComponent } from './components/commons/mini-button/mini-button.component';
+import { SliderComponent } from './components/commons/slider/slider.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { MiniButtonComponent } from './components/commons/mini-button/mini-butto
     RuleLineBadRedirectionComponent,
     SidebarButtonComponent,
     FooterComponent,
-    MiniButtonComponent
+    MiniButtonComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,

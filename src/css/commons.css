@@ -20,6 +20,12 @@ h1::after,
 h1::before {
   content: ' :: '
 }
+h1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 3rem);
+  overflow: hidden;
+}
 .btn {
   border-radius: 0;
 }
@@ -88,4 +94,8 @@ h1::before {
 .modal-footer {
   border-bottom-right-radius: 0!important;
   border-bottom-left-radius: 0!important;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
 }
