@@ -254,3 +254,7 @@ textarea.form-control {
 .modal-footer {
   border-top: 1px solid #807c7c;
 }
+.offcanvas {
+  background-color: rgb(41, 41, 41);
+  color:rgb(109, 109, 109);
+}

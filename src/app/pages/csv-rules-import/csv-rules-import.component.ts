@@ -11,6 +11,7 @@ import { AppEvent } from 'src/app/events/AppEvent';
 import { AppEventType } from 'src/app/types/AppEventType';
 import { NotifyEvent } from 'src/app/events/NotifyEvent';
 import { ClearNotificationEvent } from 'src/app/events/ClearNotificationEvent';
+import { LoggerService } from 'src/app/services/logger.service';
 
 /* import { HttpClient } from '@angular/common/http'; */
 
@@ -52,7 +53,8 @@ export class CsvRulesImportComponent implements OnInit {
     private electronSrv: ElectronService,
     private ref: ChangeDetectorRef,
     private csvSrv : CsvMakerService,
-    private eventQueueSrv: EventQueueService
+    private eventQueueSrv: EventQueueService,
+    private logger: LoggerService,
   ) {
     this.has_ipc = this.electronSrv.isElectronApp;
     this.csv = '';
@@ -76,7 +78,8 @@ export class CsvRulesImportComponent implements OnInit {
   // https://www.geeksforgeeks.org/drag-and-drop-files-in-electronjs/
   dragEnter(event:any){
     console.log('File is in the Drop Space');
-    this.eventQueueSrv.dispatch(new NotifyEvent('File is in the Drop Space'));
+    // this.eventQueueSrv.dispatch(new NotifyEvent('File is in the Drop Space'));
+    this.logger.log('File is in the Drop Space');
   }
   dragLeave(event:any){
     console.log('File has left the Drop Space');

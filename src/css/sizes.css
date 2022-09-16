@@ -45,5 +45,9 @@ body {
   }
   .col-lg-6 .code-preview {
     max-height: calc(100% - 3.8rem);
+  }
 }
+
+.offcanvas-end {
+  width: 50%;
 }

@@ -1,5 +1,7 @@
 import { Component, ElementRef, HostBinding, HostListener } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { Offcanvas } from 'bootstrap';
+import { filter } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +9,13 @@ import { Offcanvas } from 'bootstrap';
   host: {'class': 'app-root'}
 })
 export class AppComponent {
-  constructor(private elem: ElementRef) { }
+  constructor(private elem: ElementRef, private router: Router) {
+    this.router.events
+    .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+    .subscribe((e)=>{
+        this.elem.nativeElement.focus();
+    })
+   }
   routingInfos:any = [
     {
       label:'Manage',
