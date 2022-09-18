@@ -24,7 +24,7 @@
 
 <!--  to be checked  -->
   <ul
-    class="list-group border blocked-size-max mb-3"
+    class="list-group  blocked-size-max mb-3"
     *ngIf="redToBeChecked.length > 0 && !rulesChecked"
   >
     <li
@@ -67,7 +67,7 @@
 
 <!--  to be saved  -->
   <ul
-    class="list-group border blocked-size-max mb-3 rules good text-center"
+    class="list-group  blocked-size-max mb-3 rules good text-center"
     *ngIf="redToBeSaved.length > 0 && rulesChecked"
   >
   UPLOAD
@@ -96,7 +96,7 @@ Upload Redirections
 </button>
 <!--  not good redirections  -->
 <ul
-    class="list-group border blocked-size-max mb-3 rules update text-center"
+    class="list-group  blocked-size-max mb-3 rules update text-center"
     *ngIf="redToBeUpdated.length > 0 && rulesChecked"
   >
   UPDATE
@@ -126,7 +126,7 @@ Update Redirections
 </button>
 <!--  not good redirections  -->
 <ul
-    class="list-group border blocked-size-max mb-3 rules bad text-center"
+    class="list-group  blocked-size-max mb-3 rules bad text-center"
     *ngIf="badRedirections.length > 0 && rulesChecked"
   >
   ERROR
