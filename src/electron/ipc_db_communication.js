@@ -211,6 +211,16 @@ const addGetEventsDelete = (ipcMain) => {
   })
 }
 /**
+ * Reason Codes
+ */
+const RC = {
+  HARDLOOP:333,
+  EXISTYET:111,
+  SOFTLOOP:322,
+  UNKNOWN:500,
+}
+
+/**
  *
  * @param {Electron.ipcMain} ipcMain
  */
@@ -231,7 +241,7 @@ const addGetEventsCheck = (ipcMain) => {
         let rTar = (tUrl.slice(-1) == '/')?tUrl.slice(0,-1):tUrl;
 
         if(rOri == rTar){
-          e.sender.send(channel, { ok: false, rule: rule, reason: `ERROR with the rule (origin '${rule.origin}'): the target '${rule.target}' redirect to the origin (HARD LOOP)`, reason_code: 3, channel: channel });
+          e.sender.send(channel, { ok: false, rule: rule, reason: `ERROR with the rule (origin '${rule.origin}'): the target '${rule.target}' redirect to the origin (HARD LOOP)`, reason_code: RC.HARDLOOP, channel: channel });
         }
       }
 
@@ -257,23 +267,23 @@ const addGetEventsCheck = (ipcMain) => {
                         e.sender.send(channel, { ok: false, rule: rule, reason: `the target '${rule.target}' of the rule with origin '${rule.origin}' does not exist`, reason_code: response_code, channel: channel });
                       }
                     }).catch((error) => {
-                      e.sender.send(channel, { ok: false, rule: rule, reason: error.message, reason_code: 500, channel: channel });
+                      e.sender.send(channel, { ok: false, rule: rule, reason: error.message, reason_code: RC.UNKNOWN, channel: channel });
                     })
                 } else {
                   // is already redirected
-                  e.sender.send(channel, { ok: false, rule: rule, reason: `error with the rule (origin '${rule.origin}'): the target '${rule.target}' is already redirected (soft loop)`, reason_code: 2, channel: channel });
+                  e.sender.send(channel, { ok: false, rule: rule, reason: `error with the rule (origin '${rule.origin}'): the target '${rule.target}' is already redirected (soft loop)`, reason_code: RC.SOFTLOOP, channel: channel });
                 }
               })
 
           } else {
-            // the origin already exist
-            e.sender.send(channel, { ok: false, rule: rule, registered_rules: rows, reason: `the rule with origin '${rule.origin}' already exist`, reason_code: 1, channel: channel });
+            // the origin already exist : update
+            e.sender.send(channel, { ok: false, rule: rule, registered_rules: rows, reason: `the rule with origin '${rule.origin}' already exist`, reason_code: RC.EXISTYET, channel: channel });
           }
 
         })
         .catch(function (error) {
           console.log(error);
-          e.sender.send(channel, { ok: false, rule: rule, reason: error.message, reason_code: 500, channel: channel });
+          e.sender.send(channel, { ok: false, rule: rule, reason: error.message, reason_code: RC.UNKNOWN, channel: channel });
         });
       id++;
     }

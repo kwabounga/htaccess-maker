@@ -12,6 +12,7 @@ import { AppEventType } from 'src/app/types/AppEventType';
 import { NotifyEvent } from 'src/app/events/NotifyEvent';
 import { ClearNotificationEvent } from 'src/app/events/ClearNotificationEvent';
 import { LoggerService } from 'src/app/services/logger.service';
+import { ConstantsService } from 'src/app/services/constants.service';
 
 /* import { HttpClient } from '@angular/common/http'; */
 
@@ -33,6 +34,7 @@ export class CsvRulesImportComponent implements OnInit {
   CsvGenerationProgress = false;
   csv: any;
   redirectTypes: any = {};
+  scopesRefs: any = {};
   redToBeSaved: any[] = [];
   redToBeUpdated: any[] = [];
   badRedirections: any[] = [];
@@ -55,6 +57,7 @@ export class CsvRulesImportComponent implements OnInit {
     private csvSrv : CsvMakerService,
     private eventQueueSrv: EventQueueService,
     private logger: LoggerService,
+    private constants : ConstantsService,
   ) {
     this.has_ipc = this.electronSrv.isElectronApp;
     this.csv = '';
@@ -69,6 +72,7 @@ export class CsvRulesImportComponent implements OnInit {
    */
   async ngOnInit() {
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
+    this.scopesRefs = await this.dataSrv.getScopesAll();
 
     console.log(this.redirectTypes)
 
@@ -292,7 +296,7 @@ export class CsvRulesImportComponent implements OnInit {
       this.redToBeSaved.push(response.rule)
     }else{
       // rule KO
-      if(response.reason_code == 1){
+      if(response.reason_code == this.constants.RC.EXISTYET){
         this.redToBeUpdated.push(response)
       }else{
 

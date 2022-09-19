@@ -272,3 +272,32 @@ textarea.form-control {
 .form-select:disabled {
   background-color: rgb(59, 59, 59);
 }
+
+.reason_wrapper {
+
+}
+.reason_wrapper[code=rc_111] {
+  background-color: #ffa500;
+}
+.reason_wrapper[code=rc_333] {
+  background-color: #600081;
+  color:white;
+}
+.reason_wrapper[code=rc_322] {
+  background-color: #c400c9;
+  color:white;
+}
+.reason_wrapper[code=rc_404] {
+  background-color: #b80000;
+  color:white;
+}
+.reason_wrapper[code=rc_500] {
+  background-color: #000000;
+  color:white;
+}
+.reason{
+
+}
+.reason_value {
+
+}
