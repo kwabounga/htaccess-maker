@@ -12,7 +12,7 @@ import { AppEventType } from 'src/app/types/AppEventType';
 import { NotifyEvent } from 'src/app/events/NotifyEvent';
 import { ClearNotificationEvent } from 'src/app/events/ClearNotificationEvent';
 import { LoggerService } from 'src/app/services/logger.service';
-import { ConstantsService } from 'src/app/services/constants.service';
+import { Constants } from 'src/app/services/constants';
 
 /* import { HttpClient } from '@angular/common/http'; */
 
@@ -57,7 +57,6 @@ export class CsvRulesImportComponent implements OnInit {
     private csvSrv : CsvMakerService,
     private eventQueueSrv: EventQueueService,
     private logger: LoggerService,
-    private constants : ConstantsService,
   ) {
     this.has_ipc = this.electronSrv.isElectronApp;
     this.csv = '';
@@ -87,7 +86,8 @@ export class CsvRulesImportComponent implements OnInit {
   }
   dragLeave(event:any){
     console.log('File has left the Drop Space');
-    this.eventQueueSrv.dispatch(new ClearNotificationEvent());
+    this.logger.clear();
+    /* this.eventQueueSrv.dispatch(new ClearNotificationEvent()); */
   }
   dragOver(event:any){
     event.preventDefault();
@@ -148,7 +148,7 @@ export class CsvRulesImportComponent implements OnInit {
   }
   UpdateExistingRedirections() {
     console.log('UpdateExistingRedirections', this.redToBeUpdated);
-    this.dataSrv.updateRulesByImport(this.redToBeUpdated.map((obj)=>{
+    this.dataSrv.updateRulesByImport(this.redToBeUpdated.map((obj) => {
       return obj.rule;
     })).then((response)=>{
       console.log(response);
@@ -194,26 +194,19 @@ export class CsvRulesImportComponent implements OnInit {
       console.log('this.csv ok',this.csv)
       const notEmpty = (r: string) => r.trim() !== '';
       let tempArray = this.csv.split('\n');
-      tempArray.shift();
+      let csvHeader = tempArray.shift();
+      if(!this.checkCsvFormat(csvHeader)){
+        console.log('Please check the csv format');
+        return
+      }
       let redToBeProcessed = tempArray.filter(notEmpty);
 
       console.log('redToBeProcessed',redToBeProcessed);
       for (const line of redToBeProcessed) {
         console.log('line',line)
-        const red: any = {
-          perm: 1,
-          permanent: 1,
-          '301': 1,
-          temp: 2,
-          temporary: 2,
-          "302": 2,
-          permExact: 3,
-          permanentExact: 3,
-          "301E": 3,
-          tempExact: 4,
-          temporaryExact: 4,
-          "302E": 4,
-        };
+        /* get redirection alias from constants */
+        const red: any = Constants.RA;
+
         let l = line.split(';');
         let s: Scope = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope) => {
           console.log('scope',scope)
@@ -239,6 +232,28 @@ export class CsvRulesImportComponent implements OnInit {
       }
       console.log('this.redToBeChecked',this.redToBeChecked);
     }
+  }
+  checkCsvFormat(header:string):boolean {
+    //magento_scope_id;redirect_type;origin;target;
+    let headerOk = true;
+    let col = header.trim().split(';');
+    if(col[0] !== 'magento_scope_id'){
+      console.log(`the first column must be '${'magento_scope_id'}' current is '${col[0]}'`);
+      headerOk = false;
+    }
+    if(col[1] !== 'redirect_type'){
+      console.log(`the second column must be '${'magento_scope_id'}' current is '${col[1]}'`);
+      headerOk = false;
+    }
+    if(col[2] !== 'origin'){
+      console.log(`the thirth column must be '${'origin'}' current is '${col[2]}'`);
+      headerOk = false;
+    }
+    if(col[3] !== 'target'){
+      console.log(`the fourth column must be '${'target'}' current is '${col[4]}'`);
+      headerOk = false;
+    }
+    return headerOk;
   }
 
   /**
@@ -296,7 +311,7 @@ export class CsvRulesImportComponent implements OnInit {
       this.redToBeSaved.push(response.rule)
     }else{
       // rule KO
-      if(response.reason_code == this.constants.RC.EXISTYET){
+      if(response.reason_code == Constants.RC.EXISTYET){
         this.redToBeUpdated.push(response)
       }else{
 
