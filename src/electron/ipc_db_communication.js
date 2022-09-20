@@ -225,6 +225,17 @@ const RC = {
  * @param {Electron.ipcMain} ipcMain
  */
 const addGetEventsCheck = (ipcMain) => {
+  ipcMain.on("online:check", (e, scope_id) => {
+    console.log('online:check')
+    fetcher.testResponse('https://www.google.fr/').then((resp)=>{
+      console.log(resp)
+      e.sender.send("checked:online", { ok: true, resp });
+    }).catch((reason)=>{
+      e.sender.send("checked:online", { ok: false, reason });
+    })
+  })
+
+
   ipcMain.on("check:rules", (e, rules) => {
     console.log("check", rules);
     let id = 0;

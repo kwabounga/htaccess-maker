@@ -315,5 +315,16 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`footer:config:updated`, resolver)
     })
   }
+  async checkIfOnline ():Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`online:check`);
+      const resolver = (_event:any, response: any) => {
+        // console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`checked:online`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`checked:online`, resolver)
+    })
+  }
 
 }

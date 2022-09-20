@@ -74,6 +74,10 @@ export class CsvRulesImportComponent implements OnInit {
     this.scopesRefs = await this.dataSrv.getScopesAll();
 
     console.log(this.redirectTypes)
+    console.log(navigator.onLine)
+    this.dataSrv.checkIfOnline().then((response)=>{
+      console.log(response)
+    })
 
   }
 
