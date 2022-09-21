@@ -206,3 +206,101 @@ this.electronSrv.ipcRenderer.on(
 
 
 node 14.15.4
+
+
+## use electron-store
+
+`npm i electron-store`
+[electron-store](https://github.com/sindresorhus/electron-store)  
+```js
+const Store = require('electron-store');
+
+const store = new Store();
+
+store.set('unicorn', '🦄');
+console.log(store.get('unicorn'));
+//=> '🦄'
+
+// Use dot-notation to access nested properties
+store.set('foo.bar', true);
+console.log(store.get('foo'));
+//=> {bar: true}
+
+store.delete('unicorn');
+console.log(store.get('unicorn'));
+//=> undefined
+ ```
+
+ ### set schema
+
+ ```js
+ const Store = require('electron-store');
+const schema = {
+	foo: {
+		type: 'number',
+		maximum: 100,
+		minimum: 1,
+		default: 50
+	},
+	bar: {
+		type: 'string',
+		format: 'url'
+	}
+};
+
+const schema = {
+	app: {
+    type: "object",
+    properties: {
+      pos: {
+        type: "object",
+        properties: {
+          x: { 
+            type: "number",
+		        default: 150 
+            },
+          y: { 
+            type: "number",
+		        default: 150 
+            },
+        }
+      },
+      size: {
+        type: "object",
+        properties: {
+          width: { 
+            type: "number",
+		        default: 800 
+            },
+          height: { 
+            type: "number",
+		        default: 600 
+            },
+          minWidth: { 
+            type: "number",
+		        default: 400 
+            },
+          minHeight: { 
+            type: "number",
+		        default: 500 
+            }
+        }
+      },
+      theme: { 
+        enum: ["dark", "light"],
+		    default: "dark"  
+        }
+    }
+  }
+};
+
+const store = new Store({schema});
+
+console.log(store.get('foo'));
+//=> 50
+
+store.set('foo', '1');
+// [Error: Config schema violation: `foo` should be number]
+ 
+ ```
+

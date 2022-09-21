@@ -4,10 +4,10 @@
  *
  * @param {Electron.ipcMain} ipcMain
  */
-const addAppEvents = (ipcMain) => {
+const addAppEvents = (ipcMain,win) => {
 
   ipcMain.on("app:close", (e) => {
-    process.exit(0);
+    win.close();
   })
   
 }
