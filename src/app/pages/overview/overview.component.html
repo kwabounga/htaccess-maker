@@ -1,6 +1,6 @@
 <div class="page full-height bg-vscode-dark text-vscode">
   <app-alert #alert></app-alert>
-<h1>Gestion du fichier</h1>
+<h1><i18n [txt]="'Manage rules'"></i18n></h1>
 <div class="accordion shadow-sm" id="globalOverview">
   <div class="accordion-item">
     <h2 class="accordion-header" id="headerGlobalOverview">
@@ -12,7 +12,7 @@
         aria-controls="collapseHeaderGlobalOverview"
       >
       <img class="mr-2 svg-vs-code" src="assets/svg/header.svg" height="30px" width="30px">
-        Header config
+      <i18n [txt]="'%0 Config'" [val]="['Header']"></i18n>
       </button>
     </h2>
     <div
@@ -23,12 +23,11 @@
     >
       <div class="accordion-body text-vscode bg-vscode">
         <label for="headerConfigData" class="form-label"
-          >Modifier le contenu et cliquer sur enregistrer pour prendre en compte
-          les modifications</label
+          ><i18n [txt]="'Modify content then click on Save %0 Config'" [val]="['Header']"></i18n></label
         >
         <textarea class="form-control form-control-vscode" id="headerConfigData" rows="20" [(ngModel)]="this.headerData"></textarea>
         <button type="button" class="btn btn-primary mt-2"  (click)="saveHeaderConfig()">
-          Save Header Config
+          <i18n [txt]="'Save %0 Config'" [val]="['Header']"></i18n>
         </button>
       </div>
     </div>
@@ -56,7 +55,7 @@
         aria-controls="collapseFooterGlobalOverview"
       >
       <img class="mr-2 svg-vs-code" src="assets/svg/footer.svg" height="30px" width="30px">
-        Footer config
+      <i18n [txt]="'%0 Config'" [val]="['Footer']"></i18n>
       </button>
     </h2>
     <div
@@ -67,12 +66,11 @@
     >
       <div class="accordion-body text-vscode bg-vscode">
         <label for="footerConfigData" class="form-label"
-          >Modifier le contenu et cliquer sur enregistrer pour prendre en compte
-          les modifications</label
+          ><i18n [txt]="'Modify content then click on Save %0 Config'" [val]="['Footer']"></i18n></label
         >
         <textarea class="form-control form-control-vscode" id="footerConfigData" rows="20" [(ngModel)]="this.footerData"></textarea>
         <button type="button" class="btn btn-primary mt-2" (click)="saveFooterConfig()">
-          Save Footer Config
+          <i18n [txt]="'Save %0 Config'" [val]="['Footer']"></i18n>
         </button>
       </div>
     </div>

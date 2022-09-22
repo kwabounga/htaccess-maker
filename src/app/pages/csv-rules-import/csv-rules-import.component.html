@@ -1,14 +1,14 @@
 <div class="page full-height bg-vscode-dark text-vscode">
-  <h1>Import csv</h1>
+  <h1><i18n [txt]="'Import csv'"></i18n></h1>
   <div class="mb-3 mt-3">
     <div class="input-group">
-      <button *ngIf="!this.CsvGenerationProgress"class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample">Télécharger  le csv</button>
-      <button *ngIf="this.CsvGenerationProgress" class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Génération du csv</button>
+      <button *ngIf="!this.CsvGenerationProgress"class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample"><i18n [txt]="'Download csv file'"></i18n></button>
+      <button *ngIf="this.CsvGenerationProgress" class="btn btn-primary" type="button" (click)="downloadCsvSample()" id="downlad_sample"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span><i18n [txt]="'Csv is generating'"></i18n></button>
       <input type="text" class="form-control form-control-vscode" placeholder="scope_id; redirect_type; origin; target;" aria-label="" aria-describedby="downlad_sample" disabled>
     </div>
   </div>
   <div class="mb-3">
-    <label for="fileUpload" class="form-label">Ou Importer directement le csv:</label>
+    <label for="fileUpload" class="form-label"><i18n [txt]="'Or import the csv file directly:'"></i18n></label>
     <input
       type="file"
       class="form-control form-control-vscode"
@@ -19,6 +19,7 @@
       (dragenter)="dragEnter($event)"
       (dragleave)="dragLeave($event)"
       (drop)="onDrop($event)"
+      
     />
   </div>
 
@@ -62,7 +63,7 @@
     class="btn btn-primary mb-3"
     (click)="checkImport()"
   >
-    Check Redirections
+  <i18n [txt]="'Check Redirections'"></i18n>
   </button>
 
 <!--  to be saved  -->
@@ -70,7 +71,7 @@
     class="list-group  blocked-size-max mb-3 rules good text-center"
     *ngIf="redToBeSaved.length > 0 && rulesChecked"
   >
-  UPLOAD
+  <i18n [txt]="'UPLOADS'"></i18n>
   <li
       class="list-group-item"
       *ngFor="let rule of this?.redToBeSaved; let idr = index"
@@ -92,14 +93,14 @@ color="success"
 class="btn btn-success mb-3"
 (click)="uploadCsvRedirect()"
 >
-Upload Redirections
+<i18n [txt]="'Upload Redirections'"></i18n>
 </button>
 <!--  not good redirections  -->
 <ul
     class="list-group  blocked-size-max mb-3 rules update text-center"
     *ngIf="redToBeUpdated.length > 0 && rulesChecked"
   >
-  UPDATE
+  <i18n [txt]="'UPDATES'"></i18n>
   <li
       class="list-group-item"
       *ngFor="let bad of this?.redToBeUpdated; let idr = index"
@@ -123,14 +124,14 @@ Upload Redirections
   class="btn btn-warning mb-3"
   (click)="UpdateExistingRedirections()"
 >
-Update Redirections
+<i18n [txt]="'Update redirections'"></i18n>
 </button>
 <!--  not good redirections  -->
 <ul
     class="list-group  blocked-size-max mb-3 rules bad text-center"
     *ngIf="badRedirections.length > 0 && rulesChecked"
   >
-  ERROR
+  <i18n [txt]="'ERRORS'"></i18n>
   <li
       class="list-group-item"
       *ngFor="let bad of this?.badRedirections; let idr = index"
@@ -154,6 +155,6 @@ Update Redirections
   class="btn btn-danger mb-3"
   (click)="ExportBadRedirections()"
 >
-Export Bad Redirections
+<i18n [txt]="'Export Bad Redirections'"></i18n>
 </button>
 </div>

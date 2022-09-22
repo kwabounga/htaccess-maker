@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { Router } from '@angular/router';
 import { findOptionsIdByValue } from '../../utils/utils';
+import { TranslateService } from 'src/app/components/commons/translate/translate.service';
 
 
 @Component({
@@ -17,14 +18,17 @@ export class DeleteScopeComponent implements OnInit {
   scopeSelected:boolean = false;
   scopeSelectedName:string = '';
   scopeSelectedId:number = -1;
+  placeHolder:Promise<string> = this.t.i18n('Choose the scope to delete')
   constructor(
     private dataSrv:DataFromIpcService,
-    private router: Router
+    private router: Router,
+    protected t:TranslateService
   ) { }
 
   scopes:any;
   async ngOnInit(): Promise<void> {
     this.scopes = await this.dataSrv.getScopesAll();
+    /* this.placeHolder  */
   }
   change(event:any){
     const id = event.target.value;

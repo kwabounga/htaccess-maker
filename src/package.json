@@ -6,6 +6,7 @@
   "main": "electron.prod.js",
   "license": "MIT",
   "icon": "./assets/icons/icon_68.png",
+  "i18n": "fr_FR",
   "dependencies": {
     "knex": "^2.1.0",
     "sqlite3": "^5.0.9"

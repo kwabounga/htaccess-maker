@@ -2,9 +2,9 @@
 <div class="page full-height  bg-vscode-dark text-vscode">
   <div class="row full-h">
     <div class="col  col-12 col-lg-6 full-h">
-      <h1>Creation d'un nouveau Scope/Site</h1>
+      <h1><i18n [txt]="'Create new Scope / website'"></i18n></h1>
 <div class="card card-vscode text-vscode bg-vscode mb-3 full-h-3">
-    <div class="card-header">Configuration</div>
+    <div class="card-header"><i18n [txt]="'Configuration'"></i18n></div>
     <div class="card-body  p-2">
       <app-scope
         *ngIf="!this.scopeSaved && !this.scopeConfigSaved"
