@@ -1,0 +1,10 @@
+.output{
+    /* width: -webkit-fill-available; */
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.content{
+    display: flex;
+    justify-content: flex-end;
+}
