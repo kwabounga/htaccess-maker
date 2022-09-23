@@ -8,7 +8,7 @@
       data-bs-toggle="modal"
       [attr.data-bs-target]="'#rules_modal_' + scope.id"
     >
-      Manage {{ scope.label }} Rules
+    <i18n [txt]="'Manage %0 Rules'" [val]="[scope.label]"></i18n>
     </button>
   </div>
 </div>
@@ -26,7 +26,7 @@
   <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
     <div class="modal-content bg-vscode text-vscode">
       <div class="modal-header">
-        <h5 class="modal-title" id="modal_label_{{ scope.id }}">Rules for {{ scope.label }}</h5>
+        <h5 class="modal-title" id="modal_label_{{ scope.id }}"><i18n [txt]="'%0 Rules'" [val]="[scope.label]"></i18n></h5>
         <button
           type="button"
           class="btn-close"
@@ -35,7 +35,7 @@
         ></button>
       </div>
       <div class="modal-body">
-        <input class="form-control form-control-sm form-control-vscode mb-3" type="text" placeholder="search" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
+        <input class="form-control form-control-sm form-control-vscode mb-3" type="text" [placeholder]="searchPlaceHolder | async" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
         <ul class="list-group">
           <smooth-dnd-container
             [dragClass]="'opacity-ghost'"
@@ -65,12 +65,12 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
+          <i18n [txt]="'Close'"></i18n>
         </button>
-        <button *ngIf="this.ruleFilter == '' && !updateRulesPositionProgress" type="button" class="btn btn-primary" (click)="updateRulesPositions()">Save Positions Change</button>
+        <button *ngIf="this.ruleFilter == '' && !updateRulesPositionProgress" type="button" class="btn btn-primary" (click)="updateRulesPositions()"><i18n [txt]="'Save positions Changes'"></i18n></button>
         <button *ngIf="this.ruleFilter == '' && updateRulesPositionProgress" type="button" class="btn btn-primary" (click)="updateRulesPositions()">
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-          Saving Positions ...
+          <i18n [txt]="'Saving Positions ...'"></i18n>
         </button>
 
       </div>

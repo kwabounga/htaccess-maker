@@ -66,5 +66,5 @@ export class AddScopeComponent implements OnInit {
     this.outputHtSrv.getScopeConfigPreview(this.scope,this.scopeConfig, ['# //...','# some rules','# //...']).then((out)=>{
       this.output = out;
     })
-  }
+  } 
 }

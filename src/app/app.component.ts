@@ -82,7 +82,9 @@ export class AppComponent {
   ]
   configOpened:boolean = false;
   KEY_PARAMETER:string = 'KeyM'
-  title:string = 'htaccess-maker';
+  title:string = pjson.productName;
+  description:string = pjson.description;
+  locale:string = navigator.language;
 
   sliderID: string = 'sliderParams';
   ctrlKey: string = 'Control';

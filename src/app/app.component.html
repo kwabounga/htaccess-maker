@@ -1,6 +1,6 @@
 <div class="app-bar d-flex d-lg-none">
   <div class="logo"></div>
-  <span class="app-title text-vscode-alt text-bold">{{title}}</span>
+  <span class="app-title text-vscode-alt text-bold" [title]="description">{{title}}</span>
   <button class="btn btn-sm btn-primary no-drag" type="button" data-bs-toggle="offcanvas" [attr.data-bs-target]="'#'+sliderID" [attr.aria-controls]="sliderID" (click)="toogleConfig()">
     params
   </button>
@@ -50,6 +50,7 @@
 <app-footer
   [online]="false"
   [version]="version"
-  >
+  [locale]="locale"
+  >  
 </app-footer>
 <!-- !Footer -->

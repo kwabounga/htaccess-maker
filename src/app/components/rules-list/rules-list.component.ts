@@ -1,11 +1,17 @@
 import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBinding  } from '@angular/core';
 import { applyDrag } from '../../utils/utils';
+import { TranslateService } from '../commons/translate/translate.service';
 @Component({
   selector: 'app-rules-list',
   templateUrl: './rules-list.component.html',
   styleUrls: ['./rules-list.component.css']
 })
 export class RulesListComponent implements OnInit {
+
+  constructor(
+    private t:TranslateService
+  ) { }
+
   @Input() id:number=0;
   @Input() rules:any;
   ruleFilter:string = '';
@@ -16,7 +22,7 @@ export class RulesListComponent implements OnInit {
   onEmitChangeSaveRule = new EventEmitter<any>();
   @Output()
   onEmitUpdateRulesPositions = new EventEmitter<any>();
-
+  searchPlaceHolder = this.t.i18n('search');
   protected rulesSelectedSet:any= {
     first:null,
     last:null,
@@ -42,7 +48,7 @@ export class RulesListComponent implements OnInit {
     }
   }
 
-  constructor() { }
+
 
   ngOnInit(): void {
 

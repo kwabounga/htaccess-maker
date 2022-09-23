@@ -23,7 +23,7 @@
           <button  class="btn btn-warning mb-3" type="button" data-bs-toggle="collapse"
             [attr.data-bs-target]="'#togglingConfig' + id" aria-expanded="false"
             [attr.aria-controls]="'togglingConfig' + id">
-            Toogle Config
+            <i18n [txt]="'Toggle Config'"></i18n>
           </button>
           <div class="collapse" id="togglingConfig{{ id }}">
             <div class="card card-vscode card-body border-warning mb-3 text-vscode bg-vscode">

@@ -3,6 +3,7 @@ import { EventQueueService } from 'src/app/services/event-queue.service';
 import { AppEventType } from 'src/app/types/AppEventType';
 import { Router, Event, NavigationEnd} from '@angular/router';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
+import { TranslateService } from '../translate/translate.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,13 +11,12 @@ import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  @Input() online?:boolean
-  @Input() version?:string
-  output:string = '';
+  
   constructor(
       private eventQueueSrv: EventQueueService,
       private router: Router,
       protected dataSrv: DataFromIpcService,
+      private t:TranslateService
     ) {
       this.router.events.subscribe((event: Event) => {
         if (event instanceof NavigationEnd) {
@@ -27,7 +27,11 @@ export class FooterComponent implements OnInit {
     });
 
      }
-
+  @Input() online?:boolean
+  @Input() version?:string
+  @Input() locale?:string
+  output:string = '';
+  localTitle:Promise<string> = this.t.i18n('language');
   ngOnInit(): void {
     this.eventQueueSrv.on(AppEventType.NotifyEvent).subscribe(event => this.handleEvent(event));
   }

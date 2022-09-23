@@ -30,7 +30,7 @@
   <div class="modal-dialog modal-xl modal-fullscreen-lg-down">
     <div class="modal-content bg-vscode text-vscode">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Delete {{this?.scopeSelectedName}} Scope</h5>
+        <h5 class="modal-title" id="deleteModalLabel"><i18n [txt]="'Delete %0 Scope'" [val]="[this?.scopeSelectedName]"></i18n></h5>
         <button
           type="button"
           class="btn-close"

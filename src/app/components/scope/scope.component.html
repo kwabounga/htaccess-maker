@@ -2,12 +2,12 @@
   <div class="card-header">Scope:</div>
   <div class="card-body p-2">
     <div class="mb-3">
-      <label for="scopeConfigLabel" class="form-label">Scope Label</label>
+      <label for="scopeConfigLabel" class="form-label"><i18n [txt]="'Scope Label'"></i18n></label>
       <input
         type="text"
         class="form-control form-control-vscode"
         id="scopeConfigLabel"
-        placeholder="LENOUVEAUSITE.com"
+        placeholder="XXXXXXXXX.com"
         required
         [(ngModel)]="this?.scope.label"
         (input)="updatePreview()"
@@ -16,24 +16,25 @@
       <!--(input)="updatePreview()"  -->
     </div>
     <div class="mb-3">
-      <label for="scopeConfigMagentoId" class="form-label">Magento SCOPE ID</label>
+      <label for="scopeConfigMagentoId" class="form-label"><i18n [txt]="'Magento SCOPE ID'"></i18n></label>
       <input
         type="number"
-        class="form-control form-control-vscode"
+        class="form-control form-control-vscode magento-id-{{magentoIdIsFree?'free':'notfree'}}"
         id="scopeConfigMagentoId"
         min="0"
         required
         [(ngModel)]="this?.scope.magento_scope_id"
-        (input)="updatePreview()"
+        (input)="checkIfMagentoScopeIsFree()"
 
       />
     </div>
     <div class="mb-3">
-      <label for="scopeConfigData" class="form-label">Scope Logo</label>
-      <textarea  class="form-control form-control-vscode" id="scopeConfigData" [placeholder]="placeHolder"
+      <label for="scopeConfigData" class="form-label"><i18n [txt]="'Scope Logo'"></i18n></label>
+      <textarea  class="form-control form-control-vscode" id="scopeConfigData" [placeholder]="placeHolder | async"
           rows="3" [(ngModel)]="this?.scope.logo_svg"
           ></textarea>
     </div>
-    <button type="button" class="btn btn-secondary" (click)="saveConfig()">Save {{this?.scope.label}} Scope General Informations</button>
+    <button type="button" class="btn btn-secondary" (click)="saveConfig()"><i18n [txt]="'Save %0 Scope General Informations'" [val]="[this?.scope.label]"></i18n></button>
   </div>
 </div>
+<!-- <i18n [txt]="'Delete %0 Scope'" [val]="[this?.scopeSelectedName]"></i18n> -->

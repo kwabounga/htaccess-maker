@@ -305,11 +305,23 @@ textarea.form-control {
 
 }
 .devbar .btn-icon:hover{
-  background-color: #ffffff1a
+  background-color: #ffffff22
 }
 .devbar .btn-icon.on img{
   fill:green
 }
 .devbar .btn-icon.off img{
   fill:red
+}
+.devbar .btn.btn-xs.btn-icon {
+  padding-top: .05rem;
+}
+.devbar .btn.btn-xs.btn-icon:focus {
+  box-shadow: unset;
+}
+.magento-id-free{
+  border-color: green!important;
+}
+.magento-id-notfree {
+  border-color: red!important;
 }
