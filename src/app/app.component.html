@@ -10,7 +10,7 @@
 <header class="d-none d-lg-block">
   <ul class="nav nav-tabs">
     <li *ngFor="let rInfo of routingInfos" class="nav-item">
-      <a class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label}}</a>
+      <a class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label | async}}</a>
     </li>
     <app-mini-button></app-mini-button>
   </ul>
@@ -47,8 +47,9 @@
   <button class="btn btn-sm btn-secondary">test</button>
 </app-slider>
 <!-- Footer -->
-<app-footer>
-  <span>ok</span>
-  <span>v0.0.1</span>
+<app-footer
+  [online]="false"
+  [version]="version"
+  >
 </app-footer>
 <!-- !Footer -->

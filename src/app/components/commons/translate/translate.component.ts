@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef} from '@angular/core';
-import pjson from 'src/package.json';
+
 import { TranslateService } from './translate.service';
 
 @Component({

@@ -2,6 +2,8 @@ import { Component, ElementRef, HostBinding, HostListener } from '@angular/core'
 import { NavigationEnd, Router } from '@angular/router';
 import { Offcanvas } from 'bootstrap';
 import { filter } from 'rxjs';
+import pjson from 'src/package.json';
+import { TranslateService } from './components/commons/translate/translate.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +11,12 @@ import { filter } from 'rxjs';
   host: {'class': 'app-root'}
 })
 export class AppComponent {
-  constructor(private elem: ElementRef, private router: Router) {
+  version = pjson.version
+  constructor(
+    private elem: ElementRef,
+    private t: TranslateService,
+    private router: Router
+    ) {
     this.router.events
     .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
     .subscribe((e)=>{
@@ -18,7 +25,7 @@ export class AppComponent {
    }
   routingInfos:any = [
     {
-      label:'Manage',
+      label:this.t.i18n('Manage'),
       route:'/overview',
       style:'bg-vscode',
       active_class:'active',
@@ -29,7 +36,7 @@ export class AppComponent {
       }
     },
     {
-      label:'CSV Import',
+      label:this.t.i18n('CSV Import'),
       route:'/csv-rules-import',
       style:'bg-vscode',
       active_class:'active',
@@ -40,7 +47,7 @@ export class AppComponent {
       }
     },
     {
-      label:'Export File',
+      label:this.t.i18n('Export File'),
       route:'/export-file',
       style:'bg-vscode',
       active_class:'active',
@@ -51,7 +58,7 @@ export class AppComponent {
       }
     },
     {
-      label:'Add Scope',
+      label:this.t.i18n('Add Scope'),
       route:'/add-new-scope',
       style:'bg-vscode',
       active_class:'active',
@@ -62,7 +69,7 @@ export class AppComponent {
       }
     },
     {
-      label:'Delete Scope',
+      label:this.t.i18n('Delete Scope'),
       route:'/delete-scope',
       style:'bg-vscode',
       active_class:'active',

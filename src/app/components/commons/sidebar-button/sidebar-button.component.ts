@@ -18,8 +18,12 @@ export class SidebarButtonComponent implements AfterViewInit {
   constructor(private elem: ElementRef) { }
   /* Use AfterViewInit lifcycle  when title is allready defined */
   ngAfterViewInit(){
-    let tooltipTrigger = this.elem.nativeElement.querySelector('[data-bs-toggle="tooltip"]')
-    this.tooltipElement = new Tooltip(tooltipTrigger);
+    // using set time out for wait the Promises response of translation
+    setTimeout(()=>{
+      let tooltipTrigger = this.elem.nativeElement.querySelector('[data-bs-toggle="tooltip"]')
+      this.tooltipElement = new Tooltip(tooltipTrigger);
+    },200)
+
   }
   hideTooltip(){
     this.tooltipElement.hide()

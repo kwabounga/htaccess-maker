@@ -97,6 +97,9 @@ textarea.form-control {
     https://codepen.io/sosuke/pen/Pjoqqp
 */
 /* secondary */
+.svg-white{
+  filter: invert(100%);
+}
 .svg-vs-code{
   filter: invert(90%) sepia(0%) saturate(1226%) hue-rotate(193deg) brightness(100%) contrast(81%);
 }
@@ -300,4 +303,13 @@ textarea.form-control {
 }
 .reason_value {
 
+}
+.devbar .btn-icon:hover{
+  background-color: #ffffff1a
+}
+.devbar .btn-icon.on img{
+  fill:green
+}
+.devbar .btn-icon.off img{
+  fill:red
 }
