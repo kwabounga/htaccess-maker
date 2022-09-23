@@ -204,9 +204,11 @@ this.electronSrv.ipcRenderer.on(
 [demo](https://kutlugsahin.github.io/ngx-smooth-dnd/)  
 
 
+---
 
 node 14.15.4
 
+---
 
 ## use electron-store
 
@@ -231,7 +233,9 @@ console.log(store.get('unicorn'));
 //=> undefined
  ```
 
- ### set schema
+ ### set schema  
+
+[cf:src\electron\localStorage.js](src\electron\localStorage.js)
 
  ```js
  const Store = require('electron-store');
@@ -248,51 +252,6 @@ const schema = {
 	}
 };
 
-const schema = {
-	app: {
-    type: "object",
-    properties: {
-      pos: {
-        type: "object",
-        properties: {
-          x: { 
-            type: "number",
-		        default: 150 
-            },
-          y: { 
-            type: "number",
-		        default: 150 
-            },
-        }
-      },
-      size: {
-        type: "object",
-        properties: {
-          width: { 
-            type: "number",
-		        default: 800 
-            },
-          height: { 
-            type: "number",
-		        default: 600 
-            },
-          minWidth: { 
-            type: "number",
-		        default: 400 
-            },
-          minHeight: { 
-            type: "number",
-		        default: 500 
-            }
-        }
-      },
-      theme: { 
-        enum: ["dark", "light"],
-		    default: "dark"  
-        }
-    }
-  }
-};
 
 const store = new Store({schema});
 
