@@ -267,7 +267,7 @@ store.set('foo', '1');
 
 [svg-spinners](https://github.com/n3r4zzurr0/svg-spinners)
 
-
+[doc mermaid](https://mermaid-js.github.io/mermaid/#/)
 ```mermaid
 graph TD;
 A-->B;
