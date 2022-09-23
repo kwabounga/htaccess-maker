@@ -266,3 +266,10 @@ store.set('foo', '1');
 ### free spinners
 
 [svg-spinners](https://github.com/n3r4zzurr0/svg-spinners)
+
+
+graph TD;
+A-->B;
+A-->C;
+B-->D;
+C-->D;
