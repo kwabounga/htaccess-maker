@@ -26,6 +26,7 @@ import { MiniButtonComponent } from './components/commons/mini-button/mini-butto
 import { SliderComponent } from './components/commons/slider/slider.component';
 import { TranslateComponent } from './components/commons/translate/translate.component';
 import { LoaderComponent } from './components/commons/loader/loader.component';
+import { ButtonPopoveredComponent } from './components/commons/button-popovered/button-popovered.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { LoaderComponent } from './components/commons/loader/loader.component';
     MiniButtonComponent,
     SliderComponent,
     TranslateComponent,
-    LoaderComponent
+    LoaderComponent,
+    ButtonPopoveredComponent
   ],
   imports: [
     BrowserModule,

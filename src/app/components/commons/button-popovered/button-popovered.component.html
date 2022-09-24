@@ -1,0 +1,9 @@
+<button *ngIf="active"
+  [class]="btnClass"
+  [title]="popoverTitle"
+  role="button"
+  data-bs-toggle="popover"
+  data-bs-trigger="focus"
+  [attr.data-bs-content]="popoverContent">
+  <ng-content></ng-content>
+</button>

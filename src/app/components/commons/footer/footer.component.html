@@ -2,11 +2,10 @@
   <div class="row">
     <div class="col output">{{output}}</div>
   <div class="col col-2 content">
-
     <ng-content></ng-content>
-    <button *ngIf="version" class="btn btn-xs btn-icon ml-1 text-light" [title]="localTitle | async"><span>{{locale}}</span></button>
-    <button *ngIf="version" class="btn btn-xs btn-icon ml-1 text-light" [title]="'v.' + version + ' notes:'" role="button" data-bs-toggle="popover" data-bs-trigger="focus" title="Dismissible popover" [attr.data-bs-content]="versionNotes"><span>v.{{version}}</span></button>
-    <button *ngIf="online !== undefined" class="btn btn-xs btn-icon ml-1 {{online?'on':'off'}}" [title]="online?'online':'offline'"><img class="{{online?'svg-white':'svg-danger'}}" src="assets/svg/network-{{online?'on':'off'}}.svg"  height="20px" width="20px"></button>
+    <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 text-light'" [active]="localTitle" [popoverTitle]="localTitle | async" [popoverContent]="locale"><span>{{locale}}</span></button-popovered>
+    <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 text-light'" [active]="version" [popoverTitle]="'v.' + version + ' notes:'" [popoverContent]="versionNotes"><span>v.{{version}}</span></button-popovered>
+    <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 '+(online?'on':'off')" [active]="online !== undefined" [popoverTitle]="'Connectivity:'" [popoverContent]="(online?'online':'offline')"><img class="{{online?'svg-white':'svg-danger'}}" src="assets/svg/network-{{online?'on':'off'}}.svg"  height="20px" width="20px"></button-popovered>
   </div>
   </div>
 </footer>
