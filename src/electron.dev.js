@@ -6,18 +6,18 @@ const ipcCom = require("./electron/ipc_db_communication");
 const ipcApp = require("./electron/ipc_app_actions");
 const schema = require('./electron/localStorage')
 var pjson = require('./package.json');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 const store = new Store(schema);
 
 // store is  created config.json file here:
-console.log(app.getPath('userData'))
-
+console.log(app.getPath('userData'));
 
 
 const createWindow = () => {
-    
+
     // set timeout to render the window not until the Angular
     // compiler is ready to show the project
     setTimeout(() => {
@@ -34,14 +34,14 @@ const createWindow = () => {
             /* transparent: true, */
             /* titleBarOverlay: true, */
             alwaysOnTop: false,
+            icon: path.join(__dirname, pjson.icon),
             webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
             ipcRenderer: ipcRenderer,
             isElectron: true,
-            icon: path.join(__dirname, pjson.icon),
             title: pjson.productName
             /* https://thenounproject.com/icon/redirect-36771/ */
         });
-        
+
         // and load the app.
         win.loadURL(url.format({
             pathname: 'localhost:4200',
@@ -75,7 +75,7 @@ const createWindow = () => {
             // when you should delete the corresponding element.
             win = null;
         });
-        
+
         // add app events when win object is created
         ipcApp.addAppEvents(ipcMain, win);
     }, 10000);
@@ -92,7 +92,7 @@ app.on('window-all-closed', () => {
     // to stay active until the user quits explicitly with Cmd + Q
     if (process.platform !== 'darwin') {
       app.quit();
-      
+
     }
     // app.quit();
 });

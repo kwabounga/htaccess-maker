@@ -12,6 +12,7 @@
         [scope]="this?.scope"
         (onChange)="updatePreview($event)"
         (onClickSave)="saveScope($event)"
+        [isNew]="true"
       ></app-scope>
         <app-scope-config
           *ngIf="this.scopeSaved && !this.scopeConfigSaved"

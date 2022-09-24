@@ -1,41 +1,40 @@
 const { app, BrowserWindow,ipcMain,ipcRenderer,session } = require('electron');
 const path = require('path');
 const url = require('url');
-
+const Store = require('electron-store');
 const ipcCom = require("./electron/ipc_db_communication");
 const ipcApp = require("./electron/ipc_app_actions");
+const schema = require('./electron/localStorage')
+var pjson = require('./package.json');
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+const store = new Store(schema);
 
-/* Rollback on CSP */
-// const allowedDomainsCSP = [
-//     'script-src \'self\'',
-//     'http://www.w3.org/2000/svg',
-//     ]
+// store is  created config.json file here:
+console.log(app.getPath('userData'))
+
 
 const createWindow = () => {
-    /**  manage CSP 
-    session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-        callback({
-          responseHeaders: {
-            ...details.responseHeaders,
-            'Content-Security-Policy': [allowedDomainsCSP.join(' ')]
-          }
-        })
-      })*/
+
     // Create the browser window.
     win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: store.get('app.width'),
+        height: store.get('app.height'),
+        minWidth: store.get('app.minWidth'),
+        minHeight: store.get('app.minHeight'),
+        x: store.get('app.x'),
+        y: store.get('app.y'),
         frame:false,
         titleBarStyle: "hidden",
-        titleBarOverlay: true,
+        /* titleBarOverlay: true, */
         alwaysOnTop: false,
-        icon: path.join(__dirname, 'favicon.ico'),
+        icon: path.join(__dirname, pjson.icon),
         webPreferences: { nodeIntegration: true, preload: path.join(__dirname, "preload.js"), enableRemoteModule: true, contextIsolation: false, allowRunningInsecureContent: false },
         ipcRenderer: ipcRenderer,
         isElectron: true,
+        title: pjson.productName
     });
 
     // and load the index.html of the app.
@@ -45,6 +44,21 @@ const createWindow = () => {
         slashes: true
     }));
 
+    // show the main windows when ready
+    win.once("ready-to-show", () => {
+      win.show();
+    });
+    // Emitted when the window is going to be closed.
+    win.on('close', () => {
+      console.log('before close : save bounds')
+      console.log(win.getBounds())
+      let bounds = win.getBounds();
+      store.set('app.x',bounds.x);
+      store.set('app.y',bounds.y);
+      store.set('app.height', bounds.height);
+      store.set('app.width', bounds.width);
+    });
+
     // Emitted when the window is closed.
     win.on('closed', () => {
         // Dereference the window object, usually you would store windows
@@ -52,6 +66,8 @@ const createWindow = () => {
         // when you should delete the corresponding element.
         win = null;
     });
+        // add app events when win object is created
+        ipcApp.addAppEvents(ipcMain, win);
 }
 
 // This method will be called when Electron has finished
@@ -80,5 +96,4 @@ app.on('activate', () => {
 // ipc and electron
 app.whenReady().then(()=>{
     ipcCom.addEvents(ipcMain);
-    ipcApp.addAppEvents(ipcMain);
   })

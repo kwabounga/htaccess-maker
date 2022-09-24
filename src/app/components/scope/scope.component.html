@@ -17,7 +17,9 @@
     </div>
     <div class="mb-3">
       <label for="scopeConfigMagentoId" class="form-label"><i18n [txt]="'Magento SCOPE ID'"></i18n></label>
-      <input
+      <div class="input-group">
+        <span *ngIf="this.currentScopeMagento == this.scope.magento_scope_id && !isNew" class="input-group-text magento-id-mine"><img class="svg-white" src="assets/svg/target.svg"  height="20px" width="20px"></span>
+        <input
         type="number"
         class="form-control form-control-vscode magento-id-{{magentoIdIsFree?'free':'notfree'}}"
         id="scopeConfigMagentoId"
@@ -27,6 +29,8 @@
         (input)="checkIfMagentoScopeIsFree()"
 
       />
+      </div>
+
     </div>
     <div class="mb-3">
       <label for="scopeConfigData" class="form-label"><i18n [txt]="'Scope Logo'"></i18n></label>

@@ -3,6 +3,7 @@ import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { Router } from '@angular/router';
 import { findOptionsIdByValue } from '../../utils/utils';
 import { TranslateService } from 'src/app/components/commons/translate/translate.service';
+import { LoggerService } from 'src/app/services/logger.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class DeleteScopeComponent implements OnInit {
 
   pageLoaded:boolean = false;
   constructor(
+    private logger: LoggerService,
     private dataSrv:DataFromIpcService,
     private router: Router,
     protected t:TranslateService
@@ -31,18 +33,18 @@ export class DeleteScopeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.scopes = await this.dataSrv.getScopesAll();
     /* this.placeHolder  */
-
+    this.logger.log('be careful with the deletion, it is not reversible')
     this.pageLoaded = true;
   }
   change(event:any){
     const id = event.target.value;
-    console.log(id);
+    // console.log(id);
     if(id){
       this.scopeSelectedId = id;
       const i = findOptionsIdByValue(event.target.options,id);
 
       this.scopeSelectedName = event.target.options[i].text;
-      console.log(this.scopeSelectedName);
+      // console.log(this.scopeSelectedName);
       this.scopeSelected = true;
     } else {
       this.scopeSelected = false;
@@ -52,10 +54,12 @@ export class DeleteScopeComponent implements OnInit {
     // console.log('DELETE SCOPE HERE', this.scopeSelectedId);
     // then navigate to the overview:
     this.dataSrv.deleteScope(this.scopeSelectedId).then((response)=>{
-      console.log(`ok the scope ${this.scopeSelectedId} and all references are deleted`)
-      this.router.navigate(['/overview']);
+      this.logger.log(`ok the scope ${this.scopeSelectedId} and all references are deleted`)
+      setTimeout(()=>{
+        this.router.navigate(['/overview']);
+      },2000)
     }).catch((e)=>{
-      console.log(`something goes wrong with the deletion of the scope ${this.scopeSelectedId}`)
+      this.logger.log(`something goes wrong with the deletion of the scope ${this.scopeSelectedId}`)
     })
 
   }

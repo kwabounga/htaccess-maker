@@ -9,7 +9,7 @@
           }}  {{isOpen?'':'column-drag-handle'}} " id="config{{ id }}">
         <button class="accordion-button collapsed bg-vscode text-vscode" type="button" data-bs-toggle="collapse"
           [attr.data-bs-target]="'#collapseConfig' + id" [attr.aria-controls]="'collapseConfig' + id"
-          aria-expanded="false" (click)="clickBtn($event)" title="drag it for rearrange">
+          aria-expanded="false" (click)="clickBtn($event)"  (mouseenter)="log(labelDragIt)" (mouseleave)="log('')" [title]="labelDragIt">
           <img class="mr-2 svg-vs-code" src="assets/svg/section.svg" height="30px" width="30px">
           <div class="scope_label" *ngIf="!scope.logo_svg">{{ scope.label }}</div>
           <div class="logo_svg" *ngIf="scope.logo_svg"

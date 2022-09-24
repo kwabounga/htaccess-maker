@@ -78,7 +78,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope_config:by_id`, id);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`retrieve:scope_config:by_id_${id}`)
         resolve(response);
       }
@@ -92,7 +92,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope:by_magento_id`, magento_scope_id);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`retrieve:scope:by_magento_id_${magento_scope_id}`)
         resolve(response);
       }
@@ -140,7 +140,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope:by_id`, id);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`retrieve:scope:by_id_${id}`)
         resolve(response);
       }
@@ -154,7 +154,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:rules:by_scope_id`, scope_id);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`retrieve:rules:by_scope_id_${scope_id}`)
         resolve(response);
       }
@@ -166,7 +166,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`delete:rule`, rule);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`rule:deleted`)
         resolve(response);
       }
@@ -177,7 +177,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`delete:scope`, scope_id);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`scope:deleted`)
         resolve(response);
       }
@@ -189,7 +189,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rule`, rule);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`rule:updated`)
         resolve(response);
       }
@@ -197,11 +197,11 @@ export class DataFromIpcService {
     })
   }
   async updateRulesByImport (rules:Rule[]):Promise<boolean> {
-    console.log('updateRulesByImport', rules)
+    // console.log('updateRulesByImport', rules)
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rules`, rules);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`rules:updated`)
         resolve(response);
       }
@@ -212,7 +212,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:rules`, rules);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`rules:added`)
         resolve(response);
       }
@@ -224,7 +224,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:scope`, [scope]);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`scope:added`)
         resolve(response);
       }
@@ -235,7 +235,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:scope:config`, [scopeConfig]);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`scope:config:added`)
         resolve(response);
       }
@@ -247,7 +247,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:scope`, scope);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`scope:updated`)
         resolve(response);
       }
@@ -259,7 +259,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:scope:config`, scopeConfig);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`scope:"config:updated`)
         resolve(response);
       }
@@ -271,7 +271,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:scopes:position`, scopes);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`scopes:position:updated`)
         resolve(response);
       }
@@ -284,7 +284,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rules:position`, rules);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`rules:position:updated`)
         resolve(response);
       }
@@ -296,7 +296,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:header:config`, config);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`header:config:updated`)
         resolve(response);
       }
@@ -308,7 +308,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:footer:config`, config);
       const resolver = (_event:any, response: any) => {
-        console.log(response)
+        // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`footer:config:updated`)
         resolve(response);
       }
@@ -319,7 +319,7 @@ export class DataFromIpcService {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`online:check`);
       const resolver = (_event:any, response: any) => {
-        // console.log(response)
+        // // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`checked:online`)
         resolve(response);
       }

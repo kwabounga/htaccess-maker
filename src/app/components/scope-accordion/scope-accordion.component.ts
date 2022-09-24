@@ -2,6 +2,7 @@ import { Component, Input, Output,EventEmitter,ElementRef, ViewChild } from '@an
 import { DomSanitizer } from '@angular/platform-browser';
 import { applyDrag } from '../../utils/utils';
 import { Button } from 'bootstrap';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-scope-accordion',
@@ -29,8 +30,15 @@ export class ScopeAccordionComponent {
   isOpen = false;
   @Input()updateRulesPositionProgress?: boolean;
   @ViewChild('btnAcc') btn!:ElementRef;
-  constructor(protected sanitizer: DomSanitizer, private elem: ElementRef) { }
-
+  constructor(
+    private logger: LoggerService,
+    protected sanitizer: DomSanitizer,
+    private elem: ElementRef
+    ) { }
+  labelDragIt = 'drag it for rearrange';
+  log(txt){
+    this.logger.log(txt);
+  }
 
   clickBtn(event:any){
     this.isOpen=!this.isOpen
