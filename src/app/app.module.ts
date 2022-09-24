@@ -25,6 +25,7 @@ import { FooterComponent } from './components/commons/footer/footer.component';
 import { MiniButtonComponent } from './components/commons/mini-button/mini-button.component';
 import { SliderComponent } from './components/commons/slider/slider.component';
 import { TranslateComponent } from './components/commons/translate/translate.component';
+import { LoaderComponent } from './components/commons/loader/loader.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { TranslateComponent } from './components/commons/translate/translate.com
     FooterComponent,
     MiniButtonComponent,
     SliderComponent,
-    TranslateComponent
+    TranslateComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

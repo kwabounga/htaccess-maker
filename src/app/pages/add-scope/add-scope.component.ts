@@ -14,6 +14,7 @@ export class AddScopeComponent implements OnInit {
   scopeSaved:boolean = false;
   scopeConfigSaved:boolean = false;
   id=-1;
+  pageLoaded:boolean = false;
 
   scopeConfig:ScopeConfig  = {
     label: "",
@@ -28,10 +29,11 @@ export class AddScopeComponent implements OnInit {
   };
   output?:string;
   constructor(private outputHtSrv:OutputHtaccessService,
-     private dataSrv:DataFromIpcService,
+    private dataSrv:DataFromIpcService,
     private router: Router) {  }
 
   ngOnInit(): void {
+    this.pageLoaded = true;
   }
 
   // TODO: make this as a sequence: 1/ create Scope then mask the scope form ; 2/ then show the configuration form
@@ -66,5 +68,5 @@ export class AddScopeComponent implements OnInit {
     this.outputHtSrv.getScopeConfigPreview(this.scope,this.scopeConfig, ['# //...','# some rules','# //...']).then((out)=>{
       this.output = out;
     })
-  } 
+  }
 }

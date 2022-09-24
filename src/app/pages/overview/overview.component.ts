@@ -29,6 +29,7 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
   scopes:any;
   specialRules:any;
 
+  pageLoaded:boolean = false;
   updateRulesPositionProgress:boolean = false;
 //   ngAfterViewInit(){
 //     var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
@@ -44,12 +45,12 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
     this.footerData = await this.dataSrv.getFooterConfig();
     this.scopes = await this.dataSrv.getScopesAll();
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
-    this.scopes.forEach(async (scope:any) => {
+    await this.scopes.forEach(async (scope:any) => {
       this.scopeConfig[scope.id] = await this.getScopeConfigById(scope.id);
       this.rules[scope.id] = await this.getRulesByScopeId(scope.id);
     }); /**/
     console.log(this.rules);
-
+    this.pageLoaded= true;
   }
 
   /**

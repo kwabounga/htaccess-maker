@@ -325,3 +325,7 @@ textarea.form-control {
 .magento-id-notfree {
   border-color: red!important;
 }
+.btn.disable {
+  cursor: not-allowed;
+  background: repeating-linear-gradient(-45deg, #ff000055, #ff000055 10px, #ffffff00 10px, #ffffff00 20px);
+}

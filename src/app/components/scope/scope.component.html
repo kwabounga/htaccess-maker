@@ -13,7 +13,7 @@
         (input)="updatePreview()"
 
       />
-      <!--(input)="updatePreview()"  -->
+
     </div>
     <div class="mb-3">
       <label for="scopeConfigMagentoId" class="form-label"><i18n [txt]="'Magento SCOPE ID'"></i18n></label>
@@ -34,7 +34,7 @@
           rows="3" [(ngModel)]="this?.scope.logo_svg"
           ></textarea>
     </div>
-    <button type="button" class="btn btn-secondary" (click)="saveConfig()"><i18n [txt]="'Save %0 Scope General Informations'" [val]="[this?.scope.label]"></i18n></button>
+    <button type="button" class="btn btn-secondary {{magentoIdIsFree?'':'disable'}}" (click)="saveConfig(magentoIdIsFree)"><i18n [txt]="'Save %0 Scope General Informations'" [val]="[this?.scope.label]"></i18n></button>
   </div>
 </div>
 <!-- <i18n [txt]="'Delete %0 Scope'" [val]="[this?.scopeSelectedName]"></i18n> -->

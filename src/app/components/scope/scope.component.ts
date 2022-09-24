@@ -26,11 +26,12 @@ export class ScopeComponent implements OnInit {
     this.onChange.emit(this?.scope)
   }
   checkIfMagentoScopeIsFree(){
-    this.dataSrv.getScopeByMagentoId(this.scope.magento_scope_id).then((response)=>{      
+    this.dataSrv.getScopeByMagentoId(this.scope.magento_scope_id).then((response)=>{
       this.magentoIdIsFree = (response === undefined)
     })
   }
-  saveConfig(){
+  saveConfig(authorized){
+    if(!authorized) return;
     this.onClickSave.emit(this?.scope)
   }
 }

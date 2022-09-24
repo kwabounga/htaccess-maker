@@ -11,10 +11,12 @@ import { FilesStuffService } from 'src/app/services/files-stuff.service';
 })
 export class ExportFileComponent implements OnInit {
   htAccessData:string ='';
+  pageLoaded:boolean = false;
   constructor(protected dataSrv:DataFromIpcService, protected fileStuffSrv:FilesStuffService) { }
 
   async ngOnInit(): Promise<void> {
-    this.htAccessData = await this.dataSrv.generateHtaccessFile()
+    this.htAccessData = await this.dataSrv.generateHtaccessFile();
+    this.pageLoaded = true;
   }
   exportFile(){
     let d = new Date();

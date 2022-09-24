@@ -216,7 +216,6 @@ node 14.15.4
 [electron-store](https://github.com/sindresorhus/electron-store)  
 ```js
 const Store = require('electron-store');
-
 const store = new Store();
 
 store.set('unicorn', '🦄');
@@ -235,7 +234,7 @@ console.log(store.get('unicorn'));
 
  ### set schema  
 
-[cf:src\electron\localStorage.js](src\electron\localStorage.js)
+[src\electron\localStorage.js](src\electron\localStorage.js)
 
  ```js
  const Store = require('electron-store');
@@ -254,7 +253,6 @@ const schema = {
 
 
 const store = new Store({schema});
-
 console.log(store.get('foo'));
 //=> 50
 
@@ -267,6 +265,13 @@ store.set('foo', '1');
 
 [svg-spinners](https://github.com/n3r4zzurr0/svg-spinners)
 
+----
+### free icons 
+
+[iconoir](https://iconoir.com/)
+
+----
+### diagram in github
 [doc mermaid](https://mermaid-js.github.io/mermaid/#/)
 ```mermaid
 graph TD;
@@ -275,3 +280,24 @@ A-->C;
 B-->D;
 C-->D;
 ```
+----
+### to access angular routes from outside:  
+in .htaccess files in the root/wwww/public folder in the server.
+
+```apache
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+
+RewriteRule ^(.*) ./index.html [NC,L]
+```
+
+----
+
+### in the future?  
+
+>  for i18n custom component ?
+ 
+[publish an angular component to npm](https://jasonwatmore.com/post/2020/06/16/angular-npm-how-to-publish-an-angular-component-to-npm)

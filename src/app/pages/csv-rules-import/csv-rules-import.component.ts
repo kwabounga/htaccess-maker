@@ -39,6 +39,7 @@ export class CsvRulesImportComponent implements OnInit {
   redToBeUpdated: any[] = [];
   badRedirections: any[] = [];
   redToBeChecked: any[] = [];
+  pageLoaded:boolean = false;
   @ViewChild("drag") drag!: any;
   @ViewChild("fileUpload") fileUpload!: any;
   /**
@@ -78,7 +79,7 @@ export class CsvRulesImportComponent implements OnInit {
     this.dataSrv.checkIfOnline().then((response)=>{
       console.log(response)
     })
-
+    this.pageLoaded = true;
   }
 
   // drag and drop file in the  windows

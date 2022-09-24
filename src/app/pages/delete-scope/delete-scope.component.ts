@@ -18,7 +18,9 @@ export class DeleteScopeComponent implements OnInit {
   scopeSelected:boolean = false;
   scopeSelectedName:string = '';
   scopeSelectedId:number = -1;
-  placeHolder:Promise<string> = this.t.i18n('Choose the scope to delete')
+  placeHolder:Promise<string> = this.t.i18n('Choose the scope to delete');
+
+  pageLoaded:boolean = false;
   constructor(
     private dataSrv:DataFromIpcService,
     private router: Router,
@@ -29,6 +31,8 @@ export class DeleteScopeComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.scopes = await this.dataSrv.getScopesAll();
     /* this.placeHolder  */
+
+    this.pageLoaded = true;
   }
   change(event:any){
     const id = event.target.value;
@@ -36,7 +40,7 @@ export class DeleteScopeComponent implements OnInit {
     if(id){
       this.scopeSelectedId = id;
       const i = findOptionsIdByValue(event.target.options,id);
-      
+
       this.scopeSelectedName = event.target.options[i].text;
       console.log(this.scopeSelectedName);
       this.scopeSelected = true;
