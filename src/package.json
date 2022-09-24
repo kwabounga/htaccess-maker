@@ -1,7 +1,21 @@
 {
   "name": "htaccess-maker",
   "productName": "Htaccess Maker",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "version-notes": {
+    "1.0.0":[
+      "mise en place de l'application electron/angular",
+      "bdd Sqlite embarquée",
+      "communication ipc event front/back",
+      "styles",
+      "doc"
+    ],
+    "1.1.0":[
+      "ajout du loader pour la navigation",
+      "affichage des notes de version dans la devbar"
+    ]
+  },
+
   "description": "Htaccess Maker for create and manage .htaccess file",
   "main": "electron.prod.js",
   "license": "MIT",

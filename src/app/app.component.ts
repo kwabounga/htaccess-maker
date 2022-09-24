@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostBinding, HostListener } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener,OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Offcanvas } from 'bootstrap';
 import { filter } from 'rxjs';
@@ -10,8 +10,18 @@ import { TranslateService } from './components/commons/translate/translate.servi
   styleUrls: ['./app.component.css'],
   host: {'class': 'app-root'}
 })
-export class AppComponent {
-  version = pjson.version
+export class AppComponent /*implements OnInit*/ {
+  configOpened:boolean = false;
+  KEY_PARAMETER:string = 'KeyM'
+  title:string = pjson.productName;
+  description:string = pjson.description;
+  locale:string = navigator.language;
+  version = pjson.version;
+  versionNotes = pjson['version-notes'][this.version].join('\n');;
+
+  sliderID: string = 'sliderParams';
+  ctrlKey: string = 'Control';
+  ctrlKeyPressed: boolean = false;
   constructor(
     private elem: ElementRef,
     private t: TranslateService,
@@ -22,7 +32,13 @@ export class AppComponent {
     .subscribe((e)=>{
         this.elem.nativeElement.focus();
     })
+
    }
+   /* ngOnInit(){
+    console.log(pjson['version-notes'])
+    console.log(pjson['version-notes'][this.version])
+    this.versionNotes = pjson['version-notes'][this.version].join('\n');
+   } */
   routingInfos:any = [
     {
       label:this.t.i18n('Manage'),
@@ -80,15 +96,7 @@ export class AppComponent {
       }
     },
   ]
-  configOpened:boolean = false;
-  KEY_PARAMETER:string = 'KeyM'
-  title:string = pjson.productName;
-  description:string = pjson.description;
-  locale:string = navigator.language;
 
-  sliderID: string = 'sliderParams';
-  ctrlKey: string = 'Control';
-  ctrlKeyPressed: boolean = false;
 
   @HostBinding('attr.tabIndex') tabIndex = -1;
   @HostBinding('attr.autofocus') autofocus = 'autofocus';

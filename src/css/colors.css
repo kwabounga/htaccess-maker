@@ -239,6 +239,19 @@ textarea.form-control {
   -webkit-box-shadow: inset 0px 0px 0px 1px #000000, inset 0px 0px 0px 1px #000000;
   box-shadow: inset 0px 0px 0px 1px #000000, inset 0px 0px 0px 1px #000000;
 }
+.tooltip.bs-tooltip-top .tooltip-arrow::after {
+  border-top-color: rgba(30, 30, 30,100);
+}
+.tooltip.bs-tooltip-bottom .tooltip-arrow::after {
+  border-bottom-color: rgba(30, 30, 30,100);
+}
+.tooltip.bs-tooltip-start .tooltip-arrow::after {
+  border-left-color: rgba(30, 30, 30,100);
+}
+.tooltip.bs-tooltip-end .tooltip-arrow::after {
+  border-right-color: rgba(30, 30, 30,100);
+}
+/* ----- */
 .tooltip.bs-tooltip-top .tooltip-arrow::before {
   border-top-color: #000000;
 }
@@ -264,7 +277,7 @@ textarea.form-control {
 .list-group{
   color: #525252;
   border-radius:0;
-  border-color: rgb(41, 41, 41);;
+  border-color: rgb(41, 41, 41);
 }
 .list-group-item {
   background-color: rgb(41, 41, 41);
@@ -329,3 +342,53 @@ textarea.form-control {
   cursor: not-allowed;
   background: repeating-linear-gradient(-45deg, #ff000055, #ff000055 10px, #ffffff00 10px, #ffffff00 20px);
 }
+
+.popover {
+  border-color: #000000;
+  color: white
+}
+.popover-arrow{
+
+}
+.popover-header{
+  background-color: rgba(30, 30, 30,100);
+}
+.popover-body{
+  background-color: rgba(30, 30, 30,100);
+  color:inherit;
+}
+
+.bs-popover-top>.popover-arrow::after {
+  border-top-color: rgba(30, 30, 30,100);
+}
+.bs-popover-bottom>.popover-arrow::after {
+  border-bottom-color: rgba(30, 30, 30,100);
+}
+.bs-popover-start>.popover-arrow::after {
+  border-left-color: rgba(30, 30, 30,100);
+}
+.bs-popover-end>.popover-arrow::after {
+  border-right-color: rgba(30, 30, 30,100);
+}
+/* ------ */
+.bs-popover-top>.popover-arrow::before {
+  border-top-color: #000000;
+}
+.bs-popover-bottom>.popover-arrow::before {
+  border-bottom-color: #000000;
+}
+.bs-popover-start>.popover-arrow::before {
+  border-left-color: #000000;
+}
+.bs-popover-end>.popover-arrow::before {
+  border-right-color: #000000;
+}
+/*
+<div class="popover fade show bs-popover-end" role="tooltip" id="popover994503"
+  style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(512px, 1986px);"
+  data-popper-placement="right">
+  <div class="popover-arrow" style="position: absolute; transform: translate(0px, 47px); top: 0px;"></div>
+  <h3 class="popover-header">Popover title</h3>
+  <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
+</div>
+*/
