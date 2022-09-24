@@ -114,3 +114,9 @@ h1 {
 .btn-icon {
   display:flex
 }
+.popover-header{
+
+}
+.popover-body{
+  white-space: pre-line;
+}

@@ -11,7 +11,7 @@ export class LoggerService {
   constructor(private eventQueueSrv: EventQueueService) { }
 
   log(msg:string, timeToDisappear:number|null = 3000){
-    console.log(msg);
+    /* console.log(msg); */
     try{
       clearTimeout(this.timerReference);
     }catch{}

@@ -1,3 +1,3 @@
-<a #tooltip class="btn btn-outline-{{style}} m-1" [routerLinkActive]="[routeActive]" [routerLink]="route" data-bs-toggle="tooltip" data-bs-placement="right" [title]="title | async" (click)="hideTooltip()">
+<a #tooltip class="btn btn-outline-{{style}} m-1" [routerLinkActive]="[routeActive]" [routerLink]="route" data-bs-toggle="tooltip" data-bs-placement="right" [title]="title | async" (click)="hideTooltip()" (mouseenter)="hoverButton()" (mouseleave)="leaveButton()">
     <img class="svg-{{style}}" src="{{svg_path}}" [attr.height]="size" [attr.width]="size">
 </a>

@@ -5,7 +5,7 @@
         <span class="reason reason_value" style="float:left; padding:0 3px;" [attr.code]="'rc_'+this.reasonCode" [title]="this.reason">{{this.reasonCode}}</span>
       </span>
       <span class="input-group-text bg-vscode text-vscode">
-        <span class="scope-id" style="float:left; padding:0 3px;" [title]="getScopeNameById(rule.scope_id)">{{rule.scope_id}}</span>
+        <span class="scope-id" style="float:left; padding:0 3px;" [title]="scopeName">{{rule.scope_id}}</span>
       </span>
       <select name="redirect_types" class="form-select form-select-vscode form-select form-select--sm " title="Type de Redirection" [(ngModel)]="rule.redirect_type_id" disabled>
         <option *ngFor="let redType of redirectTypes" [ngValue]="redType.id">{{redType.label | uppercase}}</option>

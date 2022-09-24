@@ -5,5 +5,5 @@
   [preview]="this?.htAccessData"
   >
   </app-code-preview>
-  <button type="button" class="btn btn-primary" (click)="exportFile()"><i18n [txt]="'Export'"></i18n></button>
+  <button type="button" class="btn btn-primary" (click)="exportFile()" (mouseenter)="hoverButton()" (mouseleave)="leaveButton()"><i18n [txt]="'Export'"></i18n></button>
 </div>

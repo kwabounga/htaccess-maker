@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input,Output, OnInit } from '@angular/core';
 import { Scope } from 'src/app/interfaces/interfaces';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
+import { LoggerService } from 'src/app/services/logger.service';
 import { TranslateService } from '../commons/translate/translate.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class ScopeComponent implements OnInit {
   constructor(
     private t:TranslateService,
     private dataSrv:DataFromIpcService,
+    private logger: LoggerService,
   ) { }
 
   @Input() scope?:any={};
@@ -28,10 +30,12 @@ export class ScopeComponent implements OnInit {
   checkIfMagentoScopeIsFree(){
     this.dataSrv.getScopeByMagentoId(this.scope.magento_scope_id).then((response)=>{
       this.magentoIdIsFree = (response === undefined)
+      this.logger.log(`Magento id [${this.scope.magento_scope_id}] is ${this.magentoIdIsFree?'free':'allready used'}`)
     })
   }
   saveConfig(authorized){
     if(!authorized) return;
+    this.logger.log('Saving configuration ...')
     this.onClickSave.emit(this?.scope)
   }
 }

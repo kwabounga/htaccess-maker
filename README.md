@@ -295,6 +295,11 @@ RewriteRule ^(.*) ./index.html [NC,L]
 ```
 
 ----
+### @angular/animation O_0 !!  
+
+[www.animationsftw.in](https://www.animationsftw.in/#/)
+
+----
 
 ### in the future?  
 

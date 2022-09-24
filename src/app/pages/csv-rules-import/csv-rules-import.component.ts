@@ -76,9 +76,10 @@ export class CsvRulesImportComponent implements OnInit {
 
     console.log(this.redirectTypes)
     console.log(navigator.onLine)
-    this.dataSrv.checkIfOnline().then((response)=>{
-      console.log(response)
+    this.dataSrv.checkIfOnline().then((response:any)=>{
+      this.logger.log(response.ok?`ready to import and check new rules`:`you are not online, the rules check will not work`);
     })
+
     this.pageLoaded = true;
   }
 

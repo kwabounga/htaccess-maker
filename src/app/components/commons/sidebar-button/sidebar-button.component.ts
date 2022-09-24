@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, Input, ElementRef } from '@angular/core';
 import { Tooltip } from 'bootstrap';
+import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-sidebar-button',
   templateUrl: './sidebar-button.component.html',
@@ -15,7 +16,10 @@ export class SidebarButtonComponent implements AfterViewInit {
 
   tooltipElement!:any;
 
-  constructor(private elem: ElementRef) { }
+  constructor(
+    private logger: LoggerService,
+    private elem: ElementRef
+    ) { }
   /* Use AfterViewInit lifcycle  when title is allready defined */
   ngAfterViewInit(){
     // using set time out for wait the Promises response of translation
@@ -27,5 +31,11 @@ export class SidebarButtonComponent implements AfterViewInit {
   }
   hideTooltip(){
     this.tooltipElement.hide()
+  }
+  async hoverButton(){
+    this.logger.log(`Click to navigate to ${await this?.route}`)
+  }
+  leaveButton(){
+    this.logger.clear()
   }
 }

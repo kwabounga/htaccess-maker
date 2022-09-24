@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { AlertComponent } from 'src/app/components/alert/alert.component';
+import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
@@ -14,7 +15,10 @@ import { AlertComponent } from 'src/app/components/alert/alert.component';
 
 export class OverviewComponent implements OnInit/*, AfterViewInit */{
   @ViewChild('alert') alertRef!: AlertComponent;
-  constructor(private dataSrv:DataFromIpcService) { }
+  constructor(
+    private logger: LoggerService,
+    private dataSrv:DataFromIpcService
+    ) { }
 
   headerData:any;
   footerData:any;
@@ -31,25 +35,23 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
 
   pageLoaded:boolean = false;
   updateRulesPositionProgress:boolean = false;
-//   ngAfterViewInit(){
-//     var collapseElementList = [].slice.call(document.querySelectorAll('.collapse'))
-//     var collapseList = collapseElementList.map(function (collapseEl) {
-//     return new Collapse(collapseEl)
-// })
-//   }
+
   /**
    * Life cycle intitalization function
    */
   async ngOnInit(): Promise<void> {
+
     this.headerData = await this.dataSrv.getHeaderConfig();
     this.footerData = await this.dataSrv.getFooterConfig();
     this.scopes = await this.dataSrv.getScopesAll();
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
+
     await this.scopes.forEach(async (scope:any) => {
       this.scopeConfig[scope.id] = await this.getScopeConfigById(scope.id);
       this.rules[scope.id] = await this.getRulesByScopeId(scope.id);
-    }); /**/
-    console.log(this.rules);
+    });
+
+    this.logger.log(`configuration loaded for ${this.scopes.length} scopes`);
     this.pageLoaded= true;
   }
 

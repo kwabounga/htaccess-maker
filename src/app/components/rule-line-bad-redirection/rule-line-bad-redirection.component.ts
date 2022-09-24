@@ -30,20 +30,22 @@ export class RuleLineBadRedirectionComponent implements OnInit {
   redirectTypes: any = {};
   @Input()
   scopesRefs: any = {};
+  scopeName = ''
   constructor() { }
 
   ngOnInit(): void {
+    this.scopeName = this.getScopeNameById(this.rule.scope_id)
   }
   getScopeNameById(scope_id:number){
     const src =  this.scopesRefs;
-    console.log(src)
-    const byId = (element:any) => element.id === scope_id;      
+    // console.log(src)
+    const byId = (element:any) => element.id === scope_id;
     let i = src.findIndex(byId);
     let r = '';
     if(i >= 0){
       r = src[i].label
     } else {
-      r = 'UNKNOWN' 
+      r = 'UNKNOWN'
     }
     return r
   }
