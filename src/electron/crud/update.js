@@ -40,7 +40,8 @@ WHERE (${DATABASE_TABLE_RULES}.id = updated.id);`
 
   return knex.raw(raw)
   .then(function(resp) {
-    console.log(resp)
+    // console.log(resp)
+    return resp;
   });
 }
 const updateRule = (rule)=>{
@@ -73,7 +74,8 @@ WHERE (${DATABASE_TABLE_RULES}.origin = updated.origin);`
 
   return knex.raw(raw)
   .then(function(resp) {
-    console.log(resp)
+    // console.log(resp)
+    return resp;
   });
 
 }
@@ -139,7 +141,8 @@ WHERE (${DATABASE_TABLE_SCOPES}.id = updated.id);`
 
   return knex.raw(raw)
   .then(function(resp) {
-    console.log(resp)
+    // console.log(resp)
+    return resp;
   });
 }
 

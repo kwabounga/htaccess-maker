@@ -81,9 +81,19 @@ const getRulesByScopeId = (scope_id) => {
   ]);
 }
 // Rules
-const getRulesByOrigin = (target) => {
+const getRulesByOrigin = (origin) => {
   let regex = /https:\/\/.*\.com/;
-  console.log('getRulesByOrigin using target',target.replace(regex,''))
+  console.log('getRulesByOrigin using origin', '%'+origin.replace(regex,''))
+  return knex(DATABASE_TABLE_RULES).whereLike(
+    'target', '%'+origin.replace(regex,''),
+  ).select().orderBy([
+    { column: 'position' },
+    { column: 'origin', order: 'desc' }
+  ]);
+}
+const getRulesByTarget = (target) => {
+  let regex = /https:\/\/.*\.com/;
+  console.log('getRulesByTarget using target',target.replace(regex,''))
   return knex(DATABASE_TABLE_RULES).where({
     origin: target.replace(regex,''),
   }).select().orderBy([

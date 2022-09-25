@@ -296,6 +296,9 @@ textarea.form-control {
 .reason_wrapper[code=rc_111] {
   background-color: #ffa500;
 }
+/* .reason_wrapper[code=rc_333]:after {
+  content: '∞'
+} */
 .reason_wrapper[code=rc_333] {
   background-color: #600081;
   color:white;

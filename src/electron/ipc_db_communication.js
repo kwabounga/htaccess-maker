@@ -267,12 +267,14 @@ const addGetEventsCheck = (ipcMain) => {
                 if (count <= 0) {
                   // the origin and the target are goods then let test the target http response
                   fetcher.testResponse(rule.target)
-                    .then((response_code) => {
+                    .then(async (response_code) => {
                       if (response_code >= 200 && response_code < 300) {
-                        dbAccess.getRulesByOrigin(rule.target).then((byOriginResponses)=>{
+                        let byOriginResponses = await dbAccess.getRulesByOrigin(rule.origin).then((byOriginResponses)=>{
                           console.log('byOriginResponses', byOriginResponses)
+                          return byOriginResponses;
                         })
-                        e.sender.send(channel, { ok: true, rule: rule, reason: `the rule with origin '${rule.origin}' and target '${rule.target}' is ok`, reason_code: response_code, channel: channel });
+                        e.sender.send(channel, { ok: true, rule: rule, reason: `the rule with origin '${rule.origin}' and target '${rule.target}' is ok`, reason_code: response_code, channel: channel , toBeUpdate:byOriginResponses });
+
                       }
                       if (response_code >= 300 && response_code < 400) {
                         e.sender.send(channel, { ok: true, rule: rule, reason: `the rule with origin '${rule.origin}' and target '${rule.target}' is redirected`, reason_code: response_code, channel: channel });
@@ -291,7 +293,7 @@ const addGetEventsCheck = (ipcMain) => {
 
           } else {
             // the origin already exist : update
-            e.sender.send(channel, { ok: false, rule: rule, registered_rules: rows, reason: `the rule with origin '${rule.origin}' already exist`, reason_code: RC.EXISTYET, channel: channel });
+            e.sender.send(channel, { ok: false, rule: rule,  reason: `the rule with origin '${rule.origin}' already exist`, reason_code: RC.EXISTYET, channel: channel });
           }
 
         })

@@ -315,6 +315,24 @@ export class CsvRulesImportComponent implements OnInit {
     if(response.ok){
       // rule ok
       this.redToBeSaved.push(response.rule)
+      if(response.toBeUpdate.length){
+        console.log('toBeUpdate',response.toBeUpdate, response.rule.target);
+        response.toBeUpdate.forEach(r => {
+          this.redToBeUpdated.push({ ok: false, rule: {id:r.id,scope_id:r.scope_id,redirect_type_id:r.redirect_type_id,position:r.position,origin:r.origin,target:response.rule.target,active:r.active,added_at:r.added_at}, original_rule:r,  reason: `RETARGETING`, reason_code: '000', channel: 'xxxxxx' })
+          /*
+          {
+            "id": 75,
+            "scope_id": 7,
+            "redirect_type_id": 1,
+            "position": 999,
+            "origin": "/fr/collections/apres-la-pluie/",
+            "target": "https://www.moulinroty-maboutique.com/les-collections/les-petits/apres-la-pluie.html",
+            "active": 1,
+            "added_at": "2022-09-21 19:26:04"
+}
+          */
+        });
+      }
     }else{
       // rule KO
       if(response.reason_code == Constants.RC.EXISTYET){

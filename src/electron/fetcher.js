@@ -4,8 +4,8 @@ const fetch = require("node-fetch");
 /**
  * test the  http response from fetch
  * used to check the validity of redirection target url
- * 
- * @param {string} target 
+ *
+ * @param {string} target
  * @returns {Promise<number>} the http response status
  */
 const testResponse = (target) => {
@@ -15,10 +15,10 @@ const testResponse = (target) => {
   // return Promise
   return fetch(target)
     .then((response) => {
-      console.log(response.status,response.redirected,response);
+      //console.log(response.status,response.redirected,response);
       redirected_status = (response.redirected && response.status == 200);
       return redirected_status ? 301 : response.status;
-  }); 
+  });
 }
 
 
