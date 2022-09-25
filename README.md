@@ -55,17 +55,17 @@ the process to make this app
 don't forget to install sqlite driver for windows ;
 put it in C:\\sqlite3\ folder 
 
-Add it to windows Path : 
-[touch-windows]; tap variables;
-in Environment Variable: 
-Path ... add; `C:\\sqlite3\`
+Add it to windows Path :  
+[touch-windows]; type 'variables';  
+in Environment Variable:  
+Path ... add; `C:\\sqlite3\`  
 
-then: 
+then:  
 
 
 `npm i sqlite3 `  
 
-### electron-rebuild
+### electron-rebuild  
 
 `npm i electron-rebuild `  
 add this line in script section of package .json  
@@ -106,30 +106,46 @@ see:  `src\electron\build_db.js`
 ### using ipcEvent / ipcMain  from electron
 ...  for the electron part  
 set on CreateWindows Method : 
+
 ```js 
 win = new BrowserWindow({
     [...]
-    webPreferences: { nodeIntegration: true, enableRemoteModule: true, contextIsolation: false }, // Must be set !! or electronSrv.ipcRenderer will always null
+    /* Must be set !! or electronSrv.ipcRenderer will always null */
+    webPreferences: { nodeIntegration: true, enableRemoteModule: true, contextIsolation: false },  
     ipcRenderer: ipcRenderer, // send ipcRenderer to the front
     isElectron: true,
     [...]
 });
 ```
+
 #### for get event from the Angular app:  
 ```js
 ipcMain.on("test", (_event,data)=>{console.log('test',data)}); // listen for 'test' event from the frontend
 ```
 ### using ipcRenderer / ipcMain  from ngx-electron
-... for angular part !
-`npm i ngx-electron` 
+
+... for angular part !  
+`npm i ngx-electron`  
+
+
 
 --- 
+### make Some changes in the module ngx-electron
 in `node_modules\ngx-electron\lib\electron.service.d.ts`  
-**/!\\**   must comment the line :  **/!\\** 
+**/!\\**   must comment the line :  **/!\\**  
 ```ts
 (17) // readonly remote: Electron.Remote;
 ```
-to resolve a f****g bug  
+to resolve the f****g bug:  
+'Electron.ipcRenderer is always null'  
+
+### Bonus:  use 'patch-package'
+
+`npm i patch-package `  
+[patch-package doc](https://www.npmjs.com/package/patch-package)  
+to apply the correction and make it persistant after using npm  
+
+
 
 ---
 
@@ -159,7 +175,6 @@ constructor(
     ...
   ) {}
 ```
-
 
 ```js
 if(this.electronSrv.isElectronApp){ // check if is in electron app
@@ -272,13 +287,17 @@ store.set('foo', '1');
 
 ----
 ### diagram in github
-[doc mermaid](https://mermaid-js.github.io/mermaid/#/)
+[doc mermaid](https://mermaid-js.github.io/mermaid/#/)  
+[live editor](https://mermaid-js.github.io/mermaid-live-editor)  
+
 ```mermaid
-graph TD;
-A-->B;
-A-->C;
-B-->D;
-C-->D;
+classDiagram
+    Class FooterConfig
+    Class HeaderConfig
+    Scope "1" o-- "1" ScopeConfig
+    Scope "1" o-- "*" Rule
+    Rule "1" o-- "1" RedirectType
+    
 ```
 ----
 ### to access angular routes from outside:  
