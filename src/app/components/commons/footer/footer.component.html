@@ -1,7 +1,7 @@
 <footer class="footer container-fluid devbar">
   <div class="row">
     <div class="col output">{{output}}</div>
-  <div class="col col-2 content">
+  <div class="col col-4 col-md-2 content">
     <ng-content></ng-content>
     <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 text-light'" [active]="localTitle" [popoverTitle]="localTitle | async" [popoverContent]="locale"><span>{{locale}}</span></button-popovered>
     <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 text-light'" [active]="version" [popoverTitle]="'v.' + version + ' notes:'" [popoverContent]="versionNotes"><span>v.{{version}}</span></button-popovered>

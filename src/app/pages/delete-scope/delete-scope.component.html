@@ -3,7 +3,7 @@
 <h1><i18n [txt]="'Deleting a scope'"></i18n></h1>
 
 
-<select #selectScopes name="scopes" class="form-select form-select-vscode form-select form-select--sm " [title]="placeHolder | async"  (change)="change($event)">
+<select #selectScopes name="scopes" class="form-select form-select-vscode form-select form-select-sm " [title]="placeHolder | async"  (change)="change($event)">
     <option value=""><i18n [txt]="'Choose the scope to delete'"></i18n></option>
     <option *ngFor="let scope of scopes; let id = index" [value]="scope.id">{{scope.label | uppercase}}</option>
   </select>
