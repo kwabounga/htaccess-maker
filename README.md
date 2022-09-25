@@ -292,8 +292,8 @@ store.set('foo', '1');
 
 ```mermaid
 classDiagram
-    Class FooterConfig
-    Class HeaderConfig
+    class FooterConfig
+    class HeaderConfig
     Scope "1" o-- "1" ScopeConfig
     Scope "1" o-- "*" Rule
     Rule "1" o-- "1" RedirectType
