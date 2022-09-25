@@ -292,12 +292,44 @@ store.set('foo', '1');
 
 ```mermaid
 classDiagram
-    class FooterConfig
-    class HeaderConfig
+    HtAccess "1" o-- "1" HeaderConfig
+    HtAccess "1" o-- "*" Scope
+    HtAccess "1" o-- "1" FooterConfig
     Scope "1" o-- "1" ScopeConfig
     Scope "1" o-- "*" Rule
-    Rule "1" o-- "1" RedirectType
-    
+    Rule "*" o-- "1" RedirectType
+    class HtAccess {
+      +hconfig : HeaderConfig
+      +scopes : Scope[]
+      +fconfig : FooterConfig
+    }
+    class HeaderConfig {
+      +details : string
+    }
+    class FooterConfig {
+        +details : string
+    }
+    class Scope {
+      +label : string
+      +magentoId : int
+      +logo: string
+      +config: ScopeConfig
+      +rules : Rule[]
+    }    
+    class ScopeConfig {
+      +rule : string
+      +condition : string
+    }
+    class Rule {
+      +redType : RedirectType
+      +origin : string
+      +target : string
+      +active : boolean
+    }
+    class RedirectType {
+      +label : string
+      +value: string
+    }
 ```
 ----
 ### to access angular routes from outside:  
