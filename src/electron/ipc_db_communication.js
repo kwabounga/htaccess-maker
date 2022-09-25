@@ -34,15 +34,7 @@ const addEventsGet = (ipcMain) => {
       e.sender.send("retrieve:scopes", error.message);
     })
   })
-  ipcMain.on("get:scopes_config", (e) => {
-    dbAccess.getFooterConfig().then((scopes_config)=>{
-      const data = scopes_config;
-      // console.log(data);
-      e.sender.send("retrieve:scopes_config", data);
-    }).catch((error)=>{
-      e.sender.send("retrieve:scopes_config", error.message);
-    })
-  })
+ 
 
   ipcMain.on("get:redirect_types", (e) => {
     dbAccess.getRedirectTypesAll().then((redirect_types)=>{

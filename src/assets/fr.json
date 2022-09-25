@@ -28,7 +28,7 @@
   "Scope Configuration": "Configuration du scope",
   "Toggle Config": "Ouvrir/Fermer la configuration",
   "Are you sure you want to delete": "Etes vous sur de vouloir supprimer",
-  "place here the html code for the logo. it would be svg or base 64 encoded image (facultative)": "placer ici le code html pour le logo. cela doit etre au format svg ou une image encodé en base64",
+  "place here the html code for the logo. it would be svg or base 64 encoded image (facultative)": "placer ici le code html pour le logo. cela doit etre au format svg ou une image encodé en base64 (facultatif)",
   "Yes i want to delete %0 All informations": "Oui je veux supprimer toutes les informations de %0 ...",
   "this will delete all the rules linked to this scope, as well as the associated configuration": "Cela va supprimer toutes ses règles, ainsi que la configuration associée",
   "Export the .htaccess file": "Exporter le fichier .htaccess",

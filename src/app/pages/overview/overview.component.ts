@@ -80,10 +80,7 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
       return obj;
     })
   }
-  // TODO : do an alert system on succes / on error
 
-
-  // TODO: implement saveHeaderConfig
   saveHeaderConfig(){
     console.log('saveHeaderConfig',this.headerData)
     this.dataSrv.updateHeaderConfig(this.headerData).then((response)=>{
@@ -91,7 +88,7 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
       this.alertRef.openAlert('success', 'header config saved!', 2000);
     })
   }
-  // TODO: implement saveFooterConfig
+  
   saveFooterConfig(){
     console.log('saveFooterConfig', this.footerData)
     this.dataSrv.updateFooterConfig(this.footerData).then((response)=>{
@@ -132,7 +129,8 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
       console.log('scope updated', response)
     })
   }
-  // TODO: implement saveConfig
+ 
+  
   updateScopeConfig(event:any){
     console.log('updateScopeConfig',event.scopeConfig)
     this.dataSrv.updateScopeConfig(event.scopeConfig).then((response)=>{

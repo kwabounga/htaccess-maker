@@ -262,16 +262,6 @@ export class CsvRulesImportComponent implements OnInit {
     return headerOk;
   }
 
-  /**
-   * change a rule on the fly
-   * in the toBeprocessed Redirection array
-   * if we see an error before checking rules validity
-   * @param {rule} event the rule to be changed
-   */
-  // TODO: implement changeSave
-  changeSave(event: any) {
-    console.log('check', event);
-  }
 
   /**
    * Used for progress bar

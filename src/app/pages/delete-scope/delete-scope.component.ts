@@ -53,6 +53,7 @@ export class DeleteScopeComponent implements OnInit {
   deleteScopeConfig(){
     // console.log('DELETE SCOPE HERE', this.scopeSelectedId);
     // then navigate to the overview:
+    // TODO: delete all associated rules and configuration
     this.dataSrv.deleteScope(this.scopeSelectedId).then((response)=>{
       this.logger.log(`ok the scope ${this.scopeSelectedId} and all references are deleted`)
       setTimeout(()=>{

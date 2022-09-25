@@ -1,7 +1,7 @@
 <div class="app-bar d-flex d-lg-none">
   <div class="logo"></div>
   <span class="app-title text-vscode-alt text-bold" [title]="description">{{title}}</span>
-  <button class="btn btn-sm btn-primary no-drag" type="button" data-bs-toggle="offcanvas" title="configuration" [attr.data-bs-target]="'#'+sliderID" [attr.aria-controls]="sliderID" (click)="toogleConfig()">
+  <button class="btn btn-sm btn-primary no-drag height-auto" type="button" data-bs-toggle="offcanvas" title="configuration" [attr.data-bs-target]="'#'+sliderID" [attr.aria-controls]="sliderID" (click)="toogleConfig()">
     <img class="svg-white" src="assets/svg/config.svg"  height="20px" width="20px">
   </button>
   <app-mini-button></app-mini-button>
@@ -13,7 +13,7 @@
       <a class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label | async}}</a>
     </li>
     <app-mini-button></app-mini-button>
-    <button class="btn btn-sm btn-primary no-drag" type="button" data-bs-toggle="offcanvas" title="configuration" [attr.data-bs-target]="'#'+sliderID" [attr.aria-controls]="sliderID" (click)="toogleConfig()">
+    <button class="btn btn-sm btn-primary no-drag height-auto" type="button" data-bs-toggle="offcanvas" title="configuration" [attr.data-bs-target]="'#'+sliderID" [attr.aria-controls]="sliderID" (click)="toogleConfig()">
       <img class="svg-white" src="assets/svg/config.svg"  height="20px" width="20px">
     </button>
   </ul>

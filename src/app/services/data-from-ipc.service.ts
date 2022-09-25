@@ -18,7 +18,7 @@ import { ElectronService } from 'ngx-electron';
  *
  * the methods always return Promises that
  * send a custom event to the electron part
- * and subscribe on the fly to the electon response
+ * and subscribe on the fly to the electron response
  * when the event response is retrieved, the promise is resolved with the requested value
  */
 export class DataFromIpcService {
@@ -28,6 +28,11 @@ export class DataFromIpcService {
     private electronSrv: ElectronService,
     ) { }
 
+
+  /**
+   * Generate the .htaccess file from data
+   * @returns {Promise<string>} the htaccess body
+   */
   async generateHtaccessFile():Promise<string> {
     return new Promise (async (resolve, reject)=>{
       let htAccessContent= "";
@@ -45,6 +50,10 @@ export class DataFromIpcService {
     })
   }
 
+  /**
+   * Get the Header Config
+   * @returns {Promise<string>} the configuration header
+   */
   async getHeaderConfig():Promise<string> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:header_config');
@@ -54,6 +63,10 @@ export class DataFromIpcService {
     })
   }
 
+  /**
+   * Get the Footer Config
+   * @returns {Promise<string>} the configuration footer
+   */
   async getFooterConfig():Promise<string> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:footer_config');
@@ -63,17 +76,11 @@ export class DataFromIpcService {
     })
   }
 
-
-  async getScopesConfig():Promise<string> {
-    return new Promise (async (resolve, reject)=>{
-      this.electronSrv.ipcRenderer.send('get:scopes_config');
-      this.electronSrv.ipcRenderer.on('retrieve:scopes_config', (_event:any, response: any) => {
-        resolve(response);
-      })
-    })
-  }
-
-
+/**
+ * get the configuration of a specified scope
+ * @param {number} id the scope id
+ * @returns {Promise<ScopeConfig>} the scope configuration 
+ */
   async getScopesConfigById (id?:number):Promise<ScopeConfig> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope_config:by_id`, id);
@@ -87,7 +94,11 @@ export class DataFromIpcService {
 
   }
 
-
+  /**
+  * get the scope of a specified magento id
+  * @param {number} magento_scope_id the magento scope id
+  * @returns {Promise<Scope>} the scope obj 
+  */
   async getScopeByMagentoId (magento_scope_id?:number):Promise<Scope> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope:by_magento_id`, magento_scope_id);
@@ -101,7 +112,10 @@ export class DataFromIpcService {
   }
 
 
-
+  /**
+   * get all scopes
+   * @returns {Promise<Scope[]} all scopes obj
+   */
   async getScopesAll ():Promise<Scope[]> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:scopes');
@@ -112,7 +126,10 @@ export class DataFromIpcService {
   }
 
 
-
+/**
+   * get all redirect type
+   * @returns {Promise<RedirectType[]} all redirect type obj
+   */
   async getRedirectTypesAll ():Promise<RedirectType[]> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:redirect_types');
@@ -123,7 +140,11 @@ export class DataFromIpcService {
   }
 
 
-
+  /**
+   * get redirect type by id
+   * @param {number} id  the id 
+   * @returns {Promise<RedirectType>} the redirect type obj
+   */
   async getRedirectTypesById (id:number):Promise<RedirectType> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:redirect_types:by_id',id);
@@ -135,8 +156,12 @@ export class DataFromIpcService {
   }
 
 
-
-  async getScopesById (id:number) {
+  /**
+   * get scope by id
+   * @param {number} id  the id  
+   * @returns  {Promise<Scope>} the scope obj
+   */
+  async getScopesById (id:number):Promise<Scope> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope:by_id`, id);
       const resolver = (_event:any, response: any) => {
@@ -149,7 +174,11 @@ export class DataFromIpcService {
   }
 
 
-
+  /**
+   * get all rules of specified scope
+   * @param scope_id the scope id 
+   * @returns  {Promise<Rule[]>} all scope associated rules in array 
+   */
   async getRulesByScopeId (scope_id?:number):Promise<Rule[]> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:rules:by_scope_id`, scope_id);
@@ -162,6 +191,11 @@ export class DataFromIpcService {
     })
   }
 
+  /**
+   * delete a rule
+   * @param {Rule} rule the rule to be deleted
+   * @returns {Promise<boolean>} deleted or not 
+   */
   async deleteRule (rule:Rule):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`delete:rule`, rule);
@@ -173,6 +207,11 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`rule:deleted`, resolver)
     })
   }
+  /**
+   * delete a scope by id
+   * @param {number} scope_id the id of the scope to be deleted
+   * @returns {Promise<boolean>} deleted or not 
+   */
   async deleteScope (scope_id:number):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`delete:scope`, scope_id);
