@@ -1,4 +1,4 @@
-const { 
+const {
   knex,
   DATABASE_TABLE_RULES,
   DATABASE_TABLE_SPECIALS_RULES,
@@ -15,13 +15,13 @@ const REGEX_URL =  /https?:\/\/\w+\.[\w_-]+\.\w{2,3}(\S*)/;
  *  DB READ      *
  **              */
 
-// Header  
+// Header
 const getHeaderConfig = () => {
   return knex(DATABASE_TABLE_HEADER_CONFIG).where({
     id: 1,
   }).select();
 }
-// Footer  
+// Footer
 const getFooterConfig = () => {
   return knex(DATABASE_TABLE_FOOTER_CONFIG).where({
     id: 1,
@@ -30,7 +30,7 @@ const getFooterConfig = () => {
 const getScopesConfig = () => {
   return knex(DATABASE_TABLE_SCOPES_CONFIG).select();
 }
-// RedirectTypes 
+// RedirectTypes
 const getRedirectTypesAll = () => {
   return knex(DATABASE_TABLE_REDIRECT_TYPES).select();
 }
@@ -71,12 +71,23 @@ const getScopeConfigByMagentoID = (magento_scope_id) => {
     magento_scope_id: magento_scope_id,
   }).select();
 }
-// Rules 
+// Rules
 const getRulesByScopeId = (scope_id) => {
   return knex(DATABASE_TABLE_RULES).where({
     scope_id: scope_id,
   }).select().orderBy([
-    { column: 'position' }, 
+    { column: 'position' },
+    { column: 'origin', order: 'desc' }
+  ]);
+}
+// Rules
+const getRulesByOrigin = (target) => {
+  let regex = /https:\/\/.*\.com/;
+  console.log('getRulesByOrigin using target',target.replace(regex,''))
+  return knex(DATABASE_TABLE_RULES).where({
+    origin: target.replace(regex,''),
+  }).select().orderBy([
+    { column: 'position' },
     { column: 'origin', order: 'desc' }
   ]);
 }
@@ -90,7 +101,7 @@ const checkIfRuleAlreadyExist = (rule) => {
 const verifyRedirectionLoop = (rule) => {
   let regex = REGEX_URL;
   let targetWithoutBase = rule.target.match(regex)[1];
-  console.log('verifyRedirectionLoop', targetWithoutBase)
+  // console.log('verifyRedirectionLoop', targetWithoutBase)
   return knex(DATABASE_TABLE_RULES)
       .where({ scope_id: rule.scope_id })
       .where({ origin: targetWithoutBase })
@@ -108,6 +119,7 @@ exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
 exports.getScopeByMagentoID = getScopeByMagentoID;
 exports.getRulesByScopeId = getRulesByScopeId;
+exports.getRulesByOrigin = getRulesByOrigin;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 exports.getScopeConfigByMagentoID = getScopeConfigByMagentoID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;

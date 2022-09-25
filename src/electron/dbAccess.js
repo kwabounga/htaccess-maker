@@ -45,6 +45,7 @@ const {
   getScopeByMagentoID,
   getScopeConfigByScopeID,
   getRulesByScopeId,
+  getRulesByOrigin,
   checkIfRuleAlreadyExist,
   verifyRedirectionLoop,
   REGEX_URL,
@@ -115,6 +116,7 @@ exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
 exports.getScopeByMagentoID = getScopeByMagentoID;
 exports.getRulesByScopeId = getRulesByScopeId;
+exports.getRulesByOrigin = getRulesByOrigin;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 
 // verification
