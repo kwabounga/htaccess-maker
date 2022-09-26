@@ -249,7 +249,7 @@ console.log(store.get('unicorn'));
 
  ### set schema  
 
-[src\electron\localStorage.js](src\electron\localStorage.js)
+[src\electron\localStorage.js](src/electron/localStorage.js)
 
  ```js
  const Store = require('electron-store');
@@ -343,6 +343,10 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^.*$ - [NC,L]
 
 RewriteRule ^(.*) ./index.html [NC,L]
+```
+and change basedir in index.html:  
+```html 
+<base href="./">
 ```
 
 ----
