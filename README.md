@@ -1,33 +1,15 @@
 # HtaccessMaker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+An electron/angular application, allowing to manage and generate an htaccess file. Designed for a multi-site Magento 2, it can:  
+[x] manage rules and configuration per site  
+[x] import rules via csv file  
+[x] check redirect loops, 404s  
+[x] update old rules  
+[x] enable/disable rules without losing history  
+[x] reorder config / rules  
+[x] generate the file  
 
 
-----
 
 # installation process
 
@@ -48,7 +30,6 @@ the process to make this app
 ### knex 
 
 `npm i knex`
-
 
 ### sqlite3
 
@@ -100,8 +81,55 @@ npm run create-database
 This will create the database and populate it with basic rules  
 see:  `src\electron\build_db.js`
 
+----
+
+the db schema look like this:
+
+```mermaid
+classDiagram
+    HtAccess "1" o-- "1" HeaderConfig
+    HtAccess "1" o-- "*" Scope
+    HtAccess "1" o-- "1" FooterConfig
+    Scope "1" o-- "1" ScopeConfig
+    Scope "1" o-- "*" Rule
+    Rule "*" o-- "1" RedirectType
+    class HtAccess {
+      +hconfig : HeaderConfig
+      +scopes : Scope[]
+      +fconfig : FooterConfig
+    }
+    class HeaderConfig {
+      +details : string
+    }
+    class FooterConfig {
+        +details : string
+    }
+    class Scope {
+      +label : string
+      +magentoId : int
+      +logo: string
+      +config: ScopeConfig
+      +rules : Rule[]
+    }    
+    class ScopeConfig {
+      +rule : string
+      +condition : string
+    }
+    class Rule {
+      +redType : RedirectType
+      +origin : string
+      +target : string
+      +active : boolean
+    }
+    class RedirectType {
+      +label : string
+      +value: string
+    }
+```
 
 ----
+
+
 ## communication between front and back
 ### using ipcEvent / ipcMain  from electron
 ...  for the electron part  
@@ -184,6 +212,10 @@ if(this.electronSrv.isElectronApp){ // check if is in electron app
 ---
 
 
+
+
+
+
 ### force dom update on event
 So angular update the dom automatically on user action (like click) but when you work with ipc_events  the dom is not updated. the `ChangeDetectorRef` Class is made for that:  
 in the ``component.ts``:  
@@ -213,10 +245,11 @@ this.electronSrv.ipcRenderer.on(
 ---
 ## cool drag and drop 
 
-
 `npm i ngx-smooth-dnd`  
 [ngx-smooth-dnd](https://github.com/kutlugsahin/ngx-smooth-dnd)  
 [demo](https://kutlugsahin.github.io/ngx-smooth-dnd/)  
+
+
 
 
 ---
@@ -224,6 +257,9 @@ this.electronSrv.ipcRenderer.on(
 node 14.15.4
 
 ---
+
+
+
 
 ## use electron-store
 
@@ -276,61 +312,29 @@ store.set('foo', '1');
  
  ```
 
+
+
 ### free spinners
 
 [svg-spinners](https://github.com/n3r4zzurr0/svg-spinners)
 
 ----
+
+
+
 ### free icons 
 
 [iconoir](https://iconoir.com/)
 
 ----
+
+
+
 ### diagram in github
 [doc mermaid](https://mermaid-js.github.io/mermaid/#/)  
 [live editor](https://mermaid-js.github.io/mermaid-live-editor)  
 
-```mermaid
-classDiagram
-    HtAccess "1" o-- "1" HeaderConfig
-    HtAccess "1" o-- "*" Scope
-    HtAccess "1" o-- "1" FooterConfig
-    Scope "1" o-- "1" ScopeConfig
-    Scope "1" o-- "*" Rule
-    Rule "*" o-- "1" RedirectType
-    class HtAccess {
-      +hconfig : HeaderConfig
-      +scopes : Scope[]
-      +fconfig : FooterConfig
-    }
-    class HeaderConfig {
-      +details : string
-    }
-    class FooterConfig {
-        +details : string
-    }
-    class Scope {
-      +label : string
-      +magentoId : int
-      +logo: string
-      +config: ScopeConfig
-      +rules : Rule[]
-    }    
-    class ScopeConfig {
-      +rule : string
-      +condition : string
-    }
-    class Rule {
-      +redType : RedirectType
-      +origin : string
-      +target : string
-      +active : boolean
-    }
-    class RedirectType {
-      +label : string
-      +value: string
-    }
-```
+
 ----
 ### to access angular routes from outside:  
 in .htaccess files in the root/wwww/public folder in the server.
@@ -361,3 +365,38 @@ and change basedir in index.html:
 >  for i18n custom component ?
  
 [publish an angular component to npm](https://jasonwatmore.com/post/2020/06/16/angular-npm-how-to-publish-an-angular-component-to-npm)
+
+
+
+----
+
+## original doc 
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
+
+## Development server
+
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Running unit tests
+
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+----
