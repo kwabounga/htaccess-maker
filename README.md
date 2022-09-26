@@ -1,13 +1,13 @@
 # HtaccessMaker
 
 An electron/angular application, allowing to manage and generate an htaccess file. Designed for a multi-site Magento 2, it can:  
-[x] manage rules and configuration per site  
-[x] import rules via csv file  
-[x] check redirect loops, 404s  
-[x] update old rules  
-[x] enable/disable rules without losing history  
-[x] reorder config / rules  
-[x] generate the file  
+- [x] import rules via csv file  
+- [x] manage rules and configuration per site  
+- [x] check redirect loops, 404s  
+- [x] update old rules  
+- [x] enable/disable rules without losing history  
+- [x] reorder config / rules  
+- [x] generate the file  
 
 
 
