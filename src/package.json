@@ -1,7 +1,7 @@
 {
   "name": "htaccess-maker",
   "productName": "Htaccess Maker",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "version-notes": {
     "1.0.0":[
       "mise en place de l'application electron/angular",
@@ -13,6 +13,11 @@
     "1.1.0":[
       "ajout du loader pour la navigation",
       "affichage des notes de version dans la devbar"
+    ],
+    "1.2.0":[
+      "ajout de l'historique en bdd",
+      "copie du fichier .db vers un backup",
+      "visualisation des versions de l'historique dans les paramètres"
     ]
   },
 
