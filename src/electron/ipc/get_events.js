@@ -33,7 +33,7 @@ const dbAccess = require("../dbAccess");
       e.sender.send("retrieve:scopes", error.message);
     })
   })
- 
+
 
   ipcMain.on("get:redirect_types", (e) => {
     dbAccess.getRedirectTypesAll().then((redirect_types)=>{
@@ -89,6 +89,15 @@ const dbAccess = require("../dbAccess");
       e.sender.send(`retrieve:rules:by_scope_id_${scope_id}`, data);
     }).catch((error)=>{
       e.sender.send(`retrieve:rules:by_scope_id_${scope_id}`, error.message);
+    })
+  })
+  ipcMain.on("get:history", (e) => {
+    dbAccess.getHistory().then((histories)=>{
+      const data = histories;
+      // console.log('getRulesByScopeID', data);
+      e.sender.send(`retrieve:history`, data);
+    }).catch((error)=>{
+      e.sender.send(`retrieve:history`, error.message);
     })
   })
 }

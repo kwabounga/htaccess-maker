@@ -7,6 +7,7 @@ const {
   DATABASE_TABLE_HEADER_CONFIG,
   DATABASE_TABLE_FOOTER_CONFIG,
   DATABASE_TABLE_REDIRECT_TYPES,
+  DATABASE_TABLE_HISTORY,
 } = require('../bd_factory');
 
 
@@ -21,6 +22,7 @@ const createSchema = () => {
       .then((_) => createSpecialsRulesTable())
       .then((_) => createHeaderConfigTable())
       .then((_) => createFooterConfigTable())
+      .then((_) => createHistoryTable())
       .then((_) => {
           console.log("schema created");
       });
@@ -93,6 +95,16 @@ const createFooterConfigTable = () => {
   });
 };
 
+const createHistoryTable = () => {
+  return knex.schema.createTable(DATABASE_TABLE_HISTORY, function(table) {
+      table.increments("id").primary();
+      table.string("label");
+      table.string("guid").notNullable();
+      table.string("version").notNullable();
+      table.datetime('added_at').defaultTo(knex.fn.now())
+  });
+};
+
 /* Exports */
 exports.createSchema = createSchema;
 exports.createRulesTable = createRulesTable;
@@ -102,3 +114,4 @@ exports.createScopesConfigTable = createScopesConfigTable;
 exports.createHeaderConfigTable = createHeaderConfigTable;
 exports.createFooterConfigTable = createFooterConfigTable;
 exports.createRedirectTypesTable = createRedirectTypesTable;
+exports.createHistoryTable = createHistoryTable;

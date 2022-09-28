@@ -2,6 +2,7 @@
 console.log(process.argv);
 const scopeID = +process.argv[2]
 if(!scopeID){
+  console.log('no scopeID provided');
   process.exit(1);
 }
 

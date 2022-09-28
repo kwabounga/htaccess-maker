@@ -5,7 +5,7 @@ const Store = require('electron-store');
 const ipcCom = require("./electron/ipc_db_communication");
 const ipcApp = require("./electron/ipc_app_actions");
 const schema = require('./electron/localStorage')
-var pjson = require('./package.json');
+const pjson = require('./package.json');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

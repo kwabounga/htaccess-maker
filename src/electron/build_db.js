@@ -17,6 +17,8 @@ dbAccess.check()
   if (!exists) {
     return dbAccess.createSchema().then((_) => {
       return populateDatabase();
+    }).then(_=>{
+      return dbAccess.makeHistory('database creation')
     });
   }
 }).then((_) => {

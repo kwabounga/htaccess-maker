@@ -150,7 +150,7 @@ export class CsvRulesImportComponent implements OnInit {
    */
   uploadCsvRedirect() {
     console.log('uploadCsvRedirect', this.redToBeSaved);
-    this.dataSrv.uploadRedirections(this.redToBeSaved)
+    this.dataSrv.uploadRules(this.redToBeSaved)
   }
   UpdateExistingRedirections() {
     console.log('UpdateExistingRedirections', this.redToBeUpdated);

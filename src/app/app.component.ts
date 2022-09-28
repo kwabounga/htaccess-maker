@@ -4,6 +4,7 @@ import { Offcanvas } from 'bootstrap';
 import { filter } from 'rxjs';
 import pjson from 'src/package.json';
 import { TranslateService } from './components/commons/translate/translate.service';
+import { DataFromIpcService } from './services/data-from-ipc.service';
 import { LoggerService } from './services/logger.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { LoggerService } from './services/logger.service';
   styleUrls: ['./app.component.css'],
   host: {'class': 'app-root'}
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   /* app info */
   title:string = pjson.productName;
@@ -28,11 +29,14 @@ export class AppComponent {
   ctrlKey: string = 'Control';
   ctrlKeyPressed: boolean = false;
 
+  history: any =  null;
+
   /* constructor */
   constructor(
     private elem: ElementRef,
     private t: TranslateService,
     private logger: LoggerService,
+    private dataSrv:DataFromIpcService,
     private router: Router
     ) {
     /* focus host on navigation end */
@@ -42,7 +46,9 @@ export class AppComponent {
         this.elem.nativeElement.focus();
     })
    }
-
+   async ngOnInit(){
+    this.history = await this.dataSrv.getHistory();
+   }
   /* routing */
   routingInfos:any = [
     {

@@ -7,6 +7,7 @@ const {
   DATABASE_TABLE_HEADER_CONFIG,
   DATABASE_TABLE_FOOTER_CONFIG,
   DATABASE_TABLE_REDIRECT_TYPES,
+  DATABASE_TABLE_HISTORY,
 } = require('../bd_factory');
 
 const REGEX_URL =  /https?:\/\/\w+\.[\w_-]+\.\w{2,3}(\S*)/;
@@ -30,6 +31,7 @@ const getFooterConfig = () => {
 const getScopesConfig = () => {
   return knex(DATABASE_TABLE_SCOPES_CONFIG).select();
 }
+
 // RedirectTypes
 const getRedirectTypesAll = () => {
   return knex(DATABASE_TABLE_REDIRECT_TYPES).select();
@@ -108,6 +110,8 @@ const checkIfRuleAlreadyExist = (rule) => {
       //.then(rows => rows.length);
 }
 
+
+
 const verifyRedirectionLoop = (rule) => {
   let regex = REGEX_URL;
   let targetWithoutBase = rule.target.match(regex)[1];
@@ -118,6 +122,9 @@ const verifyRedirectionLoop = (rule) => {
       .then(rows => rows.length);
 }
 
+const getHistory = () => {
+  return knex(DATABASE_TABLE_HISTORY).select();
+}
 
 /* Exports */
 exports.getFooterConfig = getFooterConfig;
@@ -134,4 +141,5 @@ exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 exports.getScopeConfigByMagentoID = getScopeConfigByMagentoID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
 exports.verifyRedirectionLoop = verifyRedirectionLoop;
+exports.getHistory = getHistory;
 exports.REGEX_URL = REGEX_URL;

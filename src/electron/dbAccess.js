@@ -8,6 +8,7 @@ const {
   DATABASE_TABLE_SCOPES_CONFIG,
   DATABASE_TABLE_HEADER_CONFIG,
   DATABASE_TABLE_REDIRECT_TYPES,
+  DATABASE_TABLE_HISTORY,
 }  = require('./bd_factory');
 
 // get all inserts methods from CRUD insert
@@ -19,6 +20,7 @@ const {
   insertHeaders,
   insertFooters,
   insertRedirectTypes,
+  makeHistory,
 }  = require('./crud/insert');
 
 // get all creates methods from CRUD create
@@ -47,6 +49,7 @@ const {
   getRulesByScopeId,
   getRulesByOrigin,
   checkIfRuleAlreadyExist,
+  getHistory,
   verifyRedirectionLoop,
   REGEX_URL,
 }  = require('./crud/read');
@@ -104,6 +107,7 @@ exports.insertScopesConfig = insertScopesConfig;
 exports.insertHeaders = insertHeaders;
 exports.insertFooters = insertFooters;
 exports.insertRedirectTypes = insertRedirectTypes;
+exports.makeHistory = makeHistory;
 
 
 // select / read
@@ -118,6 +122,7 @@ exports.getScopeByMagentoID = getScopeByMagentoID;
 exports.getRulesByScopeId = getRulesByScopeId;
 exports.getRulesByOrigin = getRulesByOrigin;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
+exports.getHistory = getHistory;
 
 // verification
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;

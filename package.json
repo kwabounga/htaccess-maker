@@ -16,6 +16,7 @@
     "package:osx": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite ",
     "package:all": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --all --arch=all --overwrite ",
     "create:scope:config": "node ./src/commands/cmd-create-scope-config.js",
+    "create:backup": "node ./src/commands/cmd-create-backup.js",
     "test": "ng test"
   },
   "private": true,

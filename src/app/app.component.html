@@ -54,7 +54,13 @@
     </select>
     <label for="floatingSelectTheme">Select a Theme</label>
   </div>
-  
+  <div class="form-floating">
+    <select name="redirect_types" id="floatingSelectHistory" class="form-select form-select-vscode">
+      <option *ngFor="let h of history" [ngValue]="h.id">{{h.guid | uppercase}}</option>
+    </select>
+    <label for="floatingSelectHistory">Back to history</label>
+  </div>
+
 </app-slider>
 <!-- Footer -->
 <app-footer

@@ -4,8 +4,8 @@ const url = require('url');
 const Store = require('electron-store');
 const ipcCom = require("./electron/ipc_db_communication");
 const ipcApp = require("./electron/ipc_app_actions");
-const schema = require('./electron/localStorage')
-var pjson = require('./package.json');
+const schema = require('./electron/localStorage');
+const pjson = require('./package.json');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,7 +13,8 @@ let win;
 const store = new Store(schema);
 
 // store is  created config.json file here:
-console.log(app.getPath('userData'));
+console.log('user',app.getPath('userData'));
+console.log('app',app.getPath('appData'));
 
 
 const createWindow = () => {
