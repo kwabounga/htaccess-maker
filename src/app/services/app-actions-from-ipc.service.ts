@@ -20,4 +20,15 @@ export class AppActionsFromIpcService {
       resolve();
     })
   }
+
+  /**
+     * Reload application call
+     * @returns useless Promise
+     */
+  async reloadApplication():Promise<void> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send('app:reload');
+      resolve();
+    })
+  }
 }

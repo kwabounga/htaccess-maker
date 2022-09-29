@@ -60,7 +60,9 @@
     </select>
     <label for="floatingSelectHistory">Back to history</label>
   </div>
-
+  <div class="d-grid gap-2">
+    <button (click)="reload()" class="btn btn-primary btn-lg"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>reload</button>
+  </div>
 </app-slider>
 <!-- Footer -->
 <app-footer

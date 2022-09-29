@@ -4,6 +4,7 @@ import { Offcanvas } from 'bootstrap';
 import { filter } from 'rxjs';
 import pjson from 'src/package.json';
 import { TranslateService } from './components/commons/translate/translate.service';
+import { AppActionsFromIpcService } from './services/app-actions-from-ipc.service';
 import { DataFromIpcService } from './services/data-from-ipc.service';
 import { LoggerService } from './services/logger.service';
 
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
     private t: TranslateService,
     private logger: LoggerService,
     private dataSrv:DataFromIpcService,
+    private appSrv:AppActionsFromIpcService,
     private router: Router
     ) {
     /* focus host on navigation end */
@@ -146,5 +148,8 @@ export class AppComponent implements OnInit {
 
   toogleConfig(){
     this.configOpened = !this.configOpened;
+  }
+  reload(){
+    this.appSrv.reloadApplication();
   }
 }
