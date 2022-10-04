@@ -8,12 +8,34 @@ An electron/angular application, allowing to manage and generate an htaccess fil
 - [x] enable/disable rules without losing history  
 - [x] reorder config / rules  
 - [x] generate the file  
+- [ ] pre-prod version !!!?
 
-
+### TODO:
+- [ ] create user doc
+- [ ] extract data from database creation script
+- [ ] force data folder creation on `create:database` cmd
 
 # installation process
+you must have [sqlite3](#sqlite3) and [angular-cli](https://www.npmjs.com/package/@angular/cli) to run this application in development mode   
 
-the process to make this app
+```sh
+npm i
+npm run create:database
+npm start
+```
+
+
+# build
+```sh
+npm run package:win
+npm run package:linux
+npm run package:osx
+npm run package:all
+```
+
+# development build steps
+
+the process to set up this app
 
 ## installing bootstrap 
 `npm i bootstrap`  
@@ -33,18 +55,20 @@ the process to make this app
 
 ### sqlite3
 
-don't forget to install sqlite driver for windows ;
-put it in C:\\sqlite3\ folder 
+don't forget to install sqlite driver for windows ;  
+[sqlite installation tutorial](https://www.tutorialspoint.com/sqlite/sqlite_installation.htm)  
+[dowload](https://www.sqlite.org/2022/sqlite-tools-win32-x86-3390400.zip)  
 
-Add it to windows Path :  
-[touch-windows]; type 'variables';  
-in Environment Variable:  
-Path ... add; `C:\\sqlite3\`  
+- Put it in `C:\\sqlite3\` folder  
 
-then:  
+- Add it to the Path : 
+  - <kbd>Windows key</kbd> > type 'variables';  
+  - in Environment Variable:  
+  Path ... add; `C:\\sqlite3\`  
 
+- then in terminal:  
 
-`npm i sqlite3 `  
+  `npm i sqlite3 `  
 
 ### electron-rebuild  
 
@@ -138,7 +162,7 @@ set on CreateWindows Method :
 ```js 
 win = new BrowserWindow({
     [...]
-    /* Must be set !! or electronSrv.ipcRenderer will always null */
+    /* Must be set !! or electronSrv.ipcRenderer will always be null */
     webPreferences: { nodeIntegration: true, enableRemoteModule: true, contextIsolation: false },  
     ipcRenderer: ipcRenderer, // send ipcRenderer to the front
     isElectron: true,
@@ -146,7 +170,7 @@ win = new BrowserWindow({
 });
 ```
 
-#### for get event from the Angular app:  
+#### to get event from the Angular app:  
 ```js
 ipcMain.on("test", (_event,data)=>{console.log('test',data)}); // listen for 'test' event from the frontend
 ```
