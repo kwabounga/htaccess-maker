@@ -7,7 +7,6 @@
   .full-container,
     .app-root > .app-content {
         height: calc(100% - 60px);
-        /* height: calc(100% - 22px); */
     }
 }
 footer {
@@ -15,7 +14,6 @@ footer {
     height: 24px;
     font-family: Consolas, "Courier New", monospace;
     padding: 1px 20px;
-    /* display:flex; */
     font-size: small;
     z-index:999;
 }

@@ -305,7 +305,7 @@ export class CsvRulesImportComponent implements OnInit {
     if(response.ok){
       // rule ok
       this.redToBeSaved.push(response.rule)
-      if(response.toBeUpdate.length){
+      if(response.toBeUpdate && response.toBeUpdate.length){
         console.log('toBeUpdate',response.toBeUpdate, response.rule.target);
         response.toBeUpdate.forEach(r => {
           this.redToBeUpdated.push({ ok: false, rule: {id:r.id,scope_id:r.scope_id,redirect_type_id:r.redirect_type_id,position:r.position,origin:r.origin,target:response.rule.target,active:r.active,added_at:r.added_at}, original_rule:r,  reason: `RETARGETING`, reason_code: '000', channel: 'xxxxxx' })

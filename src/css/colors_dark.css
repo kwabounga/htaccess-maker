@@ -1,9 +1,33 @@
+::-webkit-scrollbar {
+  background: #181818;
+}
+::-webkit-scrollbar-corner,
+::-webkit-scrollbar-track {
+  background: #181818;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64646498;
+}
+::-webkit-scrollbar-thumb {
+  background: #64646462;
+}
+
+::-webkit-scrollbar-button:hover {
+  background: #64646498;
+}
+::-webkit-scrollbar-button {
+  background: #64646498;
+}
+
+
+
 /* commons */
 :focus-visible {
   outline: none!important;
 }
 body {
   background-color: #3c3c3c;
+  border:solid 2px #2A2A2A
 }
 
 .app-root {
@@ -395,15 +419,7 @@ textarea.form-control {
 .bs-popover-end>.popover-arrow::before {
   border-right-color: #000000;
 }
-/*
-<div class="popover fade show bs-popover-end" role="tooltip" id="popover994503"
-  style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(512px, 1986px);"
-  data-popper-placement="right">
-  <div class="popover-arrow" style="position: absolute; transform: translate(0px, 47px); top: 0px;"></div>
-  <h3 class="popover-header">Popover title</h3>
-  <div class="popover-body">And here's some amazing content. It's very engaging. Right?</div>
-</div>
-*/
+
 
 .input-group-text {
   border-radius:0;
@@ -411,4 +427,36 @@ textarea.form-control {
 .magento-id-mine{
   border-color: green;
   background-color:rgba(107, 142, 35, 0.8);
+}
+.btn-close-custom {
+  color: #000;
+}
+.btn-close-custom:hover{
+  background: firebrick url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+}
+
+
+.opacity-ghost {
+  background-color: cornflowerblue;
+  box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.3);
+}
+.opacity-ghost-drop {
+  background-color: white;
+  box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.0);
+}
+.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper:hover {
+  outline: solid 1px black;
+}
+
+.rules.good{
+  background-color:  rgb(191, 239, 191);
+  border: solid 2px  green !important;
+}
+.rules.update{
+  background-color: rgb(249, 224, 182);
+  border: solid 2px orange !important;
+}
+  .rules.bad{
+  background-color: rgb(249, 182, 182);
+  border: solid 2px red !important;
 }

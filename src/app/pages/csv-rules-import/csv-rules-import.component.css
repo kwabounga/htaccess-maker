@@ -2,15 +2,3 @@
   //margin: 1em;
 }
 
-.rules.good{
-  background-color:  rgb(191, 239, 191);
-  border: solid 2px  green !important;
-}
-.rules.update{
-  background-color: rgb(249, 224, 182);
-  border: solid 2px orange !important;
-}
-  .rules.bad{
-  background-color: rgb(249, 182, 182);
-  border: solid 2px red !important;
-}

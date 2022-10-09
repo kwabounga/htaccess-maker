@@ -54,6 +54,7 @@ export class AppComponent implements OnInit {
    async ngOnInit(){
     this.history = await this.dataSrv.getHistory();
     this.localStorage = await this.localStorageSrv.getLocalStorage();
+    this.setBodyTheme(this.localStorage.theme);
    }
   /* routing */
   routingInfos:any = [
@@ -153,11 +154,15 @@ export class AppComponent implements OnInit {
     this.localStorageSrv.setLocalStorageInfo({theme:this.localStorage.theme}).then((response)=>{
       console.log('theme saved', response)
     })
+    this.setBodyTheme(this.localStorage.theme);
   }
   toogleConfig(){
     this.configOpened = !this.configOpened;
   }
   reload(){
     this.appSrv.reloadApplication();
+  }
+  setBodyTheme(theme){
+    this.elem.nativeElement.closest('body').className = theme;
   }
 }

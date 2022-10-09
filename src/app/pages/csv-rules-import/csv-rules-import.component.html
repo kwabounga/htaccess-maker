@@ -93,7 +93,7 @@ color="success"
 class="btn btn-success mb-3"
 (click)="uploadCsvRedirect()"
 >
-<i18n [txt]="'Upload Redirections'"></i18n>
+<i18n [txt]="'Upload Redirections'"></i18n> ({{redToBeSaved.length}})
 </button>
 <!--  not good redirections  -->
 <ul
@@ -124,7 +124,7 @@ class="btn btn-success mb-3"
   class="btn btn-warning mb-3"
   (click)="UpdateExistingRedirections()"
 >
-<i18n [txt]="'Update redirections'"></i18n>
+<i18n [txt]="'Update redirections'"></i18n> ({{redToBeUpdated.length}})
 </button>
 <!--  not good redirections  -->
 <ul
@@ -155,6 +155,6 @@ class="btn btn-success mb-3"
   class="btn btn-danger mb-3"
   (click)="ExportBadRedirections()"
 >
-<i18n [txt]="'Export Bad Redirections'"></i18n>
+<i18n [txt]="'Export Bad Redirections'"></i18n> ({{badRedirections.length}})
 </button>
 </div>

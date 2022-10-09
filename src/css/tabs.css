@@ -1,7 +1,5 @@
 .nav-tabs {
     flex-wrap: nowrap;
-    /* display: inline-flex; */
-    /* flex-basis: fit-content; */
     flex: 1;
 }
 .nav-item:hover {
@@ -11,8 +9,6 @@
     display: flex;
     height: 35px;
     overflow: hidden;
-    /* border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem; */
     -webkit-app-region: no-drag;
     -webkit-user-select: none;
 }

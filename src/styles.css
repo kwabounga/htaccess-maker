@@ -3,5 +3,6 @@
 @import "./css/sizes";
 @import "./css/scrollbar";
 @import "./css/draggable";
-@import "./css/colors";
+@import "./css/colors_dark";
+@import "./css/colors_light";
 @import "./css/tabs";

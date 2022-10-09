@@ -3,7 +3,6 @@ html, body {
 }
 body {
   font-family: "Ubuntu Mono","Liberation Mono","DejaVu Sans Mono","Courier New",monospace;
-  border:solid 2px #2A2A2A
 }
 .mr-1{
   margin-right: .5rem;
@@ -45,17 +44,17 @@ h1 {
 
 }
 .app-bar .logo {
-      --logo-size: 1.6rem;
-      --pad-size: .4rem;
-      /* position: absolute; */
-      order: 2;
-      height: calc(var(--logo-size) - var(--pad-size));
-      width: calc(var(--logo-size) - var(--pad-size));
-      min-height: calc(var(--logo-size) - var(--pad-size));
-      min-width: calc(var(--logo-size) - var(--pad-size));
-      margin: var(--pad-size);
-      margin-right: auto;
-      margin-left: 1.3rem;
+  --logo-size: 1.6rem;
+  --pad-size: .4rem;
+  /* position: absolute; */
+  order: 2;
+  height: calc(var(--logo-size) - var(--pad-size));
+  width: calc(var(--logo-size) - var(--pad-size));
+  min-height: calc(var(--logo-size) - var(--pad-size));
+  min-width: calc(var(--logo-size) - var(--pad-size));
+  margin: var(--pad-size);
+  margin-right: auto;
+  margin-left: 1.3rem;
   background: transparent url("../assets/icons/icon_68.png") no-repeat border-box;
   background-size: contain;
 }
@@ -66,21 +65,15 @@ h1 {
   box-sizing: content-box;
   width: 1em;
   height: 1em;
-  color: #000;
   border: 0;
   opacity: 1;
   padding: .5rem 1rem;
   -webkit-app-region: no-drag;
- /*  position:absolute;
-  top:3px;
-  right:3px;
-  z-index:80;*/
   border-radius: 0;
   background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23a9a9a9'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
 }
 .btn-close-custom:hover{
   cursor:pointer;
-  background: firebrick url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
 
 }
 .input-group>.form-select {

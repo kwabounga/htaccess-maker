@@ -7,8 +7,6 @@ textarea.form-control:focus,
 textarea.form-control {
 
   padding:2rem;
-  /* color: #d4d4d4;
-  background-color: #1e1e1e; */
   font-family: Consolas, "Courier New", monospace;
   font-weight: normal;
   font-size: 14px;
