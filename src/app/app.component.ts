@@ -6,6 +6,7 @@ import pjson from 'src/package.json';
 import { TranslateService } from './components/commons/translate/translate.service';
 import { AppActionsFromIpcService } from './services/app-actions-from-ipc.service';
 import { DataFromIpcService } from './services/data-from-ipc.service';
+import { LocalStorageService } from './services/local-storage.service';
 import { LoggerService } from './services/logger.service';
 
 @Component({
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
   ctrlKeyPressed: boolean = false;
 
   history: any =  null;
+  localStorage: any =  null;
 
   /* constructor */
   constructor(
@@ -39,6 +41,7 @@ export class AppComponent implements OnInit {
     private logger: LoggerService,
     private dataSrv:DataFromIpcService,
     private appSrv:AppActionsFromIpcService,
+    private localStorageSrv:LocalStorageService,
     private router: Router
     ) {
     /* focus host on navigation end */
@@ -50,6 +53,7 @@ export class AppComponent implements OnInit {
    }
    async ngOnInit(){
     this.history = await this.dataSrv.getHistory();
+    this.localStorage = await this.localStorageSrv.getLocalStorage();
    }
   /* routing */
   routingInfos:any = [
@@ -145,7 +149,11 @@ export class AppComponent implements OnInit {
     }
 
   }
-
+  setTheme(){
+    this.localStorageSrv.setLocalStorageInfo({theme:this.localStorage.theme}).then((response)=>{
+      console.log('theme saved', response)
+    })
+  }
   toogleConfig(){
     this.configOpened = !this.configOpened;
   }

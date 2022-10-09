@@ -1,3 +1,4 @@
+<div class="full-container {{this.localStorage?this.localStorage.theme:''}}">
 <div class="app-bar d-flex d-lg-none">
   <div class="logo"></div>
   <span class="app-title text-vscode-alt text-bold" [title]="description">{{title}}</span>
@@ -47,16 +48,16 @@
   [title]="'Parameters'"
   (onClose)="toogleConfig()"
   >
-  <div class="form-floating">
-    <select class="form-select form-select-vscode"  id="floatingSelectTheme" aria-label="Theme">
+  <div *ngIf="this.localStorage" class="form-floating">
+    <select class="form-select form-select-vscode"  id="floatingSelectTheme" aria-label="Theme" [(ngModel)]="this.localStorage.theme" (change)="setTheme()">
       <option value="dark">Dark</option>
       <option value="light">light</option>
     </select>
     <label for="floatingSelectTheme">Select a Theme</label>
   </div>
-  <div class="form-floating">
-    <select name="redirect_types" id="floatingSelectHistory" class="form-select form-select-vscode">
-      <option *ngFor="let h of history" [ngValue]="h.id">{{h.guid | uppercase}}</option>
+  <div *ngIf="this.localStorage" class="form-floating">
+    <select name="redirect_types" id="floatingSelectHistory" class="form-select form-select-vscode" [(ngModel)]="this.localStorage.database">
+      <option *ngFor="let h of history" [ngValue]="h.id">{{h.guid | uppercase}} {{h.label | uppercase}}</option>
     </select>
     <label for="floatingSelectHistory">Back to history</label>
   </div>
@@ -73,3 +74,4 @@
   >
 </app-footer>
 <!-- !Footer -->
+</div>

@@ -67,7 +67,7 @@ const createWindow = () => {
         win = null;
     });
         // add app events when win object is created
-        ipcApp.addAppEvents(ipcMain, win, app);
+        ipcApp.addAppEvents(ipcMain, win, app, store);
 }
 
 // This method will be called when Electron has finished

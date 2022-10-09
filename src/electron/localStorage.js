@@ -2,33 +2,37 @@ const schema = {
 	app: {
     type: "object",
     properties: {
-      x: { 
+      x: {
         type: "number",
-        default: 150 
+        default: 150
       },
-      y: { 
+      y: {
         type: "number",
-        default: 150 
+        default: 150
       },
-      width: { 
+      width: {
         type: "number",
-        default: 800 
+        default: 800
         },
-      height: { 
+      height: {
         type: "number",
-        default: 600 
+        default: 600
         },
-      minWidth: { 
+      minWidth: {
         type: "number",
-        default: 600 
+        default: 600
         },
-      minHeight: { 
+      minHeight: {
         type: "number",
-        default: 500 
+        default: 500
         },
-      theme: { 
+      theme: {
         enum: ["dark", "light"],
-		    default: "dark"  
+		    default: "dark"
+        },
+      database: {
+        type: "number",
+		    default: 1
         }
     }
   }

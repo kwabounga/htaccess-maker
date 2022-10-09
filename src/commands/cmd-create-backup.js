@@ -1,6 +1,6 @@
 
 console.log(process.argv);
-const label = process.argv[2]
+let label = process.argv[2]
 console.log(label);
 if(!label){
   console.log('no label provided');

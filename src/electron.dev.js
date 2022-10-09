@@ -78,7 +78,7 @@ const createWindow = () => {
         });
 
         // add app events when win object is created
-        ipcApp.addAppEvents(ipcMain, win, app);
+        ipcApp.addAppEvents(ipcMain, win, app, store);
     }, 10000);
 }
 
