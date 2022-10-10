@@ -13,6 +13,7 @@ import { NotifyEvent } from 'src/app/events/NotifyEvent';
 import { ClearNotificationEvent } from 'src/app/events/ClearNotificationEvent';
 import { LoggerService } from 'src/app/services/logger.service';
 import { Constants } from 'src/app/services/constants';
+import { TranslateService } from 'src/app/components/commons/translate/translate.service';
 
 /* import { HttpClient } from '@angular/common/http'; */
 
@@ -26,6 +27,32 @@ import { Constants } from 'src/app/services/constants';
  * Csv Rules Import Page
  */
 export class CsvRulesImportComponent implements OnInit {
+  /**
+   * constructor
+   *
+   * @param fileStuffSrv
+   * @param dataSrv
+   * @param electronSrv
+   * @param ref
+   */
+   constructor(
+    protected fileStuffSrv: FilesStuffService,
+    protected dataSrv: DataFromIpcService,
+    private electronSrv: ElectronService,
+    private ref: ChangeDetectorRef,
+    private csvSrv : CsvMakerService,
+    private eventQueueSrv: EventQueueService,
+    private logger: LoggerService,
+    private elemt: ElementRef,
+    private t:TranslateService,
+  ) {
+    this.has_ipc = this.electronSrv.isElectronApp;
+    this.csv = '';
+    this.redToBeChecked = [];
+    this.progressCount = 0;
+
+  }
+
   protected has_ipc: boolean = false;
   //percent:number = 0;
   progressCount: number;
@@ -40,31 +67,11 @@ export class CsvRulesImportComponent implements OnInit {
   badRedirections: any[] = [];
   redToBeChecked: any[] = [];
   pageLoaded:boolean = false;
+  tipsOpen:boolean = false;
   @ViewChild("drag") drag!: any;
   @ViewChild("fileUpload") fileUpload!: any;
-  /**
-   * constructor
-   *
-   * @param fileStuffSrv
-   * @param dataSrv
-   * @param electronSrv
-   * @param ref
-   */
-  constructor(
-    protected fileStuffSrv: FilesStuffService,
-    protected dataSrv: DataFromIpcService,
-    private electronSrv: ElectronService,
-    private ref: ChangeDetectorRef,
-    private csvSrv : CsvMakerService,
-    private eventQueueSrv: EventQueueService,
-    private logger: LoggerService,
-  ) {
-    this.has_ipc = this.electronSrv.isElectronApp;
-    this.csv = '';
-    this.redToBeChecked = [];
-    this.progressCount = 0;
+  tipsTitle:Promise<string> = this.t.i18n('Help');
 
-  }
 
   /**
    * Life cycle intitalization function
@@ -342,5 +349,9 @@ export class CsvRulesImportComponent implements OnInit {
 
     // force update the dom from event, see: readme for more informations
     this.ref.detectChanges();
+  }
+  toogleTips(){
+    console.log('toogleTips');
+    this.tipsOpen = !this.tipsOpen;
   }
 }

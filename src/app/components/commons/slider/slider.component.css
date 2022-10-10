@@ -1,0 +1,9 @@
+.offcanvas-top.half,
+.offcanvas-bottom.half{
+  height: 50%;
+}
+
+.offcanvas-start.half,
+.offcanvas-end.half{
+  width: 50%;
+}

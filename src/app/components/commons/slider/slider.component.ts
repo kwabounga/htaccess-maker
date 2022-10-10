@@ -9,6 +9,7 @@ export class SliderComponent implements OnInit {
   @Input() position?: string = 'start';
   @Input() id?: string = 'slider';
   @Input() title?: string = 'title';
+  @Input() size?: string = 'title';
   @Output() onClose = new EventEmitter();
   constructor() { }
 
