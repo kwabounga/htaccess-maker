@@ -1,0 +1,13 @@
+<!-- Tips btn -->
+<button class="btn btn-sm btn-success abs top-r" type="button" data-bs-toggle="offcanvas" title="tips" [attr.data-bs-target]="'#'+'tips'" [attr.aria-controls]="'tips'" (click)="toogleTips()">
+  <img class="svg-white mr-1" src="assets/svg/info.svg"  height="20px" width="20px"> <i18n txt="Help"></i18n>
+</button>
+<!-- Tips Slider -->
+<app-slider
+  [id]="'tips'"
+  [position]="'bottom'"
+  [title]="tipsTitle"
+  [size]="'full'"
+  >
+  <md [src]="this.markdown"></md>
+</app-slider>

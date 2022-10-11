@@ -14,7 +14,7 @@ import { ClearNotificationEvent } from 'src/app/events/ClearNotificationEvent';
 import { LoggerService } from 'src/app/services/logger.service';
 import { Constants } from 'src/app/services/constants';
 import { TranslateService } from 'src/app/components/commons/translate/translate.service';
-import tips from 'raw-loader!src/assets/tips/imports.md';
+
 
 @Component({
   selector: 'app-csv-rules-import',
@@ -66,11 +66,9 @@ export class CsvRulesImportComponent implements OnInit {
   badRedirections: any[] = [];
   redToBeChecked: any[] = [];
   pageLoaded:boolean = false;
-  tipsOpen:boolean = false;
   @ViewChild("drag") drag!: any;
   @ViewChild("fileUpload") fileUpload!: any;
-  tipsTitle:Promise<string> = this.t.i18n('Help');
-  testMarkdown:string = tips;
+
 
   /**
    * Life cycle intitalization function
@@ -348,9 +346,5 @@ export class CsvRulesImportComponent implements OnInit {
 
     // force update the dom from event, see: readme for more informations
     this.ref.detectChanges();
-  }
-  toogleTips(){
-    console.log('toogleTips');
-    this.tipsOpen = !this.tipsOpen;
   }
 }

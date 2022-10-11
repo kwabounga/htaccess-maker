@@ -1,9 +1,11 @@
 <app-loader [loaded]="pageLoaded" [color]="'#008000'"></app-loader>
-<div class="page full-height bg-vscode-dark text-vscode">
+<div class="page full-height bg-vscode-dark text-vscode rel">
 <h1><i18n [txt]="'Export the .htaccess file'"></i18n></h1>
 <app-code-preview
   [preview]="this?.htAccessData"
   >
   </app-code-preview>
   <button type="button" class="btn btn-primary" (click)="exportFile()" (mouseenter)="hoverButton()" (mouseleave)="leaveButton()"><i18n [txt]="'Export'"></i18n></button>
+
+  <app-tips [tipsFileName]="'export'"></app-tips>
 </div>

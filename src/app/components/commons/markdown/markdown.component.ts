@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { MarkdownService } from './markdown.service';
 @Component({
   selector: 'md',
@@ -9,7 +9,8 @@ export class MarkdownComponent implements OnInit, OnChanges {
   markdown:string = '';
   @Input() src:string = '';
   constructor(
-    private m:MarkdownService
+    private m:MarkdownService,
+    private ref: ChangeDetectorRef
     ) { }
 
   ngOnInit(): void {
@@ -18,6 +19,8 @@ export class MarkdownComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges){
     if(changes['src']){
       this.markdown = this.m.convert(this.src);
+      this.ref.detectChanges();
+
     }
   }
 
