@@ -4,16 +4,16 @@
 
 
   <select #selectScopes name="scopes" class="form-select form-select-vscode form-select form-select-sm " [title]="placeHolder | async"  (change)="change($event)">
-      <option value=""><i18n [txt]="'Choose the scope to delete'"></i18n></option>
-      <option *ngFor="let scope of scopes; let id = index" [value]="scope.id">{{scope.label | uppercase}}</option>
-    </select>
+    <option value=""><i18n [txt]="'Choose the scope to delete'"></i18n></option>
+    <option *ngFor="let scope of scopes; let id = index" [value]="scope.id">{{scope.label | uppercase}}</option>
+  </select>
 
-      <div *ngIf="this?.scopeSelected">
-          <button type="button" class="btn btn-warning mt-2" data-bs-toggle="modal"
-          [attr.data-bs-target]="'#deleteModal'">
-              <i18n [txt]="'Deleted %0 All references ?'" [val]="[this?.scopeSelectedName]"></i18n>
-          </button>
-      </div>
+  <div *ngIf="this?.scopeSelected">
+      <button type="button" class="btn btn-warning mt-2" data-bs-toggle="modal"
+      [attr.data-bs-target]="'#deleteModal'">
+          <i18n [txt]="'Deleted %0 All references ?'" [val]="[this?.scopeSelectedName]"></i18n>
+      </button>
+  </div>
 
 
   <app-tips [tipsFileName]="'delete'"></app-tips>
