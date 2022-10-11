@@ -14,8 +14,7 @@ import { ClearNotificationEvent } from 'src/app/events/ClearNotificationEvent';
 import { LoggerService } from 'src/app/services/logger.service';
 import { Constants } from 'src/app/services/constants';
 import { TranslateService } from 'src/app/components/commons/translate/translate.service';
-
-/* import { HttpClient } from '@angular/common/http'; */
+import tips from 'raw-loader!src/assets/tips/imports.md';
 
 @Component({
   selector: 'app-csv-rules-import',
@@ -71,7 +70,7 @@ export class CsvRulesImportComponent implements OnInit {
   @ViewChild("drag") drag!: any;
   @ViewChild("fileUpload") fileUpload!: any;
   tipsTitle:Promise<string> = this.t.i18n('Help');
-
+  testMarkdown:string = tips;
 
   /**
    * Life cycle intitalization function

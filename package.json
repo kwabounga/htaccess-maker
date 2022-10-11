@@ -39,6 +39,7 @@
     "ngx-smooth-dnd": "^0.4.1",
     "patch-package": "^6.4.7",
     "path-browserify": "^1.0.1",
+    "raw-loader": "^4.0.2",
     "rxjs": "~7.5.0",
     "sqlite3": "^5.0.9",
     "tslib": "^2.3.0",

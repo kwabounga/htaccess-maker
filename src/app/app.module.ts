@@ -27,6 +27,7 @@ import { SliderComponent } from './components/commons/slider/slider.component';
 import { TranslateComponent } from './components/commons/translate/translate.component';
 import { LoaderComponent } from './components/commons/loader/loader.component';
 import { ButtonPopoveredComponent } from './components/commons/button-popovered/button-popovered.component';
+import { MarkdownComponent } from './components/commons/markdown/markdown.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ButtonPopoveredComponent } from './components/commons/button-popovered/
     SliderComponent,
     TranslateComponent,
     LoaderComponent,
-    ButtonPopoveredComponent
+    ButtonPopoveredComponent,
+    MarkdownComponent
   ],
   imports: [
     BrowserModule,

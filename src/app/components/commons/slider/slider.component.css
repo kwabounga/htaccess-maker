@@ -2,8 +2,16 @@
 .offcanvas-bottom.half{
   height: 50%;
 }
+.offcanvas-top.full,
+.offcanvas-bottom.full{
+  height: 80%;
+}
 
 .offcanvas-start.half,
 .offcanvas-end.half{
   width: 50%;
+}
+
+.offcanvas .btn-close {
+  border-radius:0;
 }
