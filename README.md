@@ -20,7 +20,7 @@ An electron/angular application, allowing to manage and generate an htaccess fil
 ----
 
 ## installation process
-[installation process](src/doc/install.md#installation%20process)
+[installation process](doc/install.md#installation%20process)
 ## original doc 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
