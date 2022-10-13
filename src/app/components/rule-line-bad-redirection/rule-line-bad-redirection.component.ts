@@ -4,7 +4,7 @@ import { Rule, Scope } from 'src/app/interfaces/interfaces';
 @Component({
   selector: 'app-rule-line-bad-redirection',
   templateUrl: './rule-line-bad-redirection.component.html',
-  styleUrls: ['./rule-line-bad-redirection.component.css']
+  styleUrls: ['./rule-line-bad-redirection.component.less']
 })
 export class RuleLineBadRedirectionComponent implements OnInit {
   @Input()

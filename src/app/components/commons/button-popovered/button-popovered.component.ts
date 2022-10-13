@@ -4,7 +4,7 @@ import { Popover } from 'bootstrap';
 @Component({
   selector: 'button-popovered',
   templateUrl: './button-popovered.component.html',
-  styleUrls: ['./button-popovered.component.css']
+  styleUrls: ['./button-popovered.component.less']
 })
 export class ButtonPopoveredComponent implements AfterViewInit {
   @Input() active:boolean = true;

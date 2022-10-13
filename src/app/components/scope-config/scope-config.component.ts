@@ -5,7 +5,7 @@ import { OutputHtaccessService } from 'src/app/services/output-htaccess.service'
 @Component({
   selector: 'app-scope-config',
   templateUrl: './scope-config.component.html',
-  styleUrls: ['./scope-config.component.css'],
+  styleUrls: ['./scope-config.component.less'],
 })
 export class ScopeConfigComponent implements OnInit {
   @Input() id = 0;

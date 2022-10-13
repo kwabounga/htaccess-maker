@@ -4,7 +4,7 @@ import { TranslateService } from '../commons/translate/translate.service';
 @Component({
   selector: 'app-rules-list',
   templateUrl: './rules-list.component.html',
-  styleUrls: ['./rules-list.component.css']
+  styleUrls: ['./rules-list.component.less']
 })
 export class RulesListComponent implements OnInit {
 

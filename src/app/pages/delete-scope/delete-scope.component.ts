@@ -9,7 +9,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-delete-scope',
   templateUrl: './delete-scope.component.html',
-  styleUrls: ['./delete-scope.component.css'],
+  styleUrls: ['./delete-scope.component.less'],
   host: {'class': 'app-content'}
 })
 

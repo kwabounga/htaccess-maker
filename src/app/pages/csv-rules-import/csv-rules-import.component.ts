@@ -19,7 +19,7 @@ import { TranslateService } from 'src/app/components/commons/translate/translate
 @Component({
   selector: 'app-csv-rules-import',
   templateUrl: './csv-rules-import.component.html',
-  styleUrls: ['./csv-rules-import.component.css'],
+  styleUrls: ['./csv-rules-import.component.less'],
   host: {'class': 'app-content'}
 })
 /**

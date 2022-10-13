@@ -6,7 +6,7 @@ const iconRefresh = '⬆';
 @Component({
   selector: 'app-rule-line',
   templateUrl: './rule-line.component.html',
-  styleUrls: ['./rule-line.component.css'],
+  styleUrls: ['./rule-line.component.less'],
 })
 export class RuleLineComponent implements OnInit {
   icons = { iconCheck, iconDelete, iconRefresh };

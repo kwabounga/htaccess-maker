@@ -3,7 +3,7 @@ import { Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Outp
 @Component({
   selector: 'app-slider',
   templateUrl: './slider.component.html',
-  styleUrls: ['./slider.component.css']
+  styleUrls: ['./slider.component.less']
 })
 export class SliderComponent implements OnInit {
   @Input() position?: string = 'start';

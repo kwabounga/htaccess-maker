@@ -3,7 +3,7 @@ import { MarkdownService } from './markdown.service';
 @Component({
   selector: 'md',
   templateUrl: './markdown.component.html',
-  styleUrls: ['./markdown.component.css']
+  styleUrls: ['./markdown.component.less']
 })
 export class MarkdownComponent implements OnInit, OnChanges {
   markdown:string = '';

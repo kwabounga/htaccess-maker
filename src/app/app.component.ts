@@ -12,7 +12,7 @@ import { LoggerService } from './services/logger.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.less'],
   host: {'class': 'app-root'}
 })
 export class AppComponent implements OnInit {

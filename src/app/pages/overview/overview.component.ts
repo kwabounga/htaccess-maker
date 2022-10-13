@@ -5,7 +5,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css'],
+  styleUrls: ['./overview.component.less'],
   host: {'class': 'app-content'}
 })
 
@@ -88,7 +88,7 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
       this.alertRef.openAlert('success', 'header config saved!', 2000);
     })
   }
-  
+
   saveFooterConfig(){
     console.log('saveFooterConfig', this.footerData)
     this.dataSrv.updateFooterConfig(this.footerData).then((response)=>{
@@ -129,8 +129,8 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
       console.log('scope updated', response)
     })
   }
- 
-  
+
+
   updateScopeConfig(event:any){
     console.log('updateScopeConfig',event.scopeConfig)
     this.dataSrv.updateScopeConfig(event.scopeConfig).then((response)=>{

@@ -28,6 +28,12 @@ the process to set up this app
 **follow this:**  
 [add bootstrap in angular app](https://techincent.com/how-to-add-bootstrap-5-in-the-angular-application/)
 
+### Using LESS in Angular
+
+- Putting LESS in Angular:
+  `ng config schematics.@schematics/angular:component.style less`
+- change all `*.css` occurrences into `*.less` with <kbd>Ctrl + Shift + f</kbd>  replace command  
+- rename all `*.css` files in src folder into `*.less` using *./src/rename.sh* script 
 ### using electron with angular
 
 **follow this:**  

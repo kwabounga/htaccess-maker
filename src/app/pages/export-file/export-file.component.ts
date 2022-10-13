@@ -7,7 +7,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-export-file',
   templateUrl: './export-file.component.html',
-  styleUrls: ['./export-file.component.css'],
+  styleUrls: ['./export-file.component.less'],
   host: {'class': 'app-content app-export-file'}
 })
 export class ExportFileComponent implements OnInit {

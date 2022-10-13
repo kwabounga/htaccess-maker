@@ -4,7 +4,7 @@ import tips from 'raw-loader!src/assets/tips/imports.md';
 @Component({
   selector: 'app-tips',
   templateUrl: './tips.component.html',
-  styleUrls: ['./tips.component.css']
+  styleUrls: ['./tips.component.less']
 })
 export class TipsComponent implements OnInit {
 

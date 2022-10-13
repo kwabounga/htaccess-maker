@@ -8,7 +8,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-add-scope',
   templateUrl: './add-scope.component.html',
-  styleUrls: ['./add-scope.component.css'],
+  styleUrls: ['./add-scope.component.less'],
   host: {'class': 'app-content'}
 })
 export class AddScopeComponent implements OnInit {

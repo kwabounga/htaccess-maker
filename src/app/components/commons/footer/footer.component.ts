@@ -7,7 +7,7 @@ import { TranslateService } from '../translate/translate.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.less']
 })
 export class FooterComponent implements OnInit {
 

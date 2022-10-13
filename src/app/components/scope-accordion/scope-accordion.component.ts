@@ -7,7 +7,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-scope-accordion',
   templateUrl: './scope-accordion.component.html',
-  styleUrls: ['./scope-accordion.component.css']
+  styleUrls: ['./scope-accordion.component.less']
 })
 // https://stackoverflow.com/questions/70159067/angular-bootstrap-accordion-animation-is-not-working-on-close-in-production/70927699#70927699
 export class ScopeAccordionComponent {

@@ -4,7 +4,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-sidebar-button',
   templateUrl: './sidebar-button.component.html',
-  styleUrls: ['./sidebar-button.component.css']
+  styleUrls: ['./sidebar-button.component.less']
 })
 export class SidebarButtonComponent implements AfterViewInit {
   @Input() size:string = '30px';
