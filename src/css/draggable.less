@@ -17,10 +17,11 @@
   opacity: 1;
 }
 
-.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper {
-  overflow: visible!important;
-}
+.smooth-dnd-container.vertical {
+  &> .smooth-dnd-draggable-wrapper {
+    overflow: visible!important;
+    &:hover {
 
-.smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper:hover {
-
+    }
+  }
 }

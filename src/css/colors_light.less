@@ -1,25 +1,26 @@
-.light ::-webkit-scrollbar {
-  background: #efefef;
-}
-.light ::-webkit-scrollbar-corner,
-.light ::-webkit-scrollbar-track {
-  background: #fffacd;
-}
-.light ::-webkit-scrollbar-thumb:hover {
-  background: #64646498;
-}
-.light ::-webkit-scrollbar-thumb {
-  background: #64646468;
-}
 
-.light ::-webkit-scrollbar-button:hover {
-  background: #deb8878e;
-}
-.light ::-webkit-scrollbar-button {
-  background: #deb8878e;
-}
+body.light {
+  ::-webkit-scrollbar {
+    background: #efefef;
+    &-corner,
+    &-track {
+      background: #fffacd;
+    }
+    &-thumb {
+      background: #64646468;
+      &:hover {
+        background: #64646498;
+      }
+    }
+    &-button {
+      background: #deb8878e;
+      &:hover {
+        background: #deb8878e;
 
-
+      }
+    }
+  }
+}
 
 /* commons */
 .light :focus-visible {
