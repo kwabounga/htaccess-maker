@@ -19,7 +19,7 @@
   - [ ] change cmd create:database
   - [ ] make json sample file
 - [ ] force data folder creation on `create:database` cmd
-- [ ] document custom modules
+- [x] document custom modules
 - [ ] finish db backup system
 - [ ] get all products urls to check existence
 - [ ] Alerts and redirect after action
