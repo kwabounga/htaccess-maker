@@ -3,9 +3,58 @@ body.dark {
   @color_00: #000000;
   @color_01: #181818;
   @color_02: #2A2A2A;
+  @color_03: #3c3c3c;
+  @color_04: #d4d4d4;
+  @color_05: #dfdbdb;
+  @color_06: #eff8ff;
+  @color_07: #f1f1f1;
+  @color_08: #ecffe9;
+  @color_09: #fff2dc;
+  @color_10: #ffe2e2;
+  @color_11: #696969;
+  @color_12: #353636;
+  @color_13: #2b2b2b;
+  @color_14: #1e1e1e;
+  @color_15: #ced4da;
+  @color_16: #a3a3a3;
+  @color_17: #807c7c;
+  @color_18: #ffffff;
+  @color_19: #525252;
+  @color_20: #008000;
+  @color_21: #ffa500;
+  @color_22: #ff0000;
+  @color_23: #b80000;
+  @color_24: #c400c9;
+  @color_25: #600081;
+
+  @color_alpha_00: #64646498;
+  @color_alpha_01: #64646462;
+  @color_alpha_02: #d4d4d455;
+  @color_alpha_03: #a3a3a388;
 
 
+  @color_rgba_00: rgba(255, 255, 255, 1);
   @color_rgba_01: rgba(30, 30, 30,100);
+  @color_rgba_02: rgba(239, 248, 255, 1);
+  @color_rgba_03: rgba(241, 241, 241, 1);
+  @color_rgba_04: rgba(236, 255, 233, 1);
+  @color_rgba_05: rgba(255, 242, 220, 1);
+  @color_rgba_06: rgba(255, 226, 226, 1);
+  @color_rgba_07: rgba(255, 255, 255, 0.5);
+  @color_rgba_08: rgba(0,0,0,0.3);
+  @color_rgba_09: rgba(0,0,0,.125);
+  @color_rgba_10: rgba(0,0,0,0.0);
+
+  @color_rgb_01: rgb(0, 122, 204);
+  @color_rgb_02: rgb(45, 45, 45);
+  @color_rgb_03: rgb(30, 30, 30);
+  @color_rgb_04: rgb(59, 59, 59);
+  @color_rgb_05: rgb(88, 88, 88);
+  @color_rgb_06: rgb(41, 41, 41);
+  @color_rgb_07: rgb(109, 109, 109);
+  @color_rgb_08: rgb(191, 239, 191);
+  @color_rgb_09: rgb(249, 224, 182);
+  @color_rgb_10: rgb(249, 182, 182);
 
   ::-webkit-scrollbar {
     background: @color_01;
@@ -14,16 +63,16 @@ body.dark {
       background: @color_01;
     }
     &-thumb {
-      background: #64646462;
+      background: @color_alpha_01;
       &:hover {
 
-        background: #64646498;
+        background: @color_alpha_00;
       }
     }
     &-button {
-      background: #64646498;
+      background: @color_alpha_00;
       &:hover {
-        background: #64646498;
+        background: @color_alpha_00;
 
       }
     }
@@ -34,7 +83,7 @@ body.dark {
   :focus-visible {
     outline: none!important;
   }
-  background-color: #3c3c3c;
+  background-color: @color_03;
   border:solid 2px @color_02;
 
   .app-root {
@@ -42,84 +91,84 @@ body.dark {
   }
 
   footer {
-    color: white;
-    background-color: rgb(0, 122, 204);
+    color: @color_18;
+    background-color: @color_rgb_01;
   }
 
   /* Background colors class */
   .bg-vscode{
-    background-color: rgb(45, 45, 45)!important;
+    background-color: @color_rgb_02!important;
   }
   .bg-vscode-dark,
   .bg-vscode.active{
-    background-color: rgb(30, 30, 30)!important;
+    background-color: @color_rgb_03!important;
   }
   .text-vscode {
-    color: #d4d4d4!important;
+    color: @color_04!important;
   }
   .text-vscode-alt {
-    color: #dfdbdb!important;
+    color: @color_05!important;
   }
   .bg-overview {
-    background-color: #eff8ff !important;
-    background: linear-gradient(0deg, rgba(239, 248, 255, 1) 0%, rgba(239, 248, 255, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background-color: @color_06 !important;
+    background: linear-gradient(0deg, @color_rgba_02 0%, @color_rgba_02 90%, @color_rgba_00 100%);
   }
 
   .bg-import {
     outline: #fff 2px solid;
-    background-color: #f1f1f1 !important;
-    background: linear-gradient(0deg, rgba(241, 241, 241, 1) 0%, rgba(241, 241, 241, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background-color: @color_07 !important;
+    background: linear-gradient(0deg, @color_rgba_03 0%, @color_rgba_03 90%, @color_rgba_00 100%);
   }
 
   .bg-export {
-    outline: green 2px solid;
-    background-color: #ecffe9 !important;
-    background: linear-gradient(0deg, rgba(236, 255, 233, 1) 0%, rgba(236, 255, 233, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    outline: @color_20 2px solid;
+    background-color: @color_08 !important;
+    background: linear-gradient(0deg, @color_rgba_04 0%, @color_rgba_04 90%, @color_rgba_00 100%);
   }
 
   .bg-add-scope {
     outline: #ffc107 2px solid;
-    background-color: #fff2dc !important;
-    background: linear-gradient(0deg, rgba(255, 242, 220, 1) 0%, rgba(255, 242, 220, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background-color: @color_09 !important;
+    background: linear-gradient(0deg, @color_rgba_05 0%, @color_rgba_05 90%, @color_rgba_00 100%);
   }
 
   .bg-del-scope {
     outline: #dc3545 2px solid;
-    background-color: #ffe2e2 !important;
-    background: linear-gradient(0deg, rgba(255, 226, 226, 1) 0%, rgba(255, 226, 226, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background-color: @color_10 !important;
+    background: linear-gradient(0deg, @color_rgba_06 0%, @color_rgba_06 90%, @color_rgba_00 100%);
   }
 
   a.nav-link {
-    color: #696969
+    color: @color_11
   }
   .nav-tabs .nav-link.active {
 
   }
   .nav-item > .nav-link {
-    color:rgba(255, 255, 255, 0.5);
+    color:@color_rgba_07;
   }
   .nav-item > .nav-link.active {
-    border-color: #353636 #353636 #2b2b2b;
+    border-color: @color_12 @color_12 @color_13;
     color:rgb(226, 192, 141);
   }
   .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
-    border-color: #353636 #353636 #2b2b2b;
+    border-color: @color_12 @color_12 @color_13;
     isolation: isolate;
   }
   .bg-success>a.nav-link.text-light.active,
   .bg-danger>a.nav-link.text-light.active {
-    color: #696969 !important;
+    color: @color_11 !important;
   }
 
   .code-preview{
-    border: solid 1px #d4d4d455;
+    border: solid 1px @color_alpha_02;
     border-radius:.2rem;
   }
 
   textarea.form-control:focus,
   textarea.form-control {
-    color: #d4d4d4;
-    background-color: #1e1e1e;
+    color: @color_04;
+    background-color: @color_14;
   }
 
 
@@ -189,59 +238,53 @@ body.dark {
   .form-control:disabled,
   .form-control.ng-invalid{
     color: #a3a3a399;
-    background-color: rgb(59, 59, 59);
-    border-color: rgb(30, 30, 30);
+    background-color: @color_rgb_04;
+    border-color: @color_rgb_03;
   }
   .form-control.ng-valid{
-    color: #d4d4d4;
-    background-color: rgb(59, 59, 59);
+    color: @color_04;
+    background-color: @color_rgb_04;
   }
   .accordion-button:focus,
   .form-select-vscode:focus,
   .form-control:focus {
-    color: #d4d4d455;
-    background-color: rgb(45, 45, 45);
-    border-color: #a3a3a3;
+    color: @color_alpha_02;
+    background-color: @color_rgb_02;
+    border-color: @color_16;
     outline: 0;
     box-shadow: none;
   }
   .form-select-vscode {
-    color: #a3a3a388;
-    background-color: rgb(59, 59, 59);
+    color: @color_alpha_03;
+    background-color: @color_rgb_04;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right .75rem center;
     background-size: 16px 12px;
-    border: 1px solid #ced4da;
-    border-color: rgb(30, 30, 30);
+    border: 1px solid @color_15;
+    border-color: @color_rgb_03;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
   }
 
-  /* .accordion-button:focus,
-  .form-select-vscode:focus {
-    border-color: #a3a3a3;
-    outline: 0;
-    box-shadow: 0 0 0 .25rem rgba(194, 194, 194, 0.25);
-  } */
   .form-select-vscode:focus>option:checked {
-    background-color: rgb(88, 88, 88);
+    background-color: @color_rgb_05;
   }
   .form-check-input-vscode:checked {
-    background-color: rgb(88, 88, 88);
-    border-color: rgb(88, 88, 88);
+    background-color: @color_rgb_05;
+    border-color: @color_rgb_05;
   }
   .form-check-input:focus {
-    border-color: rgb(109, 109, 109);
+    border-color: @color_rgb_07;
     outline: 0;
     box-shadow: none
   }
   .btn-outline-vscode,
   .input-group-text {
-    border-color: rgb(30, 30, 30);
+    border-color: @color_rgb_03;
   }
 
   .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
-    border: solid 1px  #1e1e1e;
+    border: solid 1px  @color_14;
   }
 
   .input-group-sm>.btn, .input-group-sm>.form-control, .input-group-sm>.form-select, .input-group-sm>.input-group-text {
@@ -266,7 +309,7 @@ body.dark {
   .tooltip-inner{
     border-radius:0;
     background-color: @color_rgba_01;
-    box-shadow: 0px 0px 4px black;
+    box-shadow: 0px 0px 4px @color_00;
     opacity: 100 !important;
     -webkit-box-shadow: inset 0px 0px 0px 1px @color_00, inset 0px 0px 0px 1px @color_00;
     box-shadow: inset 0px 0px 0px 1px @color_00, inset 0px 0px 0px 1px @color_00;
@@ -297,54 +340,54 @@ body.dark {
     border-right-color: @color_00;
   }
   .modal-header {
-    border-bottom: 1px solid #807c7c;
+    border-bottom: 1px solid @color_17;
   }
   .modal-footer {
-    border-top: 1px solid #807c7c;
+    border-top: 1px solid @color_17;
   }
   .offcanvas {
-    background-color: rgb(41, 41, 41);
-    color:rgb(109, 109, 109);
+    background-color: @color_rgb_06;
+    color:@color_rgb_07;
   }
   .list-group{
-    color: #525252;
+    color: @color_19;
     border-radius:0;
-    border-color: rgb(41, 41, 41);
+    border-color: @color_rgb_06;
   }
   .list-group-item {
-    background-color: rgb(41, 41, 41);
+    background-color: @color_rgb_06;
     padding: 0;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid @color_rgba_09;
 
   }
   .form-select:disabled {
-    background-color: rgb(59, 59, 59);
+    background-color: @color_rgb_04;
   }
 
   .reason_wrapper {
 
   }
   .reason_wrapper[code=rc_111] {
-    background-color: #ffa500;
+    background-color: @color_21;
   }
   /* .reason_wrapper[code=rc_333]:after {
     content: '∞'
   } */
   .reason_wrapper[code=rc_333] {
-    background-color: #600081;
-    color:white;
+    background-color: @color_25;
+    color:@color_18;
   }
   .reason_wrapper[code=rc_322] {
-    background-color: #c400c9;
-    color:white;
+    background-color: @color_24;
+    color:@color_18;
   }
   .reason_wrapper[code=rc_404] {
-    background-color: #b80000;
-    color:white;
+    background-color: @color_23;
+    color:@color_18;
   }
   .reason_wrapper[code=rc_500] {
     background-color: @color_00;
-    color:white;
+    color:@color_18;
   }
   .reason{
 
@@ -356,10 +399,10 @@ body.dark {
     background-color: #ffffff22
   }
   .devbar .btn-icon.on img{
-    fill:green
+    fill:@color_20
   }
   .devbar .btn-icon.off img{
-    fill:red
+    fill:@color_22
   }
   .devbar .btn.btn-xs.btn-icon {
     padding-top: .05rem;
@@ -368,18 +411,18 @@ body.dark {
     box-shadow: unset;
   }
   .magento-id-free{
-    border-color: green!important;
+    border-color: @color_20!important;
   }
   .magento-id-free.mine::after{
     content: '<';
-    color: white;
+    color: @color_18;
     width: 10px;
     height: 10px;
     z-index: 99999;
 
   }
   .magento-id-notfree {
-    border-color: red!important;
+    border-color: @color_22!important;
   }
   .btn.disable {
     cursor: not-allowed;
@@ -388,7 +431,7 @@ body.dark {
 
   .popover {
     border-color: @color_00;
-    color: white
+    color: @color_18
   }
   .popover-arrow{
 
@@ -432,7 +475,7 @@ body.dark {
     border-radius:0;
   }
   .magento-id-mine{
-    border-color: green;
+    border-color: @color_20;
     background-color:rgba(107, 142, 35, 0.8);
   }
   .btn-close-custom {
@@ -445,27 +488,27 @@ body.dark {
 
   .opacity-ghost {
     background-color: cornflowerblue;
-    box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 10px 3px @color_rgba_08;
   }
   .opacity-ghost-drop {
-    background-color: white;
-    box-shadow: 3px 3px 10px 3px rgba(0,0,0,0.0);
+    background-color: @color_18;
+    box-shadow: 3px 3px 10px 3px @color_rgba_10;
   }
   .smooth-dnd-container.vertical > .smooth-dnd-draggable-wrapper:hover {
-    outline: solid 1px black;
+    outline: solid 1px @color_00;
   }
 
   .rules.good{
-    background-color:  rgb(191, 239, 191);
-    border: solid 2px  green !important;
+    background-color:  @color_rgb_08;
+    border: solid 2px  @color_20 !important;
   }
   .rules.update{
-    background-color: rgb(249, 224, 182);
-    border: solid 2px orange !important;
+    background-color: @color_rgb_09;
+    border: solid 2px @color_21 !important;
   }
     .rules.bad{
-    background-color: rgb(249, 182, 182);
-    border: solid 2px red !important;
+    background-color: @color_rgb_10;
+    border: solid 2px @color_22 !important;
   }
 
 }
