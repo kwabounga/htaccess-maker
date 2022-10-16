@@ -22,7 +22,8 @@ export class AppComponent implements OnInit {
   description:string = pjson.description;
   locale:string = navigator.language;
   version = pjson.version;
-  versionNotes = pjson['version-notes'][this.version].join('\x0A + ');
+  allVersionsNotes = pjson['version-notes'];
+  versionNotes = this.allVersionsNotes[this.version].join('\x0A + ');
 
   /* parameters */
   configOpened:boolean = false;

@@ -4,6 +4,8 @@
   role="button"
   data-bs-toggle="popover"
   data-bs-trigger="focus"
-  [attr.data-bs-content]="popoverContent">
+  [attr.data-bs-content]="popoverContent"
+  (dblclick)="dblClickHandler()"
+  >
   <ng-content></ng-content>
 </button>

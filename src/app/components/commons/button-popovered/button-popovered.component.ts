@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, Input, AfterViewInit, ElementRef, Output, EventEmitter } from '@angular/core';
 
 import { Popover } from 'bootstrap';
 @Component({
@@ -11,6 +11,8 @@ export class ButtonPopoveredComponent implements AfterViewInit {
   @Input() popoverTitle:string = '';
   @Input() popoverContent:string = '';
   @Input() btnClass:string = 'btn btn-xs';
+  @Output() onDblClick = new EventEmitter<any>();
+
   popOverElement!:any;
   constructor(
     private elem: ElementRef,
@@ -23,5 +25,8 @@ export class ButtonPopoveredComponent implements AfterViewInit {
       this.popOverElement = new Popover(popOverTrigger);
     },300)
 
+  }
+  dblClickHandler(){
+    this.onDblClick.emit('dblClick')
   }
 }
