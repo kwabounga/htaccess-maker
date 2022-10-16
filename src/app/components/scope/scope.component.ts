@@ -38,7 +38,13 @@ export class ScopeComponent implements OnInit {
       if(!this.isNew && !this.magentoIdIsFree){
         this.magentoIdIsFree = (this.currentScopeMagento == this.scope.magento_scope_id);
       }
-      this.logger.log(`Magento id [${this.scope.magento_scope_id}] is ${this.magentoIdIsFree?'free':'allready used'}`)
+      let op = null;
+      if(this.magentoIdIsFree){
+        op = this.t.i18n('Magento id [%0] is free',[this.scope.magento_scope_id])
+      }else{
+        op = this.t.i18n('Magento id [%0] is allready used',[this.scope.magento_scope_id])
+      }
+      this.logger.log(op)
     })
   }
   saveConfig(authorized){

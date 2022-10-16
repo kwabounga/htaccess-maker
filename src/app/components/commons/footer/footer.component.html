@@ -3,9 +3,34 @@
     <div class="col output">{{output}}</div>
   <div class="col col-4 col-md-2 content">
     <ng-content></ng-content>
-    <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 text-light'" [active]="localTitle" [popoverTitle]="localTitle | async" [popoverContent]="locale"><span>{{locale}}</span></button-popovered>
-    <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 text-light'" [active]="version" [popoverTitle]="'v.' + version + ' notes:'" [popoverContent]="versionNotes" (onDblClick)="showAllVersionNotes()"><span>v.{{version}}</span></button-popovered>
-    <button-popovered [btnClass]="'btn btn-xs btn-icon ml-1 '+(online?'on':'off')" [active]="online !== undefined" [popoverTitle]="'Status:'" [popoverContent]="(online?'online':'offline')"><img class="{{online?'svg-white':'svg-danger'}}" src="assets/svg/network-{{online?'on':'off'}}.svg"  height="20px" width="20px"></button-popovered>
+    <button-popovered
+      [btnClass]="'btn btn-xs btn-icon ml-1 text-light'"
+      [active]="localTitle"
+      [popoverTitle]="localTitle | async"
+      [popoverContent]="locale"
+      (mouseover)="this.logger.log('click to show details')"
+
+    ><span>{{locale}}</span>
+    </button-popovered>
+    <button-popovered
+      [btnClass]="'btn btn-xs btn-icon ml-1 text-light'"
+      [active]="version"
+      [popoverTitle]="'v.' + version + ' notes:'"
+      [popoverContent]="versionNotes"
+      (onDblClick)="showAllVersionNotes()"
+      (mouseover)="this.logger.log('click to show current / double-click to show all versions notes')"
+
+    ><span>v.{{version}}</span>
+    </button-popovered>
+    <button-popovered
+      [btnClass]="'btn btn-xs btn-icon ml-1 '+(online?'on':'off')"
+      [active]="online !== undefined"
+      [popoverTitle]="'Status:'"
+      [popoverContent]="(online?'online':'offline')"
+      (mouseover)="this.logger.log('click to show status')"
+
+    ><img class="{{online?'svg-white':'svg-danger'}}" src="assets/svg/network-{{online?'on':'off'}}.svg"  height="20px" width="20px">
+    </button-popovered>
   </div>
   </div>
 </footer>

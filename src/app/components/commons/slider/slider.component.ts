@@ -1,4 +1,5 @@
 import { Component, EventEmitter, HostBinding, HostListener, Input, OnInit, Output } from '@angular/core';
+import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
   selector: 'app-slider',
@@ -11,7 +12,9 @@ export class SliderComponent implements OnInit {
   @Input() title?: string = 'title';
   @Input() size?: string = 'title';
   @Output() onClose = new EventEmitter();
-  constructor() { }
+  constructor(
+    public logger: LoggerService
+    ) { }
 
   ngOnInit(): void {
   }

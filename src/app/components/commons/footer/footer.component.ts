@@ -5,6 +5,7 @@ import { Router, Event, NavigationEnd} from '@angular/router';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { TranslateService } from '../translate/translate.service';
 import { Modal } from 'bootstrap';
+import { LoggerService } from 'src/app/services/logger.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -17,6 +18,7 @@ export class FooterComponent implements OnInit,AfterViewInit {
       private router: Router,
       protected dataSrv: DataFromIpcService,
       protected elem: ElementRef,
+      public logger:LoggerService,
       private t:TranslateService
     ) {
       this.router.events.subscribe((event: Event) => {
@@ -52,8 +54,8 @@ export class FooterComponent implements OnInit,AfterViewInit {
   }
 
 
-  handleEvent(event: any) {
-    this.output = event.payload
+  async handleEvent(event: any) {
+    this.output = await this.t.i18n(event.payload)
   }
   showAllVersionNotes(){
     this.modalElement.toggle()
