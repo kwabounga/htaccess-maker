@@ -2,7 +2,7 @@
 
 télécharge le csv d'exemple  
 avec les différentes possibilités de redirection et scopes renseignés
-```apache
+```csv
 scope_id; redirection_type; origin; target
 ```
 ---

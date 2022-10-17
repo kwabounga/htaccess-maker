@@ -1,0 +1,33 @@
+{
+  "htaccess":{
+    "header":"",
+    "scopes_infos":[
+      {
+        "scope":{
+          "label":"",
+          "magento_scope_id":0
+        },
+        "scope_config":{
+          "label":"",
+          "config":"",
+          "condition":""
+        },
+        "rules":[
+          {
+            "redirect_type_id":0,
+            "origin":"",
+            "target":"",
+            "active":true
+          }
+        ]
+      }
+    ],
+    "footer":""
+  },
+  "redirect_type":[
+    {
+      "label":"",
+      "value":""
+    }
+  ]
+}

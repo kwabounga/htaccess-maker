@@ -72,7 +72,7 @@ const populateRedirectTypesTable = () => {
       label: "permanent",
       value: "RedirectPermanent",
       code: "301",
-    },  // 1
+    },
     {
       label: "temporaire",
       value: "RedirectTemp",
@@ -82,12 +82,12 @@ const populateRedirectTypesTable = () => {
       label: "permanent ExactMatch",
       value: "RedirectMatch 301",
       code: "301E",
-    },  // 1
+    },
     {
       label: "temporaire ExactMatch",
       value: "RedirectMatch 302",
       code: "302E",
-    }, // 2
+    },
   ];
   return dbAccess.insertRedirectTypes(redirectTypeArray);
 };
@@ -589,7 +589,7 @@ const populateFooterTable = () => {
 
     ExpiresActive On
     ExpiresByType image/jpg ""access plus 1 year""
-    ExpiresByType image/jpeg ""access plus 1 year"
+    ExpiresByType image/jpeg ""access plus 1 year""
     ExpiresByType image/gif ""access plus 1 year""
     ExpiresByType image/png ""access plus 1 year""
     ExpiresByType text/css ""access plus 1 month""
