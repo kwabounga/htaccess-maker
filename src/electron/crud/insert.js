@@ -48,6 +48,7 @@ const insertScopes = (scopes) => {
           return trx(DATABASE_TABLE_SCOPES).insert(scopes);
       })
       .then(function(inserts) {
+          console.log(inserts);
           console.log(inserts.length + " new scopes saved.");
           return inserts;
       })

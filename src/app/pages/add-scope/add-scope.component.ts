@@ -41,6 +41,7 @@ export class AddScopeComponent implements OnInit {
   }
 
   // TODO: make this as a sequence: 1/ create Scope then mask the scope form ; 2/ then show the configuration form
+  // TODO: lock the navigation if we are creation mode
   saveScope(event:any){
     this.dataSrv.uploadScope(event).then((response:any)=>{
       // get the id

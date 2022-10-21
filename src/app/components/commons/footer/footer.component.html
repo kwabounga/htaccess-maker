@@ -3,6 +3,7 @@
     <div class="col output">{{output}}</div>
   <div class="col col-4 col-md-2 content">
     <ng-content></ng-content>
+
     <button-popovered
       [btnClass]="'btn btn-xs btn-icon ml-1 text-light'"
       [active]="localTitle"
@@ -31,6 +32,12 @@
 
     ><img class="{{online?'svg-white':'svg-danger'}}" src="assets/svg/network-{{online?'on':'off'}}.svg"  height="20px" width="20px">
     </button-popovered>
+    <a class="btn btn-xs btn-icon ml-1 text-light"
+    routerLink=""
+    (mouseover)="this.logger.log('click to show splash screen')"
+    >
+    <img class="{{online?'svg-white':'svg-danger'}}" src="assets/svg/icon-package.svg"  height="20px" width="20px" routerLink="">
+  </a>
   </div>
   </div>
 </footer>

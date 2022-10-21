@@ -29,6 +29,7 @@ import { LoaderComponent } from './components/commons/loader/loader.component';
 import { ButtonPopoveredComponent } from './components/commons/button-popovered/button-popovered.component';
 import { MarkdownComponent } from './components/commons/markdown/markdown.component';
 import { TipsComponent } from './components/tips/tips.component';
+import { SplashScreenComponent } from './pages/splash-screen/splash-screen.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { TipsComponent } from './components/tips/tips.component';
     LoaderComponent,
     ButtonPopoveredComponent,
     MarkdownComponent,
-    TipsComponent
+    TipsComponent,
+    SplashScreenComponent
   ],
   imports: [
     BrowserModule,

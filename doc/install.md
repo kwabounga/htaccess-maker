@@ -352,6 +352,8 @@ store.set('foo', '1');
 ### free icons
 
 [iconoir](https://iconoir.com/)
+[snoweb-svg](https://www.snoweb-svg.com/)
+[svg animation tools](https://app.svgator.com/)
 
 ---
 

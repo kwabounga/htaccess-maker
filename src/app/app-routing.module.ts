@@ -5,6 +5,7 @@ import { ExportFileComponent } from './pages/export-file/export-file.component';
 import { CsvRulesImportComponent } from './pages/csv-rules-import/csv-rules-import.component';
 import { OverviewComponent } from './pages/overview/overview.component';
 import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.component';
+import { SplashScreenComponent } from './pages/splash-screen/splash-screen.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'csv-rules-import',
     component: CsvRulesImportComponent
+  },
+  {
+    path: '',
+    component: SplashScreenComponent
   },
   {
     path: '**',
