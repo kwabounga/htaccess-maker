@@ -13,7 +13,10 @@ export class CodePreviewComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+
+  }
   outputMaker():any[]{
     let ap:string[] = this.preview!.split('\n');
       let op:any[] = []
