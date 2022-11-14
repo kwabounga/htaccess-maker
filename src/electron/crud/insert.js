@@ -15,20 +15,44 @@ const logger = require('../logger')
 /*                   **
  *  DB ACCESS INSERTS *
  **                   */
-const insertRules = (rules) => {
-  return knex
-      .transaction(function(trx) {
-          return trx(DATABASE_TABLE_RULES).insert(rules);
-      })
-      .then(function(inserts) {
-          console.log(inserts.length + " new rules saved.");
-          return inserts;
-      })
-      .catch(function(error) {
-          console.error('something wrong appenning when insert Rule see:log.log file');
-          logger.log(error)
-          return error;
-      });
+const insertRules = async (rules) => {
+  const packet = 500;
+  const nbPacket = Math.ceil(rules.length / packet);
+  const allInserts = []
+  return new Promise (async (resolve, reject)=>{
+    for (let i = 0; i < nbPacket; i++) {
+      let currentId = i*packet;
+      let tmp = rules.slice(currentId, Math.min(rules.length,(currentId+(packet-1))))
+      await knex
+        .transaction(function(trx) {
+            return trx(DATABASE_TABLE_RULES).insert(tmp);
+        })
+        .then(function(inserts) {
+            console.log(inserts.length + " new rules saved.");
+            allInserts.push(inserts);
+        })
+        .catch(function(error) {
+            console.error('something wrong appenning when insert Rule see:log.log file');
+            logger.log(error)
+            reject(error);
+        });
+    }
+    resolve(allInserts)
+  })
+  
+  // return knex
+  //     .transaction(function(trx) {
+  //         return trx(DATABASE_TABLE_RULES).insert(rules);
+  //     })
+  //     .then(function(inserts) {
+  //         console.log(inserts.length + " new rules saved.");
+  //         return inserts;
+  //     })
+  //     .catch(function(error) {
+  //         console.error('something wrong appenning when insert Rule see:log.log file');
+  //         logger.log(error)
+  //         return error;
+  //     });
 };
 
 const insertRedirectTypes = (redirect_types) => {

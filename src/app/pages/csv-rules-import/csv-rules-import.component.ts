@@ -316,7 +316,7 @@ export class CsvRulesImportComponent implements OnInit {
   async initCheckRuleListener(rules:any[]) {
       for (let id in rules) {
         let channel = `rule:checked:${id}`
-        console.log(id, channel);
+        // console.log(id, channel);
          if (this.electronSrv.isElectronApp) {
           this.electronSrv.ipcRenderer.on(
             channel,

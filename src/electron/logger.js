@@ -11,6 +11,8 @@ const log = (output) => {
 const truncate = (callback) => {    
     fs.truncate(theLogPath, 0, callback);
 }
+
+
 /** Exports */
 exports.log = log;
 exports.truncate = truncate;
