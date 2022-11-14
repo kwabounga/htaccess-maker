@@ -133,7 +133,7 @@ export class CsvRulesImportComponent implements OnInit {
     let sample = `magento_scope_id;redirect_type;origin;target;\n`;
     let scopes:Scope[] = await this.dataSrv.getScopesAll();
     for(const scope of scopes){
-      console.log('scope',scope)
+      // console.log('scope',scope)
       let scopeConfig:ScopeConfig = await this.dataSrv.getScopesConfigById(scope.id);
       sample += `${scope.magento_scope_id};perm;/sample;${scopeConfig.condition};\n`;
     }
@@ -187,49 +187,58 @@ export class CsvRulesImportComponent implements OnInit {
     console.log('onFileSelected');
     const file: any = event.target.files[0];
     if (file) {
-      console.log(file);
-      console.log(file.type, file.name, file.path);
+      // console.log(file);
+      // console.log(file.type, file.name, file.path);
       // console.log(`csv file selected: ${file.path}`)
       this.csv = await file.text().then((text: string) => {
-        console.log(text);
+        // console.log(text);
         return text;
       });
     } else {
       this.csv = '';
       this.redToBeChecked = [];
       this.progressCount = 0;
-      console.log('no csv file selected');
+      console.warn('no csv file selected');
     }
     if (this.csv.trim() !== '') {
-      console.log('this.csv ok',this.csv)
+      // console.log('this.csv ok',this.csv)
       const notEmpty = (r: string) => r.trim() !== '';
+
       let tempArray = this.csv.split('\n');
       let csvHeader = tempArray.shift();
+      
       if(!this.checkCsvFormat(csvHeader)){
-        console.log('Please check the csv format');
+        console.warn('Please check the csv format');
         return
       }
       let redToBeProcessed = tempArray.filter(notEmpty);
-
-      console.log('redToBeProcessed',redToBeProcessed);
+      let currentScope = null;
+      // console.log('redToBeProcessed',redToBeProcessed);
       for (const line of redToBeProcessed) {
-        console.log('line',line)
+        // console.log('line',line)
         /* get redirection alias from constants */
         const red: any = Constants.RA;
 
         let l = line.split(';');
-        let s: Scope = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope) => {
-          console.log('scope',scope)
-          return scope;
-        });
-        console.log('after getScopeByMagentoId')
+        let s: Scope;
+        if(!currentScope || currentScope.magento_scope_id !== parseInt(l[0])) {
+          s = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope) => {
+            console.log('n scope',scope)
+            currentScope = scope;
+            return scope;
+          });
+        } else {
+          s = currentScope
+        }
+        
+        // console.log('after getScopeByMagentoId')
         let r: RedirectType = await this.dataSrv.getRedirectTypesById(
           parseInt(red[l[1]])
         ).then((redType)=>{
-          console.log('redType',redType)
+          // console.log('redType',redType)
           return redType;
         });
-        console.log('after getRedirectTypesById')
+        // console.log('after getRedirectTypesById')
         this.redToBeChecked.push({
           scope_id: s.id,
           redirect_type_id: r.id,
@@ -240,7 +249,7 @@ export class CsvRulesImportComponent implements OnInit {
         this.redToBeChecked.sort(ruleSortById);
         this.redToBeChecked.sort(ruleSortByOrigin);
       }
-      console.log('this.redToBeChecked',this.redToBeChecked);
+      // console.log('this.redToBeChecked',this.redToBeChecked);
     }
   }
   checkCsvFormat(header:string):boolean {
@@ -248,19 +257,19 @@ export class CsvRulesImportComponent implements OnInit {
     let headerOk = true;
     let col = header.trim().split(';');
     if(col[0] !== 'magento_scope_id'){
-      console.log(`the first column must be '${'magento_scope_id'}' current is '${col[0]}'`);
+      console.warn(`the first column must be '${'magento_scope_id'}' current is '${col[0]}'`);
       headerOk = false;
     }
     if(col[1] !== 'redirect_type'){
-      console.log(`the second column must be '${'magento_scope_id'}' current is '${col[1]}'`);
+      console.warn(`the second column must be '${'magento_scope_id'}' current is '${col[1]}'`);
       headerOk = false;
     }
     if(col[2] !== 'origin'){
-      console.log(`the thirth column must be '${'origin'}' current is '${col[2]}'`);
+      console.warn(`the thirth column must be '${'origin'}' current is '${col[2]}'`);
       headerOk = false;
     }
     if(col[3] !== 'target'){
-      console.log(`the fourth column must be '${'target'}' current is '${col[4]}'`);
+      console.warn(`the fourth column must be '${'target'}' current is '${col[4]}'`);
       headerOk = false;
     }
     return headerOk;
@@ -305,12 +314,12 @@ export class CsvRulesImportComponent implements OnInit {
   checkHandler = (_event:any, response: any) => {
     this.progressCount++;
     //this.percent = ((100 * this.progressCount) / this.redToBeChecked.length)
-    console.log('checked',_event, response);
+    // console.log('checked',_event, response);
     if(response.ok){
       // rule ok
       this.redToBeSaved.push(response.rule)
       if(response.toBeUpdate && response.toBeUpdate.length){
-        console.log('toBeUpdate',response.toBeUpdate, response.rule.target);
+        // console.log('toBeUpdate',response.toBeUpdate, response.rule.target);
         response.toBeUpdate.forEach(r => {
           this.redToBeUpdated.push({ ok: false, rule: {id:r.id,scope_id:r.scope_id,redirect_type_id:r.redirect_type_id,position:r.position,origin:r.origin,target:response.rule.target,active:r.active,added_at:r.added_at}, original_rule:r,  reason: `RETARGETING`, reason_code: '000', channel: 'xxxxxx' })
           /*

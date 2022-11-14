@@ -17,6 +17,8 @@
     "create:scope:config": "node ./src/commands/cmd-create-scope-config.js",
     "create:database": "sqlite3 ./src/data/database.db \".databases .quit\" && node ./src/electron/build_db.js",
     "create:backup": "node ./src/commands/cmd-create-backup.js",
+    "check:urls": "node ./src/commands/cmd-check-old-redirect.js",
+    "c:u": "npm run check:urls",
     "c:b": "npm run create:backup",
     "c:db": "npm run create:database",
     "c:s:c": "npm run create:scope:config",
@@ -35,6 +37,7 @@
     "@popperjs/core": "^2.11.5",
     "bootstrap": "^5.1.3",
     "createjs-module": "^0.8.3",
+    "crypto-js": "^4.1.1",
     "electron-builder": "^23.1.0",
     "electron-rebuild": "^3.2.8",
     "electron-store": "^8.1.0",
@@ -47,6 +50,7 @@
     "rxjs": "~7.5.0",
     "sqlite3": "^5.0.9",
     "tslib": "^2.3.0",
+    "xml2js": "^0.4.23",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

@@ -1,34 +1,76 @@
+const MD5 = require("crypto-js/md5");
+const dbAccess = require("../electron/dbAccess");
+const fs = require('fs');
+const xml2js = require('xml2js');
+const fetch = require("node-fetch");
+
+
 let allRules = [];
 let currentActivesUrls = [];
 console.log(process.argv);
-const scopeID = +process.argv[2]
+let scopeID = +process.argv[2]
 if(!scopeID){
   console.log('no scopeID provided');
-  process.exit(1);
+  console.log('set default scopeID 2');
+  scopeID = 2 // ( default JJ )
+  // process.exit(1);
 }
-
-const dbAccess = require("../electron/dbAccess");
-const fs = require('fs') ;
 console.log(scopeID);
-allRules = dbAccess.getRulesByScopeId(scopeID).then((result)=>{
-  // console.log(`rules for scope  ${scopeID}`,result);
 
-  const ar = result.map((r)=>{
-    return r.origin.split('.html')[0]
+
+execute(scopeID).then((result)=>{
+  //console.log(result);
+
+  result.allHashes.forEach((h,i)=>{
+    // console.log('>',h,i)
+    const have =result.mapUrlHash.has(h);
+    if(!have){
+      console.log('>', h, i, result.allTargets[i])
+    }
   })
-  console.log(`mapped rules for scope  ${scopeID}`, ar);
-  return ar;
-
 })
 
-currentActivesUrls = JSON.parse(fs.readFileSync('./src/tmp/export-all-25_10_2022--14_21_20.json'));
-/* console.log(`currentActivesUrls for scope  ${scopeID}`, currentActivesUrls[scopeID]); */
-const arrUrls = currentActivesUrls[scopeID];
-let index;
-const length = arrUrls.length;
-for (index = 0; index < length; index++) {
-  const curUrl = arrUrls[index];
-  console.log('curUrl', curUrl)
-  
+
+async function execute(scope_id){
+  let scopeInfo = await getScopeInfo(scope_id) // ici setter ds la conf et recuperer les sitemaps à la volée
+  let url = 'https://www.jeujouet.com/pub/media/sitemaps/sitemap.xml'
+  let mapUrlHash = await getSiteMapUrls(url).then((jsXml)=>{
+    
+    const urls = jsXml.urlset.url;
+    let mapUrl = new Map();
+
+    const l = urls.length;
+    for (let i = 0; i < l; i++) {
+      const line = urls[i];
+      let u = line.loc[0];
+      u = (u.slice(-1) == '/')?u.slice(0,-1):u
+      mapUrl.set(MD5(u).toString(), u);
+    }
+    return mapUrl;
+  })
+
+  return { mapUrlHash, allTargets:scopeInfo.allRules, allHashes:scopeInfo.allHashes };
 }
-/* process.exit(0); */
+
+async function getSiteMapUrls(url){
+  let xml = await fetch(url);
+  let body  = await xml.text();
+  const parser = new xml2js.Parser();
+  return parser.parseStringPromise(body);
+}
+
+async function getScopeInfo(scope_id) {
+  let scope = await dbAccess.getScopeByMagentoID(scopeID).then((scope)=>{return scope[0]});
+  let config = await dbAccess.getScopeConfigByScopeID(scope.id).then((scope_config)=>{return scope_config[0]});
+  let [allRules, allHashes] = await dbAccess.getRulesByScopeId(scope.id).then((rules)=>{
+    const ar = rules.map((r)=>{
+      return r.target; 
+    })
+    const hs = rules.map((r)=>{
+      return MD5(r.target).toString(); 
+    })
+    return [ar, hs];
+  })
+
+  return {scope,config,allRules,allHashes};
+}
