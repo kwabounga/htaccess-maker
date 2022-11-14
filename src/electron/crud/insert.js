@@ -10,6 +10,8 @@ const {
   DATABASE_TABLE_HISTORY,
 } = require('../bd_factory');
 const { backup } = require('../history');
+
+const logger = require('../logger')
 /*                   **
  *  DB ACCESS INSERTS *
  **                   */
@@ -23,7 +25,8 @@ const insertRules = (rules) => {
           return inserts;
       })
       .catch(function(error) {
-          console.error(error);
+          console.error('something wrong appenning when insert Rule see:log.log file');
+          logger.log(error)
           return error;
       });
 };

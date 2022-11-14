@@ -85,7 +85,7 @@ const getRulesByScopeId = (scope_id) => {
 // Rules
 const getRulesByOrigin = (origin) => {
   let regex = /https:\/\/.*\.com/;
-  console.log('getRulesByOrigin using origin', '%'+origin.replace(regex,''))
+  // console.log('getRulesByOrigin using origin', '%'+origin.replace(regex,''))
   return knex(DATABASE_TABLE_RULES).whereLike(
     'target', '%'+origin.replace(regex,''),
   ).select().orderBy([
@@ -95,7 +95,7 @@ const getRulesByOrigin = (origin) => {
 }
 const getRulesByTarget = (target) => {
   let regex = /https:\/\/.*\.com/;
-  console.log('getRulesByTarget using target',target.replace(regex,''))
+  // console.log('getRulesByTarget using target',target.replace(regex,''))
   return knex(DATABASE_TABLE_RULES).where({
     origin: target.replace(regex,''),
   }).select().orderBy([

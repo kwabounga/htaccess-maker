@@ -213,32 +213,51 @@ export class CsvRulesImportComponent implements OnInit {
       }
       let redToBeProcessed = tempArray.filter(notEmpty);
       let currentScope = null;
+      let currentRedirectType = null;
+      let nbRedirect = redToBeProcessed.length
+      let ci = 0;
+
+      const rtLenght = redToBeProcessed.length;
       // console.log('redToBeProcessed',redToBeProcessed);
-      for (const line of redToBeProcessed) {
-        // console.log('line',line)
+      for (let ll = 0; ll < rtLenght; ll++) {
+        const line = redToBeProcessed[ll];
+        
         /* get redirection alias from constants */
         const red: any = Constants.RA;
 
+        /* split the current line into tmp array*/
         let l = line.split(';');
+
+
+        /* Get the current Scope if not the same of preceding element*/
         let s: Scope;
         if(!currentScope || currentScope.magento_scope_id !== parseInt(l[0])) {
           s = await this.dataSrv.getScopeByMagentoId(parseInt(l[0])).then((scope:Scope) => {
-            console.log('n scope',scope)
+            console.log('scope',scope)
             currentScope = scope;
             return scope;
           });
         } else {
           s = currentScope
         }
+        /* Get the current RedirectType  if not the same of preceding element*/
+        let r: RedirectType;
+        if(!currentRedirectType || currentRedirectType.id !== parseInt(red[l[1]])) {
+            // console.log('after getScopeByMagentoId')
+            r = await this.dataSrv.getRedirectTypesById(
+            parseInt(red[l[1]])
+          ).then((redType)=>{
+            console.log('redType',redType)
+            currentRedirectType = redType;
+            return redType;
+          });
+          // console.log('after getRedirectTypesById')
+        } else {
+          r = currentRedirectType
+        }
         
-        // console.log('after getScopeByMagentoId')
-        let r: RedirectType = await this.dataSrv.getRedirectTypesById(
-          parseInt(red[l[1]])
-        ).then((redType)=>{
-          // console.log('redType',redType)
-          return redType;
-        });
-        // console.log('after getRedirectTypesById')
+
+        // add the redirection
         this.redToBeChecked.push({
           scope_id: s.id,
           redirect_type_id: r.id,
@@ -246,10 +265,16 @@ export class CsvRulesImportComponent implements OnInit {
           target: l[3],
           active: true,
         });
-        this.redToBeChecked.sort(ruleSortById);
-        this.redToBeChecked.sort(ruleSortByOrigin);
+        console.log(ci,rtLenght)
+        ci++;
       }
-      // console.log('this.redToBeChecked',this.redToBeChecked);
+      // for (const line of redToBeProcessed) {
+        
+      // }
+      this.redToBeChecked.sort(ruleSortById);
+      this.redToBeChecked.sort(ruleSortByOrigin);
+      console.log('END OF PROCESSING');
+      console.log('this.redToBeChecked',this.redToBeChecked);
     }
   }
   checkCsvFormat(header:string):boolean {

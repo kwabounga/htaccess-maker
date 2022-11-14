@@ -1,6 +1,5 @@
 const fetch = require("node-fetch");
 
-
 /**
  * test the  http response from fetch
  * used to check the validity of redirection target url

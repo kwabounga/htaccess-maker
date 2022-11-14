@@ -18,6 +18,7 @@
     "create:database": "sqlite3 ./src/data/database.db \".databases .quit\" && node ./src/electron/build_db.js",
     "create:backup": "node ./src/commands/cmd-create-backup.js",
     "check:urls": "node ./src/commands/cmd-check-old-redirect.js",
+    "logger:truncate": "node ./src/commands/cmd-logger-truncate.js",
     "c:u": "npm run check:urls",
     "c:b": "npm run create:backup",
     "c:db": "npm run create:database",

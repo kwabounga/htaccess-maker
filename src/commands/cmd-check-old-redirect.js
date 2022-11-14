@@ -3,7 +3,7 @@ const dbAccess = require("../electron/dbAccess");
 const fs = require('fs');
 const xml2js = require('xml2js');
 const fetch = require("node-fetch");
-
+const logger = require('../electron/logger')
 
 let allRules = [];
 let currentActivesUrls = [];
@@ -16,6 +16,7 @@ if(!scopeID){
   // process.exit(1);
 }
 console.log(scopeID);
+logger.log(scopeID);
 
 
 execute(scopeID).then((result)=>{
