@@ -27,13 +27,7 @@
     <div class="modal-content bg-vscode text-vscode">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_label_{{ scope.id }}"><i18n [txt]="'%0 Rules'" [val]="[scope.label]"></i18n></h5>
-        <div>
-          [{{pagination.totalItems}},
-          {{pagination.currentPage}},
-          {{pagination.itemsByPage}},
-          {{pagination.totalPages}}]
-
-        </div>
+        
         <button
           type="button"
           class="btn-close"
@@ -43,6 +37,8 @@
       </div>
       <div class="modal-body">
         <input class="form-control form-control-sm form-control-vscode mb-3" type="text" [placeholder]="searchPlaceHolder | async" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
+        <button (click)="prev()">prev</button>
+        <button (click)="next()">next</button>
         <ul class="list-group">
           <smooth-dnd-container
             [dragClass]="'opacity-ghost'"

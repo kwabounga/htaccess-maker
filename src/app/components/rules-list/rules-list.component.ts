@@ -16,6 +16,7 @@ export class RulesListComponent implements OnInit, OnChanges {
   @Input() id:number=0;
   @Input() rules:any;
   ruleFilter:string = '';
+  ruleFilterLast:string = '';
   @Input() scope:any;
   @Input() redirectTypes:any;
   @Input() updateRulesPositionProgress?:boolean;
@@ -32,13 +33,8 @@ export class RulesListComponent implements OnInit, OnChanges {
   private ctrlKey: string = 'Shift';
   private ctrlKeyPressed: boolean = false;
 
-  pagination: any = {
-    totalItems: 500,
-    currentPage: 1,
-    itemsByPage: 20,
-    totalPages: 500,
-  };
-
+  pager:any;
+  currentIndex = 0;
   // first make your component focusable to allow keypress event listening
   @HostBinding('attr.tabIndex') tabIndex = -1;
   @HostListener('keydown', ['$event']) keydown (event: KeyboardEvent) {
@@ -62,27 +58,23 @@ export class RulesListComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges){
     if(changes['rules']){
-      this.pagination = {
-        totalItems: this.rules?.length,
-        currentPage: 1,
-        itemsByPage: 20,
-        totalPages: Math.ceil(this.rules?.length/20),
-      };
+      // this.pager = this.pagination(this.rules)
       this.ref.detectChanges();
+      console.log('refreshing dom after rules changes ')
     }
     
   }
   public onCheck(data:any): void {
     //console.log('onCheck', this.ctrlKeyPressed, data);
-    let key = this.rulesSelectedSet.first!=null?'last':'first';
+    let key = this.rulesSelectedSet.first != null ? 'last' : 'first';
     if(key != 'first' && this.ctrlKeyPressed){
-      this.rulesSelectedSet.last = data.checked?data.id:null
+      this.rulesSelectedSet.last = data.checked ? data.id : null
     } else{
-      this.rulesSelectedSet.first = data.checked?data.id:null
+      this.rulesSelectedSet.first = data.checked ? data.id : null
       this.rulesSelectedSet.last = null
     }
 
-    if(this.rulesSelectedSet.first!=null && this.rulesSelectedSet.last!=null){
+    if(this.rulesSelectedSet.first!=null && this.rulesSelectedSet.last != null){
       console.log('rulesSelectedSet', this.rulesSelectedSet);
       this.computeSet(this.rulesSelectedSet.first,this.rulesSelectedSet.last,this.rulesSelectedSet.set)
     }else{
@@ -113,10 +105,60 @@ export class RulesListComponent implements OnInit, OnChanges {
     this.ruleFilter = event.target.value;
   }
   get filteredRules():any{
-    if(this.ruleFilter == '') return this?.rules;
-    let rg = new RegExp(this.ruleFilter)
-    return this.rules.filter((r:any) =>{
-      return rg.test(r.origin) || rg.test(r.target);
-    });
+    const itemsByPage = 20;
+    let ar = [];
+
+    if(this.ruleFilter == ''){
+      ar =  this?.rules;
+    } else {      
+      let rg = new RegExp(this.ruleFilter)
+        ar = this.rules.filter((r:any) =>{
+        return rg.test(r.origin) || rg.test(r.target);
+      });
+    }
+
+    if(this.ruleFilter != this.ruleFilterLast){
+      this.ruleFilter = this.ruleFilterLast;
+      this.currentIndex = 0;
+    }
+    console.log('here')
+    
+    let cuIndex = (this.currentIndex * itemsByPage)
+    return  ar?.slice(cuIndex, Math.min((cuIndex + itemsByPage),ar.length))
   }
+  next(){
+    ++ this.currentIndex;
+  }
+  prev(){
+    -- this.currentIndex;
+  }
+  // private pagination(array:any=[], nbItems:number = 20):any {
+  //   const itemsByPage = nbItems;
+  //   const allItems = array
+  //   let currentIndex = 0;
+  //   return {
+  //     get page(){
+  //       let cuIndex = (currentIndex * itemsByPage)
+  //       return allItems.slice(cuIndex, Math.min((cuIndex+itemsByPage),allItems.length));
+  //     },
+  //     prev:()=>{
+        
+  //       -- currentIndex;
+  //       if(currentIndex < 0) {
+  //         currentIndex = Math.ceil(allItems.length/itemsByPage);
+  //       }
+             
+  //     },
+  //     next:()=>{
+  //       ++ currentIndex;
+  //       if(currentIndex >= Math.ceil(allItems.length/itemsByPage)){
+  //         currentIndex = 0;  
+  //       }         
+  //       console.log('currentIndex',currentIndex,itemsByPage,allItems.length,Math.ceil(allItems.length/itemsByPage))
+  //       //this.ref.detectChanges();     
+  //     }
+  //   }
+  // }
 }
+
+
