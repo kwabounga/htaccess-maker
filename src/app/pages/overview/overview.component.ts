@@ -45,12 +45,13 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
     this.footerData = await this.dataSrv.getFooterConfig();
     this.scopes = await this.dataSrv.getScopesAll();
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
-
-    await this.scopes.forEach(async (scope:any) => {
+    
+    for (const scope of this.scopes) {
       this.scopeConfig[scope.id] = await this.getScopeConfigById(scope.id);
       this.rules[scope.id] = await this.getRulesByScopeId(scope.id);
-    });
-
+    }
+    
+    console.log(`configuration loaded for ${this.scopes.length} scopes`);
     this.logger.log(`configuration loaded for ${this.scopes.length} scopes`);
     this.pageLoaded= true;
   }
@@ -76,7 +77,7 @@ export class OverviewComponent implements OnInit/*, AfterViewInit */{
   async getRulesByScopeId(scope_id:number): Promise<any[]> {
     return this.dataSrv.getRulesByScopeId(scope_id)
     .then((obj)=>{
-      console.log('getRulesByScopeId', obj);
+      console.log('getRulesByScopeId', obj.length);
       return obj;
     })
   }

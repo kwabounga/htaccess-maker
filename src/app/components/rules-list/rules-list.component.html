@@ -27,6 +27,13 @@
     <div class="modal-content bg-vscode text-vscode">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_label_{{ scope.id }}"><i18n [txt]="'%0 Rules'" [val]="[scope.label]"></i18n></h5>
+        <div>
+          [{{pagination.totalItems}},
+          {{pagination.currentPage}},
+          {{pagination.itemsByPage}},
+          {{pagination.totalPages}}]
+
+        </div>
         <button
           type="button"
           class="btn-close"

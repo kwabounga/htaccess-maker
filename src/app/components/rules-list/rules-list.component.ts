@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBinding  } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBinding, OnChanges,SimpleChanges , ChangeDetectorRef  } from '@angular/core';
 import { applyDrag } from '../../utils/utils';
 import { TranslateService } from '../commons/translate/translate.service';
 @Component({
@@ -6,10 +6,11 @@ import { TranslateService } from '../commons/translate/translate.service';
   templateUrl: './rules-list.component.html',
   styleUrls: ['./rules-list.component.less']
 })
-export class RulesListComponent implements OnInit {
+export class RulesListComponent implements OnInit, OnChanges {
 
   constructor(
-    private t:TranslateService
+    private t:TranslateService,
+    private ref: ChangeDetectorRef
   ) { }
 
   @Input() id:number=0;
@@ -31,6 +32,13 @@ export class RulesListComponent implements OnInit {
   private ctrlKey: string = 'Shift';
   private ctrlKeyPressed: boolean = false;
 
+  pagination: any = {
+    totalItems: 500,
+    currentPage: 1,
+    itemsByPage: 20,
+    totalPages: 500,
+  };
+
   // first make your component focusable to allow keypress event listening
   @HostBinding('attr.tabIndex') tabIndex = -1;
   @HostListener('keydown', ['$event']) keydown (event: KeyboardEvent) {
@@ -51,7 +59,18 @@ export class RulesListComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+  }
+  ngOnChanges(changes: SimpleChanges){
+    if(changes['rules']){
+      this.pagination = {
+        totalItems: this.rules?.length,
+        currentPage: 1,
+        itemsByPage: 20,
+        totalPages: Math.ceil(this.rules?.length/20),
+      };
+      this.ref.detectChanges();
+    }
+    
   }
   public onCheck(data:any): void {
     //console.log('onCheck', this.ctrlKeyPressed, data);
