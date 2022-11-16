@@ -16,7 +16,9 @@ export class RulesListComponent implements OnInit, OnChanges {
   @Input() id:number=0;
   @Input() rules:any;
   ruleFilter:string = '';
-  ruleFilterLast:string = '';
+  ruleFilterLast:string = '$';
+  currentIndex:number = 0;
+  currentRulesSetLength:number = 0;
   @Input() scope:any;
   @Input() redirectTypes:any;
   @Input() updateRulesPositionProgress?:boolean;
@@ -32,9 +34,8 @@ export class RulesListComponent implements OnInit, OnChanges {
   }
   private ctrlKey: string = 'Shift';
   private ctrlKeyPressed: boolean = false;
-
+  itemsByPage = 20;
   pager:any;
-  currentIndex = 0;
   // first make your component focusable to allow keypress event listening
   @HostBinding('attr.tabIndex') tabIndex = -1;
   @HostListener('keydown', ['$event']) keydown (event: KeyboardEvent) {
@@ -62,6 +63,12 @@ export class RulesListComponent implements OnInit, OnChanges {
       this.ref.detectChanges();
       console.log('refreshing dom after rules changes ')
     }
+    /* if(changes['rules']){
+      // this.pager = this.pagination(this.rules)
+      this.ref.detectChanges();
+      console.log('refreshing dom after rules changes ')
+    } */
+    console.log(changes)
     
   }
   public onCheck(data:any): void {
@@ -100,65 +107,54 @@ export class RulesListComponent implements OnInit, OnChanges {
     console.log(dropResult)
     this.rules = applyDrag(this.rules, dropResult);
   }
+  searchDelay:any = null;
   onChangeSearchEvent(event:any){
     console.log('onChangeSearchEvent', event)
-    this.ruleFilter = event.target.value;
+    clearTimeout(this.searchDelay);
+    this.searchDelay = setTimeout(()=>{
+      this.ruleFilter = event.target.value;
+    }, 250)
+    
   }
   get filteredRules():any{
-    const itemsByPage = 20;
+    //const itemsByPage = 20;
     let ar = [];
 
-    if(this.ruleFilter == ''){
+    if(this.ruleFilter.trim() == ''){
       ar =  this?.rules;
     } else {      
       let rg = new RegExp(this.ruleFilter)
-        ar = this.rules.filter((r:any) =>{
+        ar = this?.rules?.filter((r:any) =>{
         return rg.test(r.origin) || rg.test(r.target);
       });
     }
 
     if(this.ruleFilter != this.ruleFilterLast){
       this.ruleFilter = this.ruleFilterLast;
+      this.currentRulesSetLength = ar?.length;
       this.currentIndex = 0;
+      console.log('here!')
     }
-    console.log('here')
+    //console.log('here')
     
-    let cuIndex = (this.currentIndex * itemsByPage)
-    return  ar?.slice(cuIndex, Math.min((cuIndex + itemsByPage),ar.length))
+    let cuIndex = (this.currentIndex * this.itemsByPage)
+    return  ar?.slice(cuIndex, Math.min((cuIndex + this.itemsByPage),ar.length))
   }
   next(){
     ++ this.currentIndex;
+    if(this.currentIndex >= Math.ceil(this.currentRulesSetLength/this.itemsByPage)){
+      this.currentIndex = 0;  
+    } 
+    console.log(this.currentIndex)
   }
   prev(){
     -- this.currentIndex;
+    if(this.currentIndex < 0) {
+      this.currentIndex = Math.ceil(this.currentRulesSetLength/this.itemsByPage);
+    }
+    console.log(this.currentIndex)
   }
-  // private pagination(array:any=[], nbItems:number = 20):any {
-  //   const itemsByPage = nbItems;
-  //   const allItems = array
-  //   let currentIndex = 0;
-  //   return {
-  //     get page(){
-  //       let cuIndex = (currentIndex * itemsByPage)
-  //       return allItems.slice(cuIndex, Math.min((cuIndex+itemsByPage),allItems.length));
-  //     },
-  //     prev:()=>{
-        
-  //       -- currentIndex;
-  //       if(currentIndex < 0) {
-  //         currentIndex = Math.ceil(allItems.length/itemsByPage);
-  //       }
-             
-  //     },
-  //     next:()=>{
-  //       ++ currentIndex;
-  //       if(currentIndex >= Math.ceil(allItems.length/itemsByPage)){
-  //         currentIndex = 0;  
-  //       }         
-  //       console.log('currentIndex',currentIndex,itemsByPage,allItems.length,Math.ceil(allItems.length/itemsByPage))
-  //       //this.ref.detectChanges();     
-  //     }
-  //   }
-  // }
+
 }
 
 
