@@ -1,5 +1,4 @@
 import { Component, Input, Output,EventEmitter,ElementRef, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { applyDrag } from '../../utils/utils';
 import { Button } from 'bootstrap';
 import { LoggerService } from 'src/app/services/logger.service';
@@ -32,7 +31,6 @@ export class ScopeAccordionComponent {
   @ViewChild('btnAcc') btn!:ElementRef;
   constructor(
     private logger: LoggerService,
-    protected sanitizer: DomSanitizer,
     private elem: ElementRef
     ) { }
   labelDragIt = 'drag it for rearrange';

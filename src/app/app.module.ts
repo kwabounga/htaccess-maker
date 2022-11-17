@@ -30,6 +30,7 @@ import { ButtonPopoveredComponent } from './components/commons/button-popovered/
 import { MarkdownComponent } from './components/commons/markdown/markdown.component';
 import { TipsComponent } from './components/tips/tips.component';
 import { SplashScreenComponent } from './pages/splash-screen/splash-screen.component';
+import { SanitizePipe } from './pipes/sanitize.pipe';
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { SplashScreenComponent } from './pages/splash-screen/splash-screen.compo
     ButtonPopoveredComponent,
     MarkdownComponent,
     TipsComponent,
-    SplashScreenComponent
+    SplashScreenComponent,
+    SanitizePipe
   ],
   imports: [
     BrowserModule,

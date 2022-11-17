@@ -18,7 +18,7 @@ export class RulesListComponent implements OnInit, OnChanges {
   ruleFilter:string = '';
   ruleFilterLast:string = '$';
   currentIndex:number = 0;
-  currentRulesSetLength:number = 0;
+  currentRulesSetLength?:number = 0;
   @Input() scope:any;
   @Input() redirectTypes:any;
   @Input() updateRulesPositionProgress?:boolean;
@@ -35,7 +35,7 @@ export class RulesListComponent implements OnInit, OnChanges {
   private ctrlKey: string = 'Shift';
   private ctrlKeyPressed: boolean = false;
   itemsByPage = 20;
-  pager:any;
+  pager?:any;
   // first make your component focusable to allow keypress event listening
   @HostBinding('attr.tabIndex') tabIndex = -1;
   @HostListener('keydown', ['$event']) keydown (event: KeyboardEvent) {
@@ -58,9 +58,9 @@ export class RulesListComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
   ngOnChanges(changes: SimpleChanges){
+    console.log(changes)
     if(changes['rules']){
-      // this.pager = this.pagination(this.rules)
-      this.ref.detectChanges();
+      this.reload()
       console.log('refreshing dom after rules changes ')
     }
     /* if(changes['rules']){
@@ -70,6 +70,10 @@ export class RulesListComponent implements OnInit, OnChanges {
     } */
     console.log(changes)
     
+  }
+  reload(){
+    this.pager = this?.paginatedRules
+    this.ref.detectChanges();
   }
   public onCheck(data:any): void {
     //console.log('onCheck', this.ctrlKeyPressed, data);
@@ -113,46 +117,62 @@ export class RulesListComponent implements OnInit, OnChanges {
     clearTimeout(this.searchDelay);
     this.searchDelay = setTimeout(()=>{
       this.ruleFilter = event.target.value;
+      this.reload()
     }, 250)
     
   }
   get filteredRules():any{
-    //const itemsByPage = 20;
     let ar = [];
 
     if(this.ruleFilter.trim() == ''){
       ar =  this?.rules;
-    } else {      
+    } else {
       let rg = new RegExp(this.ruleFilter)
         ar = this?.rules?.filter((r:any) =>{
         return rg.test(r.origin) || rg.test(r.target);
       });
     }
+    return  ar
+  }
+  get paginatedRules():any{
+    //const itemsByPage = 20;
+    let ar = this?.filteredRules;
 
     if(this.ruleFilter != this.ruleFilterLast){
       this.ruleFilter = this.ruleFilterLast;
-      this.currentRulesSetLength = ar?.length;
       this.currentIndex = 0;
       console.log('here!')
     }
+    this.currentRulesSetLength = ar?.length;
     //console.log('here')
-    
+    if(ar?.length === 0){
+      return [];
+    }
     let cuIndex = (this.currentIndex * this.itemsByPage)
-    return  ar?.slice(cuIndex, Math.min((cuIndex + this.itemsByPage),ar.length))
+    return  ar?.slice(cuIndex, Math.min((cuIndex + this.itemsByPage),ar?.length))
   }
   next(){
     ++ this.currentIndex;
-    if(this.currentIndex >= Math.ceil(this.currentRulesSetLength/this.itemsByPage)){
+    if(this.currentIndex > Math.floor(this?.currentRulesSetLength/this.itemsByPage)){
       this.currentIndex = 0;  
     } 
+    
+    console.log(this?.currentRulesSetLength)
+    console.log(this.itemsByPage)
     console.log(this.currentIndex)
+    this.reload()
+      console.log('refreshing dom after next ')
   }
   prev(){
     -- this.currentIndex;
     if(this.currentIndex < 0) {
-      this.currentIndex = Math.ceil(this.currentRulesSetLength/this.itemsByPage);
+      this.currentIndex = Math.floor(this?.currentRulesSetLength/this.itemsByPage);
     }
+    console.log(this?.currentRulesSetLength)
+    console.log(this.itemsByPage)
     console.log(this.currentIndex)
+    this.reload()
+      console.log('refreshing dom after prev')
   }
 
 }

@@ -49,7 +49,7 @@
             (drop)="onDrop($event)"
           >
             <smooth-dnd-draggable
-              *ngFor="let rule of this?.filteredRules; let idr = index"
+              *ngFor="let rule of this?.pager; let idr = index"
             >
               <div class="draggable-item">
                 <app-rule-line
