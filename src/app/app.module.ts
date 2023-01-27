@@ -31,6 +31,7 @@ import { MarkdownComponent } from './components/commons/markdown/markdown.compon
 import { TipsComponent } from './components/tips/tips.component';
 import { SplashScreenComponent } from './pages/splash-screen/splash-screen.component';
 import { SanitizePipe } from './pipes/sanitize.pipe';
+import { CodePreviewSlicerPipe } from './pipes/code-preview-slicer.pipe';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { SanitizePipe } from './pipes/sanitize.pipe';
     MarkdownComponent,
     TipsComponent,
     SplashScreenComponent,
-    SanitizePipe
+    SanitizePipe,
+    CodePreviewSlicerPipe
   ],
   imports: [
     BrowserModule,

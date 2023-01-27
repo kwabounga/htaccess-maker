@@ -1,7 +1,7 @@
 <h3><i18n [txt]="'Preview'"></i18n></h3>
 <pre *ngIf="this.preview" [style]="'max-height:' + (this.height?this.height:'auto')"  class="code-preview full-h">
-<span *ngFor="let line of this?.outputMaker()" [class]="line.is_comment?'comment':'code'">
-<span >{{line.text}}</span></span>
+  <code class="code"><span *ngFor="let line of this?.preview | codePreviewSlicer" [class]=" 'line ' + (line.is_comment?'comment':'code-line')"><span class="code-space"></span><span >{{line.text}}</span>
+  </span></code>
 </pre>
 <pre *ngIf="!this.preview" class="code-preview full-h" >
 

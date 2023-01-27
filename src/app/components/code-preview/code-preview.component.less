@@ -1,9 +1,6 @@
 pre {
-
   overflow-y: scroll;
   padding:1rem;
-  /* color: #d4d4d4;
-  background-color: #1e1e1e; */
   font-family: Consolas, "Courier New", monospace;
   font-weight: normal;
   font-size: 14px;
@@ -14,5 +11,63 @@ pre {
   border-radius: 0;
 }
 pre .comment {
- /*  color: #6a9955; */
+
+}
+.code-space {
+  opacity: .25;
+  display: table-cell;
+  vertical-align: top;
+  position: relative;
+  white-space: pre;
+}
+
+element.style {
+}
+.code {
+    color: var(--text);
+}
+.code {
+    font-family: Fira Mono,Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+    text-align: left;
+    display: grid;
+    white-space: pre-wrap;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: break-word;
+    -moz-tab-size: 2;
+    -o-tab-size: 2;
+    tab-size: 2;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    counter-reset: line;
+    justify-content: left;
+    padding-right: 1em;
+}
+.code-preview .code .line {
+  counter-increment: line;
+  /* display: inline-table; */
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5ch;
+  position: relative;
+  left: 2ch;
+  margin-right: auto;
+}
+.code-preview .code .line::before {
+  content: counter(line) "\a ●\a ●\a ●\a ●\a ●\a ●\a ●\a ●\a ●\a ●";
+  display: inline-block;
+  margin-right: 0.5em;
+  opacity: 0.5;
+  position: absolute;
+  width: 5ch;
+  top: 0px;
+  bottom: 0px;
+  left: -3ch;
+  text-align: right;
+  overflow: hidden;
+}
+.line::after {
+  opacity: 0.25;
+  content: "¬";
 }

@@ -8,7 +8,7 @@ import { Rule } from "../interfaces/interfaces";
  * @param {any} dragResult  the drag Result object
  * @returns {any[]} the new sorted array 
  */
-export const applyDrag = (arr:any[], dragResult:any) => {
+export const applyDrag = (arr:any[], dragResult:any,currentIndex=0) => {
 	const { removedIndex, addedIndex, payload } = dragResult;
 	if (removedIndex === null && addedIndex === null) return arr;
 
@@ -16,11 +16,11 @@ export const applyDrag = (arr:any[], dragResult:any) => {
 	let itemToAdd = payload;
 
 	if (removedIndex !== null) {
-		itemToAdd = result.splice(removedIndex, 1)[0];
+		itemToAdd = result.splice((removedIndex+currentIndex), 1)[0];
 	}
 
 	if (addedIndex !== null) {
-		result.splice(addedIndex, 0, itemToAdd);
+		result.splice((addedIndex+currentIndex), 0, itemToAdd);
 	}
 
 	return result;

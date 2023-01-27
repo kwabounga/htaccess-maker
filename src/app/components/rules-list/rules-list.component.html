@@ -27,7 +27,7 @@
     <div class="modal-content bg-vscode text-vscode">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_label_{{ scope.id }}"><i18n [txt]="'%0 Rules'" [val]="[scope.label]"></i18n></h5>
-        
+
         <button
           type="button"
           class="btn-close"
@@ -39,6 +39,12 @@
         <input class="form-control form-control-sm form-control-vscode mb-3" type="text" [placeholder]="searchPlaceHolder | async" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
         <button (click)="prev()">prev</button>
         <button (click)="next()">next</button>
+        <!-- ici -->
+        <select #selectItemsByPage  [(value)]="itemsByPage" name="itmByPage" class="form-select form-select-vscode form-select form-select-sm mini " [title]="'redir/page'"  (change)="setNbItemByPage($event)">
+          <!-- <option value="20">20</option> -->
+          <option *ngFor="let nb of nbItemsByPages; let id = index" [value]="nb">{{nb}}</option>
+        </select>
+        <!-- !ici -->
         <ul class="list-group">
           <smooth-dnd-container
             [dragClass]="'opacity-ghost'"
