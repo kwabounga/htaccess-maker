@@ -82,6 +82,9 @@ const getRulesByScopeId = (scope_id) => {
     { column: 'origin', order: 'desc' }
   ]);
 }
+const getRulesAll = () => {
+  return knex(DATABASE_TABLE_RULES).select();
+}
 // Rules
 const getRulesByOrigin = (origin) => {
   let regex = /https:\/\/.*\.com/;
@@ -135,6 +138,7 @@ exports.getRedirectTypesByID = getRedirectTypesByID;
 exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
 exports.getScopeByMagentoID = getScopeByMagentoID;
+exports.getRulesAll = getRulesAll;
 exports.getRulesByScopeId = getRulesByScopeId;
 exports.getRulesByOrigin = getRulesByOrigin;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;

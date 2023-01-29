@@ -30,18 +30,12 @@ export class BatchProcessingComponent implements OnInit {
   async export(event: any) {
     let scope_id = +event;
     this.logger.log(`get rules for scope ${scope_id}`)
-    if(scope_id == -1){
-      /* this.rulesRefs = await this.dataSrv.getRulesByScopeId(scope_id) */ // TODO: getAllRules
+    if(scope_id === -1){
+      this.rulesRefs = await this.dataSrv.getRulesAll() 
     }else{
-      this.rulesRefs = await this.dataSrv.getRulesByScopeId(scope_id).then((rules)=>{
-        console.log(`get rules for scope ${scope_id}`, rules)
-        return rules
-      }).then((rules)=>{
-        let csvContent = this.csvSrv.makeCsvFromRules(rules)
-        this.fileSrv.exportFile('rules',csvContent)
-        return rules
-      })
+      this.rulesRefs = await this.dataSrv.getRulesByScopeId(scope_id)
     }
+    this.buildFile(this.rulesRefs)
   }
   async onFileSelected(event: any) {
     console.log('onFileSelected');
@@ -49,5 +43,10 @@ export class BatchProcessingComponent implements OnInit {
     if (file) {
       this.logger.log('need processing the file: ' + file.name)
     }
+  }
+  buildFile(rules){
+    console.log(`get rules `, rules)
+    let csvContent = this.csvSrv.makeCsvFromRules(rules)
+    this.fileSrv.exportFile('rules.csv',csvContent)
   }
 }

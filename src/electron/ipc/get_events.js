@@ -44,6 +44,15 @@ const dbAccess = require("../dbAccess");
       e.sender.send("retrieve:redirect_types", error.message);
     })
   })
+  ipcMain.on("get:rules", (e) => {
+    dbAccess.getRulesAll().then((redirect_types)=>{
+      const data = redirect_types;
+      // console.log(data);
+      e.sender.send("retrieve:rules", data);
+    }).catch((error)=>{
+      e.sender.send("retrieve:rules", error.message);
+    })
+  })
 
   ipcMain.on("get:redirect_types:by_id", (e,id) => {
     dbAccess.getRedirectTypesByID(id).then((redirect_types)=>{

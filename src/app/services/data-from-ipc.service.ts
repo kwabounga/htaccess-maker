@@ -141,7 +141,7 @@ export class DataFromIpcService {
 
 /**
    * get all redirect type
-   * @returns {Promise<RedirectType[]} all redirect type obj
+   * @returns {Promise<RedirectType[]>} all redirect type obj
    */
   async getRedirectTypesAll ():Promise<RedirectType[]> {
     return new Promise (async (resolve, reject)=>{
@@ -185,7 +185,18 @@ export class DataFromIpcService {
       this.electronSrv.ipcRenderer.on(`retrieve:scope:by_id_${id}`, resolver)
     })
   }
-
+/**
+   * get all rules
+   * @returns {Promise<Rule[]>} all rules obj
+   */
+async getRulesAll ():Promise<Rule[]> {
+  return new Promise (async (resolve, reject)=>{
+    this.electronSrv.ipcRenderer.send('get:rules');
+    this.electronSrv.ipcRenderer.on('retrieve:rules', (_event:any, response: any) => {
+      resolve(response);
+    })
+  })
+}
 
   /**
    * get all rules of specified scope

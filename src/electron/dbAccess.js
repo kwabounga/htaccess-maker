@@ -46,6 +46,7 @@ const {
   getScopesByID,
   getScopeByMagentoID,
   getScopeConfigByScopeID,
+  getRulesAll,
   getRulesByScopeId,
   getRulesByOrigin,
   checkIfRuleAlreadyExist,
@@ -119,6 +120,7 @@ exports.getRedirectTypesByID = getRedirectTypesByID;
 exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
 exports.getScopeByMagentoID = getScopeByMagentoID;
+exports.getRulesAll = getRulesAll;
 exports.getRulesByScopeId = getRulesByScopeId;
 exports.getRulesByOrigin = getRulesByOrigin;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;

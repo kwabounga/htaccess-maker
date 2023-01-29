@@ -20,8 +20,8 @@ export class CsvMakerService {
       output += badRed.reason_code + ';';
       output += badRed.reason + ';';
       output += badRed.rule.redirect_type_id + ';';
-      output += badRed.rule.origin + ';';
-      output += badRed.rule.target + ';\n';
+      output += badRed.rule.origin.trim() + ';';
+      output += badRed.rule.target.trim() + ';\n';
     });
 
   return output;
@@ -33,8 +33,8 @@ export class CsvMakerService {
       output += rule.id + ';';
       output += rule.scope_id + ';';
       output += rule.redirect_type_id + ';';
-      output += rule.origin + ';';
-      output += rule.target + ';\n';
+      output += rule.origin.trim() + ';';
+      output += rule.target.trim() + ';\n';
     });
 
     return output
