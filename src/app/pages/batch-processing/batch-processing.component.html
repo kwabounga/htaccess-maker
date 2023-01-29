@@ -12,7 +12,7 @@
             <button
             color="primary"
             class="btn btn-primary text-nowrap btn-sm btn-block"
-            (click)="export('export tous les scopes')"
+            (click)="export(-1)"
           > <i18n [txt]="'Export the complete list'"></i18n>
           </button>
           </div>
@@ -23,7 +23,7 @@
             <button
             color="secondary"
             class="btn btn-secondary text-nowrap btn-sm btn-block"
-            (click)="export('export du scope ' + scope.id)"
+            (click)="export(scope.id)"
           > <i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
           </button>
           </div>

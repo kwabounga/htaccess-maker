@@ -26,4 +26,17 @@ export class CsvMakerService {
 
   return output;
   }
+
+  makeCsvFromRules(rules:any):string {
+    let output = 'id;scope_id;position;redirect_type_id;origin;target;\n';
+    rules.forEach((rule:any) => {
+      output += rule.id + ';';
+      output += rule.scope_id + ';';
+      output += rule.redirect_type_id + ';';
+      output += rule.origin + ';';
+      output += rule.target + ';\n';
+    });
+
+    return output
+  }
 }
