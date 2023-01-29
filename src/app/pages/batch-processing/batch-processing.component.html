@@ -1,0 +1,89 @@
+<app-loader [loaded]="pageLoaded" [color]="'#6a7494'"></app-loader>
+<div class="page full-height  bg-vscode-dark text-vscode rel">
+  <h1><i18n [txt]="'Batch processing'"></i18n></h1>
+  <!-- Export list to be batched-->
+  <div class="card card-vscode text-vscode bg-vscode mb-3">
+    <div class="card-header"><i18n [txt]="'Export'"></i18n></div>
+    <div class="card-body  p-2">
+        <!--  Export BUTTON  -->
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="input-group d-grid gap-2">
+            <button
+            color="primary"
+            class="btn btn-primary text-nowrap btn-sm btn-block"
+            (click)="export('export tous les scopes')"
+          > <i18n [txt]="'Export the complete list'"></i18n>
+          </button>
+          </div>
+        </li>
+        <li *ngFor="let scope of this?.scopesRefs" class="list-group-item">
+
+          <div class="input-group d-grid gap-2">
+            <button
+            color="secondary"
+            class="btn btn-secondary text-nowrap btn-sm btn-block"
+            (click)="export('export du scope ' + scope.id)"
+          > <i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
+          </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- Rules Selection-->
+  <div class="card card-vscode text-vscode bg-vscode mb-3 ">
+    <div class="card-header"><i18n [txt]="'Import csv'"></i18n></div>
+    <div class="card-body  p-2">
+      <div class="input-group">
+        <input
+        type="file"
+        class="form-control form-control-vscode"
+        id="fileUpload"
+        (change)="onFileSelected($event)"
+        #fileUpload
+      />
+      <!-- <button type="button" class="btn btn-warning btn-sm"><i18n [txt]="'Comment'"></i18n></button>
+      <button type="button" class="btn btn-danger btn-sm"><i18n [txt]="'Remove'"></i18n></button> -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col  col-12 col-lg-6 col-xl-4">
+      <!-- Comment / Suppress -->
+      <div class="card card-vscode text-vscode bg-vscode mb-3 ">
+        <div class="card-header"><i18n [txt]="'Suppress / Comment rules'"></i18n></div>
+        <div class="card-body  p-2">
+          <button type="button" class="btn btn-warning btn-sm"><i18n [txt]="'Comment'"></i18n></button>
+          <button type="button" class="btn btn-danger btn-sm"><i18n [txt]="'Remove'"></i18n></button>
+        </div>
+      </div>
+    </div>
+    <div class="col  col-12 col-lg-6 col-xl-4">
+      <!-- Redirect Stes -->
+      <div class="card card-vscode text-vscode bg-vscode mb-3 ">
+        <div class="card-header"><i18n [txt]="'Change redirects states'"></i18n></div>
+        <div class="card-body  p-2">
+          <button type="button" class="btn btn-primary btn-sm"><i18n [txt]="'Set Permanent'"></i18n></button>
+          <button type="button" class="btn btn-info btn-sm"><i18n [txt]="'Set Temporary'"></i18n></button>
+        </div>
+      </div>
+    </div>
+    <div class="col  col-12 col-lg-6 col-xl-4">
+      <!-- Update ? -->
+      <div class="card card-vscode text-vscode bg-vscode mb-3 " >
+        <div class="card-header"><i18n [txt]="'Mise à jour ?'"></i18n></div>
+        <div class="card-body  p-2">
+          <button type="button" class="btn btn-warning btn-sm" disabled><i18n [txt]="'Comment'"></i18n></button>
+          <button type="button" class="btn btn-danger btn-sm" disabled><i18n [txt]="'Remove'"></i18n></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <app-tips [tipsFileName]="'batch'"></app-tips>
+</div>

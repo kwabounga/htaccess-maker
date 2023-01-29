@@ -49,5 +49,6 @@
   "Modify content then click on Save %0 Config": "Modifier le contenu et cliquer sur le bouton sauvegarder la configuration du %0",
   "Save %0 Config": "sauvegarder la configuration du %0",
   "Save %0 scope configuration": "sauvegarder la configuration du scope %0",
-  "Choose the scope to delete": "Choisir le scope a supprimer"
+  "Choose the scope to delete": "Choisir le scope a supprimer",
+  "Batch processing": "Traitement par lot"
 }

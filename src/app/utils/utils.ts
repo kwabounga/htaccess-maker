@@ -2,11 +2,11 @@ import { Rule } from "../interfaces/interfaces";
 
 
 /**
- * Used for smooth drag and drop 
- * 
+ * Used for smooth drag and drop
+ *
  * @param {any[]} arr  the array to be processed
  * @param {any} dragResult  the drag Result object
- * @returns {any[]} the new sorted array 
+ * @returns {any[]} the new sorted array
  */
 export const applyDrag = (arr:any[], dragResult:any,currentIndex=0) => {
 	const { removedIndex, addedIndex, payload } = dragResult;
@@ -28,16 +28,16 @@ export const applyDrag = (arr:any[], dragResult:any,currentIndex=0) => {
 
 /**
  * Sort Rules Array by Origin
- * @param {Rule} a 
- * @param {Rule} b 
+ * @param {Rule} a
+ * @param {Rule} b
  * @returns {number}
  */
 export const ruleSortByOrigin = (a:Rule, b:Rule) => a.origin.localeCompare(b.origin);
 
 /**
  * Sort Rules Array by id
- * @param {Rule} a 
- * @param {Rule} b 
+ * @param {Rule} a
+ * @param {Rule} b
  * @returns {number}
  */
 export const ruleSortById = (a:Rule, b:Rule) => a.scope_id - b.scope_id;
@@ -46,7 +46,7 @@ export const ruleSortById = (a:Rule, b:Rule) => a.scope_id - b.scope_id;
  * To find Option id from the Option value
  * @param {NodeList} options the options HTMLElementsList
  * @param {any} value the value
- * @returns {number} the option id 
+ * @returns {number} the option id
  */
  export const findOptionsIdByValue = (options:NodeList, value:number) => {
 	const src = Array.from(options);

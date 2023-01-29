@@ -37,13 +37,17 @@
       </div>
       <div class="modal-body">
         <input class="form-control form-control-sm form-control-vscode mb-3" type="text" [placeholder]="searchPlaceHolder | async" aria-label="search" title="search" (input)="onChangeSearchEvent($event)">
-        <button (click)="prev()">prev</button>
-        <button (click)="next()">next</button>
-        <!-- ici -->
-        <select #selectItemsByPage  [(value)]="itemsByPage" name="itmByPage" class="form-select form-select-vscode form-select form-select-sm mini " [title]="'redir/page'"  (change)="setNbItemByPage($event)">
-          <!-- <option value="20">20</option> -->
-          <option *ngFor="let nb of nbItemsByPages; let id = index" [value]="nb">{{nb}}</option>
-        </select>
+        <div class="input-group">
+          <button (click)="prev()">prev</button>
+          <button (click)="next()">next</button>
+          <span>({{this.currentIndex + 1}}/{{(this?.currentRulesSetLength/this.itemsByPage) + 1 | floor}})</span>
+          <input class="form-control form-control-sm form-control-vscode" type="number"[min]="0" [max]="(this?.currentRulesSetLength/this.itemsByPage) + 1 | floor" [placeholder]="'n° p'" aria-label="page" title="num page" (input)="setCurrentPage($event)">
+          <!-- ici -->
+          <select #selectItemsByPage  [(value)]="itemsByPage" name="itmByPage" class="form-select form-select-vscode form-select form-select-sm mini " [title]="'redir/page'"  (change)="setNbItemByPage($event)">
+            <!-- <option value="20">20</option> -->
+            <option *ngFor="let nb of nbItemsByPages; let id = index" [value]="nb">{{nb}} itm / page</option>
+          </select>
+        </div>
         <!-- !ici -->
         <ul class="list-group">
           <smooth-dnd-container

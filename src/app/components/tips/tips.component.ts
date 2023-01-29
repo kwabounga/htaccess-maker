@@ -21,9 +21,18 @@ export class TipsComponent implements OnInit {
   tipsOpen:boolean = false;
 
   async ngOnInit(): Promise<void> {
-    let mod = await import(`!!raw-loader!src/assets/tips/${this.tipsFileName}.md`);
-    this.markdown = mod.default;
-    console.log(this.markdown)
+    let mod;
+    try {
+      mod = await import(`!!raw-loader!src/assets/tips/${this.tipsFileName}.md`);      
+    } catch (error) {      
+      this.markdown = `you must have src/assets/tips/${this.tipsFileName}.md file in the project !`;
+    }
+    if(mod){      
+      this.markdown = mod.default;
+      console.log(`src/assets/tips/${this.tipsFileName}.md tips loaded `)
+    } else{
+      console.warn(`you must have src/assets/tips/${this.tipsFileName}.md file in the project !`)
+    }
   }
 
   toogleTips(){

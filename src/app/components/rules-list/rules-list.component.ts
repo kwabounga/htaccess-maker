@@ -2,6 +2,7 @@ import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBindi
 import { offset } from '@popperjs/core';
 import { applyDrag } from '../../utils/utils';
 import { TranslateService } from '../commons/translate/translate.service';
+
 @Component({
   selector: 'app-rules-list',
   templateUrl: './rules-list.component.html',
@@ -72,6 +73,11 @@ export class RulesListComponent implements OnInit, OnChanges {
     } */
     //console.log(changes)
 
+  }
+  setCurrentPage(event:any){
+    const ncp = event.target.value;
+    this.currentIndex = Math.max(0,Math.min(+ncp -1, Math.floor(this?.currentRulesSetLength/this.itemsByPage)));
+    this.reload()
   }
   setNbItemByPage(event:any){
     const nibp = event.target.value;

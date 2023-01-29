@@ -7,24 +7,24 @@
 <div class="card card-vscode text-vscode bg-vscode mb-3 full-h-3">
     <div class="card-header"><i18n [txt]="'Configuration'"></i18n></div>
     <div class="card-body  p-2">
-      <app-scope
-        *ngIf="!this.scopeSaved && !this.scopeConfigSaved"
+    <app-scope
+      *ngIf="!this.scopeSaved && !this.scopeConfigSaved"
+      [scope]="this?.scope"
+      (onChange)="updatePreview($event)"
+      (onClickSave)="saveScope($event)"
+      [isNew]="true"
+    ></app-scope>
+      <app-scope-config
+        *ngIf="this.scopeSaved && !this.scopeConfigSaved"
+        [id]="id"
+        [scopeConfig]="this?.scopeConfig"
         [scope]="this?.scope"
-        (onChange)="updatePreview($event)"
-        (onClickSave)="saveScope($event)"
-        [isNew]="true"
-      ></app-scope>
-        <app-scope-config
-          *ngIf="this.scopeSaved && !this.scopeConfigSaved"
-          [id]="id"
-          [scopeConfig]="this?.scopeConfig"
-          [scope]="this?.scope"
-          (onClickSave)="saveConfig($event)"
-          [prev]="true"
-          (onPreview)="updatePreview($event)"
-        ></app-scope-config>
-    </div>
+        (onClickSave)="saveConfig($event)"
+        [prev]="true"
+        (onPreview)="updatePreview($event)"
+      ></app-scope-config>
   </div>
+</div>
     </div>
     <div class="col col-12 col-lg-6">
       <!-- code preview -->

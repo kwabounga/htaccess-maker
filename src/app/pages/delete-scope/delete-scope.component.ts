@@ -20,7 +20,7 @@ export class DeleteScopeComponent implements OnInit {
   scopeSelectedName:string = '';
   scopeSelectedId:number = -1;
   placeHolder:Promise<string> = this.t.i18n('Choose the scope to delete');
-
+  yesIWantDeleteThisScope:boolean = false
   pageLoaded:boolean = false;
   constructor(
     private logger: LoggerService,
@@ -34,6 +34,7 @@ export class DeleteScopeComponent implements OnInit {
     this.scopes = await this.dataSrv.getScopesAll();
     /* this.placeHolder  */
     this.logger.log('be careful with the deletion, it is not reversible')
+    this.yesIWantDeleteThisScope = false;
     this.pageLoaded = true;
   }
   change(event:any){

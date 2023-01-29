@@ -32,7 +32,9 @@ import { TipsComponent } from './components/tips/tips.component';
 import { SplashScreenComponent } from './pages/splash-screen/splash-screen.component';
 import { SanitizePipe } from './pipes/sanitize.pipe';
 import { CodePreviewSlicerPipe } from './pipes/code-preview-slicer.pipe';
-
+import { BatchProcessingComponent } from './pages/batch-processing/batch-processing.component';
+import { TextSlicerPipe } from './pipes/text-slicer.pipe';
+import { FloorPipe } from './pipes/maths.pipe';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,10 @@ import { CodePreviewSlicerPipe } from './pipes/code-preview-slicer.pipe';
     TipsComponent,
     SplashScreenComponent,
     SanitizePipe,
-    CodePreviewSlicerPipe
+    CodePreviewSlicerPipe,
+    BatchProcessingComponent,
+    TextSlicerPipe,
+    FloorPipe
   ],
   imports: [
     BrowserModule,

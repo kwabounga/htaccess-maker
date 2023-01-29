@@ -47,12 +47,20 @@
         <p><i18n [txt]="'this will delete all the rules linked to this scope, as well as the associated configuration'"></i18n></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          <i18n [txt]="'Close'"></i18n>
-        </button>
-        <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" (click)="deleteScopeConfig()">
-          <i18n [txt]="'Yes i want to delete %0 All informations'" [val]="[this?.scopeSelectedName]"></i18n>
-        </button>
+        <div class="input-group">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            <i18n [txt]="'Close'"></i18n>
+          </button>
+          <button *ngIf="yesIWantDeleteThisScope" type="button" class="btn btn-danger"  data-bs-dismiss="modal" (click)="deleteScopeConfig()">
+            <i18n [txt]="'Yes i want to delete %0 All informations'" [val]="[this?.scopeSelectedName]"></i18n>
+          </button>
+          <div class="input-group-text">
+            <input class="form-check-input mt-0 form-check-input-vscode" type="checkbox" [(ngModel)]="yesIWantDeleteThisScope" name="agree" title="yes, i want to delete this fucking scope" aria-label="Checkbox for following text input">
+          </div>
+          <!-- <input class="form-check-input mt-2 form-check-input-vscode" type="checkbox" > -->
+          
+        </div>
+       
       </div>
     </div>
   </div>
