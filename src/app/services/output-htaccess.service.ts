@@ -77,8 +77,8 @@ export class OutputHtaccessService {
   /**
    * Generate the rules part of a scope
    *
-   * @param {Rule[]} rules the array of rules to be formated
-   * @param {RedirectType[]} redirecTypes the array of redirecTypes for converte rredirect_type_id to the good Redirection Type
+   * @param {Rule[]} rules the array of rules to be formatted
+   * @param {RedirectType[]} redirecTypes the array of redirectTypes for convert redirect_type_id to the good Redirection Type
    * @returns {Promise<string[]>} all rules lines
    */
   async generateRuleLines(rules:Rule[], redirecTypes:RedirectType[]):Promise<string[]> {

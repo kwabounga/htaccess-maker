@@ -3,7 +3,7 @@ import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { LoggerService } from 'src/app/services/logger.service';
-
+import { getDateSlug } from "src/app/utils/utils";
 @Component({
   selector: 'app-export-file',
   templateUrl: './export-file.component.html',
@@ -25,8 +25,9 @@ export class ExportFileComponent implements OnInit {
     this.logger.log('ready to export .htaccess file')
   }
   exportFile(){
-    let d = new Date();
-    this.fileStuffSrv.exportFile(`${d.getTime()}-${d.getDate()}-${d.getMonth()}-${d.getFullYear()}.htaccess`,this.htAccessData);
+    // let d = new Date();
+    // this.fileStuffSrv.exportFile(`${d.getTime()}-${d.getDate()}-${d.getMonth()}-${d.getFullYear()}.htaccess`,this.htAccessData);
+    this.fileStuffSrv.exportFile(`${getDateSlug()}.htaccess`,this.htAccessData);
   }
   hoverButton(){
     this.logger.log('Click to export the file')

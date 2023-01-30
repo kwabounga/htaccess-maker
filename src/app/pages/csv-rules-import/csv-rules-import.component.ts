@@ -188,7 +188,7 @@ export class CsvRulesImportComponent implements OnInit {
     const file: any = event.target.files[0];
     if (file) {
       // console.log(file);
-      // console.log(file.type, file.name, file.path);
+      console.log(file.type, file.name, file.path);
       // console.log(`csv file selected: ${file.path}`)
       this.csv = await file.text().then((text: string) => {
         // console.log(text);
@@ -214,12 +214,11 @@ export class CsvRulesImportComponent implements OnInit {
       let redToBeProcessed = tempArray.filter(notEmpty);
       let currentScope = null;
       let currentRedirectType = null;
-      let nbRedirect = redToBeProcessed.length
       let ci = 0;
 
-      const rtLenght = redToBeProcessed.length;
+      const rtLength = redToBeProcessed.length;
       // console.log('redToBeProcessed',redToBeProcessed);
-      for (let ll = 0; ll < rtLenght; ll++) {
+      for (let ll = 0; ll < rtLength; ll++) {
         const line = redToBeProcessed[ll];
         
         /* get redirection alias from constants */
@@ -265,7 +264,7 @@ export class CsvRulesImportComponent implements OnInit {
           target: l[3],
           active: true,
         });
-        console.log(ci,rtLenght)
+        console.log(ci,rtLength)
         ci++;
       }
       // for (const line of redToBeProcessed) {
@@ -317,7 +316,7 @@ export class CsvRulesImportComponent implements OnInit {
       for (let id in rules) {
         let channel = `rule:checked:${id}`
         // console.log(id, channel);
-         if (this.electronSrv.isElectronApp) {
+        if (this.electronSrv.isElectronApp) {
           this.electronSrv.ipcRenderer.on(
             channel,
             this.checkHandler
@@ -357,7 +356,7 @@ export class CsvRulesImportComponent implements OnInit {
             "target": "https://www.moulinroty-maboutique.com/les-collections/les-petits/apres-la-pluie.html",
             "active": 1,
             "added_at": "2022-09-21 19:26:04"
-}
+          }
           */
         });
       }

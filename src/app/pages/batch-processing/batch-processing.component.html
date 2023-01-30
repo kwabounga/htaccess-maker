@@ -23,7 +23,7 @@
             <button
             color="secondary"
             class="btn btn-secondary text-nowrap btn-sm btn-block"
-            (click)="export(scope.id)"
+            (click)="export(scope.id, scope.label)"
           > <i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
           </button>
           </div>

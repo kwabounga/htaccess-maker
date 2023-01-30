@@ -54,3 +54,15 @@ export const ruleSortById = (a:Rule, b:Rule) => a.scope_id - b.scope_id;
     const i = src.findIndex(byId);
 	return i;
 };
+/**
+ * Generate a formatted uid string from the time
+ * 
+ * @returns {string} 'data_time_day_month_year' >> '1675028450912-29-01-2023'
+ */
+export const getDateSlug = ():string => {  
+  let d = new Date();
+  const day = `${d.getDate()}`.padStart(2,'0')
+  const month = `${d.getMonth() + 1}`.padStart(2,'0')
+  const year = d.getFullYear()
+  return `${d.getTime()}-${day}-${month}-${year}`
+}
