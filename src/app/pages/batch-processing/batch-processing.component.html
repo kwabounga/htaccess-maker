@@ -43,9 +43,26 @@
         (change)="onFileSelected($event)"
         #fileUpload
       />
-      <!-- <button type="button" class="btn btn-warning btn-sm"><i18n [txt]="'Comment'"></i18n></button>
-      <button type="button" class="btn btn-danger btn-sm"><i18n [txt]="'Remove'"></i18n></button> -->
       </div>
+    </div>
+  </div>
+  <!-- Display to be uptaded Rules-->
+  <div *ngIf="this.rulesToBeProcess.length" class="card card-vscode text-vscode bg-vscode mb-3">
+    <div class="card-header"><i18n [txt]="'Import csv'"></i18n></div>
+    <div class="card-body  p-2">
+      <ul class="list-group" id="rulesToBeUpdate">
+        <li *ngFor="let rule of this!.rulesToBeProcess; let idr = index" class="list-group-item">
+          <!-- ({{rule.id}})1 {{rule.origin}} 2 {{rule.target}} -->
+          <!-- TODO: change the <app-rule-line> -->
+          <app-rule-line
+            [movable]="false"
+            [id]="rule.id"
+            [idr]="idr"
+            [rule]="rule"
+            [redirectTypes]="redirectTypes"
+          ></app-rule-line>
+        </li>
+      </ul>
     </div>
   </div>
   <div class="row">

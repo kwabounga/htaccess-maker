@@ -28,7 +28,7 @@ export class CsvMakerService {
   }
 
   makeCsvFromRules(rules:any):string {
-    let output = 'id;scope_id;position;redirect_type_id;origin;target;\n';
+    let output = 'id;scope_id;redirect_type_id;origin;target;\n';
     rules.forEach((rule:any) => {
       output += rule.id + ';';
       output += rule.scope_id + ';';

@@ -3,7 +3,7 @@ import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { DataMockService } from 'src/app/services/data-mock.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { RedirectType, Scope, Rule, ScopeConfig } from 'src/app/interfaces/interfaces';
-import { ruleSortByOrigin, ruleSortById } from 'src/app/utils/utils';
+import { ruleSortByOrigin, ruleSortById, notEmpty } from 'src/app/utils/utils';
 import { ElectronService } from 'ngx-electron';
 import { CsvMakerService } from 'src/app/services/csv-maker.service';
 import { EventQueueService } from 'src/app/services/event-queue.service';
@@ -202,7 +202,7 @@ export class CsvRulesImportComponent implements OnInit {
     }
     if (this.csv.trim() !== '') {
       // console.log('this.csv ok',this.csv)
-      const notEmpty = (r: string) => r.trim() !== '';
+      // const notEmpty = (r: string) => r.trim() !== '';
 
       let tempArray = this.csv.split('\n');
       let csvHeader = tempArray.shift();

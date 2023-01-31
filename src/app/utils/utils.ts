@@ -66,3 +66,10 @@ export const getDateSlug = ():string => {
   const year = d.getFullYear()
   return `${d.getTime()}-${day}-${month}-${year}`
 }
+
+/**
+ * 
+ * @param {string} r some text
+ * @returns {boolean} if empty of not
+ */
+export const notEmpty = (r: string) => r.trim() !== '';
