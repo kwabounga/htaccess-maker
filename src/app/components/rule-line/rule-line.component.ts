@@ -11,6 +11,8 @@ const iconRefresh = '⬆';
 export class RuleLineComponent implements OnInit {
   icons = { iconCheck, iconDelete, iconRefresh };
   @Input()
+  isJustPreview?: boolean = false;
+  @Input()
   movable?: boolean = true;
   @Input()
   id: number = 0;
