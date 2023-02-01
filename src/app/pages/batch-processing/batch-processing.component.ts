@@ -26,8 +26,8 @@ export class BatchProcessingComponent implements OnInit {
     ) { }
 
   async ngOnInit() {
-    this.scopesRefs = await this.dataSrv.getScopesAll();
     this.redirectTypes = await this.dataSrv.getRedirectTypesAll();
+    this.scopesRefs = await this.dataSrv.getScopesAll();
     setTimeout(()=>{
       this.pageLoaded = true;
     },500)
