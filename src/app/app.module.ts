@@ -35,6 +35,7 @@ import { CodePreviewSlicerPipe } from './pipes/code-preview-slicer.pipe';
 import { BatchProcessingComponent } from './pages/batch-processing/batch-processing.component';
 import { TextSlicerPipe } from './pipes/text-slicer.pipe';
 import { FloorPipe } from './pipes/maths.pipe';
+import { TypeOfPipe } from './pipes/tools.pipe';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { FloorPipe } from './pipes/maths.pipe';
     CodePreviewSlicerPipe,
     BatchProcessingComponent,
     TextSlicerPipe,
-    FloorPipe
+    FloorPipe,
+    TypeOfPipe
   ],
   imports: [
     BrowserModule,
