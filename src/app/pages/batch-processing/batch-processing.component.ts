@@ -32,6 +32,7 @@ export class BatchProcessingComponent implements OnInit {
       this.pageLoaded = true;
     },500)
   }
+
   async export(id: any, scopeName = 'full') {
     let scope_id = +id;
     this.logger.log(`get rules for scope ${scope_id}`)
@@ -43,6 +44,7 @@ export class BatchProcessingComponent implements OnInit {
     }
     this.buildFile(this.rulesRefs,`rules_${scopeName}_${getDateSlug()}_.csv`.toLowerCase())
   }
+
   async onFileSelected(event: any) {
     console.log('onFileSelected');
     const file: any = event.target.files[0];
@@ -77,6 +79,7 @@ export class BatchProcessingComponent implements OnInit {
       }
     }
   }
+
   buildFile(rules,fileName){
     console.log(`get rules `, rules)
     let csvContent = this.csvSrv.makeCsvFromRules(rules)
@@ -110,4 +113,38 @@ export class BatchProcessingComponent implements OnInit {
     }
     return headerOk;
   }
+  // Button Actions from the dom
+  getIdsFromRules() {
+    return this.rulesToBeProcess.map(r => {
+      return +r.id;
+    })
+  }
+  comment(){ 
+    console.log('IN PROGRESS : comment')
+    let allIds = this.getIdsFromRules()
+    this.dataSrv.commentRules(allIds)
+    .then(r => {
+      console.log(r)
+      console.log(`Rules [${allIds.join(', ')}] are commented!`)
+    })
+   }
+  uncomment(){ 
+    console.log('IN PROGRESS : uncomment')
+    let allIds = this.getIdsFromRules()
+    this.dataSrv.unCommentRules(allIds)
+    .then(r => {
+      console.log(r)
+      console.log(`Rules [${allIds.join(', ')}] are uncommented!`)
+    })
+   }
+  delete(){ 
+    console.log('TODO: delete', this.getIdsFromRules())
+   }
+  setPermanent(){ 
+    console.log('TODO: setPermanent', this.getIdsFromRules())
+   }
+  setTemporary(){ 
+    console.log('TODO: setTemporary', this.getIdsFromRules())
+   }
+
 }

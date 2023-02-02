@@ -74,6 +74,12 @@ const {
 }  = require('./crud/delete');
 
 
+// get all deletes methods from BAtch processing
+const {
+  batchRulesComment,
+}  = require('./crud/batch');
+
+
 // check db existance
 exports.check = function() {
   return knex.schema.hasTable(DATABASE_TABLE_RULES);
@@ -144,3 +150,7 @@ exports.updateScopeConfig = updateScopeConfig;
 // deletes
 exports.deleteRule = deleteRule;
 exports.deleteScope = deleteScope;
+
+// batch processing
+exports.batchRulesComment = batchRulesComment;
+

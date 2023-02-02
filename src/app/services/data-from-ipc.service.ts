@@ -354,6 +354,7 @@ async getRulesAll ():Promise<Rule[]> {
       this.electronSrv.ipcRenderer.on(`rules:position:updated`, resolver)
     })
   }
+ 
 
   async updateHeaderConfig (config:string):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
@@ -389,5 +390,28 @@ async getRulesAll ():Promise<Rule[]> {
       this.electronSrv.ipcRenderer.on(`checked:online`, resolver)
     })
   }
-
+   /* BATCH PROCESSING  */
+    
+  async commentRules (rulesId?:any[]):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`batch:rules:comment`, rulesId);
+      const resolver = (_event:any, response: any) => {
+        // console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`batch:rules:commented`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`batch:rules:commented`, resolver)
+    })
+  }
+  async unCommentRules (rulesId?:any[]):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`batch:rules:uncomment`, rulesId);
+      const resolver = (_event:any, response: any) => {
+        // console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`batch:rules:uncommented`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`batch:rules:uncommented`, resolver)
+    })
+  }
 }

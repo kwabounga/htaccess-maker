@@ -67,15 +67,15 @@
       </ul>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="this.rulesToBeProcess.length">
     <div class="col  col-12 col-lg-6 col-xl-4">
       <!-- Comment / Suppress -->
       <div class="card card-vscode text-vscode bg-vscode mb-3 ">
         <div class="card-header"><i18n [txt]="'Suppress / Comment rules'"></i18n></div>
         <div class="card-body  p-2">
-          <button type="button" class="btn btn-warning btn-sm"><i18n [txt]="'Comment'"></i18n></button>
-          <button type="button" class="btn btn-outline-warning btn-sm"><i18n [txt]="'Uncomment'"></i18n></button>
-          <button type="button" class="btn btn-danger btn-sm"><i18n [txt]="'Remove'"></i18n></button>
+          <button type="button" class="btn btn-warning btn-sm" (click)="comment()"><i18n [txt]="'Comment'"></i18n></button>
+          <button type="button" class="btn btn-outline-warning btn-sm" (click)="uncomment()"><i18n [txt]="'Uncomment'"></i18n></button>
+          <button type="button" class="btn btn-danger btn-sm" (click)="delete()"><i18n [txt]="'Remove'"></i18n></button>
         </div>
       </div>
     </div>
@@ -84,8 +84,8 @@
       <div class="card card-vscode text-vscode bg-vscode mb-3 ">
         <div class="card-header"><i18n [txt]="'Change redirects states'"></i18n></div>
         <div class="card-body  p-2">
-          <button type="button" class="btn btn-primary btn-sm"><i18n [txt]="'Set Permanent'"></i18n></button>
-          <button type="button" class="btn btn-info btn-sm"><i18n [txt]="'Set Temporary'"></i18n></button>
+          <button type="button" class="btn btn-primary btn-sm" (click)="setPermanent()"><i18n [txt]="'Set Permanent'"></i18n></button>
+          <button type="button" class="btn btn-info btn-sm" (click)="setTemporary()"><i18n [txt]="'Set Temporary'"></i18n></button>
         </div>
       </div>
     </div>
