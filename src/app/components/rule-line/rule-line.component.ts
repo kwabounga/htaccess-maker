@@ -34,13 +34,15 @@ export class RuleLineComponent implements OnInit {
   redirectTypes: any = {};
   @Input()
   isPartOftheSet: boolean = false;
+  useIt: boolean = true;
   toBeDeleted: boolean = false;
   toBeSaved: boolean = false;
   @Output()
   onChange = new EventEmitter<any>();
   @Output()
   onCheck = new EventEmitter<any>();
-
+  @Output()
+  onUseIt = new EventEmitter<any>();
   startStateRule?: Rule;
   constructor() {}
 
@@ -68,6 +70,13 @@ export class RuleLineComponent implements OnInit {
       start_stat_rule: this.startStateRule,
       to_be_deleted: to_be_deleted,
       to_be_saved: this.toBeSaved,
+    });
+  }
+  protected setUseIt() {
+    this.onUseIt.emit({
+      use: this.useIt,
+      id:this.idr,
+      rule_id: +this.rule.id,
     });
   }
   protected verifChange() {

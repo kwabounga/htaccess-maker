@@ -61,6 +61,7 @@
             [idr]="idr"
             [rule]="rule"
             [redirectTypes]="this!.redirectTypes"
+            (onUseIt)="setUseIt($event)"
           ></app-rule-line>
           <!-- !change the <app-rule-line> -->
         </li>

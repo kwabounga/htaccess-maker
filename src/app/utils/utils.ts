@@ -73,3 +73,13 @@ export const getDateSlug = ():string => {
  * @returns {boolean} if empty of not
  */
 export const notEmpty = (r: string) => r.trim() !== '';
+
+
+/**
+ * @param {array} arr1 an array
+ * @param {array} arr2 another array
+ * @returns {array} the difference between the arrays
+ */
+export const getArrayDiff = (arr1, arr2) =>{
+  return arr1.filter(x => !arr2.includes(x));
+}

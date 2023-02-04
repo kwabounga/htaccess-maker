@@ -3,7 +3,7 @@ import { CsvMakerService } from 'src/app/services/csv-maker.service';
 import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { LoggerService } from 'src/app/services/logger.service';
-import { getDateSlug, notEmpty } from "src/app/utils/utils";
+import { getDateSlug, notEmpty, getArrayDiff } from "src/app/utils/utils";
 @Component({
   selector: 'app-batch-processing',
   templateUrl: './batch-processing.component.html',
@@ -15,6 +15,7 @@ export class BatchProcessingComponent implements OnInit {
   scopesRefs: any = [];
   rulesRefs: any = [];
   rulesToBeProcess: any = [];
+  rulesNotToBeProcess: any = new Set();
   csv: string = '';
   redirectTypes: any = {};
 
@@ -37,7 +38,7 @@ export class BatchProcessingComponent implements OnInit {
     let scope_id = +id;
     this.logger.log(`get rules for scope ${scope_id}`)
     if(scope_id === -1){
-      this.rulesRefs = await this.dataSrv.getRulesAll() 
+      this.rulesRefs = await this.dataSrv.getRulesAll()
     }else{
       scopeName = scopeName.replace(/\W+/g,'_')
       this.rulesRefs = await this.dataSrv.getRulesByScopeId(scope_id)
@@ -51,24 +52,21 @@ export class BatchProcessingComponent implements OnInit {
     if (file) {
       this.logger.log('need processing the file: ' + file.name)
       console.log(file.type, file.name, file.path);
-      this.csv = await file.text().then((text: string) => {
-        // console.log(text);
-        return text;
-      });
+      this.csv = await file.text()//.then((text: string) => text);
     }
     if (this.csv.trim() !== '') {
       let tempArray = this.csv.split('\n');
       let csvHeader = tempArray.shift();
       if(!this.checkCsvFormat(csvHeader)){
         console.warn('Please check the csv format');
-        return
+        return;
       }
       let redToBeProcessed = tempArray.filter(notEmpty);
       const rtLength = redToBeProcessed.length;
       for (let ll = 0; ll < rtLength; ll++) {
         const line = redToBeProcessed[ll];
         let l = line.split(';');
-        console.log(l)
+
         this.rulesToBeProcess.push({
           id:l[0],
           scope_id:l[1],
@@ -77,18 +75,23 @@ export class BatchProcessingComponent implements OnInit {
           target:l[4]
         })
       }
+      this.rulesNotToBeProcess = new Set();
     }
   }
 
   buildFile(rules,fileName){
-    console.log(`get rules `, rules)
+    // console.log(`get rules `, rules)
     let csvContent = this.csvSrv.makeCsvFromRules(rules)
     this.fileSrv.exportFile(fileName,csvContent)
   }
 
 
+  /**
+   * needed format: id;scope_id;position;redirect_type_id;origin;target;
+   * @param {string} header the csv header
+   * @returns {boolean} good csv format or not
+   */
   checkCsvFormat(header:string):boolean {
-    //id;scope_id;position;redirect_type_id;origin;target;
     let headerOk = true;
     let col = header.trim().split(';');
     if(col[0] !== 'id'){
@@ -113,38 +116,90 @@ export class BatchProcessingComponent implements OnInit {
     }
     return headerOk;
   }
-  // Button Actions from the dom
+
+  /**
+   * get all rules ids from rules array
+   */
   getIdsFromRules() {
     return this.rulesToBeProcess.map(r => {
       return +r.id;
     })
   }
-  comment(){ 
+
+  /**
+   * get the diff between rules-ids and nto-to-be-processed-rules-ids
+   * @returns {any[]}
+   */
+  getIdsToBeProcessed():any{
+    // from csv
+    let allIds = this.getIdsFromRules();
+    // if uncheck some rules
+    let notUseIds = [...this.rulesNotToBeProcess];
+    return getArrayDiff(allIds, notUseIds);
+  }
+
+  /**
+   * comment all the selected rules.
+   */
+  comment(){
     console.log('IN PROGRESS : comment')
-    let allIds = this.getIdsFromRules()
-    this.dataSrv.commentRules(allIds)
+    // getArrayDiff
+    let diff = this.getIdsToBeProcessed();
+    this.dataSrv.commentRules(diff)
     .then(r => {
       console.log(r)
-      console.log(`Rules [${allIds.join(', ')}] are commented!`)
+      console.log(`Rules [${diff.join(', ')}] are commented!`)
     })
-   }
-  uncomment(){ 
+  }
+
+  /**
+   * uncomment all the selected rules.
+   */
+  uncomment(){
     console.log('IN PROGRESS : uncomment')
-    let allIds = this.getIdsFromRules()
-    this.dataSrv.unCommentRules(allIds)
+    // getArrayDiff
+    let diff = this.getIdsToBeProcessed();
+    this.dataSrv.unCommentRules(diff)
     .then(r => {
       console.log(r)
-      console.log(`Rules [${allIds.join(', ')}] are uncommented!`)
+      console.log(`Rules [${diff.join(', ')}] are commented!`)
     })
-   }
-  delete(){ 
-    console.log('TODO: delete', this.getIdsFromRules())
-   }
-  setPermanent(){ 
-    console.log('TODO: setPermanent', this.getIdsFromRules())
-   }
-  setTemporary(){ 
-    console.log('TODO: setTemporary', this.getIdsFromRules())
-   }
+  }
+
+  /**
+   * delete all the selected rules.
+   */
+  delete(){
+    console.log('TODO: delete', this.getIdsToBeProcessed())
+  }
+
+  /**
+   * set permanent all the selected rules.
+   */
+  setPermanent(){
+    console.log('TODO: setPermanent', this.getIdsToBeProcessed())
+  }
+
+  /**
+   * set temporary all the selected rules.
+   */
+  setTemporary(){
+    console.log('TODO: setTemporary', this.getIdsToBeProcessed())
+  }
+
+  /**
+   * add/remove the specified rule from the dom list
+   */
+  setUseIt(event: any) {
+    // TODO CONTINUE: HERE
+    // console.log(event)
+    if(event.use){
+      console.log(`use the ${event.rule_id} !`)
+      this.rulesNotToBeProcess.delete(event.rule_id);
+    }else{
+      console.log(`not use the ${event.rule_id} !`)
+      this.rulesNotToBeProcess.add(event.rule_id);
+    }
+  }
 
 }
