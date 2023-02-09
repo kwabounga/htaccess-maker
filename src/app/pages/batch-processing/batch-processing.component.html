@@ -8,23 +8,34 @@
         <!--  Export BUTTON  -->
       <ul class="list-group">
         <li class="list-group-item">
-          <div class="input-group d-grid gap-2">
+          <div class="input-group d-flex justify-content-center">
             <button
             color="primary"
-            class="btn btn-primary text-nowrap btn-sm btn-block"
+            class="btn btn-primary text-nowrap btn-sm flex-fill"
             (click)="export(-1)"
-          > <i18n [txt]="'Export the complete list'"></i18n>
+          ><i18n [txt]="'Export the complete list'"></i18n>
+          </button>
+          <button
+            color="primary"
+            class="btn btn-primary text-nowrap btn-sm flex-fill"
+            (click)="export(-1)"
+          ><i18n [txt]="'Export the complete list'"></i18n>
           </button>
           </div>
         </li>
         <li *ngFor="let scope of this?.scopesRefs" class="list-group-item">
-
-          <div class="input-group d-grid gap-2">
+          <div class="input-group  d-flex justify-content-center">
             <button
             color="secondary"
-            class="btn btn-secondary text-nowrap btn-sm btn-block"
+            class="btn btn-secondary text-nowrap btn-sm flex-fill"
             (click)="export(scope.id, scope.label)"
-          > <i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
+          ><i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
+          </button>
+          <button
+            color="secondary"
+            class="btn btn-secondary text-nowrap btn-sm flex-fill"
+            (click)="export(scope.id, scope.label)"
+          ><i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
           </button>
           </div>
         </li>
