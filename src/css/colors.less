@@ -236,8 +236,12 @@
     border-color: @color_rgb_03;
   }
 
-  .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback):not(.unborded) {
     border: solid 1px  @color_14;
+  }
+
+  .input-group > .unborded {
+    border-left: solid 1px  @color_14;
   }
 
   .input-group-sm>.btn, .input-group-sm>.form-control, .input-group-sm>.form-select, .input-group-sm>.input-group-text {
