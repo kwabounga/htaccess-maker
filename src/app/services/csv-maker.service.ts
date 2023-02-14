@@ -9,7 +9,7 @@ export class CsvMakerService {
 
   /**
    * Build the csv body from bad Redirects array
-   * @param {any} bads Bad Redictions to be exported in a csv for check
+   * @param {any} bads Bad Redirects to be exported in a csv for check
    * @returns {string} the csv Body to be exported :
    * @see : filesStuffService to generate the csv file
    */

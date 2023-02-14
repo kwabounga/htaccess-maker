@@ -1,5 +1,5 @@
 const dbAccess = require("../dbAccess");
-
+const logger = require('../logger')
 /**
  *
  * @param {Electron.ipcMain} ipcMain
@@ -9,6 +9,7 @@ const dbAccess = require("../dbAccess");
   ipcMain.on("batch:rules:comment", (e, rulesIds) => {
     dbAccess.batchRulesComment(rulesIds).then((resp)=>{
       // console.log(resp)
+      logger.log('comment rules: ' + rulesIds.join(','));
       e.sender.send("batch:rules:commented", { ok: true});
     })
   })

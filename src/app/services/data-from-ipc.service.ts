@@ -24,7 +24,7 @@ import { ElectronService } from 'ngx-electron';
 export class DataFromIpcService {
 
   constructor(
-    private ouputSrv:OutputHtaccessService,
+    private outputSrv:OutputHtaccessService,
     private electronSrv: ElectronService,
     ) { }
 
@@ -42,8 +42,8 @@ export class DataFromIpcService {
         const scopeConfig = await this.getScopesConfigById(scope.id);
         const rules = await this.getRulesByScopeId(scope.id);
         const redirectTypes = await this.getRedirectTypesAll()
-        const rulesString = await this.ouputSrv.generateRuleLines(rules,redirectTypes);
-        htAccessContent += await this.ouputSrv.getScopeConfigPreview(scope,scopeConfig,rulesString);
+        const rulesString = await this.outputSrv.generateRuleLines(rules,redirectTypes);
+        htAccessContent += await this.outputSrv.getScopeConfigPreview(scope,scopeConfig,rulesString);
       }
       htAccessContent += await this.getFooterConfig();
       resolve(htAccessContent);
@@ -354,7 +354,7 @@ async getRulesAll ():Promise<Rule[]> {
       this.electronSrv.ipcRenderer.on(`rules:position:updated`, resolver)
     })
   }
- 
+
 
   async updateHeaderConfig (config:string):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
@@ -391,7 +391,7 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
    /* BATCH PROCESSING  */
-    
+
   async commentRules (rulesId?:any[]):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`batch:rules:comment`, rulesId);
