@@ -405,7 +405,9 @@ and change basedir in index.html:
 Node Task List
 ``` batch
 
-$ ntl
+$ ntl 
+# filter by description
+$ ntl -o 
 
 ```
 
