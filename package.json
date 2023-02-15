@@ -25,6 +25,23 @@
     "c:s:c": "npm run create:scope:config",
     "test": "ng test"
   },
+  "ntl": {
+    "descriptions": {
+      "start": "development script start electron app and build the front angular part",
+      "electron": "start the 'server side' electron app for development",
+      "build:and:install": "package app",
+      "watch": "ng build --watch --configuration development",
+      "package:win": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=win32 --arch=all --overwrite ",
+      "package:linux": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=linux --arch=all --overwrite ",
+      "package:osx": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite ",
+      "package:all": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --all --arch=all --overwrite ",
+      "create:scope:config": "node ./src/commands/cmd-create-scope-config.js (same: c:s:c)",
+      "create:database": "sqlite3 ./src/data/database.db \".databases .quit\" && node ./src/electron/build_db.js (same: c:b)",
+      "create:backup": "node ./src/commands/cmd-create-backup.js (same: c:db)",
+      "check:urls": "node ./src/commands/cmd-check-old-redirect.js (same: c:u)",
+      "logger:truncate": "node ./src/commands/cmd-logger-truncate.js"
+    }
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^14.0.0",
