@@ -397,3 +397,18 @@ and change basedir in index.html:
 > for i18n custom component ?
 
 [publish an angular component to npm](https://jasonwatmore.com/post/2020/06/16/angular-npm-how-to-publish-an-angular-component-to-npm)
+
+
+
+### ntl so great! 
+
+Node Task List
+``` batch
+
+$ ntl 
+# filter by description
+$ ntl -o 
+
+```
+
+[ntl](https://www.npmjs.com/package/ntl#using-task-descriptions)
