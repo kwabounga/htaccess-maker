@@ -32,6 +32,15 @@ function date() {
   return `${d.getDate().toString().padStart(2,'0')}-${(d.getMonth() + 1 ).toString().padStart(2,'0')}-${d.getFullYear()}`;
 }
 
+/**
+ * generate timestamp
+ * @returns {string}
+ */
+function timestamp() {
+  let d = new Date();
+  return `${d.getTime()}`;
+}
+
 
 
 
@@ -39,3 +48,4 @@ function date() {
 exports.wait = wait;
 exports.guid = guid;
 exports.date = date;
+exports.timestamp = timestamp;
