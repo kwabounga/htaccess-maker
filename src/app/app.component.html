@@ -11,7 +11,8 @@
 <header class="d-none d-lg-block">
   <ul class="nav nav-tabs">
     <li *ngFor="let rInfo of routingInfos" class="nav-item">
-      <a class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label | async}}</a>
+      <a *ngIf="rInfo.onlyForAdmin" class="nav-link {{rInfo.style}} {{(adminMode)?'':'d-none'}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label | async}}</a>
+      <a *ngIf="!rInfo.onlyForAdmin" class="nav-link {{rInfo.style}}" [routerLinkActive]="[rInfo.active_class]" routerLink="{{rInfo.route}}">{{rInfo.label | async}}</a>
     </li>
     <app-mini-button></app-mini-button>
     <button class="btn btn-sm btn-primary no-drag height-auto" type="button" data-bs-toggle="offcanvas" title="configuration" [attr.data-bs-target]="'#'+sliderID" [attr.aria-controls]="sliderID" (click)="toogleConfig()">
@@ -39,9 +40,12 @@
         </li>
     </ul>
   </div>
+  <!-- content goes here -->
   <router-outlet></router-outlet>
 </section>
 <!-- !Content pages -->
+
+<!-- Parameters -->
 <app-slider
   [id]="sliderID"
   [position]="'end'"
@@ -64,7 +68,15 @@
   <div class="d-grid gap-2">
     <button (click)="reload()" class="btn btn-primary btn-lg"><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>reload</button>
   </div>
+  <div class="d-grid gap-2">
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="adminMode">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Admin mode</label>
+    </div>
+  </div>
 </app-slider>
+<!-- !Parameters -->
+
 <!-- Footer -->
 <app-footer
   [online]="false"

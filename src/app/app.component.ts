@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   KEY_PARAMETER:string = 'KeyM'
   ctrlKey: string = 'Control';
   ctrlKeyPressed: boolean = false;
+  adminMode: boolean = false;
 
   history: any =  null;
   localStorage: any =  null;
@@ -112,7 +113,8 @@ export class AppComponent implements OnInit {
         style:'warning',
         size:'30px',
         path:'assets/svg/add.svg',
-      }
+      },
+      onlyForAdmin:true,
     },
     {
       label:this.t.i18n('Delete Scope'),
@@ -123,7 +125,8 @@ export class AppComponent implements OnInit {
         style:'danger',
         size:'30px',
         path:'assets/svg/delete.svg',
-      }
+      },
+      onlyForAdmin:true,
     },
   ]
 
