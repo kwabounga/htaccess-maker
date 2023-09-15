@@ -1,0 +1,11 @@
+<label for="fileUpload{{scope.id}}" class="custom-file-upload  btn btn-primary text-nowrap btn-sm flex-fill unborded">
+  <i class="fa fa-cloud-upload"></i>{{label}}{{scope.label}}
+</label>
+<!-- <input id="fileUpload{{id}}" type="file"/> -->
+<input
+  type="file"
+  class="form-control form-control-vscode"
+  id="fileUpload{{scope.id}}"
+  (change)="onFileSelected($event)"
+  #fileUpload
+/>

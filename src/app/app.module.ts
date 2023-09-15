@@ -36,6 +36,7 @@ import { BatchProcessingComponent } from './pages/batch-processing/batch-process
 import { TextSlicerPipe } from './pipes/text-slicer.pipe';
 import { FloorPipe } from './pipes/maths.pipe';
 import { TypeOfPipe } from './pipes/tools.pipe';
+import { InputButtonComponent } from './components/commons/input-button/input-button.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { TypeOfPipe } from './pipes/tools.pipe';
     BatchProcessingComponent,
     TextSlicerPipe,
     FloorPipe,
-    TypeOfPipe
+    TypeOfPipe,
+    InputButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -53,3 +53,4 @@ Thumbs.db
 
 # assets src
 *.psd
+/log/log.log

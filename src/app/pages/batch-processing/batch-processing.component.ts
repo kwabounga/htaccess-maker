@@ -34,6 +34,45 @@ export class BatchProcessingComponent implements OnInit {
     },500)
   }
 
+  async exportFromGoogleSearchConsole(file: any, id: any, scopeName = 'full') {
+    console.log('-- exportFromGoogleSearchConsole --')
+    console.log(file.type, file.name, file.path);
+    console.log(file)
+    console.log(id,scopeName)
+    console.log('-- ----------------------------- --')
+    this.csv = await file.text()
+
+    if (this.csv.trim() !== '') {
+      const conf = await this.getScopeConfigById(id);
+      const allCurrentScopeRules = await this.dataSrv.getRulesByScopeId(id)
+      let tempArray = this.csv.split('\n');
+      let csvHeader = tempArray.shift();
+      if(!this.checkGoogleCsvFormat(csvHeader)){
+        console.warn('Please check the csv format');
+        return;
+      }
+
+      let redToBeProcessed = tempArray.filter(notEmpty);
+      const rtLength = redToBeProcessed.length;
+      const regExCondition = new RegExp('^https?://'+conf.condition, 'g');
+      redToBeProcessed = redToBeProcessed.map((line)=> {
+        return line.split(',')[0].replace(regExCondition, '')
+      })
+      this.rulesToBeProcess = allCurrentScopeRules.filter(r => redToBeProcessed.indexOf(r.origin) != -1 )
+      console.log(allCurrentScopeRules)
+      console.log(redToBeProcessed)
+      console.log(this.rulesToBeProcess)
+      this.rulesNotToBeProcess = new Set();
+      /* for (let ll = 0; ll < rtLength; ll++) {
+        const url = redToBeProcessed[ll];
+        //let url = line.split(',')[0];
+
+        // ici
+        console.log(url)
+
+      } */
+    }
+  }
   async export(id: any, scopeName = 'full') {
     let scope_id = +id;
     this.logger.log(`get rules for scope ${scope_id}`)
@@ -116,7 +155,19 @@ export class BatchProcessingComponent implements OnInit {
     }
     return headerOk;
   }
-
+  checkGoogleCsvFormat(header:string):boolean {
+    let headerOk = true;
+    let col = header.trim().split(',');
+    if(col[0] !== 'URL'){
+      console.warn(`the first column must be '${'URL'}' current is '${col[0]}'`);
+      headerOk = false;
+    }
+    if(col[1] !== 'Dernière exploration'){
+      console.warn(`the second column must be '${'Dernière exploration'}' current is '${col[1]}'`);
+      headerOk = false;
+    }
+    return headerOk;
+  }
   /**
    * get all rules ids from rules array
    */
@@ -202,4 +253,17 @@ export class BatchProcessingComponent implements OnInit {
     }
   }
 
+
+   /**
+   * get  Scope config handler
+   * @param {number} id  the scope id
+   * @returns {Promise<any>} the scope
+   */
+   async getScopeConfigById(id:number): Promise<any> {
+    return this.dataSrv.getScopesConfigById(id)
+    .then((obj)=>{
+      console.log('getScopeConfigById',obj);
+      return obj;
+    })
+  }
 }

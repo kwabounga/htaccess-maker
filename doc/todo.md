@@ -32,3 +32,5 @@
 - [ ] check for old redirections
 - [ ] add importedby field in rules ( blame )
 - [ ] validate app 
+- [x] traitement par lot à partir du fichier de google search console
+- [ ] traitement du fichier pour 'sécuriser' certaines [urls](https://docs.google.com/spreadsheets/d/1Qz4MmDJbCHXi_abVDbVl54t7szXZPRdG/edit#gid=652206423)  
