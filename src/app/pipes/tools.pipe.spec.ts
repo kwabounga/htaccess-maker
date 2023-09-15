@@ -1,8 +1,8 @@
-import { ToolsPipe } from './tools.pipe';
+import { TypeOfPipe } from './tools.pipe';
 
-describe('ToolsPipe', () => {
+describe('TypeOfPipe', () => {
   it('create an instance', () => {
-    const pipe = new ToolsPipe();
+    const pipe = new TypeOfPipe();
     expect(pipe).toBeTruthy();
   });
 });

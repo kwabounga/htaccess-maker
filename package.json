@@ -23,6 +23,7 @@
     "c:b": "npm run create:backup",
     "c:db": "npm run create:database",
     "c:s:c": "npm run create:scope:config",
+    "ntl": "ntl -o -s 12",
     "test": "ng test"
   },
   "ntl": {
@@ -30,16 +31,15 @@
       "start": "development script start electron app and build the front angular part",
       "electron": "start the 'server side' electron app for development",
       "build:and:install": "package app",
-      "watch": "ng build --watch --configuration development",
-      "package:win": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=win32 --arch=all --overwrite ",
-      "package:linux": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=linux --arch=all --overwrite ",
-      "package:osx": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite ",
-      "package:all": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --all --arch=all --overwrite ",
-      "create:scope:config": "node ./src/commands/cmd-create-scope-config.js (same: c:s:c)",
-      "create:database": "sqlite3 ./src/data/database.db \".databases .quit\" && node ./src/electron/build_db.js (same: c:b)",
-      "create:backup": "node ./src/commands/cmd-create-backup.js (same: c:db)",
-      "check:urls": "node ./src/commands/cmd-check-old-redirect.js (same: c:u)",
-      "logger:truncate": "node ./src/commands/cmd-logger-truncate.js"
+      "package:win": "build app for windows",
+      "package:linux": "build app for linux ",
+      "package:osx": "build app for mac osx",
+      "package:all": "build app for all platforms",
+      "create:scope:config": "create a scope config",
+      "create:database": "database generation",
+      "create:backup": "create database backup",
+      "check:urls": "recheck urls",
+      "logger:truncate": "purge log file"
     }
   },
   "private": true,
