@@ -96,6 +96,21 @@ const getRulesByOrigin = (origin) => {
     { column: 'origin', order: 'desc' }
   ]);
 }
+const getLockedRulesByOrigin = (origin, scope_id) => {
+  let regex = /https:\/\/.*\.com/;
+  let ori = target.replace(regex,'').trim()
+
+  /* if( ori !== '' && ori !== '/' ){
+    console.log('Locked Rules (ori):', ori)
+  } */
+  return knex(DATABASE_TABLE_LOCKED_RULES).where({
+    origin: ori,
+    scope_id: scope_id
+  }).select().orderBy([
+    { column: 'position' },
+    { column: 'origin', order: 'desc' }
+  ]);
+}
 const getRulesByTarget = (target) => {
   let regex = /https:\/\/.*\.com/;
   // console.log('getRulesByTarget using target',target.replace(regex,''))

@@ -29,6 +29,7 @@ const {
 const {
   createSchema,
   createRulesTable,
+  createLockedRulesTable,
   createSpecialsRulesTable,
   createScopesTable,
   createScopesConfigTable,
@@ -156,4 +157,8 @@ exports.deleteScope = deleteScope;
 
 // batch processing
 exports.batchRulesComment = batchRulesComment;
+
+
+
+exports.createLockedRulesTable = createLockedRulesTable;
 

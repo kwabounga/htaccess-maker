@@ -1,6 +1,7 @@
 const {
   knex,
   DATABASE_TABLE_RULES,
+  DATABASE_TABLE_LOCKED_RULES,
   DATABASE_TABLE_SPECIALS_RULES,
   DATABASE_TABLE_SCOPES,
   DATABASE_TABLE_SCOPES_CONFIG,
@@ -23,6 +24,7 @@ const createSchema = () => {
       .then((_) => createHeaderConfigTable())
       .then((_) => createFooterConfigTable())
       .then((_) => createHistoryTable())
+      .then((_) => createLockedRulesTable())
       .then((_) => {
           console.log("schema created");
       });
@@ -35,6 +37,16 @@ const createRulesTable = () => {
       table.integer("position").defaultTo(999);
       table.string("origin").notNullable();
       table.string("target").notNullable();
+      table.boolean("active").defaultTo(true).notNullable();
+      table.datetime('added_at').defaultTo(knex.fn.now())
+  });
+};
+const createLockedRulesTable = () => {
+  return knex.schema.createTable(DATABASE_TABLE_LOCKED_RULES, function(table) {
+      table.increments("id").primary();
+      table.integer("scope_id").notNullable();
+      table.string("origin").notNullable();
+      table.string("source").notNullable();
       table.boolean("active").defaultTo(true).notNullable();
       table.datetime('added_at').defaultTo(knex.fn.now())
   });
@@ -108,6 +120,7 @@ const createHistoryTable = () => {
 /* Exports */
 exports.createSchema = createSchema;
 exports.createRulesTable = createRulesTable;
+exports.createLockedRulesTable = createLockedRulesTable;
 exports.createSpecialsRulesTable = createSpecialsRulesTable;
 exports.createScopesTable = createScopesTable;
 exports.createScopesConfigTable = createScopesConfigTable;

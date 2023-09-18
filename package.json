@@ -16,6 +16,7 @@
     "package:all": "npm run build:and:install && cross-var electron-packager dist/$npm_package_name $npm_package_name-$npm_package_version --out=packages --all --arch=all --overwrite ",
     "create:scope:config": "node ./src/commands/cmd-create-scope-config.js",
     "create:database": "sqlite3 ./src/data/database.db \".databases .quit\" && node ./src/electron/build_db.js",
+    "create:add:table": "node ./src/electron/add_table.js",
     "create:backup": "node ./src/commands/cmd-create-backup.js",
     "check:urls": "node ./src/commands/cmd-check-old-redirect.js",
     "logger:truncate": "node ./src/commands/cmd-logger-truncate.js",

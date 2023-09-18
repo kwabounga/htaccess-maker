@@ -55,7 +55,7 @@ export class DataFromIpcService {
    * @returns {Promise<string>} the configuration header
    */
   async getHeaderConfig():Promise<string> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:header_config');
       this.electronSrv.ipcRenderer.on('retrieve:header_config', (_event:any, response: any) => {
         resolve(response);
@@ -68,7 +68,7 @@ export class DataFromIpcService {
    * @returns {Promise<string>} the configuration footer
    */
   async getFooterConfig():Promise<string> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:footer_config');
       this.electronSrv.ipcRenderer.on('retrieve:footer_config', (_event:any, response: any) => {
         resolve(response);
@@ -82,7 +82,7 @@ export class DataFromIpcService {
  * @returns {Promise<ScopeConfig>} the scope configuration
  */
   async getScopesConfigById (id?:number):Promise<ScopeConfig> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope_config:by_id`, id);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -100,7 +100,7 @@ export class DataFromIpcService {
   * @returns {Promise<Scope>} the scope obj
   */
   async getScopeByMagentoId (magento_scope_id?:number):Promise<Scope> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope:by_magento_id`, magento_scope_id);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -114,10 +114,10 @@ export class DataFromIpcService {
 
   /**
    * get all scopes
-   * @returns {Promise<Scope[]} all scopes obj
+   * @returns {Promise<Scope[]>} all scopes obj
    */
   async getScopesAll ():Promise<Scope[]> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:scopes');
       this.electronSrv.ipcRenderer.on('retrieve:scopes', (_event:any, response: any) => {
         resolve(response);
@@ -126,10 +126,10 @@ export class DataFromIpcService {
   }
   /**
    * get history
-   * @returns {Promise<any[]} all scopes obj
+   * @returns {Promise<any[]>} all scopes obj
    */
   async getHistory ():Promise<any[]> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:history');
       this.electronSrv.ipcRenderer.on('retrieve:history', (_event:any, response: any) => {
         console.log(response)
@@ -144,7 +144,7 @@ export class DataFromIpcService {
    * @returns {Promise<RedirectType[]>} all redirect type obj
    */
   async getRedirectTypesAll ():Promise<RedirectType[]> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:redirect_types');
       this.electronSrv.ipcRenderer.on('retrieve:redirect_types', (_event:any, response: any) => {
         resolve(response);
@@ -159,7 +159,7 @@ export class DataFromIpcService {
    * @returns {Promise<RedirectType>} the redirect type obj
    */
   async getRedirectTypesById (id:number):Promise<RedirectType> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send('get:redirect_types:by_id',id);
       this.electronSrv.ipcRenderer.on(`retrieve:redirect_types:by_id_${id}`, (_event:any, response: any) => {
         this.electronSrv.ipcRenderer.removeAllListeners(`retrieve:redirect_types:by_id_${id}`);
@@ -175,7 +175,7 @@ export class DataFromIpcService {
    * @returns  {Promise<Scope>} the scope obj
    */
   async getScopesById (id:number):Promise<Scope> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:scope:by_id`, id);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -190,7 +190,7 @@ export class DataFromIpcService {
    * @returns {Promise<Rule[]>} all rules obj
    */
 async getRulesAll ():Promise<Rule[]> {
-  return new Promise (async (resolve, reject)=>{
+  return new Promise (/* async */ (resolve, reject)=>{
     this.electronSrv.ipcRenderer.send('get:rules');
     this.electronSrv.ipcRenderer.on('retrieve:rules', (_event:any, response: any) => {
       resolve(response);
@@ -204,7 +204,7 @@ async getRulesAll ():Promise<Rule[]> {
    * @returns  {Promise<Rule[]>} all scope associated rules in array
    */
   async getRulesByScopeId (scope_id?:number):Promise<Rule[]> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:rules:by_scope_id`, scope_id);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -221,7 +221,7 @@ async getRulesAll ():Promise<Rule[]> {
    * @returns {Promise<boolean>} deleted or not
    */
   async deleteRule (rule:Rule):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`delete:rule`, rule);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -237,7 +237,7 @@ async getRulesAll ():Promise<Rule[]> {
    * @returns {Promise<boolean>} deleted or not
    */
   async deleteScope (scope_id:number):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`delete:scope`, scope_id);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -249,7 +249,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
 
   async updateRule (rule:Rule):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rule`, rule);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -261,7 +261,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
   async updateRulesByImport (rules:Rule[]):Promise<boolean> {
     // console.log('updateRulesByImport', rules)
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rules`, rules);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -272,7 +272,7 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
   async uploadRules (rules?:Rule[]):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:rules`, rules);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -284,7 +284,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
 
   async uploadLockedRules (lockedRules?:Rule[]):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:locked_rules`, lockedRules);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -296,7 +296,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
 
   async uploadScope (scope?:Scope):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:scope`, [scope]);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -307,7 +307,7 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
   async uploadScopeConfig (scopeConfig?:ScopeConfig):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:scope:config`, [scopeConfig]);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -319,7 +319,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
   //updateScope
   async updateScope (scope?:Scope):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:scope`, scope);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -331,7 +331,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
   //updateScopeConfig
   async updateScopeConfig (scopeConfig?:ScopeConfig):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:scope:config`, scopeConfig);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -343,7 +343,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
   //updateScopesPosition
   async updateScopesPosition (scopes?:Scope[]):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:scopes:position`, scopes);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -356,7 +356,7 @@ async getRulesAll ():Promise<Rule[]> {
 
 
   async updateRulesPosition (rules?:Rule[]):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:rules:position`, rules);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -369,7 +369,7 @@ async getRulesAll ():Promise<Rule[]> {
 
 
   async updateHeaderConfig (config:string):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:header:config`, config);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -381,7 +381,7 @@ async getRulesAll ():Promise<Rule[]> {
   }
 
   async updateFooterConfig (config:string):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`update:footer:config`, config);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -392,7 +392,7 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
   async checkIfOnline ():Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`online:check`);
       const resolver = (_event:any, response: any) => {
         // // console.log(response)
@@ -405,7 +405,7 @@ async getRulesAll ():Promise<Rule[]> {
    /* BATCH PROCESSING  */
 
   async commentRules (rulesId?:any[]):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`batch:rules:comment`, rulesId);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
@@ -416,7 +416,7 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
   async unCommentRules (rulesId?:any[]):Promise<boolean> {
-    return new Promise (async (resolve, reject)=>{
+    return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`batch:rules:uncomment`, rulesId);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
