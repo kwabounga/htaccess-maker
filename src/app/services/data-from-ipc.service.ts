@@ -283,6 +283,18 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
 
+  async uploadLockedRules (lockedRules?:Rule[]):Promise<boolean> {
+    return new Promise (async (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`add:locked_rules`, lockedRules);
+      const resolver = (_event:any, response: any) => {
+        // console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`locked_rules:added`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`locked_rules:added`, resolver)
+    })
+  }
+
   async uploadScope (scope?:Scope):Promise<boolean> {
     return new Promise (async (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:scope`, [scope]);

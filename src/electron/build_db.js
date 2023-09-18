@@ -8,6 +8,7 @@ const {
   Scope,
   ScopeConfig,
   SpecialRule,
+  LockedRule,
 } = require('./bo')
 
 // check for database existance
@@ -57,6 +58,7 @@ const populateDatabase = () => {
     .then((_) => populateFooterTable())
     .then((_) => populateScopesConfigTable())
     .then((_) => populateRulesTable())
+    .then((_) => populateLockedRulesTable())
     .then((_) => {
       console.log("db populated");
     });
@@ -882,4 +884,17 @@ const populateRulesTable = () => {
     new Rule(3, 1, "/sitemap.xml", "https://www.moulinroty-maboutique.com/pub/media/sitemaps/sitemap_mr.xml"),  // 3
   ];
   return dbAccess.insertRules(rulesArray);
+};
+
+/**
+ * Populate Rules Table with Sample
+ * @returns {Promise<Rule[]>}
+ */
+const populateLockedRulesTable = () => {
+  const lockedRulesArray = [
+    new LockedRule(1, "/sitemap.xml", "https://www.jeujouet.com", true),  // 1
+    new LockedRule(2, "/sitemap.xml", "https://www.bonhommedebois.com", true),  // 2
+    new LockedRule(3, "/sitemap.xml", "https://www.moulinroty-maboutique.com", true),  // 3
+  ];
+  return dbAccess.insertLockedRules(lockedRulesArray);
 };

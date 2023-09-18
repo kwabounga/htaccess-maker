@@ -59,9 +59,9 @@ export class BatchProcessingComponent implements OnInit {
         return line.split(',')[0].replace(regExCondition, '')
       })
       this.rulesToBeProcess = allCurrentScopeRules.filter(r => redToBeProcessed.indexOf(r.origin) != -1 )
-      console.log(allCurrentScopeRules)
-      console.log(redToBeProcessed)
-      console.log(this.rulesToBeProcess)
+      console.log(allCurrentScopeRules);
+      console.log(redToBeProcessed);
+      console.log(this.rulesToBeProcess);
       this.rulesNotToBeProcess = new Set();
       /* for (let ll = 0; ll < rtLength; ll++) {
         const url = redToBeProcessed[ll];

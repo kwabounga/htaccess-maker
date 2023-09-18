@@ -1,6 +1,7 @@
 const {
   knex,
   DATABASE_TABLE_RULES,
+  DATABASE_TABLE_LOCKED_RULES,
   DATABASE_TABLE_SPECIALS_RULES,
   DATABASE_TABLE_SCOPES,
   DATABASE_TABLE_SCOPES_CONFIG,
@@ -39,20 +40,32 @@ const insertRules = async (rules) => {
     }
     resolve(allInserts)
   })
-  
-  // return knex
-  //     .transaction(function(trx) {
-  //         return trx(DATABASE_TABLE_RULES).insert(rules);
-  //     })
-  //     .then(function(inserts) {
-  //         console.log(inserts.length + " new rules saved.");
-  //         return inserts;
-  //     })
-  //     .catch(function(error) {
-  //         console.error('something wrong appenning when insert Rule see:log.log file');
-  //         logger.log(error)
-  //         return error;
-  //     });
+};
+
+const insertLockedRules = async (lockedRules) => {
+  const packet = 500;
+  const nbPacket = Math.ceil(lockedRules.length / packet);
+  const allInserts = []
+  return new Promise (async (resolve, reject)=>{
+    for (let i = 0; i < nbPacket; i++) {
+      let currentId = i*packet;
+      let tmp = lockedRules.slice(currentId, Math.min(lockedRules.length,(currentId+(packet-1))))
+      await knex
+        .transaction(function(trx) {
+            return trx(DATABASE_TABLE_LOCKED_RULES).insert(tmp);
+        })
+        .then(function(inserts) {
+            console.log(inserts.length + " new lockedRules saved.");
+            allInserts.push(inserts);
+        })
+        .catch(function(error) {
+            console.error('something wrong appenning when insert Rule see:log.log file');
+            logger.log(error)
+            reject(error);
+        });
+    }
+    resolve(allInserts)
+  })
 };
 
 const insertRedirectTypes = (redirect_types) => {
@@ -162,6 +175,7 @@ const makeHistory = (label) => {
 };
 /* Exports */
 exports.insertRules = insertRules;
+exports.insertLockedRules = insertLockedRules;
 exports.insertSpecialsRules = insertSpecialsRules;
 exports.insertScopes = insertScopes;
 exports.insertScopesConfig = insertScopesConfig;

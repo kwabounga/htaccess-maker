@@ -3,6 +3,7 @@ const {
   knex,
   DATABASE_FILE,
   DATABASE_TABLE_RULES,
+  DATABASE_TABLE_LOCKED_RULES,
   DATABASE_TABLE_SPECIALS_RULES,
   DATABASE_TABLE_SCOPES,
   DATABASE_TABLE_SCOPES_CONFIG,
@@ -14,6 +15,7 @@ const {
 // get all inserts methods from CRUD insert
 const {
   insertRules,
+  insertLockedRules,
   insertSpecialsRules,
   insertScopes,
   insertScopesConfig,
@@ -108,6 +110,7 @@ exports.createSchema = createSchema;
 
 //inserts
 exports.insertRules = insertRules;
+exports.insertLockedRules = insertLockedRules;
 exports.insertSpecialsRules = insertSpecialsRules;
 exports.insertScopes = insertScopes;
 exports.insertScopesConfig = insertScopesConfig;

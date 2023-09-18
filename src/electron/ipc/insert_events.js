@@ -11,6 +11,12 @@ const dbAccess = require("../dbAccess");
       e.sender.send("rules:added", true);
     })
   })
+  ipcMain.on("add:locked_rules", (e, lockedRules) => {
+    dbAccess.insertLockedRules(lockedRules).then((resp)=>{
+      // console.log(resp)
+      e.sender.send("locked_rules:added", true);
+    })
+  })
 
   ipcMain.on("add:scope", (e, scope) => {
     dbAccess.insertScopes(scope).then((resp)=>{
