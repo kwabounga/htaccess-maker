@@ -37,6 +37,7 @@ import { TextSlicerPipe } from './pipes/text-slicer.pipe';
 import { FloorPipe } from './pipes/maths.pipe';
 import { TypeOfPipe } from './pipes/tools.pipe';
 import { InputButtonComponent } from './components/commons/input-button/input-button.component';
+import { LockedRulesComponent } from './pages/locked-rules/locked-rules.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { InputButtonComponent } from './components/commons/input-button/input-bu
     TextSlicerPipe,
     FloorPipe,
     TypeOfPipe,
-    InputButtonComponent
+    InputButtonComponent,
+    LockedRulesComponent
   ],
   imports: [
     BrowserModule,

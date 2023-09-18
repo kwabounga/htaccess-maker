@@ -53,7 +53,15 @@ const dbAccess = require("../dbAccess");
       e.sender.send("retrieve:rules", error.message);
     })
   })
-
+  ipcMain.on("get:locked_rules:by_scope_id", (e,scope_id) => {
+    dbAccess.getLockedRulesByScopeID(scope_id).then((redirect_types)=>{
+      const data = redirect_types;
+      console.log(data);
+      e.sender.send(`retrieve:locked_rules:by_scope_id_${scope_id}`, data);
+    }).catch((error)=>{
+      e.sender.send(`retrieve:locked_rules:by_scope_id_${scope_id}`, error.message);
+    })
+  })
   ipcMain.on("get:redirect_types:by_id", (e,id) => {
     dbAccess.getRedirectTypesByID(id).then((redirect_types)=>{
       const data = redirect_types[0];

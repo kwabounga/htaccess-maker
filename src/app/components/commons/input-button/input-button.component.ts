@@ -7,8 +7,12 @@ import { Scope } from 'src/app/interfaces/interfaces';
   styleUrls: ['./input-button.component.less']
 })
 export class InputButtonComponent implements OnInit {
+  @Input() style?:string = 'primary';
+  @Input() svg?:string = 'config';
   @Input() scope?:Scope = null;
   @Input() label?:string = '';
+  @Input() for_id?:string = '';
+
   @Output() onChange = new EventEmitter<any>();
   constructor() { }
 

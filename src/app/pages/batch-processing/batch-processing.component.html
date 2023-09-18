@@ -3,55 +3,63 @@
   <h1><i18n [txt]="'Batch processing'"></i18n></h1>
   <!-- Export list to be batched-->
   <div class="card card-vscode text-vscode bg-vscode mb-3">
-    <div class="card-header"><i18n [txt]="'Export'"></i18n></div>
+    <div class="card-header"><i18n [txt]="'Export | Google | Backlinks'"></i18n></div>
     <div class="card-body  p-2">
         <!--  Export BUTTON  -->
-      <ul class="list-group">
-        <li class="list-group-item">
-          <div class="input-group d-flex justify-content-center">
+        <div class="row">
+          <div class="col-12 col-md-4 d-flex">
             <button
-            color="primary"
-            class="btn btn-primary text-nowrap btn-sm flex-fill unborded"
-            (click)="export(-1)"
-          ><i18n [txt]="'Export the complete list'"></i18n>
-          </button>
-          <!-- (click)="exportFromGoogleSearchConsole(-1)" -->
-          <button
-            color="primary" disabled
-            class="btn btn-primary text-nowrap btn-sm flex-fill unborded"
-          ><i18n [txt]="'|--- Google Search Console ---|'"></i18n>
-          </button>
+              color="success"
+              class="btn btn-success text-nowrap btn-sm flex-fill unborded"
+              (click)="export(-1)"
+            ><i18n [txt]="'Export the complete list'"></i18n>
+            </button>
           </div>
-        </li>
-        <li *ngFor="let scope of this?.scopesRefs" class="list-group-item">
-          <div class="input-group  d-flex justify-content-center">
+          <div class="col-12 col-md-4 d-flex">
             <button
-            color="secondary"
-            class="btn btn-secondary text-nowrap btn-sm flex-fill unborded"
-            (click)="export(scope.id, scope.label)"
-          ><i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
-          </button>
-          <app-input-button
-            [scope]="scope"
-            [label]="'Vérifier pour '"
-            (onChange)="exportFromGoogleSearchConsole($event,scope.id, scope.label)"
-          ></app-input-button>
-          <!-- <input
-            type="file"
-            class="form-control form-control-vscode"
-            id="fileUpload_"
-            (change)="exportFromGoogleSearchConsole($event,scope.id, scope.label)"
-            #fileUpload
-          /> -->
-          <!-- <button
-            color="secondary"
-            class="btn btn-secondary text-nowrap btn-sm flex-fill unborded"
-            (click)="export(scope.id, scope.label)"
-          ><i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
-          </button> -->
+              color="primary" disabled
+              class="btn btn-primary text-nowrap btn-sm flex-fill unborded"
+            ><i18n [txt]="'|--- Google Search Console ---|'"></i18n>
+            </button>
           </div>
-        </li>
-      </ul>
+          <div class="col-12 col-md-4 d-flex">
+            <button
+              color="info" disabled
+              class="btn btn-info text-nowrap btn-sm flex-fill unborded"
+            ><i18n [txt]="'|--- Locked for Backlinks ---|'"></i18n>
+            </button>
+          </div>
+        </div>
+          <div *ngFor="let scope of this?.scopesRefs" class="row">
+            <div class="col-12 col-md-4  d-flex">
+              <button
+                color="secondary"
+                class="btn btn-secondary text-nowrap btn-sm flex-fill unborded"
+                (click)="export(scope.id, scope.label)"
+                ><i18n [txt]="'Export %0'" [val]="[scope.label]"></i18n>
+              </button>
+            </div>
+            <div class="col-12 col-md-4 d-flex">
+                <app-input-button
+                [scope]="scope"
+                [style]="'primary'"
+                [svg]="'import'"
+                [label]="'Vérifier pour '"
+                [for_id]="'_google'"
+                (onChange)="exportFromGoogleSearchConsole($event,scope.id, scope.label)"
+              ></app-input-button>
+            </div>
+            <div class="col-12 col-md-4 d-flex">
+              <app-input-button
+                [scope]="scope"
+                [style]="'info'"
+                [svg]="'target'"
+                [label]="'Verouiller pour '"
+                [for_id]="'_backlink'"
+                (onChange)="addLockedRulesForBacklinks($event,scope.id, scope.label)"
+              ></app-input-button>
+            </div>
+        </div>      
     </div>
   </div>
   <!-- Rules Selection-->
@@ -122,6 +130,14 @@
           <button type="button" class="btn btn-danger btn-sm" disabled><i18n [txt]="'Remove'"></i18n></button>
         </div>
       </div>
+    </div>
+  </div>
+  <div *ngIf="this.backlinksToBeLocked.length" class="card card-vscode text-vscode bg-vscode mb-3">
+    <div class="card-header"><i18n [txt]="'Import csv'"></i18n></div>
+    <div class="card-body  p-2">
+      <ul class="list-group" id="rulesToBeUpdate">
+        <li *ngFor="let backlink of this!.backlinksToBeLocked; let idr = index" class="list-group-item"><span class="text-danger">{{idr}} </span> <span class="text-success">{{backlink[0]}} </span> <span class="text-light">{{backlink[1]}} </span></li>
+      </ul>
     </div>
   </div>
 

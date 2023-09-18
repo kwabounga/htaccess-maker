@@ -96,7 +96,7 @@ const getRulesByOrigin = (origin) => {
     { column: 'origin', order: 'desc' }
   ]);
 }
-const getLockedRulesByOrigin = (origin, scope_id) => {
+const getLockedRulesByScopeID = (scope_id) => {
   let regex = /https:\/\/.*\.com/;
   let ori = target.replace(regex,'').trim()
 
@@ -104,7 +104,6 @@ const getLockedRulesByOrigin = (origin, scope_id) => {
     console.log('Locked Rules (ori):', ori)
   } */
   return knex(DATABASE_TABLE_LOCKED_RULES).where({
-    origin: ori,
     scope_id: scope_id
   }).select().orderBy([
     { column: 'position' },
@@ -154,6 +153,7 @@ exports.getScopesAll = getScopesAll;
 exports.getScopesByID = getScopesByID;
 exports.getScopeByMagentoID = getScopeByMagentoID;
 exports.getRulesAll = getRulesAll;
+exports.getLockedRulesByScopeID = getLockedRulesByScopeID;
 exports.getRulesByScopeId = getRulesByScopeId;
 exports.getRulesByOrigin = getRulesByOrigin;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;

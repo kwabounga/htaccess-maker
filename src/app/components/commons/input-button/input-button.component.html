@@ -1,11 +1,12 @@
-<label for="fileUpload{{scope.id}}" class="custom-file-upload  btn btn-primary text-nowrap btn-sm flex-fill unborded">
-  <i class="fa fa-cloud-upload"></i>{{label}}{{scope.label}}
+<label for="fileUpload{{scope.id}}{{for_id}}" class="custom-file-upload  btn btn-{{style}} text-nowrap btn-sm flex-fill unborded">
+  <img class="svg-white mr-1" src="assets/svg/{{svg}}.svg"  height="20px" width="20px">{{label}}{{scope.label}}
 </label>
-<!-- <input id="fileUpload{{id}}" type="file"/> -->
+<!-- <input id="fileUpload{{scope.id}}{{for_id}}" type="file"/> -->
 <input
   type="file"
   class="form-control form-control-vscode"
-  id="fileUpload{{scope.id}}"
+  
+  attr.id="fileUpload{{scope.id}}{{for_id}}"
   (change)="onFileSelected($event)"
   #fileUpload
 />

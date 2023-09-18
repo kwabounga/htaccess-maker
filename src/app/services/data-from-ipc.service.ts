@@ -214,6 +214,22 @@ async getRulesAll ():Promise<Rule[]> {
       this.electronSrv.ipcRenderer.on(`retrieve:rules:by_scope_id_${scope_id}`, resolver)
     })
   }
+  /**
+   * get all rules of specified scope
+   * @param scope_id the scope id
+   * @returns  {Promise<Rule[]>} all scope associated rules in array
+   */
+  async getLockedRulesByScopeID (scope_id?:number):Promise<any[]> {
+    return new Promise (/* async */ (resolve, reject)=>{
+      this.electronSrv.ipcRenderer.send(`get:locked_rules:by_scope_id`, scope_id);
+      const resolver = (_event:any, response: any) => {
+        // console.log(response)
+        this.electronSrv.ipcRenderer.removeAllListeners(`retrieve:locked_rules:by_scope_id_${scope_id}`)
+        resolve(response);
+      }
+      this.electronSrv.ipcRenderer.on(`retrieve:rules:by_scope_id_${scope_id}`, resolver)
+    })
+  }
 
   /**
    * delete a rule

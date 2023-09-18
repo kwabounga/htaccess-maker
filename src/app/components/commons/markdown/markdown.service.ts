@@ -118,7 +118,7 @@ export class MarkdownService {
             })
         )
     });
-
+    // https://www.codemzy.com/blog/regex-groups-with-replace   
     // heading
     replace(rx_heading, function(all, _, p1, p2) { return _ + element('h' + p1.length, unesc(highlight(p2))) });
 

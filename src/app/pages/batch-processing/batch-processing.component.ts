@@ -14,6 +14,7 @@ export class BatchProcessingComponent implements OnInit {
   pageLoaded:boolean = false;
   scopesRefs: any = [];
   rulesRefs: any = [];
+  backlinksToBeLocked: any = [];
   rulesToBeProcess: any = [];
   rulesNotToBeProcess: any = new Set();
   csv: string = '';
@@ -34,6 +35,65 @@ export class BatchProcessingComponent implements OnInit {
     },500)
   }
 
+  async addLockedRulesForBacklinks(file: any, id: any, scopeName = 'full') {
+    console.log('-- addLockedRulesForBacklinks --')
+    console.log(file.type, file.name, file.path);
+    console.log(file)
+    console.log(id,scopeName)
+    console.log('-- ----------------------------- --')
+    this.csv = await file.text()
+    if (this.csv.trim() !== '') {
+      const conf = await this.getScopeConfigById(id);
+      const allCurrentScopeRules = await this.dataSrv.getRulesByScopeId(id)
+      let tempArray = this.csv.split('\n');
+      let csvHeader = tempArray.shift();
+      if(!this.checkBacklinksCsvFormat(csvHeader)){
+        console.warn('Please check the csv format');
+        return;
+      }
+      let redToBeProcessed = tempArray.filter(notEmpty).join('\n');
+      // const regExParams = new RegExp('^(.*)(\?\S*)', 'gm'); // $1 url $2 params
+      const regExString = '^https?://rms.'+conf.label.toLowerCase()+'\/\?.*&redir=(\S*)'; // $1 redirect
+      console.log('STRING:', regExString)
+      const regExRms = new RegExp(regExString, 'g'); //  condition is base domain with  www
+      const regExCondition = new RegExp('^https?://'+conf.condition, 'g'); //  condition is base domain with  www
+      const regExLabel = new RegExp('^https?://'+conf.label.toLowerCase(), 'g'); // label is only -basedomain-.com
+      let mappedRed = this.csvToArray(redToBeProcessed).map((row)=>{
+        let target = row[3];
+        // replace rms. with the good redirection :
+        target = target.replace(regExRms, '$1').replace(/%3A/gm,':').replace(/%2F/gm,'/'); 
+        // replace base domaine with www
+        target = target.replace(regExCondition, '');
+        // replace base url without www
+        target = target.replace(regExLabel, '');
+
+        // remove last part of the url ( params )
+        target = target.replace(/^(.*)(\?\S*)/gm, '$1')
+        return [row[2],target]
+      }).filter((row)=>{
+        return (
+            row[1] != '' 
+            && row[1] != '/' 
+            && row[1].indexOf('rms.')== -1
+            && row[1].indexOf('https://media.') == -1
+            && row[1].indexOf('.jpg') == -1
+            && row[1].indexOf('.png') == -1
+            && row[1].indexOf('.gif') == -1
+            && row[1].indexOf('.cfm') == -1
+            && row[1].indexOf('/catalogsearch/result') == -1
+          );
+      })
+      let temp = []
+     this.backlinksToBeLocked = mappedRed.sort().filter(r => {
+        if (temp.length === 0 || !temp.includes(r[1])) {
+          temp.push(r[1])
+          return true
+        }
+        return false
+      })
+      console.log(this.backlinksToBeLocked);
+    }
+  }
   async exportFromGoogleSearchConsole(file: any, id: any, scopeName = 'full') {
     console.log('-- exportFromGoogleSearchConsole --')
     console.log(file.type, file.name, file.path);
@@ -155,6 +215,20 @@ export class BatchProcessingComponent implements OnInit {
     }
     return headerOk;
   }
+  checkBacklinksCsvFormat(header:string):boolean {
+    
+    let headerOk = true;
+    let col = header.trim().split(',');
+    if(col[2] !== 'Source url'){
+      console.warn(`the second column must be '${'URL'}' current is '${col[2]}'`);
+      headerOk = false;
+    }
+    if(col[3] !== 'Target url'){
+      console.warn(`the thirth column must be '${'Dernière exploration'}' current is '${col[3]}'`);
+      headerOk = false;
+    }
+    return headerOk;
+  }
   checkGoogleCsvFormat(header:string):boolean {
     let headerOk = true;
     let col = header.trim().split(',');
@@ -266,4 +340,20 @@ export class BatchProcessingComponent implements OnInit {
       return obj;
     })
   }
+  csvToArray(text) {
+    let p = '', row = [''], ret = [row], i = 0, r = 0, s = !0, l;
+    for (l of text) {
+        if ('"' === l) {
+            if (s && l === p) row[i] += l;
+            s = !s;
+        } else if (',' === l && s) l = row[++i] = '';
+        else if ('\n' === l && s) {
+            if ('\r' === p) row[i] = row[i].slice(0, -1);
+            row = ret[++r] = [l = '']; i = 0;
+        } else row[i] += l;
+        p = l;
+    }
+    return ret;
+};
+
 }

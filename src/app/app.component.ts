@@ -94,6 +94,17 @@ export class AppComponent implements OnInit {
       }
     },
     {
+      label:this.t.i18n('Locked Rules'),
+      route:'/locked-rules',
+      style:'bg-vscode',
+      active_class:'active',
+      sidebar_button: {
+        style:'warning',
+        size:'30px',
+        path:'assets/svg/close.svg',
+      }
+    },
+    {
       label:this.t.i18n('Export File'),
       route:'/export-file',
       style:'bg-vscode',

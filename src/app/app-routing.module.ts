@@ -7,6 +7,7 @@ import { OverviewComponent } from './pages/overview/overview.component';
 import { DeleteScopeComponent } from './pages/delete-scope/delete-scope.component';
 import { SplashScreenComponent } from './pages/splash-screen/splash-screen.component';
 import { BatchProcessingComponent } from './pages/batch-processing/batch-processing.component';
+import { LockedRulesComponent } from './pages/locked-rules/locked-rules.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path:'csv-batch-processing',
     component: BatchProcessingComponent
+  },
+  {
+    path:'locked-rules',
+    component: LockedRulesComponent
   },
   {
     path: '',
