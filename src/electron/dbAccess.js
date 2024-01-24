@@ -55,6 +55,7 @@ const {
   checkIfRuleAlreadyExist,
   getHistory,
   verifyRedirectionLoop,
+  getLockedRulesByScopeID,
   REGEX_URL,
 }  = require('./crud/read');
 
@@ -135,6 +136,7 @@ exports.getRulesByScopeId = getRulesByScopeId;
 exports.getRulesByOrigin = getRulesByOrigin;
 exports.getScopeConfigByScopeID = getScopeConfigByScopeID;
 exports.getHistory = getHistory;
+exports.getLockedRulesByScopeID = getLockedRulesByScopeID;
 
 // verification
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
