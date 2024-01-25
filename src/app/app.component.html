@@ -30,6 +30,17 @@
     <ul class="nav">
       <li *ngFor="let rInfo of routingInfos">
         <app-sidebar-button
+          *ngIf="rInfo.onlyForAdmin"
+          class="{{(adminMode)?'':'d-none'}}"
+          [title]="rInfo.label"
+          [route]="rInfo.route"
+          [routeActive]="rInfo.active_class"
+          [size]="rInfo.sidebar_button.size"
+          [style]="rInfo.sidebar_button.style"
+          [svg_path]="rInfo.sidebar_button.path"
+        ></app-sidebar-button>
+        <app-sidebar-button
+          *ngIf="!rInfo.onlyForAdmin"
           [title]="rInfo.label"
           [route]="rInfo.route"
           [routeActive]="rInfo.active_class"
