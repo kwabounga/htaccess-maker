@@ -1,2 +1,58 @@
-<app-loader [loaded]="pageLoaded" [color]="'#6a7494'"></app-loader>
-<p>locked-rules works!</p>
+<app-loader [loaded]="pageLoaded" [color]="'#ffc107'"></app-loader>
+<div class="page full-height  bg-vscode-dark text-vscode rel">
+  <h1><i18n [txt]="'Locked Rules'"></i18n></h1>
+  <!-- Export locked rules list-->
+  <div class="card card-vscode text-vscode bg-vscode mb-3">
+    <div class="card-header"><i18n [txt]="'Scopes'"></i18n></div>
+    <div class="card-body  p-2">
+        <!--  Export BUTTON  -->
+        <div class="row">
+          <div *ngFor="let scope of this?.scopes" class="col-12 col-md-4 d-flex">
+            <button
+              color="warning"
+              class="btn btn-warning text-nowrap btn-sm flex-fill unborded"
+              (click)="export(scope.id)"
+            ><i18n [txt]="'Export for %0'" [val]="[scope.label]"></i18n>
+            </button>
+          </div>
+        </div>
+
+    </div>
+  </div>
+  <!-- Import Selection-->
+  <div class="card card-vscode text-warning bg-vscode mb-3 ">
+    <div class="card-header"><i18n [txt]="'Import csv'"></i18n></div>
+    <div class="card-body  p-2">
+      <div class="input-group">
+        <input
+        type="file"
+        class="form-control form-control-vscode"
+        id="fileUpload"
+        (change)="onFileSelected($event)"
+        #fileUpload
+      />
+      </div>
+    </div>
+  </div>
+<!--  show Locked rules  -->
+<div class="card card-vscode text-vscode bg-vscode mb-3 ">
+  <div class="card-header"><i18n [txt]="'Import csv'"></i18n></div>
+  <div class="card-body  p-2">
+
+    <ul
+    *ngFor="let scope of this?.scopes; let idr = index"
+    class="list-group  blocked-size-max mb-3 rules good text-center"
+  >
+  <i18n [txt]="scope.label"></i18n>
+  <li
+      class="list-group-item text-light"
+      *ngFor="let lockedRule of this?.backLinksRefs[idr]; let idrs = index"
+    >
+    {{lockedRule.id}} [ {{lockedRule.origin}} > {{lockedRule.source}} ] {{lockedRule.active}}
+  </li>
+</ul>
+
+  </div>
+</div>
+  <app-tips [tipsFileName]="'locked'"></app-tips>
+</div>

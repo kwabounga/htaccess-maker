@@ -6,7 +6,8 @@ import { Scope } from 'src/app/interfaces/interfaces';
 @Component({
   selector: 'app-locked-rules',
   templateUrl: './locked-rules.component.html',
-  styleUrls: ['./locked-rules.component.less']
+  styleUrls: ['./locked-rules.component.less'],
+  host: {'class': 'app-content'}
 })
 export class LockedRulesComponent implements OnInit {
   pageLoaded:boolean = false;
@@ -29,10 +30,15 @@ export class LockedRulesComponent implements OnInit {
     }
 
     console.log('backLinksRefs', this.backLinksRefs)
-    this.pageLoaded= true;
-    /* setTimeout(()=>{
+    //this.pageLoaded= true;
+    setTimeout(()=>{
       this.pageLoaded = true;
-    },500) */
+    },500);
   }
-
+  export(id:any) {
+    console.log('TODO: export locked Rules', id)
+  }
+  onFileSelected(event:any) {
+    console.log('TODO: onFileSelected for locked Rules import ', event)
+  }
 }

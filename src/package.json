@@ -1,7 +1,7 @@
 {
   "name": "htaccess-maker",
   "productName": "Htaccess Maker",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "version-notes": {
     "1.0.0":[
       "mise en place de l'application electron/angular",
@@ -29,6 +29,9 @@
     ],
     "1.3.1":[
       "pagination des règles et correction drag and drop"
+    ],
+    "1.4.0":[
+      "mise en place de verrous pour les backlinks (locked rules)"
     ]
   },
 
