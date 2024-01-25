@@ -8,6 +8,7 @@ const {
   DATABASE_TABLE_FOOTER_CONFIG,
   DATABASE_TABLE_REDIRECT_TYPES,
   DATABASE_TABLE_HISTORY,
+  DATABASE_TABLE_LOCKED_RULES,
 } = require('../bd_factory');
 
 const REGEX_URL =  /https?:\/\/\w+\.[\w_-]+\.\w{2,3}(\S*)/;
@@ -97,10 +98,10 @@ const getRulesByOrigin = (origin) => {
   ]);
 }
 const getLockedRulesByScopeID = (scope_id) => {
-  let regex = /https:\/\/.*\.com/;
+   /*let regex = /https:\/\/.*\.com/;
   let ori = target.replace(regex,'').trim()
 
-  /* if( ori !== '' && ori !== '/' ){
+  if( ori !== '' && ori !== '/' ){
     console.log('Locked Rules (ori):', ori)
   } */
   return knex(DATABASE_TABLE_LOCKED_RULES).where({
