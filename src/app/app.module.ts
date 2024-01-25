@@ -22,7 +22,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { RuleLineBadRedirectionComponent } from './components/rule-line-bad-redirection/rule-line-bad-redirection.component';
 import { SidebarButtonComponent } from './components/commons/sidebar-button/sidebar-button.component';
 import { FooterComponent } from './components/commons/footer/footer.component';
-import { MiniButtonComponent } from './components/commons/mini-button/mini-button.component';
+import { MiniButtonComponent } from './components/scope/mini-button/mini-button.component';
 import { SliderComponent } from './components/commons/slider/slider.component';
 import { TranslateComponent } from './components/commons/translate/translate.component';
 import { LoaderComponent } from './components/commons/loader/loader.component';

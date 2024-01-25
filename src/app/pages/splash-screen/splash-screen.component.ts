@@ -10,7 +10,7 @@ import * as createjs from 'createjs-module';
 })
 export class SplashScreenComponent implements OnInit, AfterViewInit, OnDestroy {
   stage:any;
-  lib:any = {};;
+  lib:any = {};
   version = pjson.version;
   constructor(
     private router: Router
