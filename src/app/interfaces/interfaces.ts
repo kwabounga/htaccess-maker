@@ -32,3 +32,11 @@ export interface Rule {
   target: string;
   active?: boolean;
 }
+
+export interface LockedRule {
+  id?: number;
+  scope_id: number;
+  origin: string;
+  source: string;
+  active?: boolean;
+}

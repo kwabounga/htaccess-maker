@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Scope, ScopeConfig, Rule,RedirectType }from '../interfaces/interfaces';
+import { Scope, ScopeConfig, Rule,RedirectType, LockedRule }from '../interfaces/interfaces';
 import { OutputHtaccessService } from './output-htaccess.service';
 import { ElectronService } from 'ngx-electron';
 @Injectable({
@@ -215,19 +215,20 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
   /**
-   * get all rules of specified scope
+   * get all Locked rules of specified scope
    * @param scope_id the scope id
-   * @returns  {Promise<Rule[]>} all scope associated rules in array
+   * @returns  {Promise<LockedRule[]>} all scope associated Lockedrules in array
    */
   async getLockedRulesByScopeID (scope_id?:number):Promise<any[]> {
+
     return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`get:locked_rules:by_scope_id`, scope_id);
       const resolver = (_event:any, response: any) => {
-        // console.log(response)
+        console.log('resolver',response)
         this.electronSrv.ipcRenderer.removeAllListeners(`retrieve:locked_rules:by_scope_id_${scope_id}`)
         resolve(response);
       }
-      this.electronSrv.ipcRenderer.on(`retrieve:rules:by_scope_id_${scope_id}`, resolver)
+      this.electronSrv.ipcRenderer.on(`retrieve:locked_rules:by_scope_id_${scope_id}`, resolver)
     })
   }
 

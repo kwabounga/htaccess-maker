@@ -56,7 +56,7 @@ const dbAccess = require("../dbAccess");
   ipcMain.on("get:locked_rules:by_scope_id", (e,scope_id) => {
     dbAccess.getLockedRulesByScopeID(scope_id).then((redirect_types)=>{
       const data = redirect_types;
-      console.log(data);
+      //console.log(data);
       e.sender.send(`retrieve:locked_rules:by_scope_id_${scope_id}`, data);
     }).catch((error)=>{
       e.sender.send(`retrieve:locked_rules:by_scope_id_${scope_id}`, error.message);

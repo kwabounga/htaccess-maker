@@ -107,7 +107,7 @@ const getLockedRulesByScopeID = (scope_id) => {
   return knex(DATABASE_TABLE_LOCKED_RULES).where({
     scope_id: scope_id
   }).select().orderBy([
-    { column: 'position' },
+    { column: 'active', order: 'desc' },
     { column: 'origin', order: 'desc' }
   ]);
 }
