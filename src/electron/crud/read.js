@@ -135,30 +135,32 @@ const checkIfRuleAlreadyExist = (rule) => {
  */
 const notLockedRulesfilter = async (rules, scope_id) => {
 
-  //console.log(rr);
+  // console.log(rr);
   let rulesDetails =  await knex(DATABASE_TABLE_RULES)
-  .whereIn('id', rules)
-  console.log(rulesDetails);
-  console.log(rulesDetails.length);
+  .whereIn('id', rules);
+  // console.log(rulesDetails);
+  // console.log(rulesDetails.length);
 
 
   const origins = rulesDetails.map((rule)=>{ return rule.origin })
-  console.log(origins);
+  // console.log(origins);
 
   let lockedRulesDetails = await knex(DATABASE_TABLE_LOCKED_RULES)
   .whereIn('origin', origins)
   .where('scope_id', scope_id);
-  console.log(lockedRulesDetails);
-
-  let intersect = await knex(DATABASE_TABLE_LOCKED_RULES)
-  .whereNotIn('origin', origins);
-  console.log(intersect);
-  console.log(intersect.length);
-
+  // console.log('lockedRulesDetails', lockedRulesDetails);
+  
+  
+  const thirdArray = rules.filter((id) => {
+    console.log('>', id)
+      return lockedRulesDetails.some((el) => {
+        console.log(id, el.id)
+        return el.id !== id;
+      });
+    });
+    // console.log(thirdArray);
   return knex(DATABASE_TABLE_RULES)
-  .whereIn('id', rules)
-  .whereNotIn('id', intersect.map((rule)=>{ return rule.id }) )
-
+  .whereIn('id', thirdArray);
 
 }
 
