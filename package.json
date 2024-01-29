@@ -20,6 +20,7 @@
     "create:backup": "node ./src/commands/cmd-create-backup.js",
     "check:urls": "node ./src/commands/cmd-check-old-redirect.js",
     "logger:truncate": "node ./src/commands/cmd-logger-truncate.js",
+    "test:dev": "node ./src/commands/cmd-test.js",
     "c:u": "npm run check:urls",
     "c:b": "npm run create:backup",
     "c:db": "npm run create:database",

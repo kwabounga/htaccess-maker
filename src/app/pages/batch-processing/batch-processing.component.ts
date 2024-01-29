@@ -42,12 +42,19 @@ export class BatchProcessingComponent implements OnInit {
     console.log(id,scopeName)
     console.log('-- ----------------------------- --')
     this.csv = await file.text()
+    console.log(this.csv)
+    console.log('-- ----------------------------- --')
     if (this.csv.trim() !== '') {
       const conf = await this.getScopeConfigById(id);
-      const allCurrentScopeRules = await this.dataSrv.getRulesByScopeId(id)
+      // const allCurrentScopeRules = await this.dataSrv.getRulesByScopeId(id)
       let tempArray = this.csv.split('\n');
+      console.log(tempArray)
+    console.log('-- ----------------------------- --')
       let csvHeader = tempArray.shift();
-      if(!this.checkBacklinksCsvFormat(csvHeader)){
+      console.log(csvHeader)
+    console.log('-- ----------------------------- --')
+      // if(!this.checkBacklinksCsvFormat(csvHeader)){
+      if(!this.checkCsvFormatFrom(csvHeader, ['URL','Dernière exploration'])){
         console.warn('Please check the csv format');
         return;
       }
@@ -61,7 +68,7 @@ export class BatchProcessingComponent implements OnInit {
       let mappedRed = this.csvToArray(redToBeProcessed).map((row)=>{
         let target = row[3];
         // replace rms. with the good redirection :
-        target = target.replace(regExRms, '$1').replace(/%3A/gm,':').replace(/%2F/gm,'/'); 
+        target = target.replace(regExRms, '$1').replace(/%3A/gm,':').replace(/%2F/gm,'/');
         // replace base domaine with www
         target = target.replace(regExCondition, '');
         // replace base url without www
@@ -72,8 +79,8 @@ export class BatchProcessingComponent implements OnInit {
         return [row[2],target]
       }).filter((row)=>{
         return (
-            row[1] != '' 
-            && row[1] != '/' 
+            row[1] != ''
+            && row[1] != '/'
             && row[1].indexOf('rms.')== -1
             && row[1].indexOf('https://media.') == -1
             && row[1].indexOf('.jpg') == -1
@@ -107,7 +114,9 @@ export class BatchProcessingComponent implements OnInit {
       const allCurrentScopeRules = await this.dataSrv.getRulesByScopeId(id)
       let tempArray = this.csv.split('\n');
       let csvHeader = tempArray.shift();
-      if(!this.checkGoogleCsvFormat(csvHeader)){
+
+      // if(!this.checkGoogleCsvFormat(csvHeader)){
+      if(!this.checkCsvFormatFrom(csvHeader, ['URL','Dernière exploration'])){
         console.warn('Please check the csv format');
         return;
       }
@@ -156,7 +165,9 @@ export class BatchProcessingComponent implements OnInit {
     if (this.csv.trim() !== '') {
       let tempArray = this.csv.split('\n');
       let csvHeader = tempArray.shift();
-      if(!this.checkCsvFormat(csvHeader)){
+
+      // if(!this.checkCsvFormat(csvHeader)){
+      if(!this.checkCsvFormatFrom(csvHeader, ['id','scope_id','redirect_type_id','origin','target'])){
         console.warn('Please check the csv format');
         return;
       }
@@ -184,12 +195,25 @@ export class BatchProcessingComponent implements OnInit {
     this.fileSrv.exportFile(fileName,csvContent)
   }
 
+  checkCsvFormatFrom(header:string, format:any=[]):boolean {
+    let headerOk = true;
+    let col = header.trim().split(';');
+    for (let i =  0; i < format.length; i++) {
+      const column = format[i];
+      if(col[i] !== column){
+        console.warn(`the first column must be '${column}' current is '${col[i]}'`);
+        headerOk = false;
+      }
+    }
 
+    return headerOk;
+  }
   /**
    * needed format: id;scope_id;position;redirect_type_id;origin;target;
    * @param {string} header the csv header
    * @returns {boolean} good csv format or not
    */
+
   checkCsvFormat(header:string):boolean {
     let headerOk = true;
     let col = header.trim().split(';');
@@ -216,15 +240,15 @@ export class BatchProcessingComponent implements OnInit {
     return headerOk;
   }
   checkBacklinksCsvFormat(header:string):boolean {
-    
+
     let headerOk = true;
     let col = header.trim().split(',');
     if(col[2] !== 'Source url'){
-      console.warn(`the second column must be '${'URL'}' current is '${col[2]}'`);
+      console.warn(`the second column must be '${'Source url'}' current is '${col[2]}'`);
       headerOk = false;
     }
     if(col[3] !== 'Target url'){
-      console.warn(`the thirth column must be '${'Dernière exploration'}' current is '${col[3]}'`);
+      console.warn(`the thirth column must be '${'Target url'}' current is '${col[3]}'`);
       headerOk = false;
     }
     return headerOk;
@@ -270,6 +294,7 @@ export class BatchProcessingComponent implements OnInit {
     console.log('IN PROGRESS : comment')
     // getArrayDiff
     let diff = this.getIdsToBeProcessed();
+    console.log(diff)
     this.dataSrv.commentRules(diff)
     .then(r => {
       console.log(r)
@@ -284,10 +309,11 @@ export class BatchProcessingComponent implements OnInit {
     console.log('IN PROGRESS : uncomment')
     // getArrayDiff
     let diff = this.getIdsToBeProcessed();
+    console.log(diff)
     this.dataSrv.unCommentRules(diff)
     .then(r => {
       console.log(r)
-      console.log(`Rules [${diff.join(', ')}] are commented!`)
+      console.log(`Rules [${diff.join(', ')}] are uncommented!`)
     })
   }
 

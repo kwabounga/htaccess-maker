@@ -14,7 +14,7 @@ const {
  **                            */
 
 /**
- *  comment / uncomment rules by ids 
+ *  comment / uncomment rules by ids
  */
 const batchRulesComment = (rulesIds, uncomment = false)=>{
   console.log('batchRulesComment'+(uncomment?' (uncomment)':''))
