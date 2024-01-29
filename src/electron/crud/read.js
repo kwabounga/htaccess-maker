@@ -133,23 +133,33 @@ const checkIfRuleAlreadyExist = (rule) => {
  * @param {any[]} rules
  * @returns
  */
-const notLockedRulesfilter = async (rules) => {
+const notLockedRulesfilter = async (rules, scope_id) => {
 
   //console.log(rr);
   let rulesDetails =  await knex(DATABASE_TABLE_RULES)
   .whereIn('id', rules)
   console.log(rulesDetails);
-  const origins = rulesDetails.map((rule)=>{
-    return rule.origin
-  })
+  console.log(rulesDetails.length);
+
+
+  const origins = rulesDetails.map((rule)=>{ return rule.origin })
+  console.log(origins);
+
   let lockedRulesDetails = await knex(DATABASE_TABLE_LOCKED_RULES)
-  .whereIn('origin', origins);
+  .whereIn('origin', origins)
+  .where('scope_id', scope_id);
   console.log(lockedRulesDetails);
-  return knex(DATABASE_TABLE_LOCKED_RULES)
-      .whereIn('origin', [1, 2, 3])
-      .where({ scope_id: rule.scope_id })
-      .where({ origin: rule.origin });
-      //.then(rows => rows.length);
+
+  let intersect = await knex(DATABASE_TABLE_LOCKED_RULES)
+  .whereNotIn('origin', origins);
+  console.log(intersect);
+  console.log(intersect.length);
+
+  return knex(DATABASE_TABLE_RULES)
+  .whereIn('id', rules)
+  .whereNotIn('id', intersect.map((rule)=>{ return rule.id }) )
+
+
 }
 
 

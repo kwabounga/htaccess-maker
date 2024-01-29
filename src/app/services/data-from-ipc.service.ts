@@ -300,7 +300,7 @@ async getRulesAll ():Promise<Rule[]> {
     })
   }
 
-  async uploadLockedRules (lockedRules?:Rule[]):Promise<boolean> {
+  async uploadLockedRules (lockedRules?:LockedRule[]):Promise<boolean> {
     return new Promise (/* async */ (resolve, reject)=>{
       this.electronSrv.ipcRenderer.send(`add:locked_rules`, lockedRules);
       const resolver = (_event:any, response: any) => {
