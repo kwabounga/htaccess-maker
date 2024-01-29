@@ -127,14 +127,7 @@ const checkIfRuleAlreadyExist = (rule) => {
       .where({ origin: rule.origin });
       //.then(rows => rows.length);
 }
-
-/**
- *
- * @param {any[]} rules
- * @returns
- */
-const notLockedRulesfilter = async (rules, scope_id) => {
-
+const notLockedRulesIDSfilter = async (rules, scope_id) => {
   // console.log(rr);
   let rulesDetails =  await knex(DATABASE_TABLE_RULES)
   .whereIn('id', rules);
@@ -158,6 +151,17 @@ const notLockedRulesfilter = async (rules, scope_id) => {
         return el.id !== id;
       });
     });
+    return thirdArray
+}
+/**
+ *
+ * @param {any[]} rules
+ * @returns
+ */
+
+const notLockedRulesfilter = async (rules, scope_id) => {
+  
+  const thirdArray = await notLockedRulesIDSfilter(rules, scope_id);
     // console.log(thirdArray);
   return knex(DATABASE_TABLE_RULES)
   .whereIn('id', thirdArray);
@@ -198,5 +202,6 @@ exports.getScopeConfigByMagentoID = getScopeConfigByMagentoID;
 exports.checkIfRuleAlreadyExist = checkIfRuleAlreadyExist;
 exports.verifyRedirectionLoop = verifyRedirectionLoop;
 exports.notLockedRulesfilter = notLockedRulesfilter;
+exports.notLockedRulesIDSfilter = notLockedRulesIDSfilter;
 exports.getHistory = getHistory;
 exports.REGEX_URL = REGEX_URL;

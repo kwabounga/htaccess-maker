@@ -421,9 +421,9 @@ async getRulesAll ():Promise<Rule[]> {
   }
    /* BATCH PROCESSING  */
 
-  async commentRules (rulesId?:any[]):Promise<boolean> {
+  async commentRules (rulesId?:any[],scope_id = 1):Promise<boolean> {
     return new Promise (/* async */ (resolve, reject)=>{
-      this.electronSrv.ipcRenderer.send(`batch:rules:comment`, rulesId);
+      this.electronSrv.ipcRenderer.send(`batch:rules:comment`, rulesId,scope_id);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`batch:rules:commented`)
@@ -432,9 +432,9 @@ async getRulesAll ():Promise<Rule[]> {
       this.electronSrv.ipcRenderer.on(`batch:rules:commented`, resolver)
     })
   }
-  async unCommentRules (rulesId?:any[]):Promise<boolean> {
+  async unCommentRules (rulesId?:any[],scope_id=1):Promise<boolean> {
     return new Promise (/* async */ (resolve, reject)=>{
-      this.electronSrv.ipcRenderer.send(`batch:rules:uncomment`, rulesId);
+      this.electronSrv.ipcRenderer.send(`batch:rules:uncomment`, rulesId,scope_id);
       const resolver = (_event:any, response: any) => {
         // console.log(response)
         this.electronSrv.ipcRenderer.removeAllListeners(`batch:rules:uncommented`)

@@ -6,16 +6,16 @@ const logger = require('../logger')
  */
  const addBatchProcessingEvents = (ipcMain) => {
 
-  ipcMain.on("batch:rules:comment", (e, rulesIds) => {
-    dbAccess.batchRulesComment(rulesIds).then((resp)=>{
+  ipcMain.on("batch:rules:comment", (e, rulesIds,scope_id) => {
+    dbAccess.batchRulesComment(rulesIds,false, scope_id).then((resp)=>{
       // console.log(resp)
       logger.log('comment rules: ' + rulesIds.join(','));
       e.sender.send("batch:rules:commented", { ok: true});
     })
   })
 
-  ipcMain.on("batch:rules:uncomment", (e, rulesIds) => {
-    dbAccess.batchRulesComment(rulesIds, true).then((resp)=>{
+  ipcMain.on("batch:rules:uncomment", (e, rulesIds,scope_id) => {
+    dbAccess.batchRulesComment(rulesIds, true, scope_id).then((resp)=>{
       // console.log(resp)
       e.sender.send("batch:rules:uncommented", { ok: true});
     })
