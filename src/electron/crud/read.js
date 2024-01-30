@@ -142,12 +142,12 @@ const notLockedRulesIDSfilter = async (rules, scope_id) => {
   .whereIn('origin', origins)
   .where('scope_id', scope_id);
   // console.log('lockedRulesDetails', lockedRulesDetails);
-  
-  
+
+
   const thirdArray = rules.filter((id) => {
-    console.log('>', id)
+    // console.log('>', id)
       return lockedRulesDetails.some((el) => {
-        console.log(id, el.id)
+        //console.log(id, el.id)
         return el.id !== id;
       });
     });
@@ -160,7 +160,7 @@ const notLockedRulesIDSfilter = async (rules, scope_id) => {
  */
 
 const notLockedRulesfilter = async (rules, scope_id) => {
-  
+
   const thirdArray = await notLockedRulesIDSfilter(rules, scope_id);
     // console.log(thirdArray);
   return knex(DATABASE_TABLE_RULES)
