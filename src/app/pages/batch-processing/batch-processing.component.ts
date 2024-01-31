@@ -56,8 +56,8 @@ export class BatchProcessingComponent implements OnInit {
       let csvHeader = tempArray.shift();
       console.log(csvHeader)
     console.log('-- ----------------------------- --')
-      if(!this.checkBacklinksCsvFormat(csvHeader)){
-      // if(!this.checkCsvFormatFrom(csvHeader, ['URL','Dernière exploration'])){
+      // if(!this.checkBacklinksCsvFormat(csvHeader)){
+      if(!this.csvSrv.checkCsvFormatFrom(csvHeader, ['Page ascore','Source title','Source url','Target url'],',')){
         console.warn('Please check the csv format');
         return;
       }
@@ -68,7 +68,7 @@ export class BatchProcessingComponent implements OnInit {
       const regExRms = new RegExp(regExString, 'g'); //  condition is base domain with  www
       const regExCondition = new RegExp('^https?://'+conf.condition, 'g'); //  condition is base domain with  www
       const regExLabel = new RegExp('^https?://'+conf.label.toLowerCase(), 'g'); // label is only -basedomain-.com
-      let mappedRed = this.csvToArray(redToBeProcessed).map((row)=>{
+      let mappedRed = this.csvSrv.csvToArray(redToBeProcessed).map((row)=>{
         let target = row[3];
         // replace rms. with the good redirection :
         target = target.replace(regExRms, '$1').replace(/%3A/gm,':').replace(/%2F/gm,'/');
@@ -127,7 +127,7 @@ export class BatchProcessingComponent implements OnInit {
       let csvHeader = tempArray.shift();
 
       // if(!this.checkGoogleCsvFormat(csvHeader)){
-      if(!this.checkCsvFormatFrom(csvHeader, ['URL','Dernière exploration'])){
+      if(!this.csvSrv.checkCsvFormatFrom(csvHeader, ['URL','Dernière exploration'])){
         console.warn('Please check the csv format');
         return;
       }
@@ -178,7 +178,7 @@ export class BatchProcessingComponent implements OnInit {
       let csvHeader = tempArray.shift();
 
       // if(!this.checkCsvFormat(csvHeader)){
-      if(!this.checkCsvFormatFrom(csvHeader, ['id','scope_id','redirect_type_id','origin','target'])){
+      if(!this.csvSrv.checkCsvFormatFrom(csvHeader, ['id','scope_id','redirect_type_id','origin','target'])){
         console.warn('Please check the csv format');
         return;
       }
@@ -206,19 +206,19 @@ export class BatchProcessingComponent implements OnInit {
     this.fileSrv.exportFile(fileName,csvContent)
   }
 
-  checkCsvFormatFrom(header:string, format:any=[]):boolean {
-    let headerOk = true;
-    let col = header.trim().split(';');
-    for (let i =  0; i < format.length; i++) {
-      const column = format[i];
-      if(col[i] !== column){
-        console.warn(`the first column must be '${column}' current is '${col[i]}'`);
-        headerOk = false;
-      }
-    }
+  // checkCsvFormatFrom(header:string, format:any=[]):boolean {
+  //   let headerOk = true;
+  //   let col = header.trim().split(';');
+  //   for (let i =  0; i < format.length; i++) {
+  //     const column = format[i];
+  //     if(col[i] !== column){
+  //       console.warn(`the first column must be '${column}' current is '${col[i]}'`);
+  //       headerOk = false;
+  //     }
+  //   }
 
-    return headerOk;
-  }
+  //   return headerOk;
+  // }
   /**
    * needed format: id;scope_id;position;redirect_type_id;origin;target;
    * @param {string} header the csv header
@@ -397,20 +397,20 @@ export class BatchProcessingComponent implements OnInit {
       return obj;
     })
   }
-  csvToArray(text) {
-    let p = '', row = [''], ret = [row], i = 0, r = 0, s = !0, l;
-    for (l of text) {
-        if ('"' === l) {
-            if (s && l === p) row[i] += l;
-            s = !s;
-        } else if (',' === l && s) l = row[++i] = '';
-        else if ('\n' === l && s) {
-            if ('\r' === p) row[i] = row[i].slice(0, -1);
-            row = ret[++r] = [l = '']; i = 0;
-        } else row[i] += l;
-        p = l;
-    }
-    return ret;
-};
+//   csvToArray(text) {
+//     let p = '', row = [''], ret = [row], i = 0, r = 0, s = !0, l;
+//     for (l of text) {
+//         if ('"' === l) {
+//             if (s && l === p) row[i] += l;
+//             s = !s;
+//         } else if (',' === l && s) l = row[++i] = '';
+//         else if ('\n' === l && s) {
+//             if ('\r' === p) row[i] = row[i].slice(0, -1);
+//             row = ret[++r] = [l = '']; i = 0;
+//         } else row[i] += l;
+//         p = l;
+//     }
+//     return ret;
+// };
 
 }
