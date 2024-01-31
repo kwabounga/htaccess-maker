@@ -139,6 +139,9 @@
         <li *ngFor="let backlink of this!.backlinksToBeLocked; let idr = index" class="list-group-item"><span class="text-danger">{{idr}} </span> <span class="text-success">{{backlink[0]}} </span> <span class="text-light">{{backlink[1]}} </span></li>
       </ul>
     </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-secondary btn-sm" (click)="lockRules($event)"><i18n [txt]="'Lock'"></i18n></button>
+    </div>
   </div>
 
 

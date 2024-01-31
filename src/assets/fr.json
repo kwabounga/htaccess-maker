@@ -69,5 +69,6 @@
   "Export %0": "Exporter %0",
   "Export the complete list": "Exporter la liste complète",
   "Change redirects states": "Changer le status de redirection",
-  "Batch processing": "Traitement par lot"
+  "Batch processing": "Traitement par lot",
+  "Lock": "Verrouiller"
 }

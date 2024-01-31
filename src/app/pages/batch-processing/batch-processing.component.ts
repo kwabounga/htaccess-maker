@@ -4,6 +4,7 @@ import { DataFromIpcService } from 'src/app/services/data-from-ipc.service';
 import { FilesStuffService } from 'src/app/services/files-stuff.service';
 import { LoggerService } from 'src/app/services/logger.service';
 import { getDateSlug, notEmpty, getArrayDiff } from "src/app/utils/utils";
+import { LockedRule } from 'src/app/interfaces/interfaces';
 @Component({
   selector: 'app-batch-processing',
   templateUrl: './batch-processing.component.html',
@@ -15,10 +16,12 @@ export class BatchProcessingComponent implements OnInit {
   scopesRefs: any = [];
   rulesRefs: any = [];
   backlinksToBeLocked: any = [];
+  currentScopeID:number = null;
   rulesToBeProcess: any = [];
   rulesNotToBeProcess: any = new Set();
   csv: string = '';
   redirectTypes: any = {};
+
 
   constructor(
     protected dataSrv: DataFromIpcService,
@@ -53,8 +56,8 @@ export class BatchProcessingComponent implements OnInit {
       let csvHeader = tempArray.shift();
       console.log(csvHeader)
     console.log('-- ----------------------------- --')
-      // if(!this.checkBacklinksCsvFormat(csvHeader)){
-      if(!this.checkCsvFormatFrom(csvHeader, ['URL','Dernière exploration'])){
+      if(!this.checkBacklinksCsvFormat(csvHeader)){
+      // if(!this.checkCsvFormatFrom(csvHeader, ['URL','Dernière exploration'])){
         console.warn('Please check the csv format');
         return;
       }
@@ -99,6 +102,14 @@ export class BatchProcessingComponent implements OnInit {
         return false
       })
       console.log(this.backlinksToBeLocked);
+      console.log(this.backlinksToBeLocked.length);
+      console.log(temp.length);
+      if(this.backlinksToBeLocked.length){
+        this.currentScopeID = id;
+
+      } else {
+        this.currentScopeID = null
+      }
     }
   }
   async exportFromGoogleSearchConsole(file: any, id: any, scopeName = 'full') {
@@ -353,7 +364,27 @@ export class BatchProcessingComponent implements OnInit {
     }
   }
 
+  lockRules(event:any): void {
+    if(this.currentScopeID != null) {
 
+      let lr = this.backlinksToBeLocked.map(r=>{
+        return {
+          scope_id:this.currentScopeID,
+          source:r[0],
+          origin:r[1]
+        }
+      })
+      console.log(lr)
+    }
+    // console.log(this.backlinksToBeLocked);
+    // console.log(event);
+    // console.log(keyof LockedRule);
+    /* this.dataSrv.uploadLockedRules(this.backlinksToBeLocked)
+    .then(r => {
+      console.log(r)
+      console.log(`Rules [${diff.join(', ')}] are uncommented!`)
+    }) */
+  }
    /**
    * get  Scope config handler
    * @param {number} id  the scope id
