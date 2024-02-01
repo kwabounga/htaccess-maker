@@ -375,15 +375,13 @@ export class BatchProcessingComponent implements OnInit {
         }
       })
       console.log(lr)
+      this.dataSrv.uploadLockedRules(lr)
+      .then((r:any) => {
+        console.log(r)
+        console.log(`Rules [${r.join(', ')}] are Locked!`)
+      })
     }
-    // console.log(this.backlinksToBeLocked);
-    // console.log(event);
-    // console.log(keyof LockedRule);
-    /* this.dataSrv.uploadLockedRules(this.backlinksToBeLocked)
-    .then(r => {
-      console.log(r)
-      console.log(`Rules [${diff.join(', ')}] are uncommented!`)
-    }) */
+
   }
    /**
    * get  Scope config handler
